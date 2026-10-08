@@ -6,6 +6,14 @@
 #   ./dev.sh <any command>   -> run it in the container
 set -euo pipefail
 
+# Windows: run from WSL2. Git Bash/MSYS rewrites the /work paths below and has no real uid/gid.
+case "$(uname -s)" in
+    MINGW* | MSYS* | CYGWIN*)
+        echo "error: on Windows, run this from a WSL2 (Ubuntu) terminal, not Git Bash. See README." >&2
+        exit 1
+        ;;
+esac
+
 IMAGE=rastera-dev
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
