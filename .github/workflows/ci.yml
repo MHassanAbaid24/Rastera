@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build dev image (same Dockerfile as local dev.sh)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: rastera-dev
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build compiler and run tests
+        run: >
+          docker run --rm -v "$PWD:/work" -w /work rastera-dev
+          bash -c 'cmake -S . -B build -G Ninja && cmake --build build && tests/run_tests.sh build/rasterc'
+
+  pr-size:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: At most 300 changed lines in src/ and runtime/
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed=$(git diff --numstat "$BASE...$HEAD" -- src runtime | awk '{ s += $1 + $2 } END { print s + 0 }')
+          echo "src/ + runtime/ lines changed (added + deleted): $changed"
+          if [ "$changed" -gt 300 ]; then
+            echo "::error::PR changes $changed lines in src/ and runtime/ (limit 300). Split it into smaller PRs."
+            exit 1
+          fi
