@@ -14,6 +14,10 @@ See [`docs/proposal.pdf`](docs/proposal.pdf) and the [language spec](docs/LANGUA
 
 Everything runs inside one Docker image, so every machine and CI use the same toolchain.
 
+**Windows:** use WSL2 (Ubuntu) with Docker Desktop's WSL integration enabled, and clone the repo
+inside the WSL home folder (`~/`), not under `/mnt/c/`. Run every command from the WSL terminal.
+Git Bash / PowerShell are not supported.
+
 ```sh
 ./dev.sh build                   # build/rasterc
 ./dev.sh test                    # build + run tests/
