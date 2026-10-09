@@ -58,4 +58,6 @@ source.rst ─ lexer.l ─▶ tokens ─ parser.y ─▶ AST ─ sema ─▶ che
 - One task per branch, named `T07-functions` (task id + short name).
 - A PR changes at most **300 lines** in `src/` + `runtime/` (tests and docs not counted); CI enforces this.
 - Every feature PR adds `tests/pass` and `tests/fail` cases and keeps `docs/LANGUAGE_SPEC.md` accurate.
-- Squash merge; the PR title becomes the commit message (`T07: functions, calls and recursion`).
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org): `<type>(<scope>): <description>`,
+  e.g. `feat(parser): add range loop rule`. Scopes: `lexer parser ast sema codegen backend driver runtime tests spec build ci docker`.
+- Squash merge; the PR title becomes the commit on `main`: `<type>(<task-id>): <description>`, e.g. `feat(T07): functions, calls and recursion`.
