@@ -37,6 +37,35 @@ struct IntLit : Expr {
     void accept(Visitor& v) override;
 };
 
+enum class BinaryOp {
+    Add,
+    Sub,
+    Mul,
+    Div,
+    Mod,
+};
+
+struct BinaryExpr : Expr {
+    BinaryOp op;
+    std::unique_ptr<Expr> lhs;
+    std::unique_ptr<Expr> rhs;
+    BinaryExpr(BinaryOp op, std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs)
+        : op(op), lhs(std::move(lhs)), rhs(std::move(rhs)) {}
+    void accept(Visitor& v) override;
+};
+
+enum class UnaryOp {
+    Neg,
+};
+
+struct UnaryExpr : Expr {
+    UnaryOp op;
+    std::unique_ptr<Expr> operand;
+    UnaryExpr(UnaryOp op, std::unique_ptr<Expr> operand)
+        : op(op), operand(std::move(operand)) {}
+    void accept(Visitor& v) override;
+};
+
 // ---- Statements ----
 
 struct ReturnStmt : Stmt {
@@ -69,6 +98,8 @@ struct Program : Node {
 struct Visitor {
     virtual ~Visitor() = default;
     virtual void visit(IntLit&) = 0;
+    virtual void visit(BinaryExpr&) = 0;
+    virtual void visit(UnaryExpr&) = 0;
     virtual void visit(ReturnStmt&) = 0;
     virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
@@ -76,6 +107,8 @@ struct Visitor {
 };
 
 inline void IntLit::accept(Visitor& v) { v.visit(*this); }
+inline void BinaryExpr::accept(Visitor& v) { v.visit(*this); }
+inline void UnaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }

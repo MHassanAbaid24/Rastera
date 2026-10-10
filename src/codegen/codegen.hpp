@@ -24,6 +24,8 @@ public:
     std::unique_ptr<llvm::Module> generate(Program& program);
 
     void visit(IntLit&) override;
+    void visit(BinaryExpr&) override;
+    void visit(UnaryExpr&) override;
     void visit(ReturnStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
