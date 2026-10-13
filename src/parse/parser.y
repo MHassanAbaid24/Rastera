@@ -31,6 +31,7 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 
 %token <num> INT "integer"
 %token <str> IDENT "identifier"
+%token ASSIGN ":="
 
 %type <program> program
 %type <func> func
@@ -74,10 +75,13 @@ stmts
 
 stmt
     : '^' expr ';'              { $$ = new ReturnStmt(std::unique_ptr<Expr>($2)); $$->loc.line = @1.first_line; }
+    | IDENT ASSIGN expr ';'     { $$ = new AssignStmt(std::move(*$1), std::unique_ptr<Expr>($3)); delete $1; $$->loc.line = @1.first_line; }
+    | block                     { $$ = $1; }
     ;
 
 expr
     : INT                       { $$ = new IntLit($1); $$->loc.line = @1.first_line; }
+    | IDENT                     { $$ = new VarRef(std::move(*$1)); delete $1; $$->loc.line = @1.first_line; }
     | '(' expr ')'              { $$ = $2; }
     | expr '+' expr             { $$ = new BinaryExpr(BinaryOp::Add, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '-' expr             { $$ = new BinaryExpr(BinaryOp::Sub, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }

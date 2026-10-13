@@ -23,6 +23,22 @@ void Sema::visit(Block& n) {
 
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
+void Sema::visit(AssignStmt& n) {
+    n.value->accept(*this);
+    if (auto* sym = symbols_.lookup(n.name)) {
+        n.sym = sym;
+        n.declares = false;
+    } else {
+        n.sym = symbols_.declare(n.name, Type::Int, n.loc);
+        n.declares = true;
+    }
+}
+
+void Sema::visit(VarRef& n) {
+    n.sym = symbols_.lookup(n.name);
+    if (n.sym == nullptr) diag_.error(n.loc, "undefined variable '" + n.name + "'");
+}
+
 void Sema::visit(IntLit&) {}
 
 void Sema::visit(BinaryExpr& n) {

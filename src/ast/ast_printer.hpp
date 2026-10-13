@@ -11,6 +11,8 @@ public:
 
     void visit(IntLit& n) override { line(n) << "Int " << n.value << "\n"; }
 
+    void visit(VarRef& n) override { line(n) << "Var " << n.name << "\n"; }
+
     void visit(BinaryExpr& n) override {
         line(n) << "Binary " << opString(n.op) << "\n";
         child(*n.lhs);
@@ -24,6 +26,11 @@ public:
 
     void visit(ReturnStmt& n) override {
         line(n) << "Return\n";
+        child(*n.value);
+    }
+
+    void visit(AssignStmt& n) override {
+        line(n) << "Assign " << n.name << "\n";
         child(*n.value);
     }
 

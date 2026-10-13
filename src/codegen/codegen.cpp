@@ -57,6 +57,20 @@ void CodeGen::visit(Block& n) {
 
 void CodeGen::visit(ReturnStmt& n) { builder_.CreateRet(emit(*n.value)); }
 
+void CodeGen::visit(AssignStmt& n) {
+    auto* v = emit(*n.value);
+    if (n.declares) {
+        auto* fn = builder_.GetInsertBlock()->getParent();
+        // Entry-block allocas give each variable one stack slot, enable mem2reg,
+        // and remain correct when T06 introduces loop-local declarations.
+        llvm::IRBuilder<> tmp(&fn->getEntryBlock(), fn->getEntryBlock().begin());
+        slots_.emplace(n.sym, tmp.CreateAlloca(i32_, nullptr, n.name));
+    }
+    builder_.CreateStore(v, slots_.at(n.sym));
+}
+
+void CodeGen::visit(VarRef& n) { value_ = builder_.CreateLoad(i32_, slots_.at(n.sym), n.name); }
+
 void CodeGen::visit(IntLit& n) { value_ = llvm::ConstantInt::get(i32_, n.value, /*isSigned=*/true); }
 
 void CodeGen::visit(BinaryExpr& n) {

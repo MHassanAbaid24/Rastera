@@ -45,6 +45,7 @@ In a condition, any non-zero `i32` is true. Arrays are never conditions or arith
 - `x := e;` — if `x` is visible in the current or any enclosing scope, it is **reassigned** (types must match);
   otherwise a **new** variable is created in the current scope.
 - A variable created inside a block is not visible after the block ends.
+- Using a variable that is not visible is a compile error `undefined variable 'x'` at the line of the use.
 - Function parameters live in the function's outermost scope. Functions cannot see each other's variables (no globals).
 
 ## 5. Statements

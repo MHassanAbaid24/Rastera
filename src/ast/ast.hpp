@@ -18,6 +18,7 @@ struct Loc {
     int line = 0;
 };
 
+struct Symbol;
 struct Visitor;
 
 struct Node {
@@ -34,6 +35,13 @@ struct Stmt : Node {};
 struct IntLit : Expr {
     int32_t value;
     explicit IntLit(int32_t v) : value(v) {}
+    void accept(Visitor& v) override;
+};
+
+struct VarRef : Expr {
+    std::string name;
+    Symbol* sym = nullptr;
+    explicit VarRef(std::string n) : name(std::move(n)) {}
     void accept(Visitor& v) override;
 };
 
@@ -74,10 +82,19 @@ struct ReturnStmt : Stmt {
     void accept(Visitor& v) override;
 };
 
+struct AssignStmt : Stmt {
+    std::string name;
+    std::unique_ptr<Expr> value;
+    Symbol* sym = nullptr;
+    bool declares = false;
+    AssignStmt(std::string n, std::unique_ptr<Expr> v) : name(std::move(n)), value(std::move(v)) {}
+    void accept(Visitor& v) override;
+};
+
 // ---- Structure ----
 
 // `[ stmt* ]` - a sequence of statements that opens a new scope.
-struct Block : Node {
+struct Block : Stmt {
     std::vector<std::unique_ptr<Stmt>> stmts;
     void accept(Visitor& v) override;
 };
@@ -98,18 +115,22 @@ struct Program : Node {
 struct Visitor {
     virtual ~Visitor() = default;
     virtual void visit(IntLit&) = 0;
+    virtual void visit(VarRef&) = 0;
     virtual void visit(BinaryExpr&) = 0;
     virtual void visit(UnaryExpr&) = 0;
     virtual void visit(ReturnStmt&) = 0;
     virtual void visit(Block&) = 0;
+    virtual void visit(AssignStmt&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
 };
 
 inline void IntLit::accept(Visitor& v) { v.visit(*this); }
+inline void VarRef::accept(Visitor& v) { v.visit(*this); }
 inline void BinaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void UnaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
+inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }
