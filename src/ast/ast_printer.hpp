@@ -11,6 +11,17 @@ public:
 
     void visit(IntLit& n) override { line(n) << "Int " << n.value << "\n"; }
 
+    void visit(BinaryExpr& n) override {
+        line(n) << "Binary " << opString(n.op) << "\n";
+        child(*n.lhs);
+        child(*n.rhs);
+    }
+
+    void visit(UnaryExpr& n) override {
+        line(n) << "Unary " << opString(n.op) << "\n";
+        child(*n.operand);
+    }
+
     void visit(ReturnStmt& n) override {
         line(n) << "Return\n";
         child(*n.value);
@@ -41,6 +52,24 @@ private:
         ++depth_;
         n.accept(*this);
         --depth_;
+    }
+
+    static const char* opString(BinaryOp op) {
+        switch (op) {
+            case BinaryOp::Add: return "+";
+            case BinaryOp::Sub: return "-";
+            case BinaryOp::Mul: return "*";
+            case BinaryOp::Div: return "/";
+            case BinaryOp::Mod: return "%";
+        }
+        return "?";
+    }
+
+    static const char* opString(UnaryOp op) {
+        switch (op) {
+            case UnaryOp::Neg: return "-";
+        }
+        return "?";
     }
 
     std::ostream& out_;

@@ -40,6 +40,10 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 
 %destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr>
 
+%left '+' '-'
+%left '*' '/' '%'
+%precedence UMINUS
+
 %%
 
 start
@@ -74,6 +78,13 @@ stmt
 
 expr
     : INT                       { $$ = new IntLit($1); $$->loc.line = @1.first_line; }
+    | '(' expr ')'              { $$ = $2; }
+    | expr '+' expr             { $$ = new BinaryExpr(BinaryOp::Add, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '-' expr             { $$ = new BinaryExpr(BinaryOp::Sub, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '*' expr             { $$ = new BinaryExpr(BinaryOp::Mul, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '/' expr             { $$ = new BinaryExpr(BinaryOp::Div, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '%' expr             { $$ = new BinaryExpr(BinaryOp::Mod, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | '-' expr %prec UMINUS     { $$ = new UnaryExpr(UnaryOp::Neg, std::unique_ptr<Expr>($2)); $$->loc.line = @1.first_line; }
     ;
 
 %%

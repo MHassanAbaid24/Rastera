@@ -58,3 +58,22 @@ void CodeGen::visit(Block& n) {
 void CodeGen::visit(ReturnStmt& n) { builder_.CreateRet(emit(*n.value)); }
 
 void CodeGen::visit(IntLit& n) { value_ = llvm::ConstantInt::get(i32_, n.value, /*isSigned=*/true); }
+
+void CodeGen::visit(BinaryExpr& n) {
+    auto* l = emit(*n.lhs);
+    auto* r = emit(*n.rhs);
+    switch (n.op) {
+        case BinaryOp::Add: value_ = builder_.CreateAdd(l, r, "add"); break;
+        case BinaryOp::Sub: value_ = builder_.CreateSub(l, r, "sub"); break;
+        case BinaryOp::Mul: value_ = builder_.CreateMul(l, r, "mul"); break;
+        case BinaryOp::Div: value_ = builder_.CreateSDiv(l, r, "sdiv"); break;
+        case BinaryOp::Mod: value_ = builder_.CreateSRem(l, r, "srem"); break;
+    }
+}
+
+void CodeGen::visit(UnaryExpr& n) {
+    auto* op = emit(*n.operand);
+    switch (n.op) {
+        case UnaryOp::Neg: value_ = builder_.CreateNeg(op, "neg"); break;
+    }
+}

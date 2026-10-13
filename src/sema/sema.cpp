@@ -24,3 +24,12 @@ void Sema::visit(Block& n) {
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
 void Sema::visit(IntLit&) {}
+
+void Sema::visit(BinaryExpr& n) {
+    n.lhs->accept(*this);
+    n.rhs->accept(*this);
+}
+
+void Sema::visit(UnaryExpr& n) {
+    n.operand->accept(*this);
+}
