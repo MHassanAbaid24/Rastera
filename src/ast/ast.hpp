@@ -51,6 +51,12 @@ enum class BinaryOp {
     Mul,
     Div,
     Mod,
+    Equal,
+    NotEqual,
+    Less,
+    LessEqual,
+    Greater,
+    GreaterEqual,
 };
 
 struct BinaryExpr : Expr {
@@ -115,6 +121,16 @@ struct Block : Stmt {
     void accept(Visitor& v) override;
 };
 
+// `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]`
+struct IfStmt : Stmt {
+    std::unique_ptr<Expr> cond;
+    std::unique_ptr<Block> then_branch;
+    std::unique_ptr<Stmt> else_branch;  // nullptr, Block, or chained IfStmt
+    IfStmt(std::unique_ptr<Expr> c, std::unique_ptr<Block> t, std::unique_ptr<Stmt> e = nullptr)
+        : cond(std::move(c)), then_branch(std::move(t)), else_branch(std::move(e)) {}
+    void accept(Visitor& v) override;
+};
+
 // `@name() [ ... ]`
 struct FuncDecl : Node {
     std::string name;
@@ -138,6 +154,7 @@ struct Visitor {
     virtual void visit(ReturnStmt&) = 0;
     virtual void visit(AssignStmt&) = 0;
     virtual void visit(ExprStmt&) = 0;
+    virtual void visit(IfStmt&) = 0;
     virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
@@ -151,6 +168,7 @@ inline void CallExpr::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
+inline void IfStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }

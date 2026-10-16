@@ -34,16 +34,21 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %token <num> INT "integer"
 %token <str> IDENT "identifier"
 %token ASSIGN ":="
+%token EQ "=="
+%token NE "!="
+%token LE "<="
+%token GE ">="
 
 %type <program> program
 %type <func> func
 %type <block> block stmts
-%type <stmt> stmt
+%type <stmt> stmt if_stmt
 %type <expr> expr
 %type <expr_list> args arg_list
 
 %destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list>
 
+%nonassoc EQ NE '<' LE '>' GE
 %left '+' '-'
 %left '*' '/' '%'
 %precedence UMINUS
@@ -81,6 +86,24 @@ stmt
     | IDENT ASSIGN expr ';'     { $$ = new AssignStmt(std::move(*$1), std::unique_ptr<Expr>($3)); delete $1; $$->loc.line = @1.first_line; }
     | expr ';'                  { $$ = new ExprStmt(std::unique_ptr<Expr>($1)); $$->loc.line = @1.first_line; }
     | block                     { $$ = $1; }
+    | if_stmt                   { $$ = $1; }
+    ;
+
+if_stmt
+    : '?' '(' expr ')' block    {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), nullptr);
+                                    $$->loc.line = @1.first_line;
+                                }
+    | '?' '(' expr ')' block ':' block
+                                {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), std::unique_ptr<Stmt>($7));
+                                    $$->loc.line = @1.first_line;
+                                }
+    | '?' '(' expr ')' block ':' if_stmt
+                                {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), std::unique_ptr<Stmt>($7));
+                                    $$->loc.line = @1.first_line;
+                                }
     ;
 
 expr
@@ -93,6 +116,12 @@ expr
                                     $$->loc.line = @1.first_line;
                                 }
     | '(' expr ')'              { $$ = $2; }
+    | expr EQ expr              { $$ = new BinaryExpr(BinaryOp::Equal, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr NE expr              { $$ = new BinaryExpr(BinaryOp::NotEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '<' expr             { $$ = new BinaryExpr(BinaryOp::Less, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr LE expr              { $$ = new BinaryExpr(BinaryOp::LessEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '>' expr             { $$ = new BinaryExpr(BinaryOp::Greater, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr GE expr              { $$ = new BinaryExpr(BinaryOp::GreaterEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '+' expr             { $$ = new BinaryExpr(BinaryOp::Add, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '-' expr             { $$ = new BinaryExpr(BinaryOp::Sub, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '*' expr             { $$ = new BinaryExpr(BinaryOp::Mul, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
