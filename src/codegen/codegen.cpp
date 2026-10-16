@@ -71,6 +71,26 @@ void CodeGen::visit(AssignStmt& n) {
 
 void CodeGen::visit(VarRef& n) { value_ = builder_.CreateLoad(i32_, slots_.at(n.sym), n.name); }
 
+void CodeGen::visit(ExprStmt& n) { emit(*n.expr); }
+
+void CodeGen::visit(CallExpr& n) {
+    std::string rtName = "rt_" + n.name;
+    llvm::Function* fn = module_->getFunction(rtName);
+    if (!fn) {
+        std::vector<llvm::Type*> paramTypes(n.args.size(), i32_);
+        auto* fnType = llvm::FunctionType::get(i32_, paramTypes, /*isVarArg=*/false);
+        fn = llvm::Function::Create(fnType, llvm::Function::ExternalLinkage, rtName, module_.get());
+    }
+
+    std::vector<llvm::Value*> args;
+    args.reserve(n.args.size());
+    for (auto& a : n.args) {
+        args.push_back(emit(*a));
+    }
+
+    value_ = builder_.CreateCall(fn, args);
+}
+
 void CodeGen::visit(IntLit& n) { value_ = llvm::ConstantInt::get(i32_, n.value, /*isSigned=*/true); }
 
 void CodeGen::visit(BinaryExpr& n) {

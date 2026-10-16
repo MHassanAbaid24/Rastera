@@ -22,8 +22,10 @@ public:
     void visit(VarRef&) override;
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
+    void visit(CallExpr&) override;
     void visit(ReturnStmt&) override;
     void visit(AssignStmt&) override;
+    void visit(ExprStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
     void visit(Program&) override;
@@ -32,4 +34,5 @@ private:
     Diagnostics& diag_;
     SymbolTable symbols_;
     std::unordered_map<std::string, FuncDecl*> functions_;
+    static const std::unordered_map<std::string, int> builtins_;
 };

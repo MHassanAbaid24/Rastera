@@ -6,7 +6,12 @@ bool Sema::check(Program& program) {
 }
 
 void Sema::visit(Program& n) {
-    for (auto& f : n.funcs) functions_.emplace(f->name, f.get());
+    for (auto& f : n.funcs) {
+        if (builtins_.count(f->name)) {
+            diag_.error(f->loc, "using built-in name '" + f->name + "' as a function name");
+        }
+        functions_.emplace(f->name, f.get());
+    }
 
     if (!functions_.count("main")) diag_.error(n.loc, "program has no @main() function");
 
@@ -21,9 +26,17 @@ void Sema::visit(Block& n) {
     symbols_.pop();
 }
 
+const std::unordered_map<std::string, int> Sema::builtins_ = {
+    {"print", 1},
+};
+
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
 void Sema::visit(AssignStmt& n) {
+    if (builtins_.count(n.name)) {
+        diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
+        return;
+    }
     n.value->accept(*this);
     if (auto* sym = symbols_.lookup(n.name)) {
         n.sym = sym;
@@ -37,6 +50,25 @@ void Sema::visit(AssignStmt& n) {
 void Sema::visit(VarRef& n) {
     n.sym = symbols_.lookup(n.name);
     if (n.sym == nullptr) diag_.error(n.loc, "undefined variable '" + n.name + "'");
+}
+
+void Sema::visit(ExprStmt& n) { n.expr->accept(*this); }
+
+void Sema::visit(CallExpr& n) {
+    for (auto& a : n.args) a->accept(*this);
+
+    auto it = builtins_.find(n.name);
+    if (it == builtins_.end()) {
+        diag_.error(n.loc, "unknown function '" + n.name + "'");
+        return;
+    }
+
+    if (static_cast<int>(n.args.size()) != it->second) {
+        diag_.error(n.loc, "wrong argument count for '" + n.name + "': expected " +
+                               std::to_string(it->second) + ", got " +
+                               std::to_string(n.args.size()));
+        return;
+    }
 }
 
 void Sema::visit(IntLit&) {}

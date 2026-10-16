@@ -24,6 +24,11 @@ public:
         child(*n.operand);
     }
 
+    void visit(CallExpr& n) override {
+        line(n) << "Call " << n.name << "\n";
+        for (auto& a : n.args) child(*a);
+    }
+
     void visit(ReturnStmt& n) override {
         line(n) << "Return\n";
         child(*n.value);
@@ -32,6 +37,11 @@ public:
     void visit(AssignStmt& n) override {
         line(n) << "Assign " << n.name << "\n";
         child(*n.value);
+    }
+
+    void visit(ExprStmt& n) override {
+        line(n) << "ExprStmt\n";
+        child(*n.expr);
     }
 
     void visit(Block& n) override {
