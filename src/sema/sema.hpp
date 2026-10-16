@@ -19,9 +19,11 @@ public:
     bool check(Program& program);
 
     void visit(IntLit&) override;
+    void visit(VarRef&) override;
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
     void visit(ReturnStmt&) override;
+    void visit(AssignStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
     void visit(Program&) override;

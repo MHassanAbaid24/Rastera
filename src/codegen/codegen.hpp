@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <string>
-
+#include <unordered_map>
 #include <llvm/IR/IRBuilder.h>
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/Module.h>
@@ -24,9 +24,11 @@ public:
     std::unique_ptr<llvm::Module> generate(Program& program);
 
     void visit(IntLit&) override;
+    void visit(VarRef&) override;
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
     void visit(ReturnStmt&) override;
+    void visit(AssignStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
     void visit(Program&) override;
@@ -43,4 +45,5 @@ private:
     llvm::IRBuilder<> builder_;
     llvm::Type* i32_;
     llvm::Value* value_ = nullptr;
+    std::unordered_map<const Symbol*, llvm::AllocaInst*> slots_;
 };
