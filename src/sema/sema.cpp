@@ -6,7 +6,12 @@ bool Sema::check(Program& program) {
 }
 
 void Sema::visit(Program& n) {
-    for (auto& f : n.funcs) functions_.emplace(f->name, f.get());
+    for (auto& f : n.funcs) {
+        if (builtins_.count(f->name)) {
+            diag_.error(f->loc, "using built-in name '" + f->name + "' as a function name");
+        }
+        functions_.emplace(f->name, f.get());
+    }
 
     if (!functions_.count("main")) diag_.error(n.loc, "program has no @main() function");
 
@@ -28,6 +33,10 @@ const std::unordered_map<std::string, int> Sema::builtins_ = {
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
 void Sema::visit(AssignStmt& n) {
+    if (builtins_.count(n.name)) {
+        diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
+        return;
+    }
     n.value->accept(*this);
     if (auto* sym = symbols_.lookup(n.name)) {
         n.sym = sym;
