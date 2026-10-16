@@ -74,6 +74,15 @@ struct UnaryExpr : Expr {
     void accept(Visitor& v) override;
 };
 
+// `name(args)` - call to a built-in (T03) or user function (T07).
+struct CallExpr : Expr {
+    std::string name;
+    std::vector<std::unique_ptr<Expr>> args;
+    CallExpr(std::string n, std::vector<std::unique_ptr<Expr>> a)
+        : name(std::move(n)), args(std::move(a)) {}
+    void accept(Visitor& v) override;
+};
+
 // ---- Statements ----
 
 struct ReturnStmt : Stmt {
@@ -88,6 +97,13 @@ struct AssignStmt : Stmt {
     Symbol* sym = nullptr;
     bool declares = false;
     AssignStmt(std::string n, std::unique_ptr<Expr> v) : name(std::move(n)), value(std::move(v)) {}
+    void accept(Visitor& v) override;
+};
+
+// `expr;` - evaluate expression for its side effects (spec §5).
+struct ExprStmt : Stmt {
+    std::unique_ptr<Expr> expr;
+    explicit ExprStmt(std::unique_ptr<Expr> e) : expr(std::move(e)) {}
     void accept(Visitor& v) override;
 };
 
@@ -118,9 +134,11 @@ struct Visitor {
     virtual void visit(VarRef&) = 0;
     virtual void visit(BinaryExpr&) = 0;
     virtual void visit(UnaryExpr&) = 0;
+    virtual void visit(CallExpr&) = 0;
     virtual void visit(ReturnStmt&) = 0;
-    virtual void visit(Block&) = 0;
     virtual void visit(AssignStmt&) = 0;
+    virtual void visit(ExprStmt&) = 0;
+    virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
 };
@@ -129,8 +147,10 @@ inline void IntLit::accept(Visitor& v) { v.visit(*this); }
 inline void VarRef::accept(Visitor& v) { v.visit(*this); }
 inline void BinaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void UnaryExpr::accept(Visitor& v) { v.visit(*this); }
+inline void CallExpr::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
-inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
+inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
+inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }

@@ -21,6 +21,10 @@ void Sema::visit(Block& n) {
     symbols_.pop();
 }
 
+const std::unordered_map<std::string, int> Sema::builtins_ = {
+    {"print", 1},
+};
+
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
 void Sema::visit(AssignStmt& n) {
@@ -37,6 +41,25 @@ void Sema::visit(AssignStmt& n) {
 void Sema::visit(VarRef& n) {
     n.sym = symbols_.lookup(n.name);
     if (n.sym == nullptr) diag_.error(n.loc, "undefined variable '" + n.name + "'");
+}
+
+void Sema::visit(ExprStmt& n) { n.expr->accept(*this); }
+
+void Sema::visit(CallExpr& n) {
+    for (auto& a : n.args) a->accept(*this);
+
+    auto it = builtins_.find(n.name);
+    if (it == builtins_.end()) {
+        diag_.error(n.loc, "unknown function '" + n.name + "'");
+        return;
+    }
+
+    if (static_cast<int>(n.args.size()) != it->second) {
+        diag_.error(n.loc, "wrong argument count for '" + n.name + "': expected " +
+                               std::to_string(it->second) + ", got " +
+                               std::to_string(n.args.size()));
+        return;
+    }
 }
 
 void Sema::visit(IntLit&) {}
