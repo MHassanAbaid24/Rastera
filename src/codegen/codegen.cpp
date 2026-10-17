@@ -1,5 +1,6 @@
 #include "codegen/codegen.hpp"
 
+#include <cstddef>
 #include <cstdlib>
 
 #include <llvm/IR/Verifier.h>
@@ -32,14 +33,28 @@ llvm::Value* CodeGen::emit(Expr& e) {
 }
 
 void CodeGen::visit(Program& n) {
+    // Declare all prototypes first so generated bodies can call later functions.
+    for (auto& f : n.funcs) {
+        std::vector<llvm::Type*> paramTypes(f->params.size(), i32_);
+        auto* type = llvm::FunctionType::get(i32_, paramTypes, /*isVarArg=*/false);
+        llvm::Function::Create(type, llvm::Function::ExternalLinkage, mangle(f->name), module_.get());
+    }
     for (auto& f : n.funcs) f->accept(*this);
 }
 
 void CodeGen::visit(FuncDecl& n) {
-    auto* type = llvm::FunctionType::get(i32_, /*params=*/{}, /*isVarArg=*/false);
-    auto* fn = llvm::Function::Create(type, llvm::Function::ExternalLinkage, mangle(n.name), module_.get());
+    auto* fn = module_->getFunction(mangle(n.name));
 
     builder_.SetInsertPoint(llvm::BasicBlock::Create(ctx_, "entry", fn));
+    for (std::size_t i = 0; i < n.params.size(); ++i) {
+        const auto& p = n.params[i];
+        auto* arg = fn->getArg(i);
+        arg->setName(p.name);
+        // Parameters are mutable variables, so their entry slots are keyed by Symbol*; mem2reg removes them.
+        auto* slot = builder_.CreateAlloca(i32_, nullptr, p.name + ".addr");
+        builder_.CreateStore(arg, slot);
+        slots_.emplace(p.sym, slot);
+    }
     n.body->accept(*this);
 
     // Falling off the end of a function returns 0 (spec §5).
@@ -74,12 +89,17 @@ void CodeGen::visit(VarRef& n) { value_ = builder_.CreateLoad(i32_, slots_.at(n.
 void CodeGen::visit(ExprStmt& n) { emit(*n.expr); }
 
 void CodeGen::visit(CallExpr& n) {
-    std::string rtName = "rt_" + n.name;
-    llvm::Function* fn = module_->getFunction(rtName);
-    if (!fn) {
-        std::vector<llvm::Type*> paramTypes(n.args.size(), i32_);
-        auto* fnType = llvm::FunctionType::get(i32_, paramTypes, /*isVarArg=*/false);
-        fn = llvm::Function::Create(fnType, llvm::Function::ExternalLinkage, rtName, module_.get());
+    llvm::Function* fn;
+    if (n.callee) {
+        fn = module_->getFunction(mangle(n.name));
+    } else {
+        std::string rtName = "rt_" + n.name;
+        fn = module_->getFunction(rtName);
+        if (!fn) {
+            std::vector<llvm::Type*> paramTypes(n.args.size(), i32_);
+            auto* fnType = llvm::FunctionType::get(i32_, paramTypes, /*isVarArg=*/false);
+            fn = llvm::Function::Create(fnType, llvm::Function::ExternalLinkage, rtName, module_.get());
+        }
     }
 
     std::vector<llvm::Value*> args;

@@ -3,6 +3,7 @@
 // with what codegen needs. Codegen assumes a program that passed sema.
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <unordered_map>
 
@@ -34,5 +35,5 @@ private:
     Diagnostics& diag_;
     SymbolTable symbols_;
     std::unordered_map<std::string, FuncDecl*> functions_;
-    static const std::unordered_map<std::string, int> builtins_;
+    static const std::unordered_map<std::string, std::size_t> builtins_;
 };

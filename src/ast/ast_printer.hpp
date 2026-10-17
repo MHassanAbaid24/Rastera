@@ -1,6 +1,7 @@
 // `rasterc --ast`: prints the tree, one node per line, children indented.
 #pragma once
 
+#include <cstddef>
 #include <ostream>
 
 #include "ast/ast.hpp"
@@ -50,7 +51,16 @@ public:
     }
 
     void visit(FuncDecl& n) override {
-        line(n) << "Func " << n.name << "\n";
+        line(n) << "Func " << n.name;
+        if (!n.params.empty()) {
+            out_ << " (";
+            for (std::size_t i = 0; i < n.params.size(); ++i) {
+                if (i != 0) out_ << ", ";
+                out_ << n.params[i].name;
+            }
+            out_ << ")";
+        }
+        out_ << "\n";
         child(*n.body);
     }
 

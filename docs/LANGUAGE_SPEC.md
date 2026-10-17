@@ -95,6 +95,7 @@ Precedence, lowest to highest:
 @name(p1, p2, buf[]) [ ... ]
 ```
 
+- `@main` takes no parameters; parameters are mutable `i32` variables local to the call (assigning one never changes the caller's value).
 - Parameters are `i32` unless written with `[]`, which makes them arrays passed **by reference**:
   stores through the parameter are visible to the caller.
 - Functions return `i32` only. Arrays cannot be returned.
