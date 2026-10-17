@@ -18,6 +18,7 @@ struct Loc {
     int line = 0;
 };
 
+struct FuncDecl;
 struct Symbol;
 struct Visitor;
 
@@ -78,6 +79,7 @@ struct UnaryExpr : Expr {
 struct CallExpr : Expr {
     std::string name;
     std::vector<std::unique_ptr<Expr>> args;
+    FuncDecl* callee = nullptr;  // set by sema for user functions; nullptr means built-in
     CallExpr(std::string n, std::vector<std::unique_ptr<Expr>> a)
         : name(std::move(n)), args(std::move(a)) {}
     void accept(Visitor& v) override;
@@ -115,11 +117,20 @@ struct Block : Stmt {
     void accept(Visitor& v) override;
 };
 
-// `@name() [ ... ]`
+// One `@f(a, b)` parameter: an i32 variable in the function's outermost scope (spec §4, §7).
+struct Param {
+    std::string name;
+    Loc loc;
+    Symbol* sym = nullptr;  // set by sema
+};
+
+// `@name(p1, p2) [ ... ]`
 struct FuncDecl : Node {
     std::string name;
+    std::vector<Param> params;
     std::unique_ptr<Block> body;
-    FuncDecl(std::string n, std::unique_ptr<Block> b) : name(std::move(n)), body(std::move(b)) {}
+    FuncDecl(std::string n, std::vector<Param> p, std::unique_ptr<Block> b)
+        : name(std::move(n)), params(std::move(p)), body(std::move(b)) {}
     void accept(Visitor& v) override;
 };
 

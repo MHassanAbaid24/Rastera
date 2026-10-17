@@ -6,19 +6,40 @@ bool Sema::check(Program& program) {
 }
 
 void Sema::visit(Program& n) {
+    // Collect signatures before checking bodies so calls can target later functions.
     for (auto& f : n.funcs) {
         if (builtins_.count(f->name)) {
             diag_.error(f->loc, "using built-in name '" + f->name + "' as a function name");
+            continue;
         }
-        functions_.emplace(f->name, f.get());
+        if (!functions_.emplace(f->name, f.get()).second)
+            diag_.error(f->loc, "duplicate function '" + f->name + "'");
     }
-
-    if (!functions_.count("main")) diag_.error(n.loc, "program has no @main() function");
+    auto main = functions_.find("main");
+    if (main == functions_.end()) {
+        diag_.error(n.loc, "program has no @main() function");
+    } else if (!main->second->params.empty()) {
+        diag_.error(main->second->loc, "@main() must not have parameters");
+    }
 
     for (auto& f : n.funcs) f->accept(*this);
 }
 
-void Sema::visit(FuncDecl& n) { n.body->accept(*this); }
+void Sema::visit(FuncDecl& n) {
+    // Parameter scope: encloses the body block, and starts empty, so functions
+    // cannot see each other's variables (spec §4).
+    symbols_.push();
+    for (auto& p : n.params) {
+        if (builtins_.count(p.name)) {
+            diag_.error(p.loc, "using built-in name '" + p.name + "' as a parameter name");
+            continue;
+        }
+        p.sym = symbols_.declare(p.name, Type::Int, p.loc);
+        if (p.sym == nullptr) diag_.error(p.loc, "duplicate parameter '" + p.name + "'");
+    }
+    n.body->accept(*this);
+    symbols_.pop();
+}
 
 void Sema::visit(Block& n) {
     symbols_.push();
@@ -26,7 +47,7 @@ void Sema::visit(Block& n) {
     symbols_.pop();
 }
 
-const std::unordered_map<std::string, int> Sema::builtins_ = {
+const std::unordered_map<std::string, std::size_t> Sema::builtins_ = {
     {"print", 1},
 };
 
@@ -57,17 +78,24 @@ void Sema::visit(ExprStmt& n) { n.expr->accept(*this); }
 void Sema::visit(CallExpr& n) {
     for (auto& a : n.args) a->accept(*this);
 
-    auto it = builtins_.find(n.name);
-    if (it == builtins_.end()) {
-        diag_.error(n.loc, "unknown function '" + n.name + "'");
-        return;
+    std::size_t expected;
+    auto builtin = builtins_.find(n.name);
+    if (builtin != builtins_.end()) {
+        expected = builtin->second;
+    } else {
+        auto function = functions_.find(n.name);
+        if (function == functions_.end()) {
+            diag_.error(n.loc, "unknown function '" + n.name + "'");
+            return;
+        }
+        n.callee = function->second;
+        expected = n.callee->params.size();
     }
 
-    if (static_cast<int>(n.args.size()) != it->second) {
+    if (n.args.size() != expected) {
         diag_.error(n.loc, "wrong argument count for '" + n.name + "': expected " +
-                               std::to_string(it->second) + ", got " +
+                               std::to_string(expected) + ", got " +
                                std::to_string(n.args.size()));
-        return;
     }
 }
 
