@@ -44,6 +44,13 @@ public:
         child(*n.expr);
     }
 
+    void visit(IfStmt& n) override {
+        line(n) << "If\n";
+        child(*n.cond);
+        child(*n.then_branch);
+        if (n.else_branch) child(*n.else_branch);
+    }
+
     void visit(Block& n) override {
         line(n) << "Block\n";
         for (auto& s : n.stmts) child(*s);
@@ -78,6 +85,12 @@ private:
             case BinaryOp::Mul: return "*";
             case BinaryOp::Div: return "/";
             case BinaryOp::Mod: return "%";
+            case BinaryOp::Equal: return "==";
+            case BinaryOp::NotEqual: return "!=";
+            case BinaryOp::Less: return "<";
+            case BinaryOp::LessEqual: return "<=";
+            case BinaryOp::Greater: return ">";
+            case BinaryOp::GreaterEqual: return ">=";
         }
         return "?";
     }

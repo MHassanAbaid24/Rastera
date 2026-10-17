@@ -26,6 +26,7 @@ public:
     void visit(ReturnStmt&) override;
     void visit(AssignStmt&) override;
     void visit(ExprStmt&) override;
+    void visit(IfStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
     void visit(Program&) override;
