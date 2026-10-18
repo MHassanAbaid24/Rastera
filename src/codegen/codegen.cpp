@@ -9,7 +9,8 @@ CodeGen::CodeGen(llvm::LLVMContext& ctx, const std::string& moduleName, const ll
     : ctx_(ctx),
       module_(std::make_unique<llvm::Module>(moduleName, ctx)),
       builder_(ctx),
-      i32_(llvm::Type::getInt32Ty(ctx)) {
+      i32_(llvm::Type::getInt32Ty(ctx)),
+      i8ptr_(llvm::Type::getInt8PtrTy(ctx)) {
     module_->setTargetTriple(tm.getTargetTriple().str());
     module_->setDataLayout(tm.createDataLayout());
 }
@@ -63,13 +64,21 @@ void CodeGen::visit(AssignStmt& n) {
         auto* fn = builder_.GetInsertBlock()->getParent();
         // Entry-block allocas give each variable one stack slot, enable mem2reg,
         // and remain correct when T06 introduces loop-local declarations.
+        // Array variables hold an i8* pointer to heap data; ints hold i32.
         llvm::IRBuilder<> tmp(&fn->getEntryBlock(), fn->getEntryBlock().begin());
-        slots_.emplace(n.sym, tmp.CreateAlloca(i32_, nullptr, n.name));
+        llvm::Type* slotType = (n.sym->type == Type::Array) ? i8ptr_ : i32_;
+        slots_.emplace(n.sym, tmp.CreateAlloca(slotType, nullptr, n.name));
     }
     builder_.CreateStore(v, slots_.at(n.sym));
 }
 
-void CodeGen::visit(VarRef& n) { value_ = builder_.CreateLoad(i32_, slots_.at(n.sym), n.name); }
+void CodeGen::visit(VarRef& n) {
+    if (n.sym->type == Type::Array) {
+        value_ = builder_.CreateLoad(i8ptr_, slots_.at(n.sym), n.name);
+    } else {
+        value_ = builder_.CreateLoad(i32_, slots_.at(n.sym), n.name);
+    }
+}
 
 void CodeGen::visit(ExprStmt& n) { emit(*n.expr); }
 
@@ -89,6 +98,56 @@ void CodeGen::visit(CallExpr& n) {
     }
 
     value_ = builder_.CreateCall(fn, args);
+}
+
+// Declare (or get) the runtime array allocator: rt_alloc(i32) -> i8*.
+llvm::Function* CodeGen::rtAllocFn() {
+    llvm::Function* fn = module_->getFunction("rt_alloc");
+    if (!fn) {
+        std::vector<llvm::Type*> paramTypes = {i32_};
+        auto* fnType = llvm::FunctionType::get(i8ptr_, paramTypes, /*isVarArg=*/false);
+        fn = llvm::Function::Create(fnType, llvm::Function::ExternalLinkage, "rt_alloc", module_.get());
+    }
+    return fn;
+}
+
+void CodeGen::visit(ArrayLit& n) {
+    // <1, 2, 3>: allocate via rt_alloc(count), then store each element.
+    auto* count = llvm::ConstantInt::get(i32_, static_cast<int32_t>(n.elements.size()));
+    auto* arr = builder_.CreateCall(rtAllocFn(), count, "arr");
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    int idx = 0;
+    for (auto& e : n.elements) {
+        auto* val = emit(*e);
+        auto* elemPtr = builder_.CreateGEP(i32_, i32arr, llvm::ConstantInt::get(i32_, idx++), "elem");
+        builder_.CreateStore(val, elemPtr);
+    }
+    value_ = arr;  // the array reference (i8*) is the expression's value
+}
+
+void CodeGen::visit(ArrayAlloc& n) {
+    // arr(n): call rt_alloc(n), result is the array reference (i8*).
+    auto* size = emit(*n.size);
+    value_ = builder_.CreateCall(rtAllocFn(), size, "arr");
+}
+
+void CodeGen::visit(IndexExpr& n) {
+    // a[i]: load array ptr (i8*), bitcast to i32*, GEP by index, load i32.
+    auto* arr = emit(*n.array);
+    auto* idx = emit(*n.index);
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
+    value_ = builder_.CreateLoad(i32_, elemPtr, "elem.val");
+}
+
+void CodeGen::visit(ArrayStoreStmt& n) {
+    // a[i] := e: load array ptr, bitcast to i32*, GEP by index, store i32.
+    auto* arr = emit(*n.array);
+    auto* idx = emit(*n.index);
+    auto* val = emit(*n.value);
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
+    builder_.CreateStore(val, elemPtr);
 }
 
 void CodeGen::visit(IntLit& n) { value_ = llvm::ConstantInt::get(i32_, n.value, /*isSigned=*/true); }

@@ -34,6 +34,7 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %token <num> INT "integer"
 %token <str> IDENT "identifier"
 %token ASSIGN ":="
+%token ARR "array constructor"
 
 %type <program> program
 %type <func> func
@@ -79,6 +80,15 @@ stmts
 stmt
     : '^' expr ';'              { $$ = new ReturnStmt(std::unique_ptr<Expr>($2)); $$->loc.line = @1.first_line; }
     | IDENT ASSIGN expr ';'     { $$ = new AssignStmt(std::move(*$1), std::unique_ptr<Expr>($3)); delete $1; $$->loc.line = @1.first_line; }
+    | IDENT '[' expr ']' ASSIGN expr ';' {
+                                        auto* arr = new VarRef(std::move(*$1));
+                                        delete $1;
+                                        $$ = new ArrayStoreStmt(
+                                            std::unique_ptr<Expr>(arr),
+                                            std::unique_ptr<Expr>($3),
+                                            std::unique_ptr<Expr>($6));
+                                        $$->loc.line = @1.first_line;
+                                    }
     | expr ';'                  { $$ = new ExprStmt(std::unique_ptr<Expr>($1)); $$->loc.line = @1.first_line; }
     | block                     { $$ = $1; }
     ;
@@ -91,6 +101,20 @@ expr
                                     delete $1;
                                     delete $3;
                                     $$->loc.line = @1.first_line;
+                                }
+    | '<' arg_list '>'          {
+                                    $$ = new ArrayLit(std::move(*$2));
+                                    delete $2;
+                                    $$->loc.line = @1.first_line;
+                                }
+    | ARR '(' expr ')'          {
+                                    $$ = new ArrayAlloc(std::unique_ptr<Expr>($3));
+                                    $$->loc.line = @1.first_line;
+                                }
+    | expr '[' expr ']'         {
+                                    $$ = new IndexExpr(std::unique_ptr<Expr>($1),
+                                                       std::unique_ptr<Expr>($3));
+                                    $$->loc.line = @2.first_line;
                                 }
     | '(' expr ')'              { $$ = $2; }
     | expr '+' expr             { $$ = new BinaryExpr(BinaryOp::Add, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }

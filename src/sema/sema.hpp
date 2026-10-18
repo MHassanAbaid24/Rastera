@@ -23,6 +23,10 @@ public:
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
     void visit(CallExpr&) override;
+    void visit(ArrayLit&) override;
+    void visit(ArrayAlloc&) override;
+    void visit(IndexExpr&) override;
+    void visit(ArrayStoreStmt&) override;
     void visit(ReturnStmt&) override;
     void visit(AssignStmt&) override;
     void visit(ExprStmt&) override;

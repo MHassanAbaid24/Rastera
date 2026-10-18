@@ -29,6 +29,29 @@ public:
         for (auto& a : n.args) child(*a);
     }
 
+    void visit(ArrayLit& n) override {
+        line(n) << "ArrayLit (" << n.elements.size() << " elements)\n";
+        for (auto& e : n.elements) child(*e);
+    }
+
+    void visit(ArrayAlloc& n) override {
+        line(n) << "ArrayAlloc\n";
+        child(*n.size);
+    }
+
+    void visit(IndexExpr& n) override {
+        line(n) << "Index\n";
+        child(*n.array);
+        child(*n.index);
+    }
+
+    void visit(ArrayStoreStmt& n) override {
+        line(n) << "ArrayStore\n";
+        child(*n.array);
+        child(*n.index);
+        child(*n.value);
+    }
+
     void visit(ReturnStmt& n) override {
         line(n) << "Return\n";
         child(*n.value);

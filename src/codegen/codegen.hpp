@@ -28,6 +28,10 @@ public:
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
     void visit(CallExpr&) override;
+    void visit(ArrayLit&) override;
+    void visit(ArrayAlloc&) override;
+    void visit(IndexExpr&) override;
+    void visit(ArrayStoreStmt&) override;
     void visit(ReturnStmt&) override;
     void visit(AssignStmt&) override;
     void visit(ExprStmt&) override;
@@ -42,10 +46,14 @@ private:
     llvm::Value* emit(Expr& e);
     bool blockTerminated() const { return builder_.GetInsertBlock()->getTerminator() != nullptr; }
 
+    // Runtime array allocator: rt_alloc(i32) -> i8*.
+    llvm::Function* rtAllocFn();
+
     llvm::LLVMContext& ctx_;
     std::unique_ptr<llvm::Module> module_;
     llvm::IRBuilder<> builder_;
     llvm::Type* i32_;
+    llvm::Type* i8ptr_;          // i8* — the type of an array reference
     llvm::Value* value_ = nullptr;
     std::unordered_map<const Symbol*, llvm::AllocaInst*> slots_;
 };
