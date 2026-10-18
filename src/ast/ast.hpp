@@ -18,6 +18,9 @@ struct Loc {
     int line = 0;
 };
 
+// Type of a value: i32 or a heap array reference (spec §3).
+enum class Type { Int, Array };
+
 struct Symbol;
 struct Visitor;
 
@@ -27,7 +30,9 @@ struct Node {
     virtual void accept(Visitor& v) = 0;
 };
 
-struct Expr : Node {};
+struct Expr : Node {
+    Type type = Type::Int;  // set by sema; codegen reads it to pick LLVM types
+};
 struct Stmt : Node {};
 
 // ---- Expressions ----
@@ -83,7 +88,42 @@ struct CallExpr : Expr {
     void accept(Visitor& v) override;
 };
 
+// `<1, 2, 3>` - array literal with at least one element (spec §8, T09).
+struct ArrayLit : Expr {
+    std::vector<std::unique_ptr<Expr>> elements;
+    explicit ArrayLit(std::vector<std::unique_ptr<Expr>> e)
+        : elements(std::move(e)) {}
+    void accept(Visitor& v) override;
+};
+
+// `arr(n)` - new array of n zeros (spec §8, T09).
+struct ArrayAlloc : Expr {
+    std::unique_ptr<Expr> size;
+    explicit ArrayAlloc(std::unique_ptr<Expr> s) : size(std::move(s)) {}
+    void accept(Visitor& v) override;
+};
+
+// `a[i]` - read array element (spec §8, T09).
+struct IndexExpr : Expr {
+    std::unique_ptr<Expr> array;
+    std::unique_ptr<Expr> index;
+    IndexExpr(std::unique_ptr<Expr> a, std::unique_ptr<Expr> i)
+        : array(std::move(a)), index(std::move(i)) {}
+    void accept(Visitor& v) override;
+};
+
 // ---- Statements ----
+
+// `a[i] := e;` - store into array element (spec §8, T09).
+struct ArrayStoreStmt : Stmt {
+    std::unique_ptr<Expr> array;
+    std::unique_ptr<Expr> index;
+    std::unique_ptr<Expr> value;
+    ArrayStoreStmt(std::unique_ptr<Expr> a, std::unique_ptr<Expr> i,
+                   std::unique_ptr<Expr> v)
+        : array(std::move(a)), index(std::move(i)), value(std::move(v)) {}
+    void accept(Visitor& v) override;
+};
 
 struct ReturnStmt : Stmt {
     std::unique_ptr<Expr> value;
@@ -135,6 +175,10 @@ struct Visitor {
     virtual void visit(BinaryExpr&) = 0;
     virtual void visit(UnaryExpr&) = 0;
     virtual void visit(CallExpr&) = 0;
+    virtual void visit(ArrayLit&) = 0;
+    virtual void visit(ArrayAlloc&) = 0;
+    virtual void visit(IndexExpr&) = 0;
+    virtual void visit(ArrayStoreStmt&) = 0;
     virtual void visit(ReturnStmt&) = 0;
     virtual void visit(AssignStmt&) = 0;
     virtual void visit(ExprStmt&) = 0;
@@ -148,6 +192,10 @@ inline void VarRef::accept(Visitor& v) { v.visit(*this); }
 inline void BinaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void UnaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void CallExpr::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayLit::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayAlloc::accept(Visitor& v) { v.visit(*this); }
+inline void IndexExpr::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayStoreStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
