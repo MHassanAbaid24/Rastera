@@ -116,12 +116,12 @@ llvm::Function* CodeGen::rtAllocFn() {
 void CodeGen::visit(ArrayLit& n) {
     // <1, 2, 3>: allocate via rt_alloc(count), then store each element.
     auto* count = llvm::ConstantInt::get(i32_, static_cast<int32_t>(n.elements.size()));
-    auto* arr = builder_.CreateCall(rtAllocFn(), count, "arr");
+    auto* arr = builder_.CreateCall(rtAllocFn(), {count}, "arr");
     auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
     int idx = 0;
     for (auto& e : n.elements) {
         auto* val = emit(*e);
-        auto* elemPtr = builder_.CreateGEP(i32_, i32arr, llvm::ConstantInt::get(i32_, idx++), "elem");
+        auto* elemPtr = builder_.CreateGEP(i32_, i32arr, {llvm::ConstantInt::get(i32_, idx++)}, "elem");
         builder_.CreateStore(val, elemPtr);
     }
     value_ = arr;  // the array reference (i8*) is the expression's value
@@ -130,7 +130,7 @@ void CodeGen::visit(ArrayLit& n) {
 void CodeGen::visit(ArrayAlloc& n) {
     // arr(n): call rt_alloc(n), result is the array reference (i8*).
     auto* size = emit(*n.size);
-    value_ = builder_.CreateCall(rtAllocFn(), size, "arr");
+    value_ = builder_.CreateCall(rtAllocFn(), {size}, "arr");
 }
 
 void CodeGen::visit(IndexExpr& n) {
@@ -138,7 +138,7 @@ void CodeGen::visit(IndexExpr& n) {
     auto* arr = emit(*n.array);
     auto* idx = emit(*n.index);
     auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
-    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
+    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, {idx}, "elem");
     value_ = builder_.CreateLoad(i32_, elemPtr, "elem.val");
 }
 
@@ -148,7 +148,7 @@ void CodeGen::visit(ArrayStoreStmt& n) {
     auto* idx = emit(*n.index);
     auto* val = emit(*n.value);
     auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
-    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
+    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, {idx}, "elem");
     builder_.CreateStore(val, elemPtr);
 }
 
