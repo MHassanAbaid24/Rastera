@@ -3,6 +3,8 @@
 #include <cstdlib>
 
 #include <llvm/IR/Verifier.h>
+
+#include "sema/symbols.hpp"
 #include <llvm/Support/raw_ostream.h>
 
 CodeGen::CodeGen(llvm::LLVMContext& ctx, const std::string& moduleName, const llvm::TargetMachine& tm)
@@ -10,7 +12,7 @@ CodeGen::CodeGen(llvm::LLVMContext& ctx, const std::string& moduleName, const ll
       module_(std::make_unique<llvm::Module>(moduleName, ctx)),
       builder_(ctx),
       i32_(llvm::Type::getInt32Ty(ctx)),
-      i8ptr_(llvm::Type::getInt8PtrTy(ctx)) {
+      i8ptr_(llvm::Type::getInt8Ty(ctx)->getPointerTo(0)) {
     module_->setTargetTriple(tm.getTargetTriple().str());
     module_->setDataLayout(tm.createDataLayout());
 }
@@ -115,7 +117,7 @@ void CodeGen::visit(ArrayLit& n) {
     // <1, 2, 3>: allocate via rt_alloc(count), then store each element.
     auto* count = llvm::ConstantInt::get(i32_, static_cast<int32_t>(n.elements.size()));
     auto* arr = builder_.CreateCall(rtAllocFn(), count, "arr");
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
     int idx = 0;
     for (auto& e : n.elements) {
         auto* val = emit(*e);
@@ -135,7 +137,7 @@ void CodeGen::visit(IndexExpr& n) {
     // a[i]: load array ptr (i8*), bitcast to i32*, GEP by index, load i32.
     auto* arr = emit(*n.array);
     auto* idx = emit(*n.index);
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
     auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
     value_ = builder_.CreateLoad(i32_, elemPtr, "elem.val");
 }
@@ -145,7 +147,7 @@ void CodeGen::visit(ArrayStoreStmt& n) {
     auto* arr = emit(*n.array);
     auto* idx = emit(*n.index);
     auto* val = emit(*n.value);
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32PtrTy(ctx_), "arr.i32");
+    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
     auto* elemPtr = builder_.CreateGEP(i32_, i32arr, idx, "elem");
     builder_.CreateStore(val, elemPtr);
 }

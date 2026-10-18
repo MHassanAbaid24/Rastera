@@ -1,5 +1,9 @@
 #include "sema/sema.hpp"
 
+namespace {
+const char* typeName(Type t);
+}
+
 bool Sema::check(Program& program) {
     program.accept(*this);
     return !diag_.hasErrors();
