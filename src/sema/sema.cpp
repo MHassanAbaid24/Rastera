@@ -58,7 +58,7 @@ void Sema::visit(AssignStmt& n) {
         n.sym = sym;
         n.declares = false;
         if (sym->type != n.value->type) {
-            diag_.error(n.loc, "type mismatch: cannot assign " +
+            diag_.error(n.loc, std::string("type mismatch: cannot assign ") +
                                    typeName(n.value->type) + " to variable '" +
                                    n.name + "' of type " + typeName(sym->type));
         }
