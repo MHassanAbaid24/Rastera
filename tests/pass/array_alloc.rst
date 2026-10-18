@@ -1,4 +1,5 @@
-# expect-stdout: 42
+# expect-stdout: 10
+# expect-stdout: 32
 # expect-exit: 0
 @main() [
     a := arr(5);
