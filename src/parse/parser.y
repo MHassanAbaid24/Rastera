@@ -213,8 +213,11 @@ params
     ;
 
 param_list
-    : IDENT                     { $$ = new std::vector<Param>(); $$->push_back(Param{std::move(*$1), Loc{@1.first_line}}); delete $1; }
-    | param_list ',' IDENT      { $1->push_back(Param{std::move(*$3), Loc{@3.first_line}}); delete $3; $$ = $1; }
+    : IDENT                     { $$ = new std::vector<Param>(); $$->push_back(Param{std::move(*$1), Loc{@1.first_line}, Type::Int}); delete $1; }
+    | IDENT '[' ']'             { $$ = new std::vector<Param>(); $$->push_back(Param{std::move(*$1), Loc{@1.first_line}, Type::Array}); delete $1; }
+    | param_list ',' IDENT      { $1->push_back(Param{std::move(*$3), Loc{@3.first_line}, Type::Int}); delete $3; $$ = $1; }
+    | param_list ',' IDENT '[' ']'
+                                { $1->push_back(Param{std::move(*$3), Loc{@3.first_line}, Type::Array}); delete $3; $$ = $1; }
     ;
 
 %%

@@ -140,9 +140,11 @@ struct IRangeStmt final : IStmt {
     std::unique_ptr<IBlock> body;
 };
 
+// `a` is an i32 copy; `buf[]` is an array reference shared with the caller (spec section 7).
 struct IParam {
     std::string name;
     int line;
+    IType type = IType::Int;
 };
 
 struct IFunc {
@@ -417,8 +419,10 @@ params
     ;
 
 parameter_list
-    : IDENT { $$ = new std::vector<IParam>(); $$->push_back(IParam{std::move(*$1), @1.first_line}); delete $1; }
-    | parameter_list ',' IDENT { $1->push_back(IParam{std::move(*$3), @3.first_line}); delete $3; $$ = $1; }
+    : IDENT { $$ = new std::vector<IParam>(); $$->push_back(IParam{std::move(*$1), @1.first_line, IType::Int}); delete $1; }
+    | IDENT '[' ']' { $$ = new std::vector<IParam>(); $$->push_back(IParam{std::move(*$1), @1.first_line, IType::Array}); delete $1; }
+    | parameter_list ',' IDENT { $1->push_back(IParam{std::move(*$3), @3.first_line, IType::Int}); delete $3; $$ = $1; }
+    | parameter_list ',' IDENT '[' ']' { $1->push_back(IParam{std::move(*$3), @3.first_line, IType::Array}); delete $3; $$ = $1; }
     ;
 
 %%
@@ -431,6 +435,11 @@ Interpreter* ip_interpreter = nullptr;
 namespace {
 const char* typeName(IType type) {
     return type == IType::Array ? "array" : "integer";
+}
+
+// With its article, for sentences such as "expects an array".
+const char* typeNoun(IType type) {
+    return type == IType::Array ? "an array" : "an integer";
 }
 
 int32_t fromBits(uint32_t bits) {
@@ -504,7 +513,7 @@ bool Interpreter::checkFunction(IFunc& function) {
     for (const IParam& param : function.params) {
         if (isBuiltin(param.name)) {
             error(param.line, "using built-in name '" + param.name + "' as a parameter name");
-        } else if (!types_.back().emplace(param.name, IType::Int).second) {
+        } else if (!types_.back().emplace(param.name, param.type).second) {
             error(param.line, "duplicate parameter '" + param.name + "'");
         }
     }
@@ -615,12 +624,22 @@ IType Interpreter::checkExpr(IExpr& expression) {
                                             std::to_string(call_expression->args.size()));
             return expression.type = IType::Int;
         }
-        for (const auto& argument : call_expression->args) {
-            if (argument->type != IType::Int) {
-                error(call_expression->line, std::string(builtin ? "builtin" : "function") + " '" +
-                                                call_expression->name + "' expects an integer argument");
-                break;
+        if (builtin) {
+            for (const auto& argument : call_expression->args) {
+                if (argument->type != IType::Int) {
+                    error(call_expression->line, "builtin '" + call_expression->name + "' expects an integer argument");
+                    break;
+                }
             }
+            return expression.type = IType::Int;
+        }
+        // User functions: each argument's kind must match its parameter (`x` is i32, `buf[]` is an array).
+        for (std::size_t index = 0; index < call_expression->args.size(); ++index) {
+            const IType want = function->params[index].type;
+            const IType got = call_expression->args[index]->type;
+            if (got != want)
+                error(call_expression->line, "function '" + call_expression->name + "' expects " + typeNoun(want) +
+                                                " for argument " + std::to_string(index + 1) + ", got " + typeNoun(got));
         }
         return expression.type = IType::Int;
     }
@@ -642,15 +661,17 @@ IType Interpreter::checkExpr(IExpr& expression) {
     if (auto* binary = dynamic_cast<IBinaryExpr*>(&expression)) {
         const IType left_type = checkExpr(*binary->lhs);
         const IType right_type = checkExpr(*binary->rhs);
-        if ((binary->op == IBinaryOp::And || binary->op == IBinaryOp::Or) &&
-            (left_type != IType::Int || right_type != IType::Int))
-            error(binary->line, "logical operands must be integers");
+        if (left_type != IType::Int || right_type != IType::Int) {
+            // Arrays are never operands (spec section 3); only the message differs by operator family.
+            const bool logical = binary->op == IBinaryOp::And || binary->op == IBinaryOp::Or;
+            error(binary->line, logical ? "logical operands must be integers" : "operands must be integers");
+        }
         return expression.type = IType::Int;
     }
     auto* unary = dynamic_cast<IUnaryExpr*>(&expression);
     const IType operand_type = checkExpr(*unary->operand);
-    if (unary->op == IUnaryOp::Not && operand_type != IType::Int)
-        error(unary->line, "logical operand must be an integer");
+    if (operand_type != IType::Int)
+        error(unary->line, unary->op == IUnaryOp::Not ? "logical operand must be an integer" : "operand must be an integer");
     return expression.type = IType::Int;
 }
 

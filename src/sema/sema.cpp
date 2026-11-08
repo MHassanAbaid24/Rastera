@@ -2,6 +2,7 @@
 
 namespace {
 const char* typeName(Type t);
+const char* typeNoun(Type t);
 }
 
 bool Sema::check(Program& program) {
@@ -41,7 +42,7 @@ void Sema::visit(FuncDecl& n) {
             diag_.error(p.loc, "using built-in name '" + p.name + "' as a parameter name");
             continue;
         }
-        p.sym = symbols_.declare(p.name, Type::Int, p.loc);
+        p.sym = symbols_.declare(p.name, p.type, p.loc);
         if (p.sym == nullptr) diag_.error(p.loc, "duplicate parameter '" + p.name + "'");
     }
     n.body->accept(*this);
@@ -164,11 +165,21 @@ void Sema::visit(CallExpr& n) {
         return;
     }
 
-    for (auto& a : n.args) {
-        if (a->type != Type::Int) {
-            diag_.error(n.loc, std::string(is_builtin ? "builtin" : "function") +
-                                   " '" + n.name + "' expects an integer argument");
-            break;
+    if (is_builtin) {
+        for (auto& a : n.args) {
+            if (a->type != Type::Int) {
+                diag_.error(n.loc, "builtin '" + n.name + "' expects an integer argument");
+                break;
+            }
+        }
+        return;
+    }
+    // User functions: each argument's kind must match its parameter (`x` is i32, `buf[]` is an array, spec §7).
+    for (std::size_t i = 0; i < n.args.size(); ++i) {
+        const Type want = n.callee->params[i].type;
+        if (n.args[i]->type != want) {
+            diag_.error(n.loc, "function '" + n.name + "' expects " + typeNoun(want) + " for argument " +
+                                   std::to_string(i + 1) + ", got " + typeNoun(n.args[i]->type));
         }
     }
 }
@@ -223,17 +234,18 @@ void Sema::visit(IntLit& n) { n.type = Type::Int; }
 void Sema::visit(BinaryExpr& n) {
     n.lhs->accept(*this);
     n.rhs->accept(*this);
-    if ((n.op == BinaryOp::And || n.op == BinaryOp::Or) &&
-        (n.lhs->type != Type::Int || n.rhs->type != Type::Int)) {
-        diag_.error(n.loc, "logical operands must be integers");
+    if (n.lhs->type != Type::Int || n.rhs->type != Type::Int) {
+        // Arrays are never operands (spec §3); only the message differs by operator family.
+        const bool logical = n.op == BinaryOp::And || n.op == BinaryOp::Or;
+        diag_.error(n.loc, logical ? "logical operands must be integers" : "operands must be integers");
     }
     n.type = Type::Int;
 }
 
 void Sema::visit(UnaryExpr& n) {
     n.operand->accept(*this);
-    if (n.op == UnaryOp::Not && n.operand->type != Type::Int) {
-        diag_.error(n.loc, "logical operand must be an integer");
+    if (n.operand->type != Type::Int) {
+        diag_.error(n.loc, n.op == UnaryOp::Not ? "logical operand must be an integer" : "operand must be an integer");
     }
     n.type = Type::Int;
 }
@@ -241,5 +253,10 @@ void Sema::visit(UnaryExpr& n) {
 namespace {
 const char* typeName(Type t) {
     return t == Type::Array ? "array" : "integer";
+}
+
+// With its article, for sentences such as "expects an array".
+const char* typeNoun(Type t) {
+    return t == Type::Array ? "an array" : "an integer";
 }
 }  // namespace
