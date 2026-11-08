@@ -100,6 +100,7 @@ public:
             for (std::size_t i = 0; i < n.params.size(); ++i) {
                 if (i != 0) out_ << ", ";
                 out_ << n.params[i].name;
+                if (n.params[i].type == Type::Array) out_ << "[]";
             }
             out_ << ")";
         }

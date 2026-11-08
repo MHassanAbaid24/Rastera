@@ -38,7 +38,8 @@ llvm::Value* CodeGen::emit(Expr& e) {
 void CodeGen::visit(Program& n) {
     // Declare all prototypes first so generated bodies can call later functions.
     for (auto& f : n.funcs) {
-        std::vector<llvm::Type*> paramTypes(f->params.size(), i32_);
+        std::vector<llvm::Type*> paramTypes;
+        for (const auto& p : f->params) paramTypes.push_back(p.type == Type::Array ? i8ptr_ : i32_);
         auto* type = llvm::FunctionType::get(i32_, paramTypes, /*isVarArg=*/false);
         llvm::Function::Create(type, llvm::Function::ExternalLinkage, mangle(f->name), module_.get());
     }
@@ -54,7 +55,8 @@ void CodeGen::visit(FuncDecl& n) {
         auto* arg = fn->getArg(i);
         arg->setName(p.name);
         // Parameters are mutable variables, so their entry slots are keyed by Symbol*; mem2reg removes them.
-        auto* slot = builder_.CreateAlloca(i32_, nullptr, p.name + ".addr");
+        // An array parameter holds the caller's array pointer (header-backed, D027), so stores and bounds checks reach the caller's data.
+        auto* slot = builder_.CreateAlloca(p.type == Type::Array ? i8ptr_ : i32_, nullptr, p.name + ".addr");
         builder_.CreateStore(arg, slot);
         slots_.emplace(p.sym, slot);
     }

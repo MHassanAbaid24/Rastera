@@ -197,10 +197,12 @@ struct RangeStmt : Stmt {
     void accept(Visitor& v) override;
 };
 
-// One `@f(a, b)` parameter: an i32 variable in the function's outermost scope (spec §4, §7).
+// One `@f(a, buf[])` parameter, a variable in the function's outermost scope (spec §4, §7): `a` is an
+// i32 copy, `buf[]` is an array reference shared with the caller.
 struct Param {
     std::string name;
     Loc loc;
+    Type type = Type::Int;
     Symbol* sym = nullptr;  // set by sema
 };
 

@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R] /Count 15 >>
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R] /Count 16 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -130,7 +130,7 @@ BT /F1 10 Tf 514.66 95.40 Td (\). Native) Tj ET
 BT /F1 10 Tf 54.00 81.90 Td (configure and build are the same two commands) Tj ET
 BT /F3 10 Tf 272.43 81.90 Td (dev.sh) Tj ET
 BT /F1 10 Tf 314.43 81.90 Td (runs:) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 1 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 1 of 16) Tj ET
 endstream
 endobj
 7 0 obj
@@ -173,9 +173,9 @@ BT /F3 10 Tf 496.64 514.10 Td (rasteri) Tj ET
 BT /F1 10 Tf 538.64 514.10 Td (\).) Tj ET
 BT /F1 10 Tf 54.00 500.60 Td (Expected final output \(one line per suite\):) Tj ET
 0.94 g 54.00 473.10 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 476.10 Td (132 passed, 0 failed) Tj ET
+BT /F3 8 Tf 60.00 476.10 Td (159 passed, 0 failed) Tj ET
 0.94 g 54.00 456.60 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 465.60 Td (132 passed, 0 failed) Tj ET
+BT /F3 8 Tf 60.00 465.60 Td (159 passed, 0 failed) Tj ET
 BT /F1 10 Tf 54.00 438.10 Td (A failing case prints) Tj ET
 BT /F3 10 Tf 143.48 438.10 Td (FAIL <test>: <reason>) Tj ET
 BT /F1 10 Tf 275.48 438.10 Td (and the suite exits non-zero.) Tj ET
@@ -234,7 +234,7 @@ BT /F3 10 Tf 68.00 149.20 Td (<file.rst>) Tj ET
 BT /F1 10 Tf 134.00 149.20 Td (and exits 1; a missing file prints) Tj ET
 BT /F3 10 Tf 275.72 149.20 Td (FILE: No such file or directory) Tj ET
 BT /F1 10 Tf 461.72 149.20 Td (, exit 1.) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 2 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 2 of 16) Tj ET
 endstream
 endobj
 9 0 obj
@@ -350,7 +350,7 @@ BT /F3 8 Tf 60.00 157.10 Td (entry:) Tj ET
 BT /F3 8 Tf 60.00 146.60 Td (  ret i32 42) Tj ET
 0.94 g 54.00 127.10 504.00 16.50 re f 0 g
 BT /F3 8 Tf 60.00 136.10 Td (}) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 3 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 3 of 16) Tj ET
 endstream
 endobj
 11 0 obj
@@ -464,7 +464,7 @@ BT /F3 8 Tf 60.00 83.00 Td (    # The right side of & would divide by zero, but 
 BT /F3 8 Tf 60.00 72.50 Td (    print\(zero != 0 & 10 / zero > 1\);) Tj ET
 0.94 g 54.00 59.00 504.00 10.50 re f 0 g
 BT /F3 8 Tf 60.00 62.00 Td (    # The right side of | is skipped because the left side is already true.) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 4 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 4 of 16) Tj ET
 endstream
 endobj
 13 0 obj
@@ -566,7 +566,7 @@ BT /F3 8 Tf 60.00 87.40 Td (examples/static_error.rst:3: error: undefined variab
 0.94 g 54.00 73.90 504.00 10.50 re f 0 g
 BT /F3 8 Tf 60.00 76.90 Td (\(exit status 1\)) Tj ET
 0.94 g 54.00 63.40 504.00 10.50 re f 0 g
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 5 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 5 of 16) Tj ET
 endstream
 endobj
 15 0 obj
@@ -694,14 +694,14 @@ BT /F1 10 Tf 54.00 82.40 Td (git ignores) Tj ET
 BT /F3 10 Tf 102.91 82.40 Td (*.ppm) Tj ET
 BT /F1 10 Tf 132.91 82.40 Td (.) Tj ET
 BT /F1 10 Tf 54.00 62.90 Td (Run a demo with the interpreter, or compile it and run the executable; the image is the same:) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 6 of 15) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 6 of 16) Tj ET
 endstream
 endobj
 17 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 16 0 R >>
 endobj
 18 0 obj
-<< /Length 6639 >>
+<< /Length 6597 >>
 stream
 0.94 g 54.00 712.50 504.00 16.50 re f 0 g
 BT /F3 8 Tf 60.00 715.50 Td ($ ./dev.sh build/rasteri examples/gradient.rst) Tj ET
@@ -762,1478 +762,1683 @@ BT /F3 8 Tf 60.00 361.60 Td (    ^ a + b;                  # return) Tj ET
 BT /F3 8 Tf 60.00 351.10 Td (]) Tj ET
 0.94 g 54.00 337.60 504.00 10.50 re f 0 g
 0.94 g 54.00 327.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 330.10 Td (@main\(\) [                     # exactly one @main\(\); its result is the exit status) Tj ET
+BT /F3 8 Tf 60.00 330.10 Td (@set\(buf[], i, x\) [           # buf[] is an array parameter, passed by reference) Tj ET
 0.94 g 54.00 316.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 319.60 Td (    x := 5;                   # := creates a variable, or reassigns a visible one) Tj ET
+BT /F3 8 Tf 60.00 319.60 Td (    buf[i] := x;) Tj ET
 0.94 g 54.00 306.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 309.10 Td (    ? \(x > 3\) [               # if) Tj ET
+BT /F3 8 Tf 60.00 309.10 Td (    ^ 0;) Tj ET
 0.94 g 54.00 295.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 298.60 Td (        x := x - 1;) Tj ET
+BT /F3 8 Tf 60.00 298.60 Td (]) Tj ET
 0.94 g 54.00 285.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 288.10 Td (    ] : ? \(x == 0\) [          # else if) Tj ET
 0.94 g 54.00 274.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 277.60 Td (        x := 100;) Tj ET
+BT /F3 8 Tf 60.00 277.60 Td (@main\(\) [                     # exactly one @main\(\); its result is the exit status) Tj ET
 0.94 g 54.00 264.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 267.10 Td (    ] : [                     # else) Tj ET
+BT /F3 8 Tf 60.00 267.10 Td (    x := 5;                   # := creates a variable, or reassigns a visible one) Tj ET
 0.94 g 54.00 253.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 256.60 Td (        x := 0;) Tj ET
+BT /F3 8 Tf 60.00 256.60 Td (    ? \(x > 3\) [               # if) Tj ET
 0.94 g 54.00 243.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 246.10 Td (    ]) Tj ET
+BT /F3 8 Tf 60.00 246.10 Td (        x := x - 1;) Tj ET
 0.94 g 54.00 232.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 235.60 Td (    * \(x > 0\) [               # while: checks first, runs while non-zero) Tj ET
+BT /F3 8 Tf 60.00 235.60 Td (    ] : ? \(x == 0\) [          # else if) Tj ET
 0.94 g 54.00 222.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 225.10 Td (        x := x - 1;) Tj ET
+BT /F3 8 Tf 60.00 225.10 Td (        x := 100;) Tj ET
 0.94 g 54.00 211.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 214.60 Td (    ]) Tj ET
+BT /F3 8 Tf 60.00 214.60 Td (    ] : [                     # else) Tj ET
 0.94 g 54.00 201.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 204.10 Td (    * i :: 1..3 [             # range loop: i = 1, 2, 3 \(inclusive, i is read-only\)) Tj ET
+BT /F3 8 Tf 60.00 204.10 Td (        x := 0;) Tj ET
 0.94 g 54.00 190.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 193.60 Td (        x := x + i;) Tj ET
+BT /F3 8 Tf 60.00 193.60 Td (    ]) Tj ET
 0.94 g 54.00 180.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 183.10 Td (    ]) Tj ET
+BT /F3 8 Tf 60.00 183.10 Td (    * \(x > 0\) [               # while: checks first, runs while non-zero) Tj ET
 0.94 g 54.00 169.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 172.60 Td (    a := <1, 2, 3>;           # array literal) Tj ET
+BT /F3 8 Tf 60.00 172.60 Td (        x := x - 1;) Tj ET
 0.94 g 54.00 159.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 162.10 Td (    b := arr\(4\);              # 4 zeros) Tj ET
+BT /F3 8 Tf 60.00 162.10 Td (    ]) Tj ET
 0.94 g 54.00 148.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 151.60 Td (    b[0] := a[2];             # element read and write) Tj ET
+BT /F3 8 Tf 60.00 151.60 Td (    * i :: 1..3 [             # range loop: i = 1, 2, 3 \(inclusive, i is read-only\)) Tj ET
 0.94 g 54.00 138.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 141.10 Td (    print\(add\(b[0], 1\)\);      # built-in print: value and newline on stdout) Tj ET
+BT /F3 8 Tf 60.00 141.10 Td (        x := x + i;) Tj ET
 0.94 g 54.00 127.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 130.60 Td (    ^ 0;) Tj ET
-0.94 g 54.00 111.10 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 120.10 Td (]) Tj ET
-BT /F1 10 Tf 54.00 92.60 Td (Core features implemented in both) Tj ET
-BT /F3 10 Tf 210.18 92.60 Td (rasteri) Tj ET
-BT /F1 10 Tf 258.18 92.60 Td (and) Tj ET
-BT /F3 10 Tf 277.64 92.60 Td (rasterc) Tj ET
-BT /F1 10 Tf 319.64 92.60 Td (:) Tj ET
-BT /F1 10 Tf 57.00 73.10 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 73.10 Td (Two types, never written:) Tj ET
-BT /F3 10 Tf 181.93 73.10 Td (i32) Tj ET
-BT /F1 10 Tf 205.93 73.10 Td (\(wrapping 32-bit signed integer\) and) Tj ET
-BT /F3 10 Tf 368.78 73.10 Td (array) Tj ET
-BT /F1 10 Tf 404.78 73.10 Td (\(a reference to a fixed-length heap) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 7 of 15) Tj ET
+BT /F3 8 Tf 60.00 130.60 Td (    ]) Tj ET
+0.94 g 54.00 117.10 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 120.10 Td (    a := <1, 2, 3>;           # array literal) Tj ET
+0.94 g 54.00 106.60 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 109.60 Td (    b := arr\(4\);              # 4 zeros) Tj ET
+0.94 g 54.00 96.10 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 99.10 Td (    b[0] := a[2];             # element read and write) Tj ET
+0.94 g 54.00 85.60 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 88.60 Td (    set\(b, 1, 9\);             # the callee's store is visible here: b[1] is 9) Tj ET
+0.94 g 54.00 75.10 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 78.10 Td (    print\(add\(b[0], 1\)\);      # built-in print: value and newline on stdout) Tj ET
+0.94 g 54.00 64.60 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 67.60 Td (    ^ 0;) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 7 of 16) Tj ET
 endstream
 endobj
 19 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 18 0 R >>
 endobj
 20 0 obj
-<< /Length 11274 >>
+<< /Length 10940 >>
 stream
-BT /F1 10 Tf 68.00 718.50 Td (array of) Tj ET
-BT /F3 10 Tf 104.68 718.50 Td (i32) Tj ET
-BT /F1 10 Tf 122.68 718.50 Td (;) Tj ET
-BT /F3 10 Tf 128.24 718.50 Td (b := a;) Tj ET
-BT /F1 10 Tf 176.24 718.50 Td (aliases, it does not copy\).) Tj ET
-BT /F1 10 Tf 57.00 702.50 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 702.50 Td (Arithmetic) Tj ET
-BT /F3 10 Tf 115.23 702.50 Td (+ - * / %) Tj ET
-BT /F1 10 Tf 175.23 702.50 Td (and unary) Tj ET
-BT /F3 10 Tf 222.48 702.50 Td (-) Tj ET
-BT /F1 10 Tf 228.48 702.50 Td (;) Tj ET
-BT /F3 10 Tf 234.04 702.50 Td (/) Tj ET
-BT /F1 10 Tf 246.04 702.50 Td (and) Tj ET
-BT /F3 10 Tf 265.50 702.50 Td (%) Tj ET
-BT /F1 10 Tf 277.50 702.50 Td (truncate toward zero.) Tj ET
-BT /F1 10 Tf 57.00 686.50 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 686.50 Td (Comparisons) Tj ET
-BT /F3 10 Tf 129.68 686.50 Td (== != < <= > >=) Tj ET
-BT /F1 10 Tf 225.68 686.50 Td (\(non-associative\) producing 0 or 1;) Tj ET
-BT /F3 10 Tf 382.41 686.50 Td (&) Tj ET
-BT /F1 10 Tf 388.41 686.50 Td (,) Tj ET
-BT /F3 10 Tf 393.97 686.50 Td (|) Tj ET
-BT /F1 10 Tf 399.97 686.50 Td (,) Tj ET
-BT /F3 10 Tf 405.53 686.50 Td (!) Tj ET
-BT /F1 10 Tf 417.53 686.50 Td (on integers, where) Tj ET
-BT /F3 10 Tf 502.57 686.50 Td (&) Tj ET
-BT /F1 10 Tf 514.57 686.50 Td (and) Tj ET
-BT /F3 10 Tf 534.03 686.50 Td (|) Tj ET
-BT /F1 10 Tf 68.00 673.00 Td (short-circuit.) Tj ET
-BT /F1 10 Tf 57.00 657.00 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 657.00 Td (Variables with lexical block scope;) Tj ET
-BT /F3 10 Tf 221.94 657.00 Td (if) Tj ET
-BT /F1 10 Tf 233.94 657.00 Td (,) Tj ET
-BT /F3 10 Tf 239.50 657.00 Td (else if) Tj ET
-BT /F1 10 Tf 281.50 657.00 Td (,) Tj ET
-BT /F3 10 Tf 287.06 657.00 Td (else) Tj ET
-BT /F1 10 Tf 311.06 657.00 Td (;) Tj ET
-BT /F3 10 Tf 316.62 657.00 Td (while) Tj ET
-BT /F1 10 Tf 346.62 657.00 Td (; the inclusive range loop) Tj ET
-BT /F3 10 Tf 460.01 657.00 Td (* i :: a..b [) Tj ET
-BT /F3 10 Tf 68.00 643.50 Td (... ]) Tj ET
-BT /F1 10 Tf 98.00 643.50 Td (.) Tj ET
-BT /F1 10 Tf 57.00 627.50 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 627.50 Td (Functions with parameters, recursion, mutual recursion and calls before the definition. Functions return) Tj ET
-BT /F3 10 Tf 524.85 627.50 Td (i32) Tj ET
-BT /F1 10 Tf 542.85 627.50 Td (;) Tj ET
-BT /F1 10 Tf 68.00 614.00 Td (arrays cannot be passed to or returned from functions.) Tj ET
-BT /F1 10 Tf 57.00 598.00 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 598.00 Td (Arrays:) Tj ET
-BT /F3 10 Tf 102.45 598.00 Td (<a, b, c>) Tj ET
-BT /F1 10 Tf 156.45 598.00 Td (,) Tj ET
-BT /F3 10 Tf 162.01 598.00 Td (arr\(n\)) Tj ET
-BT /F1 10 Tf 198.01 598.00 Td (,) Tj ET
-BT /F3 10 Tf 203.57 598.00 Td (a[i]) Tj ET
-BT /F1 10 Tf 227.57 598.00 Td (,) Tj ET
-BT /F3 10 Tf 233.13 598.00 Td (a[i] := e;) Tj ET
-BT /F1 10 Tf 293.13 598.00 Td (, bounds checked at run time.) Tj ET
-BT /F1 10 Tf 57.00 582.00 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 582.00 Td (Built-in) Tj ET
-BT /F3 10 Tf 101.34 582.00 Td (print\(x\)) Tj ET
-BT /F1 10 Tf 155.34 582.00 Td (and the graphics built-ins described below.) Tj ET
-BT /F1 10 Tf 57.00 566.00 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 566.00 Td (Runtime errors \(exit 2\): division or modulo by zero,) Tj ET
-BT /F3 10 Tf 294.73 566.00 Td (-2147483648 / -1) Tj ET
-BT /F1 10 Tf 396.73 566.00 Td (and) Tj ET
-BT /F3 10 Tf 416.19 566.00 Td (% -1) Tj ET
-BT /F1 10 Tf 440.19 566.00 Td (, array index out of range,) Tj ET
-BT /F1 10 Tf 68.00 552.50 Td (negative array size.) Tj ET
-BT /F1 10 Tf 57.00 536.50 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 536.50 Td (Static errors \(exit 1\): syntax errors, bad characters, integer literals above 2147483647, undefined or misused) Tj ET
-BT /F1 10 Tf 68.00 523.00 Td (variables, wrong function arity, duplicate functions or parameters, built-in names reused as names,) Tj ET
-BT /F1 10 Tf 68.00 509.50 Td (array/integer mismatches, missing) Tj ET
-BT /F3 10 Tf 222.48 509.50 Td (@main\(\)) Tj ET
-BT /F1 10 Tf 264.48 509.50 Td (.) Tj ET
-BT /F1 10 Tf 54.00 493.50 Td (Range loop rules \() Tj ET
-BT /F3 10 Tf 135.70 493.50 Td (* i :: a..b [ ... ]) Tj ET
-BT /F1 10 Tf 249.70 493.50 Td (\):) Tj ET
-BT /F3 10 Tf 258.59 493.50 Td (a) Tj ET
-BT /F1 10 Tf 270.59 493.50 Td (and) Tj ET
-BT /F3 10 Tf 290.05 493.50 Td (b) Tj ET
-BT /F1 10 Tf 302.05 493.50 Td (are) Tj ET
-BT /F3 10 Tf 319.28 493.50 Td (i32) Tj ET
-BT /F1 10 Tf 343.28 493.50 Td (and are evaluated once, in that order, before the) Tj ET
-BT /F1 10 Tf 54.00 480.00 Td (first iteration; the body runs for) Tj ET
-BT /F3 10 Tf 191.84 480.00 Td (i = a, a+1, ..., b) Tj ET
-BT /F1 10 Tf 305.84 480.00 Td (and not at all when) Tj ET
-BT /F3 10 Tf 392.56 480.00 Td (a > b) Tj ET
-BT /F1 10 Tf 422.56 480.00 Td (; a bound of) Tj ET
-BT /F3 10 Tf 478.16 480.00 Td (2147483647) Tj ET
-BT /F1 10 Tf 54.00 466.50 Td (terminates because) Tj ET
-BT /F3 10 Tf 144.04 466.50 Td (i) Tj ET
-BT /F1 10 Tf 156.04 466.50 Td (is compared before it is incremented.) Tj ET
-BT /F3 10 Tf 322.77 466.50 Td (i) Tj ET
-BT /F1 10 Tf 334.77 466.50 Td (belongs to the loop only: it hides an outer variable) Tj ET
-BT /F1 10 Tf 54.00 453.00 Td (of the same name until the loop ends, and assigning to it is the static error) Tj ET
-BT /F3 10 Tf 383.61 453.00 Td (cannot assign to loop) Tj ET
-BT /F3 10 Tf 54.00 439.50 Td (variable 'i') Tj ET
-BT /F1 10 Tf 126.00 439.50 Td (. A) Tj ET
-BT /F3 10 Tf 141.01 439.50 Td ([) Tj ET
-BT /F1 10 Tf 153.01 439.50 Td (outside parentheses after) Tj ET
-BT /F3 10 Tf 268.63 439.50 Td (..) Tj ET
-BT /F1 10 Tf 286.63 439.50 Td (opens the body, so index an upper bound with parentheses:) Tj ET
-BT /F3 10 Tf 54.00 426.00 Td (* i :: 0..\(v[2]\) [ ... ]) Tj ET
-BT /F1 10 Tf 198.00 426.00 Td (.) Tj ET
-BT /F1 10 Tf 54.00 406.50 Td (Graphics built-ins \(spec section 9; all take and return) Tj ET
-BT /F3 10 Tf 289.65 406.50 Td (i32) Tj ET
-BT /F1 10 Tf 307.65 406.50 Td (, return 0 unless noted\):) Tj ET
-0.6 G 0.5 w 54.00 398.50 m 558.00 398.50 l S 0 G
-0.88 g 54.00 383.50 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 388.50 Td (Call) Tj ET
-BT /F2 8.5 Tf 159.78 388.50 Td (Effect) Tj ET
-0.6 G 0.5 w 54.00 383.50 m 558.00 383.50 l S 0 G
-BT /F3 8.5 Tf 58.00 373.50 Td (canvas\(w, h\)) Tj ET
-BT /F1 8.5 Tf 159.78 373.50 Td (New) Tj ET
-BT /F3 8.5 Tf 179.14 373.50 Td (w) Tj ET
-BT /F1 8.5 Tf 189.34 373.50 Td (x) Tj ET
-BT /F3 8.5 Tf 195.96 373.50 Td (h) Tj ET
-BT /F1 8.5 Tf 206.16 373.50 Td (canvas, all black;) Tj ET
-BT /F3 8.5 Tf 273.24 373.50 Td (w) Tj ET
-BT /F1 8.5 Tf 283.44 373.50 Td (and) Tj ET
-BT /F3 8.5 Tf 299.98 373.50 Td (h) Tj ET
-BT /F1 8.5 Tf 310.18 373.50 Td (must be 1..4096, else the runtime error) Tj ET
-BT /F3 8.5 Tf 459.00 373.50 Td (invalid canvas) Tj ET
-BT /F3 8.5 Tf 159.78 362.50 Td (size) Tj ET
-BT /F1 8.5 Tf 180.18 362.50 Td (. Calling it again replaces the canvas.) Tj ET
-0.6 G 0.5 w 54.00 357.50 m 558.00 357.50 l S 0 G
-BT /F3 8.5 Tf 58.00 347.50 Td (rgb\(r, g, b\)) Tj ET
-BT /F1 8.5 Tf 159.78 347.50 Td (Returns) Tj ET
-BT /F3 8.5 Tf 191.90 347.50 Td (\(r << 16\) | \(g << 8\) | b) Tj ET
-BT /F1 8.5 Tf 319.40 347.50 Td (with each channel clamped to 0..255.) Tj ET
-0.6 G 0.5 w 54.00 342.50 m 558.00 342.50 l S 0 G
-BT /F3 8.5 Tf 58.00 332.50 Td (pixel\(x, y, c\)) Tj ET
-BT /F1 8.5 Tf 159.78 332.50 Td (Sets one pixel; coordinates outside the canvas are ignored; only the low 24 bits of) Tj ET
-BT /F3 8.5 Tf 469.25 332.50 Td (c) Tj ET
-BT /F1 8.5 Tf 479.45 332.50 Td (are used as) Tj ET
-BT /F3 8.5 Tf 159.78 321.50 Td (0xRRGGBB) Tj ET
-BT /F1 8.5 Tf 200.58 321.50 Td (.) Tj ET
-0.6 G 0.5 w 54.00 316.50 m 558.00 316.50 l S 0 G
-BT /F3 8.5 Tf 58.00 306.50 Td (line\(x0, y0, x1,) Tj ET
-BT /F3 8.5 Tf 58.00 295.50 Td (y1, c\)) Tj ET
-BT /F1 8.5 Tf 159.78 306.50 Td (Bresenham line in every direction, both endpoints included, clipped to the canvas.) Tj ET
-0.6 G 0.5 w 54.00 290.50 m 558.00 290.50 l S 0 G
-BT /F3 8.5 Tf 58.00 280.50 Td (rect\(x, y, w, h,) Tj ET
-BT /F3 8.5 Tf 58.00 269.50 Td (c\)) Tj ET
-BT /F1 8.5 Tf 159.78 280.50 Td (Filled rectangle, clipped to the canvas; draws nothing if) Tj ET
-BT /F3 8.5 Tf 368.60 280.50 Td (w) Tj ET
-BT /F1 8.5 Tf 378.80 280.50 Td (or) Tj ET
-BT /F3 8.5 Tf 388.72 280.50 Td (h) Tj ET
-BT /F1 8.5 Tf 398.92 280.50 Td (is 0 or negative.) Tj ET
-0.6 G 0.5 w 54.00 264.50 m 558.00 264.50 l S 0 G
-BT /F3 8.5 Tf 58.00 254.50 Td (export\(\)) Tj ET
-BT /F1 8.5 Tf 159.78 254.50 Td (Writes the canvas to) Tj ET
-BT /F3 8.5 Tf 239.15 254.50 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 279.95 254.50 Td (in the current directory: binary P6, header) Tj ET
-BT /F3 8.5 Tf 438.68 254.50 Td (P6\\nW H\\n255\\n) Tj ET
-BT /F1 8.5 Tf 510.08 254.50 Td (, then) Tj ET
-BT /F3 8.5 Tf 533.71 254.50 Td (W*H) Tj ET
-BT /F1 8.5 Tf 159.78 243.50 Td (RGB byte triples, row by row from the top-left.) Tj ET
-0.6 G 0.5 w 54.00 238.50 m 558.00 238.50 l S 0 G
-BT /F3 10 Tf 54.00 217.00 Td (\(0, 0\)) Tj ET
-BT /F1 10 Tf 96.00 217.00 Td (is the top-left pixel.) Tj ET
-BT /F3 10 Tf 182.15 217.00 Td (pixel) Tj ET
-BT /F1 10 Tf 212.15 217.00 Td (,) Tj ET
-BT /F3 10 Tf 217.71 217.00 Td (line) Tj ET
-BT /F1 10 Tf 241.71 217.00 Td (,) Tj ET
-BT /F3 10 Tf 247.27 217.00 Td (rect) Tj ET
-BT /F1 10 Tf 277.27 217.00 Td (and) Tj ET
-BT /F3 10 Tf 296.73 217.00 Td (export) Tj ET
-BT /F1 10 Tf 338.73 217.00 Td (before any) Tj ET
-BT /F3 10 Tf 388.76 217.00 Td (canvas) Tj ET
-BT /F1 10 Tf 430.76 217.00 Td (call fail with the runtime) Tj ET
-BT /F1 10 Tf 54.00 203.50 Td (error) Tj ET
-BT /F3 10 Tf 77.89 203.50 Td (no canvas) Tj ET
-BT /F1 10 Tf 137.89 203.50 Td (\(exit 2\).) Tj ET
-BT /F3 10 Tf 174.01 203.50 Td (rasteri) Tj ET
-BT /F1 10 Tf 222.01 203.50 Td (keeps its own canvas and) Tj ET
-BT /F3 10 Tf 339.29 203.50 Td (rasterc) Tj ET
-BT /F1 10 Tf 387.29 203.50 Td (programs use the one in) Tj ET
-BT /F3 10 Tf 54.00 190.00 Td (runtime/rastera_rt.c) Tj ET
-BT /F1 10 Tf 174.00 190.00 Td (; both use the same algorithms and write byte-identical files. The names of the built-ins) Tj ET
-BT /F1 10 Tf 54.00 176.50 Td (are reserved like) Tj ET
-BT /F3 10 Tf 130.69 176.50 Td (print) Tj ET
-BT /F1 10 Tf 160.69 176.50 Td (.) Tj ET
-BT /F2 14.5 Tf 54.00 137.10 Td (7. Exit status and error summary) Tj ET
-0.6 G 0.5 w 54.00 129.10 m 558.00 129.10 l S 0 G
-0.88 g 54.00 114.10 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 119.10 Td (Situation) Tj ET
-BT /F3 8.5 Tf 142.79 119.10 Td (rasteri FILE) Tj ET
-BT /F3 8.5 Tf 355.20 119.10 Td (rasterc FILE -o OUT) Tj ET
-BT /F2 8.5 Tf 452.10 119.10 Td (, then) Tj ET
-BT /F3 8.5 Tf 477.62 119.10 Td (./OUT) Tj ET
-0.6 G 0.5 w 54.00 114.10 m 558.00 114.10 l S 0 G
-BT /F1 8.5 Tf 58.00 104.10 Td (Success) Tj ET
-BT /F1 8.5 Tf 142.79 104.10 Td (stdout output, exit status = result of) Tj ET
-BT /F3 8.5 Tf 277.21 104.10 Td (@main) Tj ET
-BT /F3 8.5 Tf 355.20 104.10 Td (rasterc) Tj ET
-BT /F1 8.5 Tf 396.00 104.10 Td (exits 0;) Tj ET
-BT /F3 8.5 Tf 425.29 104.10 Td (./OUT) Tj ET
-BT /F1 8.5 Tf 455.89 104.10 Td (prints and exits with the) Tj ET
-BT /F1 8.5 Tf 355.20 93.10 Td (result of) Tj ET
-BT /F3 8.5 Tf 387.80 93.10 Td (@main) Tj ET
-0.6 G 0.5 w 54.00 88.10 m 558.00 88.10 l S 0 G
-BT /F1 8.5 Tf 58.00 78.10 Td (Static error) Tj ET
-BT /F3 8.5 Tf 142.79 78.10 Td (FILE:LINE: error: ...) Tj ET
-BT /F1 8.5 Tf 254.99 78.10 Td (on stderr, exit 1) Tj ET
-BT /F1 8.5 Tf 355.20 78.10 Td (same message, exit 1, no) Tj ET
-BT /F3 8.5 Tf 454.41 78.10 Td (OUT) Tj ET
-BT /F1 8.5 Tf 474.81 78.10 Td (written) Tj ET
-0.6 G 0.5 w 54.00 73.10 m 558.00 73.10 l S 0 G
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 8 of 15) Tj ET
+0.94 g 54.00 712.50 504.00 16.50 re f 0 g
+BT /F3 8 Tf 60.00 721.50 Td (]) Tj ET
+BT /F1 10 Tf 54.00 694.00 Td (Core features implemented in both) Tj ET
+BT /F3 10 Tf 210.18 694.00 Td (rasteri) Tj ET
+BT /F1 10 Tf 258.18 694.00 Td (and) Tj ET
+BT /F3 10 Tf 277.64 694.00 Td (rasterc) Tj ET
+BT /F1 10 Tf 319.64 694.00 Td (:) Tj ET
+BT /F1 10 Tf 57.00 674.50 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 674.50 Td (Two types, never written:) Tj ET
+BT /F3 10 Tf 181.93 674.50 Td (i32) Tj ET
+BT /F1 10 Tf 205.93 674.50 Td (\(wrapping 32-bit signed integer\) and) Tj ET
+BT /F3 10 Tf 368.78 674.50 Td (array) Tj ET
+BT /F1 10 Tf 404.78 674.50 Td (\(a reference to a fixed-length heap) Tj ET
+BT /F1 10 Tf 68.00 661.00 Td (array of) Tj ET
+BT /F3 10 Tf 104.68 661.00 Td (i32) Tj ET
+BT /F1 10 Tf 122.68 661.00 Td (;) Tj ET
+BT /F3 10 Tf 128.24 661.00 Td (b := a;) Tj ET
+BT /F1 10 Tf 176.24 661.00 Td (aliases, it does not copy\).) Tj ET
+BT /F1 10 Tf 57.00 645.00 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 645.00 Td (Arithmetic) Tj ET
+BT /F3 10 Tf 115.23 645.00 Td (+ - * / %) Tj ET
+BT /F1 10 Tf 175.23 645.00 Td (and unary) Tj ET
+BT /F3 10 Tf 222.48 645.00 Td (-) Tj ET
+BT /F1 10 Tf 228.48 645.00 Td (;) Tj ET
+BT /F3 10 Tf 234.04 645.00 Td (/) Tj ET
+BT /F1 10 Tf 246.04 645.00 Td (and) Tj ET
+BT /F3 10 Tf 265.50 645.00 Td (%) Tj ET
+BT /F1 10 Tf 277.50 645.00 Td (truncate toward zero.) Tj ET
+BT /F1 10 Tf 57.00 629.00 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 629.00 Td (Comparisons) Tj ET
+BT /F3 10 Tf 129.68 629.00 Td (== != < <= > >=) Tj ET
+BT /F1 10 Tf 225.68 629.00 Td (\(non-associative\) producing 0 or 1;) Tj ET
+BT /F3 10 Tf 382.41 629.00 Td (&) Tj ET
+BT /F1 10 Tf 388.41 629.00 Td (,) Tj ET
+BT /F3 10 Tf 393.97 629.00 Td (|) Tj ET
+BT /F1 10 Tf 399.97 629.00 Td (,) Tj ET
+BT /F3 10 Tf 405.53 629.00 Td (!) Tj ET
+BT /F1 10 Tf 417.53 629.00 Td (on integers, where) Tj ET
+BT /F3 10 Tf 502.57 629.00 Td (&) Tj ET
+BT /F1 10 Tf 514.57 629.00 Td (and) Tj ET
+BT /F3 10 Tf 534.03 629.00 Td (|) Tj ET
+BT /F1 10 Tf 68.00 615.50 Td (short-circuit.) Tj ET
+BT /F1 10 Tf 57.00 599.50 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 599.50 Td (Variables with lexical block scope;) Tj ET
+BT /F3 10 Tf 221.94 599.50 Td (if) Tj ET
+BT /F1 10 Tf 233.94 599.50 Td (,) Tj ET
+BT /F3 10 Tf 239.50 599.50 Td (else if) Tj ET
+BT /F1 10 Tf 281.50 599.50 Td (,) Tj ET
+BT /F3 10 Tf 287.06 599.50 Td (else) Tj ET
+BT /F1 10 Tf 311.06 599.50 Td (;) Tj ET
+BT /F3 10 Tf 316.62 599.50 Td (while) Tj ET
+BT /F1 10 Tf 346.62 599.50 Td (; the inclusive range loop) Tj ET
+BT /F3 10 Tf 460.01 599.50 Td (* i :: a..b [) Tj ET
+BT /F3 10 Tf 68.00 586.00 Td (... ]) Tj ET
+BT /F1 10 Tf 98.00 586.00 Td (.) Tj ET
+BT /F1 10 Tf 57.00 570.00 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 570.00 Td (Functions with parameters, recursion, mutual recursion and calls before the definition. Functions return) Tj ET
+BT /F3 10 Tf 524.85 570.00 Td (i32) Tj ET
+BT /F1 10 Tf 542.85 570.00 Td (;) Tj ET
+BT /F1 10 Tf 68.00 556.50 Td (arrays cannot be returned. A parameter written) Tj ET
+BT /F3 10 Tf 278.09 556.50 Td (buf[]) Tj ET
+BT /F1 10 Tf 314.09 556.50 Td (is an array passed by reference \(see below\).) Tj ET
+BT /F1 10 Tf 57.00 540.50 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 540.50 Td (Arrays:) Tj ET
+BT /F3 10 Tf 102.45 540.50 Td (<a, b, c>) Tj ET
+BT /F1 10 Tf 156.45 540.50 Td (,) Tj ET
+BT /F3 10 Tf 162.01 540.50 Td (arr\(n\)) Tj ET
+BT /F1 10 Tf 198.01 540.50 Td (,) Tj ET
+BT /F3 10 Tf 203.57 540.50 Td (a[i]) Tj ET
+BT /F1 10 Tf 227.57 540.50 Td (,) Tj ET
+BT /F3 10 Tf 233.13 540.50 Td (a[i] := e;) Tj ET
+BT /F1 10 Tf 293.13 540.50 Td (, bounds checked at run time.) Tj ET
+BT /F1 10 Tf 57.00 524.50 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 524.50 Td (Built-in) Tj ET
+BT /F3 10 Tf 101.34 524.50 Td (print\(x\)) Tj ET
+BT /F1 10 Tf 155.34 524.50 Td (and the graphics built-ins described below.) Tj ET
+BT /F1 10 Tf 57.00 508.50 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 508.50 Td (Runtime errors \(exit 2\): division or modulo by zero,) Tj ET
+BT /F3 10 Tf 294.73 508.50 Td (-2147483648 / -1) Tj ET
+BT /F1 10 Tf 396.73 508.50 Td (and) Tj ET
+BT /F3 10 Tf 416.19 508.50 Td (% -1) Tj ET
+BT /F1 10 Tf 440.19 508.50 Td (, array index out of range,) Tj ET
+BT /F1 10 Tf 68.00 495.00 Td (negative array size.) Tj ET
+BT /F1 10 Tf 57.00 479.00 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 479.00 Td (Static errors \(exit 1\): syntax errors, bad characters, integer literals above 2147483647, undefined or misused) Tj ET
+BT /F1 10 Tf 68.00 465.50 Td (variables, wrong function arity, duplicate functions or parameters, built-in names reused as names,) Tj ET
+BT /F1 10 Tf 68.00 452.00 Td (array/integer mismatches \(including an array used as an operand of) Tj ET
+BT /F3 10 Tf 370.35 452.00 Td (+) Tj ET
+BT /F1 10 Tf 376.35 452.00 Td (,) Tj ET
+BT /F3 10 Tf 381.91 452.00 Td (<) Tj ET
+BT /F1 10 Tf 387.91 452.00 Td (, unary) Tj ET
+BT /F3 10 Tf 421.26 452.00 Td (-) Tj ET
+BT /F1 10 Tf 433.26 452.00 Td (and the like, and the wrong) Tj ET
+BT /F1 10 Tf 68.00 438.50 Td (kind of argument for a parameter\), missing) Tj ET
+BT /F3 10 Tf 259.18 438.50 Td (@main\(\)) Tj ET
+BT /F1 10 Tf 301.18 438.50 Td (.) Tj ET
+BT /F1 10 Tf 54.00 422.50 Td (Array parameters \() Tj ET
+BT /F3 10 Tf 137.35 422.50 Td (@insertion\(a[], n\) [ ... ]) Tj ET
+BT /F1 10 Tf 293.35 422.50 Td (\): a parameter written with) Tj ET
+BT /F3 10 Tf 411.72 422.50 Td ([]) Tj ET
+BT /F1 10 Tf 429.72 422.50 Td (is an array passed by) Tj ET
+BT /F1 10 Tf 54.00 409.00 Td (reference, so element stores through it are visible to the caller; nothing is copied, and the array's length travels) Tj ET
+BT /F1 10 Tf 54.00 395.50 Td (with it, so every) Tj ET
+BT /F3 10 Tf 125.69 395.50 Td (a[i]) Tj ET
+BT /F1 10 Tf 155.69 395.50 Td (through a parameter is still bounds checked. Plain parameters stay local) Tj ET
+BT /F3 10 Tf 477.49 395.50 Td (i32) Tj ET
+BT /F1 10 Tf 501.49 395.50 Td (copies. An) Tj ET
+BT /F1 10 Tf 54.00 382.00 Td (array parameter can be indexed, stored into, aliased \() Tj ET
+BT /F3 10 Tf 291.33 382.00 Td (b := a;) Tj ET
+BT /F1 10 Tf 333.33 382.00 Td (\) and passed on to other functions. Assigning a) Tj ET
+BT /F1 10 Tf 54.00 368.50 Td (new array to it \() Tj ET
+BT /F3 10 Tf 122.91 368.50 Td (a := arr\(3\);) Tj ET
+BT /F1 10 Tf 194.91 368.50 Td (\) rebinds that name inside the call only; the caller's array and variable are) Tj ET
+BT /F1 10 Tf 54.00 355.00 Td (untouched. At a call, each argument must match the kind of its parameter: passing an integer for an array) Tj ET
+BT /F1 10 Tf 54.00 341.50 Td (parameter, or an array for an integer parameter, is the static error) Tj ET
+BT /F3 10 Tf 345.78 341.50 Td (function 'f' expects an array for) Tj ET
+BT /F3 10 Tf 54.00 328.00 Td (argument 2, got an integer) Tj ET
+BT /F1 10 Tf 216.00 328.00 Td (\(or) Tj ET
+BT /F3 10 Tf 231.00 328.00 Td (an integer ... got an array) Tj ET
+BT /F1 10 Tf 393.00 328.00 Td (\).) Tj ET
+BT /F3 10 Tf 401.89 328.00 Td (@main) Tj ET
+BT /F1 10 Tf 437.89 328.00 Td (takes no parameters. The) Tj ET
+BT /F1 10 Tf 54.00 314.50 Td (proposal's insertion sort is) Tj ET
+BT /F3 10 Tf 172.06 314.50 Td (tests/pass/aparam_insertion_sort.rst) Tj ET
+BT /F1 10 Tf 388.06 314.50 Td (.) Tj ET
+BT /F1 10 Tf 54.00 295.00 Td (Range loop rules \() Tj ET
+BT /F3 10 Tf 135.70 295.00 Td (* i :: a..b [ ... ]) Tj ET
+BT /F1 10 Tf 249.70 295.00 Td (\):) Tj ET
+BT /F3 10 Tf 258.59 295.00 Td (a) Tj ET
+BT /F1 10 Tf 270.59 295.00 Td (and) Tj ET
+BT /F3 10 Tf 290.05 295.00 Td (b) Tj ET
+BT /F1 10 Tf 302.05 295.00 Td (are) Tj ET
+BT /F3 10 Tf 319.28 295.00 Td (i32) Tj ET
+BT /F1 10 Tf 343.28 295.00 Td (and are evaluated once, in that order, before the) Tj ET
+BT /F1 10 Tf 54.00 281.50 Td (first iteration; the body runs for) Tj ET
+BT /F3 10 Tf 191.84 281.50 Td (i = a, a+1, ..., b) Tj ET
+BT /F1 10 Tf 305.84 281.50 Td (and not at all when) Tj ET
+BT /F3 10 Tf 392.56 281.50 Td (a > b) Tj ET
+BT /F1 10 Tf 422.56 281.50 Td (; a bound of) Tj ET
+BT /F3 10 Tf 478.16 281.50 Td (2147483647) Tj ET
+BT /F1 10 Tf 54.00 268.00 Td (terminates because) Tj ET
+BT /F3 10 Tf 144.04 268.00 Td (i) Tj ET
+BT /F1 10 Tf 156.04 268.00 Td (is compared before it is incremented.) Tj ET
+BT /F3 10 Tf 322.77 268.00 Td (i) Tj ET
+BT /F1 10 Tf 334.77 268.00 Td (belongs to the loop only: it hides an outer variable) Tj ET
+BT /F1 10 Tf 54.00 254.50 Td (of the same name until the loop ends, and assigning to it is the static error) Tj ET
+BT /F3 10 Tf 383.61 254.50 Td (cannot assign to loop) Tj ET
+BT /F3 10 Tf 54.00 241.00 Td (variable 'i') Tj ET
+BT /F1 10 Tf 126.00 241.00 Td (. A) Tj ET
+BT /F3 10 Tf 141.01 241.00 Td ([) Tj ET
+BT /F1 10 Tf 153.01 241.00 Td (outside parentheses after) Tj ET
+BT /F3 10 Tf 268.63 241.00 Td (..) Tj ET
+BT /F1 10 Tf 286.63 241.00 Td (opens the body, so index an upper bound with parentheses:) Tj ET
+BT /F3 10 Tf 54.00 227.50 Td (* i :: 0..\(v[2]\) [ ... ]) Tj ET
+BT /F1 10 Tf 198.00 227.50 Td (.) Tj ET
+BT /F1 10 Tf 54.00 208.00 Td (Graphics built-ins \(spec section 9; all take and return) Tj ET
+BT /F3 10 Tf 289.65 208.00 Td (i32) Tj ET
+BT /F1 10 Tf 307.65 208.00 Td (, return 0 unless noted\):) Tj ET
+0.6 G 0.5 w 54.00 200.00 m 558.00 200.00 l S 0 G
+0.88 g 54.00 185.00 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 190.00 Td (Call) Tj ET
+BT /F2 8.5 Tf 159.78 190.00 Td (Effect) Tj ET
+0.6 G 0.5 w 54.00 185.00 m 558.00 185.00 l S 0 G
+BT /F3 8.5 Tf 58.00 175.00 Td (canvas\(w, h\)) Tj ET
+BT /F1 8.5 Tf 159.78 175.00 Td (New) Tj ET
+BT /F3 8.5 Tf 179.14 175.00 Td (w) Tj ET
+BT /F1 8.5 Tf 189.34 175.00 Td (x) Tj ET
+BT /F3 8.5 Tf 195.96 175.00 Td (h) Tj ET
+BT /F1 8.5 Tf 206.16 175.00 Td (canvas, all black;) Tj ET
+BT /F3 8.5 Tf 273.24 175.00 Td (w) Tj ET
+BT /F1 8.5 Tf 283.44 175.00 Td (and) Tj ET
+BT /F3 8.5 Tf 299.98 175.00 Td (h) Tj ET
+BT /F1 8.5 Tf 310.18 175.00 Td (must be 1..4096, else the runtime error) Tj ET
+BT /F3 8.5 Tf 459.00 175.00 Td (invalid canvas) Tj ET
+BT /F3 8.5 Tf 159.78 164.00 Td (size) Tj ET
+BT /F1 8.5 Tf 180.18 164.00 Td (. Calling it again replaces the canvas.) Tj ET
+0.6 G 0.5 w 54.00 159.00 m 558.00 159.00 l S 0 G
+BT /F3 8.5 Tf 58.00 149.00 Td (rgb\(r, g, b\)) Tj ET
+BT /F1 8.5 Tf 159.78 149.00 Td (Returns) Tj ET
+BT /F3 8.5 Tf 191.90 149.00 Td (\(r << 16\) | \(g << 8\) | b) Tj ET
+BT /F1 8.5 Tf 319.40 149.00 Td (with each channel clamped to 0..255.) Tj ET
+0.6 G 0.5 w 54.00 144.00 m 558.00 144.00 l S 0 G
+BT /F3 8.5 Tf 58.00 134.00 Td (pixel\(x, y, c\)) Tj ET
+BT /F1 8.5 Tf 159.78 134.00 Td (Sets one pixel; coordinates outside the canvas are ignored; only the low 24 bits of) Tj ET
+BT /F3 8.5 Tf 469.25 134.00 Td (c) Tj ET
+BT /F1 8.5 Tf 479.45 134.00 Td (are used as) Tj ET
+BT /F3 8.5 Tf 159.78 123.00 Td (0xRRGGBB) Tj ET
+BT /F1 8.5 Tf 200.58 123.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 118.00 m 558.00 118.00 l S 0 G
+BT /F3 8.5 Tf 58.00 108.00 Td (line\(x0, y0, x1,) Tj ET
+BT /F3 8.5 Tf 58.00 97.00 Td (y1, c\)) Tj ET
+BT /F1 8.5 Tf 159.78 108.00 Td (Bresenham line in every direction, both endpoints included, clipped to the canvas.) Tj ET
+0.6 G 0.5 w 54.00 92.00 m 558.00 92.00 l S 0 G
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 8 of 16) Tj ET
 endstream
 endobj
 21 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 20 0 R >>
 endobj
 22 0 obj
-<< /Length 6545 >>
+<< /Length 8362 >>
 stream
 0.88 g 54.00 717.00 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 722.00 Td (Situation) Tj ET
-BT /F3 8.5 Tf 142.79 722.00 Td (rasteri FILE) Tj ET
-BT /F3 8.5 Tf 355.20 722.00 Td (rasterc FILE -o OUT) Tj ET
-BT /F2 8.5 Tf 452.10 722.00 Td (, then) Tj ET
-BT /F3 8.5 Tf 477.62 722.00 Td (./OUT) Tj ET
+BT /F2 8.5 Tf 58.00 722.00 Td (Call) Tj ET
+BT /F2 8.5 Tf 159.78 722.00 Td (Effect) Tj ET
 0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
-BT /F1 8.5 Tf 58.00 707.00 Td (Runtime error) Tj ET
-BT /F1 8.5 Tf 142.79 707.00 Td (stdout so far,) Tj ET
-BT /F3 8.5 Tf 194.29 707.00 Td (rastera: runtime error: ...) Tj ET
-BT /F1 8.5 Tf 337.09 707.00 Td (on) Tj ET
-BT /F1 8.5 Tf 142.79 696.00 Td (stderr, exit 2) Tj ET
-BT /F3 8.5 Tf 355.20 707.00 Td (rasterc) Tj ET
-BT /F1 8.5 Tf 396.00 707.00 Td (exits 0;) Tj ET
-BT /F3 8.5 Tf 425.29 707.00 Td (./OUT) Tj ET
-BT /F1 8.5 Tf 455.89 707.00 Td (behaves as in the left) Tj ET
-BT /F1 8.5 Tf 355.20 696.00 Td (column) Tj ET
+BT /F3 8.5 Tf 58.00 707.00 Td (rect\(x, y, w, h,) Tj ET
+BT /F3 8.5 Tf 58.00 696.00 Td (c\)) Tj ET
+BT /F1 8.5 Tf 159.78 707.00 Td (Filled rectangle, clipped to the canvas; draws nothing if) Tj ET
+BT /F3 8.5 Tf 368.60 707.00 Td (w) Tj ET
+BT /F1 8.5 Tf 378.80 707.00 Td (or) Tj ET
+BT /F3 8.5 Tf 388.72 707.00 Td (h) Tj ET
+BT /F1 8.5 Tf 398.92 707.00 Td (is 0 or negative.) Tj ET
 0.6 G 0.5 w 54.00 691.00 m 558.00 691.00 l S 0 G
-BT /F1 8.5 Tf 58.00 681.00 Td (Bad usage / missing) Tj ET
-BT /F1 8.5 Tf 58.00 670.00 Td (file) Tj ET
-BT /F1 8.5 Tf 142.79 681.00 Td (usage or) Tj ET
-BT /F3 8.5 Tf 178.22 681.00 Td (FILE: No such file or directory) Tj ET
-BT /F1 8.5 Tf 336.32 681.00 Td (,) Tj ET
-BT /F1 8.5 Tf 142.79 670.00 Td (exit 1) Tj ET
-BT /F1 8.5 Tf 355.20 681.00 Td (same, exit 1) Tj ET
+BT /F3 8.5 Tf 58.00 681.00 Td (export\(\)) Tj ET
+BT /F1 8.5 Tf 159.78 681.00 Td (Writes the canvas to) Tj ET
+BT /F3 8.5 Tf 239.15 681.00 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 279.95 681.00 Td (in the current directory: binary P6, header) Tj ET
+BT /F3 8.5 Tf 438.68 681.00 Td (P6\\nW H\\n255\\n) Tj ET
+BT /F1 8.5 Tf 510.08 681.00 Td (, then) Tj ET
+BT /F3 8.5 Tf 533.71 681.00 Td (W*H) Tj ET
+BT /F1 8.5 Tf 159.78 670.00 Td (RGB byte triples, row by row from the top-left.) Tj ET
 0.6 G 0.5 w 54.00 665.00 m 558.00 665.00 l S 0 G
-BT /F2 14.5 Tf 54.00 623.60 Td (8. Pipeline) Tj ET
-0.94 g 54.00 596.10 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 599.10 Td (Phase 1:  source.rst -> src/interp/lexer.l -> tokens -> src/interp/interp.y -> run @main) Tj ET
-0.94 g 54.00 585.60 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 588.60 Td (Phase 2:  source.rst -> src/parse/lexer.l -> tokens -> src/parse/parser.y -> AST) Tj ET
-0.94 g 54.00 575.10 504.00 10.50 re f 0 g
-BT /F3 8 Tf 60.00 578.10 Td (          -> src/sema/ -> checked AST -> src/codegen/ -> LLVM IR) Tj ET
-0.94 g 54.00 558.60 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 567.60 Td (          -> src/backend/ -> object file -> cc + runtime/rastera_rt.c -> executable) Tj ET
-BT /F2 11.5 Tf 54.00 528.80 Td (8.1 How each phase uses its Bison grammar) Tj ET
-BT /F1 10 Tf 54.00 511.30 Td (Both grammars use Bison's default C parser skeleton; the action code inside them is C++17, so the generated) Tj ET
-BT /F1 10 Tf 54.00 497.80 Td (parsers are compiled as C++.) Tj ET
-BT /F1 10 Tf 54.00 478.30 Td (Phase 1 \() Tj ET
-BT /F3 10 Tf 96.80 478.30 Td (src/interp/interp.y) Tj ET
-BT /F1 10 Tf 210.80 478.30 Td (\). Everything that runs the program is in this one Bison file: the grammar) Tj ET
-BT /F1 10 Tf 54.00 464.80 Td (actions, the node types they create, the static checks, the evaluator and) Tj ET
-BT /F3 10 Tf 374.18 464.80 Td (main) Tj ET
-BT /F1 10 Tf 398.18 464.80 Td (. The actions do not execute) Tj ET
-BT /F1 10 Tf 54.00 451.30 Td (statements the moment a rule is reduced. They build small execution nodes, and once the whole file has parsed,) Tj ET
-BT /F1 10 Tf 54.00 437.80 Td (the code at the end of) Tj ET
-BT /F3 10 Tf 153.52 437.80 Td (interp.y) Tj ET
-BT /F1 10 Tf 207.52 437.80 Td (checks the program and then executes) Tj ET
-BT /F3 10 Tf 382.61 437.80 Td (@main) Tj ET
-BT /F1 10 Tf 418.61 437.80 Td (by walking those nodes.) Tj ET
-BT /F1 10 Tf 54.00 424.30 Td (Executing directly inside the actions is not possible for this language:) Tj ET
-BT /F1 10 Tf 57.00 404.80 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 404.80 Td (A function may be called before it is defined, so every definition has to be parsed first.) Tj ET
-BT /F1 10 Tf 57.00 388.80 Td (\225) Tj ET
-BT /F1 10 Tf 68.00 388.80 Td (A loop body is reduced once by the parser but must run many times; a branch that is not taken must not run at) Tj ET
-BT /F1 10 Tf 68.00 375.30 Td (all.) Tj ET
-BT /F1 10 Tf 57.00 359.30 Td (\225) Tj ET
-BT /F3 10 Tf 68.00 359.30 Td (&) Tj ET
-BT /F1 10 Tf 80.00 359.30 Td (and) Tj ET
-BT /F3 10 Tf 99.46 359.30 Td (|) Tj ET
-BT /F1 10 Tf 111.46 359.30 Td (must skip their right operand, but Bison reduces both operands before the operator's rule.) Tj ET
-BT /F1 10 Tf 54.00 343.30 Td (The nodes are a tree the program runs directly. They are not intermediate code: nothing is translated, written out) Tj ET
-BT /F1 10 Tf 54.00 329.80 Td (or compiled.) Tj ET
-BT /F1 10 Tf 54.00 310.30 Td (Phase 2 \() Tj ET
-BT /F3 10 Tf 96.80 310.30 Td (src/parse/parser.y) Tj ET
-BT /F1 10 Tf 204.80 310.30 Td (\). The compiler's grammar describes the same language. Its actions build an) Tj ET
-BT /F1 10 Tf 54.00 296.80 Td (AST \() Tj ET
-BT /F3 10 Tf 79.56 296.80 Td (src/ast/ast.hpp) Tj ET
-BT /F1 10 Tf 169.56 296.80 Td (\);) Tj ET
-BT /F3 10 Tf 178.45 296.80 Td (src/sema/) Tj ET
-BT /F1 10 Tf 238.45 296.80 Td (checks it and) Tj ET
-BT /F3 10 Tf 299.59 296.80 Td (src/codegen/) Tj ET
-BT /F1 10 Tf 377.59 296.80 Td (walks it to emit LLVM IR, which) Tj ET
-BT /F3 10 Tf 54.00 283.30 Td (src/backend/) Tj ET
-BT /F1 10 Tf 132.00 283.30 Td (compiles to an object file and links into an executable. IR is produced from the AST instead of) Tj ET
-BT /F1 10 Tf 54.00 269.80 Td (inside the grammar actions for the same reasons as above, and one more: LLVM needs a function's declaration) Tj ET
-BT /F1 10 Tf 54.00 256.30 Td (before a call to it can be emitted, and a loop's condition block must exist before the condition's instructions are) Tj ET
-BT /F1 10 Tf 54.00 242.80 Td (placed in it. Separating parsing from code generation also lets) Tj ET
-BT /F3 10 Tf 330.80 242.80 Td (rasterc --ast) Tj ET
-BT /F1 10 Tf 414.80 242.80 Td (show the tree, and lets every) Tj ET
-BT /F1 10 Tf 54.00 229.30 Td (semantic error be reported before any IR is written. The two phases share the language definition and the test) Tj ET
-BT /F1 10 Tf 54.00 215.80 Td (suite, not the grammar file: both pass the same 132 test cases.) Tj ET
-BT /F2 14.5 Tf 54.00 176.40 Td (9. Regenerating README.pdf) Tj ET
-BT /F3 10 Tf 54.00 156.90 Td (README.pdf) Tj ET
-BT /F1 10 Tf 120.00 156.90 Td (is generated from this file by a dependency-free script \(Python 3 standard library only\); no LaTeX) Tj ET
-BT /F1 10 Tf 54.00 143.40 Td (or pandoc is needed. It is deterministic: the same) Tj ET
-BT /F3 10 Tf 274.10 143.40 Td (README.md) Tj ET
-BT /F1 10 Tf 334.10 143.40 Td (always produces byte-identical output.) Tj ET
-0.94 g 54.00 115.90 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 118.90 Td (python3 docs/build_readme_pdf.py            # rewrite README.pdf from README.md) Tj ET
-0.94 g 54.00 99.40 504.00 16.50 re f 0 g
-BT /F3 8 Tf 60.00 108.40 Td (python3 docs/build_readme_pdf.py --check    # exit 1 if README.pdf is out of date) Tj ET
-BT /F1 8 Tf 247.98 30 Td (Rastera README - page 9 of 15) Tj ET
+BT /F3 10 Tf 54.00 643.50 Td (\(0, 0\)) Tj ET
+BT /F1 10 Tf 96.00 643.50 Td (is the top-left pixel.) Tj ET
+BT /F3 10 Tf 182.15 643.50 Td (pixel) Tj ET
+BT /F1 10 Tf 212.15 643.50 Td (,) Tj ET
+BT /F3 10 Tf 217.71 643.50 Td (line) Tj ET
+BT /F1 10 Tf 241.71 643.50 Td (,) Tj ET
+BT /F3 10 Tf 247.27 643.50 Td (rect) Tj ET
+BT /F1 10 Tf 277.27 643.50 Td (and) Tj ET
+BT /F3 10 Tf 296.73 643.50 Td (export) Tj ET
+BT /F1 10 Tf 338.73 643.50 Td (before any) Tj ET
+BT /F3 10 Tf 388.76 643.50 Td (canvas) Tj ET
+BT /F1 10 Tf 430.76 643.50 Td (call fail with the runtime) Tj ET
+BT /F1 10 Tf 54.00 630.00 Td (error) Tj ET
+BT /F3 10 Tf 77.89 630.00 Td (no canvas) Tj ET
+BT /F1 10 Tf 137.89 630.00 Td (\(exit 2\).) Tj ET
+BT /F3 10 Tf 174.01 630.00 Td (rasteri) Tj ET
+BT /F1 10 Tf 222.01 630.00 Td (keeps its own canvas and) Tj ET
+BT /F3 10 Tf 339.29 630.00 Td (rasterc) Tj ET
+BT /F1 10 Tf 387.29 630.00 Td (programs use the one in) Tj ET
+BT /F3 10 Tf 54.00 616.50 Td (runtime/rastera_rt.c) Tj ET
+BT /F1 10 Tf 174.00 616.50 Td (; both use the same algorithms and write byte-identical files. The names of the built-ins) Tj ET
+BT /F1 10 Tf 54.00 603.00 Td (are reserved like) Tj ET
+BT /F3 10 Tf 130.69 603.00 Td (print) Tj ET
+BT /F1 10 Tf 160.69 603.00 Td (.) Tj ET
+BT /F2 14.5 Tf 54.00 563.60 Td (7. Exit status and error summary) Tj ET
+0.6 G 0.5 w 54.00 555.60 m 558.00 555.60 l S 0 G
+0.88 g 54.00 540.60 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 545.60 Td (Situation) Tj ET
+BT /F3 8.5 Tf 142.79 545.60 Td (rasteri FILE) Tj ET
+BT /F3 8.5 Tf 355.20 545.60 Td (rasterc FILE -o OUT) Tj ET
+BT /F2 8.5 Tf 452.10 545.60 Td (, then) Tj ET
+BT /F3 8.5 Tf 477.62 545.60 Td (./OUT) Tj ET
+0.6 G 0.5 w 54.00 540.60 m 558.00 540.60 l S 0 G
+BT /F1 8.5 Tf 58.00 530.60 Td (Success) Tj ET
+BT /F1 8.5 Tf 142.79 530.60 Td (stdout output, exit status = result of) Tj ET
+BT /F3 8.5 Tf 277.21 530.60 Td (@main) Tj ET
+BT /F3 8.5 Tf 355.20 530.60 Td (rasterc) Tj ET
+BT /F1 8.5 Tf 396.00 530.60 Td (exits 0;) Tj ET
+BT /F3 8.5 Tf 425.29 530.60 Td (./OUT) Tj ET
+BT /F1 8.5 Tf 455.89 530.60 Td (prints and exits with the) Tj ET
+BT /F1 8.5 Tf 355.20 519.60 Td (result of) Tj ET
+BT /F3 8.5 Tf 387.80 519.60 Td (@main) Tj ET
+0.6 G 0.5 w 54.00 514.60 m 558.00 514.60 l S 0 G
+BT /F1 8.5 Tf 58.00 504.60 Td (Static error) Tj ET
+BT /F3 8.5 Tf 142.79 504.60 Td (FILE:LINE: error: ...) Tj ET
+BT /F1 8.5 Tf 254.99 504.60 Td (on stderr, exit 1) Tj ET
+BT /F1 8.5 Tf 355.20 504.60 Td (same message, exit 1, no) Tj ET
+BT /F3 8.5 Tf 454.41 504.60 Td (OUT) Tj ET
+BT /F1 8.5 Tf 474.81 504.60 Td (written) Tj ET
+0.6 G 0.5 w 54.00 499.60 m 558.00 499.60 l S 0 G
+BT /F1 8.5 Tf 58.00 489.60 Td (Runtime error) Tj ET
+BT /F1 8.5 Tf 142.79 489.60 Td (stdout so far,) Tj ET
+BT /F3 8.5 Tf 194.29 489.60 Td (rastera: runtime error: ...) Tj ET
+BT /F1 8.5 Tf 337.09 489.60 Td (on) Tj ET
+BT /F1 8.5 Tf 142.79 478.60 Td (stderr, exit 2) Tj ET
+BT /F3 8.5 Tf 355.20 489.60 Td (rasterc) Tj ET
+BT /F1 8.5 Tf 396.00 489.60 Td (exits 0;) Tj ET
+BT /F3 8.5 Tf 425.29 489.60 Td (./OUT) Tj ET
+BT /F1 8.5 Tf 455.89 489.60 Td (behaves as in the left) Tj ET
+BT /F1 8.5 Tf 355.20 478.60 Td (column) Tj ET
+0.6 G 0.5 w 54.00 473.60 m 558.00 473.60 l S 0 G
+BT /F1 8.5 Tf 58.00 463.60 Td (Bad usage / missing) Tj ET
+BT /F1 8.5 Tf 58.00 452.60 Td (file) Tj ET
+BT /F1 8.5 Tf 142.79 463.60 Td (usage or) Tj ET
+BT /F3 8.5 Tf 178.22 463.60 Td (FILE: No such file or directory) Tj ET
+BT /F1 8.5 Tf 336.32 463.60 Td (,) Tj ET
+BT /F1 8.5 Tf 142.79 452.60 Td (exit 1) Tj ET
+BT /F1 8.5 Tf 355.20 463.60 Td (same, exit 1) Tj ET
+0.6 G 0.5 w 54.00 447.60 m 558.00 447.60 l S 0 G
+BT /F2 14.5 Tf 54.00 406.20 Td (8. Pipeline) Tj ET
+0.94 g 54.00 378.70 504.00 16.50 re f 0 g
+BT /F3 8 Tf 60.00 381.70 Td (Phase 1:  source.rst -> src/interp/lexer.l -> tokens -> src/interp/interp.y -> run @main) Tj ET
+0.94 g 54.00 368.20 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 371.20 Td (Phase 2:  source.rst -> src/parse/lexer.l -> tokens -> src/parse/parser.y -> AST) Tj ET
+0.94 g 54.00 357.70 504.00 10.50 re f 0 g
+BT /F3 8 Tf 60.00 360.70 Td (          -> src/sema/ -> checked AST -> src/codegen/ -> LLVM IR) Tj ET
+0.94 g 54.00 341.20 504.00 16.50 re f 0 g
+BT /F3 8 Tf 60.00 350.20 Td (          -> src/backend/ -> object file -> cc + runtime/rastera_rt.c -> executable) Tj ET
+BT /F2 11.5 Tf 54.00 311.40 Td (8.1 How each phase uses its Bison grammar) Tj ET
+BT /F1 10 Tf 54.00 293.90 Td (Both grammars use Bison's default C parser skeleton; the action code inside them is C++17, so the generated) Tj ET
+BT /F1 10 Tf 54.00 280.40 Td (parsers are compiled as C++.) Tj ET
+BT /F1 10 Tf 54.00 260.90 Td (Phase 1 \() Tj ET
+BT /F3 10 Tf 96.80 260.90 Td (src/interp/interp.y) Tj ET
+BT /F1 10 Tf 210.80 260.90 Td (\). Everything that runs the program is in this one Bison file: the grammar) Tj ET
+BT /F1 10 Tf 54.00 247.40 Td (actions, the node types they create, the static checks, the evaluator and) Tj ET
+BT /F3 10 Tf 374.18 247.40 Td (main) Tj ET
+BT /F1 10 Tf 398.18 247.40 Td (. The actions do not execute) Tj ET
+BT /F1 10 Tf 54.00 233.90 Td (statements the moment a rule is reduced. They build small execution nodes, and once the whole file has parsed,) Tj ET
+BT /F1 10 Tf 54.00 220.40 Td (the code at the end of) Tj ET
+BT /F3 10 Tf 153.52 220.40 Td (interp.y) Tj ET
+BT /F1 10 Tf 207.52 220.40 Td (checks the program and then executes) Tj ET
+BT /F3 10 Tf 382.61 220.40 Td (@main) Tj ET
+BT /F1 10 Tf 418.61 220.40 Td (by walking those nodes.) Tj ET
+BT /F1 10 Tf 54.00 206.90 Td (Executing directly inside the actions is not possible for this language:) Tj ET
+BT /F1 10 Tf 57.00 187.40 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 187.40 Td (A function may be called before it is defined, so every definition has to be parsed first.) Tj ET
+BT /F1 10 Tf 57.00 171.40 Td (\225) Tj ET
+BT /F1 10 Tf 68.00 171.40 Td (A loop body is reduced once by the parser but must run many times; a branch that is not taken must not run at) Tj ET
+BT /F1 10 Tf 68.00 157.90 Td (all.) Tj ET
+BT /F1 10 Tf 57.00 141.90 Td (\225) Tj ET
+BT /F3 10 Tf 68.00 141.90 Td (&) Tj ET
+BT /F1 10 Tf 80.00 141.90 Td (and) Tj ET
+BT /F3 10 Tf 99.46 141.90 Td (|) Tj ET
+BT /F1 10 Tf 111.46 141.90 Td (must skip their right operand, but Bison reduces both operands before the operator's rule.) Tj ET
+BT /F1 10 Tf 54.00 125.90 Td (The nodes are a tree the program runs directly. They are not intermediate code: nothing is translated, written out) Tj ET
+BT /F1 10 Tf 54.00 112.40 Td (or compiled.) Tj ET
+BT /F1 10 Tf 54.00 92.90 Td (Phase 2 \() Tj ET
+BT /F3 10 Tf 96.80 92.90 Td (src/parse/parser.y) Tj ET
+BT /F1 10 Tf 204.80 92.90 Td (\). The compiler's grammar describes the same language. Its actions build an) Tj ET
+BT /F1 10 Tf 54.00 79.40 Td (AST \() Tj ET
+BT /F3 10 Tf 79.56 79.40 Td (src/ast/ast.hpp) Tj ET
+BT /F1 10 Tf 169.56 79.40 Td (\);) Tj ET
+BT /F3 10 Tf 178.45 79.40 Td (src/sema/) Tj ET
+BT /F1 10 Tf 238.45 79.40 Td (checks it and) Tj ET
+BT /F3 10 Tf 299.59 79.40 Td (src/codegen/) Tj ET
+BT /F1 10 Tf 377.59 79.40 Td (walks it to emit LLVM IR, which) Tj ET
+BT /F3 10 Tf 54.00 65.90 Td (src/backend/) Tj ET
+BT /F1 10 Tf 132.00 65.90 Td (compiles to an object file and links into an executable. IR is produced from the AST instead of) Tj ET
+BT /F1 8 Tf 247.98 30 Td (Rastera README - page 9 of 16) Tj ET
 endstream
 endobj
 23 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 22 0 R >>
 endobj
 24 0 obj
-<< /Length 8964 >>
+<< /Length 6017 >>
 stream
-BT /F2 14.5 Tf 54.00 714.60 Td (10. Project file inventory) Tj ET
-BT /F1 10 Tf 54.00 695.10 Td (Every file tracked in the repository, by directory. Generated files \() Tj ET
-BT /F3 10 Tf 341.33 695.10 Td (build/) Tj ET
-BT /F1 10 Tf 377.33 695.10 Td (\) and git-ignored files \() Tj ET
-BT /F3 10 Tf 476.81 695.10 Td (.gitignore) Tj ET
-BT /F1 10 Tf 54.00 681.60 Td (ignores) Tj ET
-BT /F3 10 Tf 89.57 681.60 Td (build/) Tj ET
-BT /F1 10 Tf 125.57 681.60 Td (,) Tj ET
-BT /F3 10 Tf 131.13 681.60 Td (a.out) Tj ET
-BT /F1 10 Tf 167.13 681.60 Td (and) Tj ET
-BT /F3 10 Tf 186.59 681.60 Td (*.ppm) Tj ET
-BT /F1 10 Tf 216.59 681.60 Td (\) are not listed.) Tj ET
-BT /F2 11.5 Tf 54.00 650.80 Td (10.1 Repository root) Tj ET
-0.6 G 0.5 w 54.00 644.80 m 514.54 644.80 l S 0 G
-0.88 g 54.00 629.80 460.54 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 634.80 Td (File) Tj ET
-BT /F2 8.5 Tf 137.40 634.80 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 629.80 m 514.54 629.80 l S 0 G
-BT /F3 8.5 Tf 58.00 619.80 Td (README.md) Tj ET
-BT /F1 8.5 Tf 137.40 619.80 Td (This document \(source of) Tj ET
-BT /F3 8.5 Tf 235.66 619.80 Td (README.pdf) Tj ET
-BT /F1 8.5 Tf 286.66 619.80 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 614.80 m 514.54 614.80 l S 0 G
-BT /F3 8.5 Tf 58.00 604.80 Td (README.pdf) Tj ET
-BT /F1 8.5 Tf 137.40 604.80 Td (Generated PDF version of this document.) Tj ET
-0.6 G 0.5 w 54.00 599.80 m 514.54 599.80 l S 0 G
-BT /F3 8.5 Tf 58.00 589.80 Td (CMakeLists.txt) Tj ET
-BT /F1 8.5 Tf 137.40 589.80 Td (CMake build: targets) Tj ET
-BT /F3 8.5 Tf 217.71 589.80 Td (rasteri) Tj ET
-BT /F1 8.5 Tf 253.41 589.80 Td (,) Tj ET
-BT /F3 8.5 Tf 258.13 589.80 Td (rastera_rt) Tj ET
-BT /F1 8.5 Tf 314.23 589.80 Td (\(runtime library\) and) Tj ET
-BT /F3 8.5 Tf 392.64 589.80 Td (rasterc) Tj ET
-BT /F1 8.5 Tf 428.34 589.80 Td (; runs Flex and Bison.) Tj ET
-0.6 G 0.5 w 54.00 584.80 m 514.54 584.80 l S 0 G
-BT /F3 8.5 Tf 58.00 574.80 Td (Dockerfile) Tj ET
-BT /F1 8.5 Tf 137.40 574.80 Td (Development image: Ubuntu 24.04 with CMake, Ninja, gcc/g++, Flex, Bison, LLVM 18.) Tj ET
-0.6 G 0.5 w 54.00 569.80 m 514.54 569.80 l S 0 G
-BT /F3 8.5 Tf 58.00 559.80 Td (dev.sh) Tj ET
-BT /F1 8.5 Tf 137.40 559.80 Td (Runs a command in the container;) Tj ET
-BT /F3 8.5 Tf 269.21 559.80 Td (build) Tj ET
-BT /F1 8.5 Tf 299.81 559.80 Td (and) Tj ET
-BT /F3 8.5 Tf 316.35 559.80 Td (test) Tj ET
-BT /F1 8.5 Tf 341.85 559.80 Td (shortcuts.) Tj ET
-0.6 G 0.5 w 54.00 554.80 m 514.54 554.80 l S 0 G
-BT /F3 8.5 Tf 58.00 544.80 Td (.gitattributes) Tj ET
-BT /F1 8.5 Tf 137.40 544.80 Td (Forces LF line endings and marks) Tj ET
-BT /F3 8.5 Tf 267.78 544.80 Td (*.pdf) Tj ET
-BT /F1 8.5 Tf 298.38 544.80 Td (as binary.) Tj ET
-0.6 G 0.5 w 54.00 539.80 m 514.54 539.80 l S 0 G
-BT /F2 11.5 Tf 54.00 507.00 Td (10.2) Tj ET
-BT /F3 11.5 Tf 81.62 507.00 Td (.github/) Tj ET
-0.6 G 0.5 w 54.00 501.00 m 552.10 501.00 l S 0 G
-0.88 g 54.00 486.00 498.10 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 491.00 Td (File) Tj ET
-BT /F2 8.5 Tf 229.20 491.00 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 486.00 m 552.10 486.00 l S 0 G
-BT /F3 8.5 Tf 58.00 476.00 Td (.github/workflows/ci.yml) Tj ET
-BT /F1 8.5 Tf 229.20 476.00 Td (Continuous integration: builds the image, builds both programs, runs both test suites.) Tj ET
-0.6 G 0.5 w 54.00 471.00 m 552.10 471.00 l S 0 G
-BT /F3 8.5 Tf 58.00 461.00 Td (.github/pull_request_template.md) Tj ET
-BT /F1 8.5 Tf 229.20 461.00 Td (Template for pull request descriptions.) Tj ET
-0.6 G 0.5 w 54.00 456.00 m 552.10 456.00 l S 0 G
-BT /F2 11.5 Tf 54.00 423.20 Td (10.3) Tj ET
-BT /F3 11.5 Tf 81.62 423.20 Td (docs/) Tj ET
-0.6 G 0.5 w 54.00 417.20 m 421.87 417.20 l S 0 G
-0.88 g 54.00 402.20 367.87 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 407.20 Td (File) Tj ET
-BT /F2 8.5 Tf 188.40 407.20 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 402.20 m 421.87 402.20 l S 0 G
-BT /F3 8.5 Tf 58.00 392.20 Td (docs/LANGUAGE_SPEC.md) Tj ET
-BT /F1 8.5 Tf 188.40 392.20 Td (Normative language specification.) Tj ET
-0.6 G 0.5 w 54.00 387.20 m 421.87 387.20 l S 0 G
-BT /F3 8.5 Tf 58.00 377.20 Td (docs/proposal.pdf) Tj ET
-BT /F1 8.5 Tf 188.40 377.20 Td (Original project proposal.) Tj ET
-0.6 G 0.5 w 54.00 372.20 m 421.87 372.20 l S 0 G
-BT /F3 8.5 Tf 58.00 362.20 Td (docs/build_readme_pdf.py) Tj ET
-BT /F1 8.5 Tf 188.40 362.20 Td (Generator for) Tj ET
-BT /F3 8.5 Tf 241.31 362.20 Td (README.pdf) Tj ET
-BT /F1 8.5 Tf 297.41 362.20 Td (\(Python 3 standard library only\).) Tj ET
-0.6 G 0.5 w 54.00 357.20 m 421.87 357.20 l S 0 G
-BT /F2 11.5 Tf 54.00 324.40 Td (10.4) Tj ET
-BT /F3 11.5 Tf 81.62 324.40 Td (examples/) Tj ET
-0.6 G 0.5 w 54.00 318.40 m 558.00 318.40 l S 0 G
-0.88 g 54.00 303.40 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 308.40 Td (File) Tj ET
-BT /F2 8.5 Tf 213.90 308.40 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 303.40 m 558.00 303.40 l S 0 G
-BT /F3 8.5 Tf 58.00 293.40 Td (examples/recursion_arrays.rst) Tj ET
-BT /F1 8.5 Tf 213.90 293.40 Td (Recursive Fibonacci stored in an array; prints) Tj ET
-BT /F3 8.5 Tf 386.79 293.40 Td (13) Tj ET
-BT /F1 8.5 Tf 402.09 293.40 Td (and) Tj ET
-BT /F3 8.5 Tf 418.63 293.40 Td (1) Tj ET
-BT /F1 8.5 Tf 423.73 293.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 288.40 m 558.00 288.40 l S 0 G
-BT /F3 8.5 Tf 58.00 278.40 Td (examples/while_logic.rst) Tj ET
-BT /F1 8.5 Tf 213.90 278.40 Td (While loop with) Tj ET
-BT /F3 8.5 Tf 273.42 278.40 Td (|) Tj ET
-BT /F1 8.5 Tf 278.52 278.40 Td (,) Tj ET
-BT /F3 8.5 Tf 283.24 278.40 Td (&) Tj ET
-BT /F1 8.5 Tf 288.34 278.40 Td (,) Tj ET
-BT /F3 8.5 Tf 293.07 278.40 Td (!) Tj ET
-BT /F1 8.5 Tf 303.27 278.40 Td (and short-circuiting; prints) Tj ET
-BT /F3 8.5 Tf 402.94 278.40 Td (98 0 1 1) Tj ET
-BT /F1 8.5 Tf 443.74 278.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 273.40 m 558.00 273.40 l S 0 G
-BT /F3 8.5 Tf 58.00 263.40 Td (examples/runtime_error.rst) Tj ET
-BT /F1 8.5 Tf 213.90 263.40 Td (Prints) Tj ET
-BT /F3 8.5 Tf 237.99 263.40 Td (20) Tj ET
-BT /F1 8.5 Tf 248.19 263.40 Td (, then fails with an array index error \(exit 2\).) Tj ET
-0.6 G 0.5 w 54.00 258.40 m 558.00 258.40 l S 0 G
-BT /F3 8.5 Tf 58.00 248.40 Td (examples/static_error.rst) Tj ET
-BT /F1 8.5 Tf 213.90 248.40 Td (Undefined variable; rejected before anything runs \(exit 1\).) Tj ET
-0.6 G 0.5 w 54.00 243.40 m 558.00 243.40 l S 0 G
-BT /F3 8.5 Tf 58.00 233.40 Td (examples/graphics_demo.rst) Tj ET
-BT /F1 8.5 Tf 213.90 233.40 Td (64x64 gradient with a rectangle and two lines; writes) Tj ET
-BT /F3 8.5 Tf 413.27 233.40 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 448.97 233.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 228.40 m 558.00 228.40 l S 0 G
-BT /F3 8.5 Tf 58.00 218.40 Td (examples/gradient.rst) Tj ET
-BT /F1 8.5 Tf 213.90 218.40 Td (The proposal's section 5 program: 256x256 rings from) Tj ET
-BT /F3 8.5 Tf 419.61 218.40 Td (\(x * x + y * y\) % 255) Tj ET
-BT /F1 8.5 Tf 526.71 218.40 Td (; writes) Tj ET
-BT /F3 8.5 Tf 213.90 207.40 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 249.60 207.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 202.40 m 558.00 202.40 l S 0 G
-BT /F3 8.5 Tf 58.00 192.40 Td (examples/pattern.rst) Tj ET
-BT /F1 8.5 Tf 213.90 192.40 Td (128x128 nested squares, a fan of lines and a frame, with range loops; writes) Tj ET
-BT /F3 8.5 Tf 503.52 192.40 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 539.22 192.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 187.40 m 558.00 187.40 l S 0 G
-BT /F2 11.5 Tf 54.00 154.60 Td (10.5) Tj ET
-BT /F3 11.5 Tf 81.62 154.60 Td (runtime/) Tj ET
-0.6 G 0.5 w 54.00 148.60 m 558.00 148.60 l S 0 G
-0.88 g 54.00 133.60 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 138.60 Td (File) Tj ET
-BT /F2 8.5 Tf 168.00 138.60 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 133.60 m 558.00 133.60 l S 0 G
-BT /F3 8.5 Tf 58.00 123.60 Td (runtime/rastera_rt.c) Tj ET
-BT /F1 8.5 Tf 168.00 123.60 Td (C runtime linked into every compiled program: the process entry) Tj ET
-BT /F3 8.5 Tf 411.28 123.60 Td (main) Tj ET
-BT /F1 8.5 Tf 436.78 123.60 Td (that calls) Tj ET
-BT /F3 8.5 Tf 472.68 123.60 Td (rs_main) Tj ET
-BT /F1 8.5 Tf 508.38 123.60 Td (,) Tj ET
-BT /F3 8.5 Tf 513.11 123.60 Td (rt_print) Tj ET
-BT /F1 8.5 Tf 168.00 112.60 Td (\() Tj ET
-BT /F3 8.5 Tf 170.83 112.60 Td (print) Tj ET
-BT /F1 8.5 Tf 196.33 112.60 Td (\),) Tj ET
-BT /F3 8.5 Tf 203.89 112.60 Td (rt_alloc) Tj ET
-BT /F1 8.5 Tf 249.79 112.60 Td (\(array allocation with a length header and the negative-size check\),) Tj ET
-BT /F3 8.5 Tf 504.43 112.60 Td (rt_panic) Tj ET
-BT /F1 8.5 Tf 168.00 101.60 Td (\(prints the runtime error, exits 2\) and the graphics built-ins) Tj ET
-BT /F3 8.5 Tf 388.13 101.60 Td (rt_canvas) Tj ET
-BT /F1 8.5 Tf 434.03 101.60 Td (,) Tj ET
-BT /F3 8.5 Tf 438.76 101.60 Td (rt_rgb) Tj ET
-BT /F1 8.5 Tf 469.36 101.60 Td (,) Tj ET
-BT /F3 8.5 Tf 474.08 101.60 Td (rt_pixel) Tj ET
-BT /F1 8.5 Tf 514.88 101.60 Td (,) Tj ET
-BT /F3 8.5 Tf 168.00 90.60 Td (rt_line) Tj ET
-BT /F1 8.5 Tf 203.70 90.60 Td (,) Tj ET
-BT /F3 8.5 Tf 208.43 90.60 Td (rt_rect) Tj ET
-BT /F1 8.5 Tf 244.13 90.60 Td (,) Tj ET
-BT /F3 8.5 Tf 248.85 90.60 Td (rt_export) Tj ET
-BT /F1 8.5 Tf 299.85 90.60 Td (over one canvas that is freed at exit.) Tj ET
-0.6 G 0.5 w 54.00 85.60 m 558.00 85.60 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 10 of 15) Tj ET
+BT /F1 10 Tf 54.00 718.50 Td (inside the grammar actions for the same reasons as above, and one more: LLVM needs a function's declaration) Tj ET
+BT /F1 10 Tf 54.00 705.00 Td (before a call to it can be emitted, and a loop's condition block must exist before the condition's instructions are) Tj ET
+BT /F1 10 Tf 54.00 691.50 Td (placed in it. Separating parsing from code generation also lets) Tj ET
+BT /F3 10 Tf 330.80 691.50 Td (rasterc --ast) Tj ET
+BT /F1 10 Tf 414.80 691.50 Td (show the tree, and lets every) Tj ET
+BT /F1 10 Tf 54.00 678.00 Td (semantic error be reported before any IR is written. The two phases share the language definition and the test) Tj ET
+BT /F1 10 Tf 54.00 664.50 Td (suite, not the grammar file: both pass the same 159 test cases.) Tj ET
+BT /F2 14.5 Tf 54.00 625.10 Td (9. Regenerating README.pdf) Tj ET
+BT /F3 10 Tf 54.00 605.60 Td (README.pdf) Tj ET
+BT /F1 10 Tf 120.00 605.60 Td (is generated from this file by a dependency-free script \(Python 3 standard library only\); no LaTeX) Tj ET
+BT /F1 10 Tf 54.00 592.10 Td (or pandoc is needed. It is deterministic: the same) Tj ET
+BT /F3 10 Tf 274.10 592.10 Td (README.md) Tj ET
+BT /F1 10 Tf 334.10 592.10 Td (always produces byte-identical output.) Tj ET
+0.94 g 54.00 564.60 504.00 16.50 re f 0 g
+BT /F3 8 Tf 60.00 567.60 Td (python3 docs/build_readme_pdf.py            # rewrite README.pdf from README.md) Tj ET
+0.94 g 54.00 548.10 504.00 16.50 re f 0 g
+BT /F3 8 Tf 60.00 557.10 Td (python3 docs/build_readme_pdf.py --check    # exit 1 if README.pdf is out of date) Tj ET
+BT /F2 14.5 Tf 54.00 509.70 Td (10. Project file inventory) Tj ET
+BT /F1 10 Tf 54.00 490.20 Td (Every file tracked in the repository, by directory. Generated files \() Tj ET
+BT /F3 10 Tf 341.33 490.20 Td (build/) Tj ET
+BT /F1 10 Tf 377.33 490.20 Td (\) and git-ignored files \() Tj ET
+BT /F3 10 Tf 476.81 490.20 Td (.gitignore) Tj ET
+BT /F1 10 Tf 54.00 476.70 Td (ignores) Tj ET
+BT /F3 10 Tf 89.57 476.70 Td (build/) Tj ET
+BT /F1 10 Tf 125.57 476.70 Td (,) Tj ET
+BT /F3 10 Tf 131.13 476.70 Td (a.out) Tj ET
+BT /F1 10 Tf 167.13 476.70 Td (and) Tj ET
+BT /F3 10 Tf 186.59 476.70 Td (*.ppm) Tj ET
+BT /F1 10 Tf 216.59 476.70 Td (\) are not listed.) Tj ET
+BT /F2 11.5 Tf 54.00 445.90 Td (10.1 Repository root) Tj ET
+0.6 G 0.5 w 54.00 439.90 m 514.54 439.90 l S 0 G
+0.88 g 54.00 424.90 460.54 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 429.90 Td (File) Tj ET
+BT /F2 8.5 Tf 137.40 429.90 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 424.90 m 514.54 424.90 l S 0 G
+BT /F3 8.5 Tf 58.00 414.90 Td (README.md) Tj ET
+BT /F1 8.5 Tf 137.40 414.90 Td (This document \(source of) Tj ET
+BT /F3 8.5 Tf 235.66 414.90 Td (README.pdf) Tj ET
+BT /F1 8.5 Tf 286.66 414.90 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 409.90 m 514.54 409.90 l S 0 G
+BT /F3 8.5 Tf 58.00 399.90 Td (README.pdf) Tj ET
+BT /F1 8.5 Tf 137.40 399.90 Td (Generated PDF version of this document.) Tj ET
+0.6 G 0.5 w 54.00 394.90 m 514.54 394.90 l S 0 G
+BT /F3 8.5 Tf 58.00 384.90 Td (CMakeLists.txt) Tj ET
+BT /F1 8.5 Tf 137.40 384.90 Td (CMake build: targets) Tj ET
+BT /F3 8.5 Tf 217.71 384.90 Td (rasteri) Tj ET
+BT /F1 8.5 Tf 253.41 384.90 Td (,) Tj ET
+BT /F3 8.5 Tf 258.13 384.90 Td (rastera_rt) Tj ET
+BT /F1 8.5 Tf 314.23 384.90 Td (\(runtime library\) and) Tj ET
+BT /F3 8.5 Tf 392.64 384.90 Td (rasterc) Tj ET
+BT /F1 8.5 Tf 428.34 384.90 Td (; runs Flex and Bison.) Tj ET
+0.6 G 0.5 w 54.00 379.90 m 514.54 379.90 l S 0 G
+BT /F3 8.5 Tf 58.00 369.90 Td (Dockerfile) Tj ET
+BT /F1 8.5 Tf 137.40 369.90 Td (Development image: Ubuntu 24.04 with CMake, Ninja, gcc/g++, Flex, Bison, LLVM 18.) Tj ET
+0.6 G 0.5 w 54.00 364.90 m 514.54 364.90 l S 0 G
+BT /F3 8.5 Tf 58.00 354.90 Td (dev.sh) Tj ET
+BT /F1 8.5 Tf 137.40 354.90 Td (Runs a command in the container;) Tj ET
+BT /F3 8.5 Tf 269.21 354.90 Td (build) Tj ET
+BT /F1 8.5 Tf 299.81 354.90 Td (and) Tj ET
+BT /F3 8.5 Tf 316.35 354.90 Td (test) Tj ET
+BT /F1 8.5 Tf 341.85 354.90 Td (shortcuts.) Tj ET
+0.6 G 0.5 w 54.00 349.90 m 514.54 349.90 l S 0 G
+BT /F3 8.5 Tf 58.00 339.90 Td (.gitattributes) Tj ET
+BT /F1 8.5 Tf 137.40 339.90 Td (Forces LF line endings and marks) Tj ET
+BT /F3 8.5 Tf 267.78 339.90 Td (*.pdf) Tj ET
+BT /F1 8.5 Tf 298.38 339.90 Td (as binary.) Tj ET
+0.6 G 0.5 w 54.00 334.90 m 514.54 334.90 l S 0 G
+BT /F2 11.5 Tf 54.00 302.10 Td (10.2) Tj ET
+BT /F3 11.5 Tf 81.62 302.10 Td (.github/) Tj ET
+0.6 G 0.5 w 54.00 296.10 m 552.10 296.10 l S 0 G
+0.88 g 54.00 281.10 498.10 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 286.10 Td (File) Tj ET
+BT /F2 8.5 Tf 229.20 286.10 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 281.10 m 552.10 281.10 l S 0 G
+BT /F3 8.5 Tf 58.00 271.10 Td (.github/workflows/ci.yml) Tj ET
+BT /F1 8.5 Tf 229.20 271.10 Td (Continuous integration: builds the image, builds both programs, runs both test suites.) Tj ET
+0.6 G 0.5 w 54.00 266.10 m 552.10 266.10 l S 0 G
+BT /F3 8.5 Tf 58.00 256.10 Td (.github/pull_request_template.md) Tj ET
+BT /F1 8.5 Tf 229.20 256.10 Td (Template for pull request descriptions.) Tj ET
+0.6 G 0.5 w 54.00 251.10 m 552.10 251.10 l S 0 G
+BT /F2 11.5 Tf 54.00 218.30 Td (10.3) Tj ET
+BT /F3 11.5 Tf 81.62 218.30 Td (docs/) Tj ET
+0.6 G 0.5 w 54.00 212.30 m 421.87 212.30 l S 0 G
+0.88 g 54.00 197.30 367.87 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 202.30 Td (File) Tj ET
+BT /F2 8.5 Tf 188.40 202.30 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 197.30 m 421.87 197.30 l S 0 G
+BT /F3 8.5 Tf 58.00 187.30 Td (docs/LANGUAGE_SPEC.md) Tj ET
+BT /F1 8.5 Tf 188.40 187.30 Td (Normative language specification.) Tj ET
+0.6 G 0.5 w 54.00 182.30 m 421.87 182.30 l S 0 G
+BT /F3 8.5 Tf 58.00 172.30 Td (docs/proposal.pdf) Tj ET
+BT /F1 8.5 Tf 188.40 172.30 Td (Original project proposal.) Tj ET
+0.6 G 0.5 w 54.00 167.30 m 421.87 167.30 l S 0 G
+BT /F3 8.5 Tf 58.00 157.30 Td (docs/build_readme_pdf.py) Tj ET
+BT /F1 8.5 Tf 188.40 157.30 Td (Generator for) Tj ET
+BT /F3 8.5 Tf 241.31 157.30 Td (README.pdf) Tj ET
+BT /F1 8.5 Tf 297.41 157.30 Td (\(Python 3 standard library only\).) Tj ET
+0.6 G 0.5 w 54.00 152.30 m 421.87 152.30 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 10 of 16) Tj ET
 endstream
 endobj
 25 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 24 0 R >>
 endobj
 26 0 obj
-<< /Length 9738 >>
+<< /Length 9597 >>
 stream
-BT /F2 11.5 Tf 54.00 718.20 Td (10.6) Tj ET
-BT /F3 11.5 Tf 81.62 718.20 Td (src/) Tj ET
-BT /F2 11.5 Tf 116.12 718.20 Td (\(Phase 2 compiler,) Tj ET
-BT /F3 11.5 Tf 223.11 718.20 Td (rasterc) Tj ET
-BT /F2 11.5 Tf 271.41 718.20 Td (\)) Tj ET
-0.6 G 0.5 w 54.00 712.20 m 497.06 712.20 l S 0 G
-0.88 g 54.00 697.20 443.06 15.00 re f 0 g
+BT /F2 11.5 Tf 54.00 718.20 Td (10.4) Tj ET
+BT /F3 11.5 Tf 81.62 718.20 Td (examples/) Tj ET
+0.6 G 0.5 w 54.00 712.20 m 558.00 712.20 l S 0 G
+0.88 g 54.00 697.20 504.00 15.00 re f 0 g
 BT /F2 8.5 Tf 58.00 702.20 Td (File) Tj ET
-BT /F2 8.5 Tf 183.30 702.20 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 697.20 m 497.06 697.20 l S 0 G
-BT /F3 8.5 Tf 58.00 687.20 Td (src/main.cpp) Tj ET
-BT /F3 8.5 Tf 183.30 687.20 Td (rasterc) Tj ET
-BT /F1 8.5 Tf 224.10 687.20 Td (driver: argument parsing, runs the pipeline,) Tj ET
-BT /F3 8.5 Tf 388.03 687.20 Td (--tokens) Tj ET
-BT /F1 8.5 Tf 428.83 687.20 Td (,) Tj ET
-BT /F3 8.5 Tf 433.56 687.20 Td (--ast) Tj ET
-BT /F1 8.5 Tf 459.06 687.20 Td (,) Tj ET
-BT /F3 8.5 Tf 463.78 687.20 Td (--ir) Tj ET
-BT /F1 8.5 Tf 484.18 687.20 Td (.) Tj ET
-0.6 G 0.5 w 54.00 682.20 m 497.06 682.20 l S 0 G
-BT /F3 8.5 Tf 58.00 672.20 Td (src/diag.hpp) Tj ET
-BT /F3 8.5 Tf 183.30 672.20 Td (Diagnostics) Tj ET
-BT /F1 8.5 Tf 239.40 672.20 Td (: collects and prints) Tj ET
-BT /F3 8.5 Tf 314.51 672.20 Td (FILE:LINE: error: message) Tj ET
-BT /F1 8.5 Tf 442.01 672.20 Td (.) Tj ET
-0.6 G 0.5 w 54.00 667.20 m 497.06 667.20 l S 0 G
-BT /F3 8.5 Tf 58.00 657.20 Td (src/parse/lexer.l) Tj ET
-BT /F1 8.5 Tf 183.30 657.20 Td (Flex lexer for the compiler.) Tj ET
-0.6 G 0.5 w 54.00 652.20 m 497.06 652.20 l S 0 G
-BT /F3 8.5 Tf 58.00 642.20 Td (src/parse/parser.y) Tj ET
-BT /F1 8.5 Tf 183.30 642.20 Td (Bison grammar for the compiler; builds the AST.) Tj ET
-0.6 G 0.5 w 54.00 637.20 m 497.06 637.20 l S 0 G
-BT /F3 8.5 Tf 58.00 627.20 Td (src/parse/frontend.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 627.20 Td (Interface between driver, lexer and parser \() Tj ET
-BT /F3 8.5 Tf 345.81 627.20 Td (parse) Tj ET
-BT /F1 8.5 Tf 371.31 627.20 Td (,) Tj ET
-BT /F3 8.5 Tf 376.04 627.20 Td (lexer_begin) Tj ET
-BT /F1 8.5 Tf 432.14 627.20 Td (,) Tj ET
-BT /F3 8.5 Tf 436.86 627.20 Td (token_name) Tj ET
-BT /F1 8.5 Tf 487.86 627.20 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 622.20 m 497.06 622.20 l S 0 G
-BT /F3 8.5 Tf 58.00 612.20 Td (src/ast/ast.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 612.20 Td (AST node types and the visitor interface.) Tj ET
-0.6 G 0.5 w 54.00 607.20 m 497.06 607.20 l S 0 G
-BT /F3 8.5 Tf 58.00 597.20 Td (src/ast/ast_printer.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 597.20 Td (Printer behind) Tj ET
-BT /F3 8.5 Tf 238.58 597.20 Td (--ast) Tj ET
-BT /F1 8.5 Tf 264.08 597.20 Td (.) Tj ET
-0.6 G 0.5 w 54.00 592.20 m 497.06 592.20 l S 0 G
-BT /F3 8.5 Tf 58.00 582.20 Td (src/sema/sema.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 582.20 Td (Semantic analyzer interface.) Tj ET
-0.6 G 0.5 w 54.00 577.20 m 497.06 577.20 l S 0 G
-BT /F3 8.5 Tf 58.00 567.20 Td (src/sema/sema.cpp) Tj ET
-BT /F1 8.5 Tf 183.30 567.20 Td (Scope, type and call checks over the AST.) Tj ET
-0.6 G 0.5 w 54.00 562.20 m 497.06 562.20 l S 0 G
-BT /F3 8.5 Tf 58.00 552.20 Td (src/sema/symbols.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 552.20 Td (Symbol table and scope structures.) Tj ET
-0.6 G 0.5 w 54.00 547.20 m 497.06 547.20 l S 0 G
-BT /F3 8.5 Tf 58.00 537.20 Td (src/codegen/codegen.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 537.20 Td (LLVM IR generator interface.) Tj ET
-0.6 G 0.5 w 54.00 532.20 m 497.06 532.20 l S 0 G
-BT /F3 8.5 Tf 58.00 522.20 Td (src/codegen/codegen.cpp) Tj ET
-BT /F1 8.5 Tf 183.30 522.20 Td (AST to LLVM IR, including runtime-check calls.) Tj ET
-0.6 G 0.5 w 54.00 517.20 m 497.06 517.20 l S 0 G
-BT /F3 8.5 Tf 58.00 507.20 Td (src/backend/backend.hpp) Tj ET
-BT /F1 8.5 Tf 183.30 507.20 Td (Object emission and linking interface.) Tj ET
-0.6 G 0.5 w 54.00 502.20 m 497.06 502.20 l S 0 G
-BT /F3 8.5 Tf 58.00 492.20 Td (src/backend/backend.cpp) Tj ET
-BT /F1 8.5 Tf 183.30 492.20 Td (LLVM module to object file, then link with the runtime into an executable.) Tj ET
-0.6 G 0.5 w 54.00 487.20 m 497.06 487.20 l S 0 G
-BT /F2 11.5 Tf 54.00 454.40 Td (10.7) Tj ET
-BT /F3 11.5 Tf 81.62 454.40 Td (src/interp/) Tj ET
-BT /F2 11.5 Tf 164.42 454.40 Td (\(Phase 1 interpreter,) Tj ET
-BT /F3 11.5 Tf 281.08 454.40 Td (rasteri) Tj ET
-BT /F2 11.5 Tf 329.38 454.40 Td (\)) Tj ET
-0.6 G 0.5 w 54.00 448.40 m 476.13 448.40 l S 0 G
-0.88 g 54.00 433.40 422.13 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 438.40 Td (File) Tj ET
-BT /F2 8.5 Tf 162.90 438.40 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 433.40 m 476.13 433.40 l S 0 G
-BT /F3 8.5 Tf 58.00 423.40 Td (src/interp/lexer.l) Tj ET
-BT /F1 8.5 Tf 162.90 423.40 Td (Flex lexer for the interpreter \(generated symbols prefixed) Tj ET
-BT /F3 8.5 Tf 379.26 423.40 Td (ip) Tj ET
-BT /F1 8.5 Tf 389.46 423.40 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 418.40 m 476.13 418.40 l S 0 G
-BT /F3 8.5 Tf 58.00 408.40 Td (src/interp/interp.y) Tj ET
-BT /F1 8.5 Tf 162.90 408.40 Td (Bison grammar, execution nodes, static checks, evaluator and) Tj ET
-BT /F3 8.5 Tf 399.12 408.40 Td (main) Tj ET
-BT /F1 8.5 Tf 424.62 408.40 Td (of) Tj ET
-BT /F3 8.5 Tf 434.07 408.40 Td (rasteri) Tj ET
-BT /F1 8.5 Tf 469.77 408.40 Td (.) Tj ET
-0.6 G 0.5 w 54.00 403.40 m 476.13 403.40 l S 0 G
-BT /F2 11.5 Tf 54.00 370.60 Td (10.8) Tj ET
-BT /F3 11.5 Tf 81.62 370.60 Td (tests/) Tj ET
-0.6 G 0.5 w 54.00 364.60 m 558.00 364.60 l S 0 G
-0.88 g 54.00 349.60 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 354.60 Td (File) Tj ET
-BT /F2 8.5 Tf 157.80 354.60 Td (Purpose) Tj ET
-0.6 G 0.5 w 54.00 349.60 m 558.00 349.60 l S 0 G
-BT /F3 8.5 Tf 58.00 339.60 Td (tests/run_tests.sh) Tj ET
-BT /F1 8.5 Tf 157.80 339.60 Td (Test runner:) Tj ET
-BT /F3 8.5 Tf 205.99 339.60 Td (tests/run_tests.sh BIN) Tj ET
-BT /F1 8.5 Tf 323.29 339.60 Td (\(compiler\) or) Tj ET
-BT /F3 8.5 Tf 373.34 339.60 Td (--interp BIN) Tj ET
-BT /F1 8.5 Tf 439.64 339.60 Td (\(interpreter\). Reads) Tj ET
-BT /F3 8.5 Tf 515.69 339.60 Td (#) Tj ET
-BT /F3 8.5 Tf 157.80 328.60 Td (expect-exit) Tj ET
-BT /F1 8.5 Tf 213.90 328.60 Td (,) Tj ET
-BT /F3 8.5 Tf 218.63 328.60 Td (# expect-stdout) Tj ET
-BT /F1 8.5 Tf 295.13 328.60 Td (,) Tj ET
-BT /F3 8.5 Tf 299.85 328.60 Td (# expect-error) Tj ET
-BT /F1 8.5 Tf 371.25 328.60 Td (,) Tj ET
-BT /F3 8.5 Tf 375.98 328.60 Td (# expect-runtime-error) Tj ET
-BT /F1 8.5 Tf 493.28 328.60 Td (directives, and) Tj ET
-BT /F3 8.5 Tf 157.80 317.60 Td (# expect-ppm-size) Tj ET
-BT /F1 8.5 Tf 244.50 317.60 Td (,) Tj ET
-BT /F3 8.5 Tf 249.23 317.60 Td (# expect-ppm-pixel) Tj ET
-BT /F1 8.5 Tf 341.03 317.60 Td (,) Tj ET
-BT /F3 8.5 Tf 345.75 317.60 Td (# expect-ppm-sha256) Tj ET
-BT /F1 8.5 Tf 447.75 317.60 Td (to check the) Tj ET
-BT /F3 8.5 Tf 495.95 317.60 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 536.75 317.60 Td (a) Tj ET
-BT /F1 8.5 Tf 157.80 306.60 Td (program wrote.) Tj ET
-0.6 G 0.5 w 54.00 301.60 m 558.00 301.60 l S 0 G
-BT /F3 10 Tf 54.00 280.10 Td (tests/pass/) Tj ET
-BT /F1 10 Tf 126.00 280.10 Td (holds 73 programs that must run \(expected stdout and exit status in directives\);) Tj ET
-BT /F3 10 Tf 478.38 280.10 Td (tests/fail/) Tj ET
-BT /F1 10 Tf 54.00 266.60 Td (holds 59 programs that must be rejected or fail at run time. Each runs in both suites, giving the 132 per suite.) Tj ET
-BT /F3 10 Tf 54.00 247.10 Td (tests/pass/) Tj ET
-BT /F1 10 Tf 126.00 247.10 Td (files:) Tj ET
-0.6 G 0.5 w 54.00 239.10 m 558.00 239.10 l S 0 G
-0.88 g 54.00 224.10 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 229.10 Td (File) Tj ET
-BT /F2 8.5 Tf 270.00 229.10 Td (Checks) Tj ET
-0.6 G 0.5 w 54.00 224.10 m 558.00 224.10 l S 0 G
-BT /F3 8.5 Tf 58.00 214.10 Td (arithmetic_acceptance.rst) Tj ET
-BT /F3 8.5 Tf 270.00 214.10 Td (\(2 + 3\) * -4 % 7) Tj ET
-BT /F1 8.5 Tf 356.70 214.10 Td (gives exit status 250.) Tj ET
-0.6 G 0.5 w 54.00 209.10 m 558.00 209.10 l S 0 G
-BT /F3 8.5 Tf 58.00 199.10 Td (arithmetic_left_assoc.rst) Tj ET
-BT /F1 8.5 Tf 270.00 199.10 Td (Subtraction is left-associative \(exit 4\).) Tj ET
-0.6 G 0.5 w 54.00 194.10 m 558.00 194.10 l S 0 G
-BT /F3 8.5 Tf 58.00 184.10 Td (arithmetic_precedence.rst) Tj ET
-BT /F3 8.5 Tf 270.00 184.10 Td (*) Tj ET
-BT /F1 8.5 Tf 280.20 184.10 Td (binds tighter than) Tj ET
-BT /F3 8.5 Tf 347.77 184.10 Td (+) Tj ET
-BT /F1 8.5 Tf 357.97 184.10 Td (\(exit 14\).) Tj ET
-0.6 G 0.5 w 54.00 179.10 m 558.00 179.10 l S 0 G
-BT /F3 8.5 Tf 58.00 169.10 Td (array_alias.rst) Tj ET
-BT /F3 8.5 Tf 270.00 169.10 Td (b := a;) Tj ET
-BT /F1 8.5 Tf 310.80 169.10 Td (aliases; writing) Tj ET
-BT /F3 8.5 Tf 368.90 169.10 Td (b[0]) Tj ET
-BT /F1 8.5 Tf 394.40 169.10 Td (changes) Tj ET
-BT /F3 8.5 Tf 428.89 169.10 Td (a[0]) Tj ET
-BT /F1 8.5 Tf 454.39 169.10 Td (\(exit 99\).) Tj ET
-0.6 G 0.5 w 54.00 164.10 m 558.00 164.10 l S 0 G
-BT /F3 8.5 Tf 58.00 154.10 Td (array_alloc.rst) Tj ET
-BT /F3 8.5 Tf 270.00 154.10 Td (arr\(5\)) Tj ET
-BT /F1 8.5 Tf 300.60 154.10 Td (, element stores, printing elements.) Tj ET
-0.6 G 0.5 w 54.00 149.10 m 558.00 149.10 l S 0 G
-BT /F3 8.5 Tf 58.00 139.10 Td (array_literal.rst) Tj ET
-BT /F1 8.5 Tf 270.00 139.10 Td (Array literal and summing its elements \(exit 6\).) Tj ET
-0.6 G 0.5 w 54.00 134.10 m 558.00 134.10 l S 0 G
-BT /F3 8.5 Tf 58.00 124.10 Td (array_store_load.rst) Tj ET
-BT /F1 8.5 Tf 270.00 124.10 Td (Store then load an element \(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 119.10 m 558.00 119.10 l S 0 G
-BT /F3 8.5 Tf 58.00 109.10 Td (array_zero.rst) Tj ET
-BT /F3 8.5 Tf 270.00 109.10 Td (arr\(0\)) Tj ET
-BT /F1 8.5 Tf 305.70 109.10 Td (is a valid empty array.) Tj ET
-0.6 G 0.5 w 54.00 104.10 m 558.00 104.10 l S 0 G
-BT /F3 8.5 Tf 58.00 94.10 Td (call_in_expr.rst) Tj ET
-BT /F3 8.5 Tf 270.00 94.10 Td (print) Tj ET
-BT /F1 8.5 Tf 300.60 94.10 Td (used as an expression returns 0 \(prints 42\).) Tj ET
-0.6 G 0.5 w 54.00 89.10 m 558.00 89.10 l S 0 G
-BT /F3 8.5 Tf 58.00 79.10 Td (cmp_basic.rst) Tj ET
-BT /F1 8.5 Tf 270.00 79.10 Td (All six comparison operators \(exit 6\).) Tj ET
-0.6 G 0.5 w 54.00 74.10 m 558.00 74.10 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 11 of 15) Tj ET
+BT /F2 8.5 Tf 213.90 702.20 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 697.20 m 558.00 697.20 l S 0 G
+BT /F3 8.5 Tf 58.00 687.20 Td (examples/recursion_arrays.rst) Tj ET
+BT /F1 8.5 Tf 213.90 687.20 Td (Recursive Fibonacci stored in an array; prints) Tj ET
+BT /F3 8.5 Tf 386.79 687.20 Td (13) Tj ET
+BT /F1 8.5 Tf 402.09 687.20 Td (and) Tj ET
+BT /F3 8.5 Tf 418.63 687.20 Td (1) Tj ET
+BT /F1 8.5 Tf 423.73 687.20 Td (.) Tj ET
+0.6 G 0.5 w 54.00 682.20 m 558.00 682.20 l S 0 G
+BT /F3 8.5 Tf 58.00 672.20 Td (examples/while_logic.rst) Tj ET
+BT /F1 8.5 Tf 213.90 672.20 Td (While loop with) Tj ET
+BT /F3 8.5 Tf 273.42 672.20 Td (|) Tj ET
+BT /F1 8.5 Tf 278.52 672.20 Td (,) Tj ET
+BT /F3 8.5 Tf 283.24 672.20 Td (&) Tj ET
+BT /F1 8.5 Tf 288.34 672.20 Td (,) Tj ET
+BT /F3 8.5 Tf 293.07 672.20 Td (!) Tj ET
+BT /F1 8.5 Tf 303.27 672.20 Td (and short-circuiting; prints) Tj ET
+BT /F3 8.5 Tf 402.94 672.20 Td (98 0 1 1) Tj ET
+BT /F1 8.5 Tf 443.74 672.20 Td (.) Tj ET
+0.6 G 0.5 w 54.00 667.20 m 558.00 667.20 l S 0 G
+BT /F3 8.5 Tf 58.00 657.20 Td (examples/runtime_error.rst) Tj ET
+BT /F1 8.5 Tf 213.90 657.20 Td (Prints) Tj ET
+BT /F3 8.5 Tf 237.99 657.20 Td (20) Tj ET
+BT /F1 8.5 Tf 248.19 657.20 Td (, then fails with an array index error \(exit 2\).) Tj ET
+0.6 G 0.5 w 54.00 652.20 m 558.00 652.20 l S 0 G
+BT /F3 8.5 Tf 58.00 642.20 Td (examples/static_error.rst) Tj ET
+BT /F1 8.5 Tf 213.90 642.20 Td (Undefined variable; rejected before anything runs \(exit 1\).) Tj ET
+0.6 G 0.5 w 54.00 637.20 m 558.00 637.20 l S 0 G
+BT /F3 8.5 Tf 58.00 627.20 Td (examples/graphics_demo.rst) Tj ET
+BT /F1 8.5 Tf 213.90 627.20 Td (64x64 gradient with a rectangle and two lines; writes) Tj ET
+BT /F3 8.5 Tf 413.27 627.20 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 448.97 627.20 Td (.) Tj ET
+0.6 G 0.5 w 54.00 622.20 m 558.00 622.20 l S 0 G
+BT /F3 8.5 Tf 58.00 612.20 Td (examples/gradient.rst) Tj ET
+BT /F1 8.5 Tf 213.90 612.20 Td (The proposal's section 5 program: 256x256 rings from) Tj ET
+BT /F3 8.5 Tf 419.61 612.20 Td (\(x * x + y * y\) % 255) Tj ET
+BT /F1 8.5 Tf 526.71 612.20 Td (; writes) Tj ET
+BT /F3 8.5 Tf 213.90 601.20 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 249.60 601.20 Td (.) Tj ET
+0.6 G 0.5 w 54.00 596.20 m 558.00 596.20 l S 0 G
+BT /F3 8.5 Tf 58.00 586.20 Td (examples/pattern.rst) Tj ET
+BT /F1 8.5 Tf 213.90 586.20 Td (128x128 nested squares, a fan of lines and a frame, with range loops; writes) Tj ET
+BT /F3 8.5 Tf 503.52 586.20 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 539.22 586.20 Td (.) Tj ET
+0.6 G 0.5 w 54.00 581.20 m 558.00 581.20 l S 0 G
+BT /F2 11.5 Tf 54.00 548.40 Td (10.5) Tj ET
+BT /F3 11.5 Tf 81.62 548.40 Td (runtime/) Tj ET
+0.6 G 0.5 w 54.00 542.40 m 558.00 542.40 l S 0 G
+0.88 g 54.00 527.40 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 532.40 Td (File) Tj ET
+BT /F2 8.5 Tf 168.00 532.40 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 527.40 m 558.00 527.40 l S 0 G
+BT /F3 8.5 Tf 58.00 517.40 Td (runtime/rastera_rt.c) Tj ET
+BT /F1 8.5 Tf 168.00 517.40 Td (C runtime linked into every compiled program: the process entry) Tj ET
+BT /F3 8.5 Tf 411.28 517.40 Td (main) Tj ET
+BT /F1 8.5 Tf 436.78 517.40 Td (that calls) Tj ET
+BT /F3 8.5 Tf 472.68 517.40 Td (rs_main) Tj ET
+BT /F1 8.5 Tf 508.38 517.40 Td (,) Tj ET
+BT /F3 8.5 Tf 513.11 517.40 Td (rt_print) Tj ET
+BT /F1 8.5 Tf 168.00 506.40 Td (\() Tj ET
+BT /F3 8.5 Tf 170.83 506.40 Td (print) Tj ET
+BT /F1 8.5 Tf 196.33 506.40 Td (\),) Tj ET
+BT /F3 8.5 Tf 203.89 506.40 Td (rt_alloc) Tj ET
+BT /F1 8.5 Tf 249.79 506.40 Td (\(array allocation with a length header and the negative-size check\),) Tj ET
+BT /F3 8.5 Tf 504.43 506.40 Td (rt_panic) Tj ET
+BT /F1 8.5 Tf 168.00 495.40 Td (\(prints the runtime error, exits 2\) and the graphics built-ins) Tj ET
+BT /F3 8.5 Tf 388.13 495.40 Td (rt_canvas) Tj ET
+BT /F1 8.5 Tf 434.03 495.40 Td (,) Tj ET
+BT /F3 8.5 Tf 438.76 495.40 Td (rt_rgb) Tj ET
+BT /F1 8.5 Tf 469.36 495.40 Td (,) Tj ET
+BT /F3 8.5 Tf 474.08 495.40 Td (rt_pixel) Tj ET
+BT /F1 8.5 Tf 514.88 495.40 Td (,) Tj ET
+BT /F3 8.5 Tf 168.00 484.40 Td (rt_line) Tj ET
+BT /F1 8.5 Tf 203.70 484.40 Td (,) Tj ET
+BT /F3 8.5 Tf 208.43 484.40 Td (rt_rect) Tj ET
+BT /F1 8.5 Tf 244.13 484.40 Td (,) Tj ET
+BT /F3 8.5 Tf 248.85 484.40 Td (rt_export) Tj ET
+BT /F1 8.5 Tf 299.85 484.40 Td (over one canvas that is freed at exit.) Tj ET
+0.6 G 0.5 w 54.00 479.40 m 558.00 479.40 l S 0 G
+BT /F2 11.5 Tf 54.00 446.60 Td (10.6) Tj ET
+BT /F3 11.5 Tf 81.62 446.60 Td (src/) Tj ET
+BT /F2 11.5 Tf 116.12 446.60 Td (\(Phase 2 compiler,) Tj ET
+BT /F3 11.5 Tf 223.11 446.60 Td (rasterc) Tj ET
+BT /F2 11.5 Tf 271.41 446.60 Td (\)) Tj ET
+0.6 G 0.5 w 54.00 440.60 m 497.06 440.60 l S 0 G
+0.88 g 54.00 425.60 443.06 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 430.60 Td (File) Tj ET
+BT /F2 8.5 Tf 183.30 430.60 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 425.60 m 497.06 425.60 l S 0 G
+BT /F3 8.5 Tf 58.00 415.60 Td (src/main.cpp) Tj ET
+BT /F3 8.5 Tf 183.30 415.60 Td (rasterc) Tj ET
+BT /F1 8.5 Tf 224.10 415.60 Td (driver: argument parsing, runs the pipeline,) Tj ET
+BT /F3 8.5 Tf 388.03 415.60 Td (--tokens) Tj ET
+BT /F1 8.5 Tf 428.83 415.60 Td (,) Tj ET
+BT /F3 8.5 Tf 433.56 415.60 Td (--ast) Tj ET
+BT /F1 8.5 Tf 459.06 415.60 Td (,) Tj ET
+BT /F3 8.5 Tf 463.78 415.60 Td (--ir) Tj ET
+BT /F1 8.5 Tf 484.18 415.60 Td (.) Tj ET
+0.6 G 0.5 w 54.00 410.60 m 497.06 410.60 l S 0 G
+BT /F3 8.5 Tf 58.00 400.60 Td (src/diag.hpp) Tj ET
+BT /F3 8.5 Tf 183.30 400.60 Td (Diagnostics) Tj ET
+BT /F1 8.5 Tf 239.40 400.60 Td (: collects and prints) Tj ET
+BT /F3 8.5 Tf 314.51 400.60 Td (FILE:LINE: error: message) Tj ET
+BT /F1 8.5 Tf 442.01 400.60 Td (.) Tj ET
+0.6 G 0.5 w 54.00 395.60 m 497.06 395.60 l S 0 G
+BT /F3 8.5 Tf 58.00 385.60 Td (src/parse/lexer.l) Tj ET
+BT /F1 8.5 Tf 183.30 385.60 Td (Flex lexer for the compiler.) Tj ET
+0.6 G 0.5 w 54.00 380.60 m 497.06 380.60 l S 0 G
+BT /F3 8.5 Tf 58.00 370.60 Td (src/parse/parser.y) Tj ET
+BT /F1 8.5 Tf 183.30 370.60 Td (Bison grammar for the compiler; builds the AST.) Tj ET
+0.6 G 0.5 w 54.00 365.60 m 497.06 365.60 l S 0 G
+BT /F3 8.5 Tf 58.00 355.60 Td (src/parse/frontend.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 355.60 Td (Interface between driver, lexer and parser \() Tj ET
+BT /F3 8.5 Tf 345.81 355.60 Td (parse) Tj ET
+BT /F1 8.5 Tf 371.31 355.60 Td (,) Tj ET
+BT /F3 8.5 Tf 376.04 355.60 Td (lexer_begin) Tj ET
+BT /F1 8.5 Tf 432.14 355.60 Td (,) Tj ET
+BT /F3 8.5 Tf 436.86 355.60 Td (token_name) Tj ET
+BT /F1 8.5 Tf 487.86 355.60 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 350.60 m 497.06 350.60 l S 0 G
+BT /F3 8.5 Tf 58.00 340.60 Td (src/ast/ast.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 340.60 Td (AST node types and the visitor interface.) Tj ET
+0.6 G 0.5 w 54.00 335.60 m 497.06 335.60 l S 0 G
+BT /F3 8.5 Tf 58.00 325.60 Td (src/ast/ast_printer.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 325.60 Td (Printer behind) Tj ET
+BT /F3 8.5 Tf 238.58 325.60 Td (--ast) Tj ET
+BT /F1 8.5 Tf 264.08 325.60 Td (.) Tj ET
+0.6 G 0.5 w 54.00 320.60 m 497.06 320.60 l S 0 G
+BT /F3 8.5 Tf 58.00 310.60 Td (src/sema/sema.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 310.60 Td (Semantic analyzer interface.) Tj ET
+0.6 G 0.5 w 54.00 305.60 m 497.06 305.60 l S 0 G
+BT /F3 8.5 Tf 58.00 295.60 Td (src/sema/sema.cpp) Tj ET
+BT /F1 8.5 Tf 183.30 295.60 Td (Scope, type and call checks over the AST.) Tj ET
+0.6 G 0.5 w 54.00 290.60 m 497.06 290.60 l S 0 G
+BT /F3 8.5 Tf 58.00 280.60 Td (src/sema/symbols.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 280.60 Td (Symbol table and scope structures.) Tj ET
+0.6 G 0.5 w 54.00 275.60 m 497.06 275.60 l S 0 G
+BT /F3 8.5 Tf 58.00 265.60 Td (src/codegen/codegen.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 265.60 Td (LLVM IR generator interface.) Tj ET
+0.6 G 0.5 w 54.00 260.60 m 497.06 260.60 l S 0 G
+BT /F3 8.5 Tf 58.00 250.60 Td (src/codegen/codegen.cpp) Tj ET
+BT /F1 8.5 Tf 183.30 250.60 Td (AST to LLVM IR, including runtime-check calls.) Tj ET
+0.6 G 0.5 w 54.00 245.60 m 497.06 245.60 l S 0 G
+BT /F3 8.5 Tf 58.00 235.60 Td (src/backend/backend.hpp) Tj ET
+BT /F1 8.5 Tf 183.30 235.60 Td (Object emission and linking interface.) Tj ET
+0.6 G 0.5 w 54.00 230.60 m 497.06 230.60 l S 0 G
+BT /F3 8.5 Tf 58.00 220.60 Td (src/backend/backend.cpp) Tj ET
+BT /F1 8.5 Tf 183.30 220.60 Td (LLVM module to object file, then link with the runtime into an executable.) Tj ET
+0.6 G 0.5 w 54.00 215.60 m 497.06 215.60 l S 0 G
+BT /F2 11.5 Tf 54.00 182.80 Td (10.7) Tj ET
+BT /F3 11.5 Tf 81.62 182.80 Td (src/interp/) Tj ET
+BT /F2 11.5 Tf 164.42 182.80 Td (\(Phase 1 interpreter,) Tj ET
+BT /F3 11.5 Tf 281.08 182.80 Td (rasteri) Tj ET
+BT /F2 11.5 Tf 329.38 182.80 Td (\)) Tj ET
+0.6 G 0.5 w 54.00 176.80 m 476.13 176.80 l S 0 G
+0.88 g 54.00 161.80 422.13 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 166.80 Td (File) Tj ET
+BT /F2 8.5 Tf 162.90 166.80 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 161.80 m 476.13 161.80 l S 0 G
+BT /F3 8.5 Tf 58.00 151.80 Td (src/interp/lexer.l) Tj ET
+BT /F1 8.5 Tf 162.90 151.80 Td (Flex lexer for the interpreter \(generated symbols prefixed) Tj ET
+BT /F3 8.5 Tf 379.26 151.80 Td (ip) Tj ET
+BT /F1 8.5 Tf 389.46 151.80 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 146.80 m 476.13 146.80 l S 0 G
+BT /F3 8.5 Tf 58.00 136.80 Td (src/interp/interp.y) Tj ET
+BT /F1 8.5 Tf 162.90 136.80 Td (Bison grammar, execution nodes, static checks, evaluator and) Tj ET
+BT /F3 8.5 Tf 399.12 136.80 Td (main) Tj ET
+BT /F1 8.5 Tf 424.62 136.80 Td (of) Tj ET
+BT /F3 8.5 Tf 434.07 136.80 Td (rasteri) Tj ET
+BT /F1 8.5 Tf 469.77 136.80 Td (.) Tj ET
+0.6 G 0.5 w 54.00 131.80 m 476.13 131.80 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 11 of 16) Tj ET
 endstream
 endobj
 27 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 26 0 R >>
 endobj
 28 0 obj
-<< /Length 9639 >>
+<< /Length 9693 >>
 stream
-0.88 g 54.00 717.00 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 722.00 Td (File) Tj ET
-BT /F2 8.5 Tf 270.00 722.00 Td (Checks) Tj ET
-0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
-BT /F3 8.5 Tf 58.00 707.00 Td (code_after_return.rst) Tj ET
-BT /F1 8.5 Tf 270.00 707.00 Td (Unreachable statements after) Tj ET
-BT /F3 8.5 Tf 383.86 707.00 Td (^) Tj ET
-BT /F1 8.5 Tf 394.06 707.00 Td (are harmless \(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 702.00 m 558.00 702.00 l S 0 G
-BT /F3 8.5 Tf 58.00 692.00 Td (combined_array_literal_comparison.rst) Tj ET
-BT /F1 8.5 Tf 270.00 692.00 Td (Indexing an array literal inside a comparison in) Tj ET
-BT /F3 8.5 Tf 447.62 692.00 Td (?) Tj ET
-BT /F1 8.5 Tf 457.82 692.00 Td (\(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 687.00 m 558.00 687.00 l S 0 G
-BT /F3 8.5 Tf 58.00 677.00 Td (combined_recursive_array_index.rst) Tj ET
-BT /F1 8.5 Tf 270.00 677.00 Td (Recursion creating an array per call \(exit 6\).) Tj ET
-0.6 G 0.5 w 54.00 672.00 m 558.00 672.00 l S 0 G
-BT /F3 8.5 Tf 58.00 662.00 Td (func_args_left_to_right.rst) Tj ET
-BT /F1 8.5 Tf 270.00 662.00 Td (Arguments evaluate left to right \(prints 1, 2; exit 12\).) Tj ET
-0.6 G 0.5 w 54.00 657.00 m 558.00 657.00 l S 0 G
-BT /F3 8.5 Tf 58.00 647.00 Td (func_call_before_definition.rst) Tj ET
-BT /F1 8.5 Tf 270.00 647.00 Td (Calling a function defined later \(exit 12\).) Tj ET
-0.6 G 0.5 w 54.00 642.00 m 558.00 642.00 l S 0 G
-BT /F3 8.5 Tf 58.00 632.00 Td (func_factorial.rst) Tj ET
-BT /F1 8.5 Tf 270.00 632.00 Td (Recursive factorial \(exit 120\).) Tj ET
-0.6 G 0.5 w 54.00 627.00 m 558.00 627.00 l S 0 G
-BT /F3 8.5 Tf 58.00 617.00 Td (func_fibonacci.rst) Tj ET
-BT /F1 8.5 Tf 270.00 617.00 Td (Recursive Fibonacci \(prints 55\).) Tj ET
-0.6 G 0.5 w 54.00 612.00 m 558.00 612.00 l S 0 G
-BT /F3 8.5 Tf 58.00 602.00 Td (func_general_return.rst) Tj ET
-BT /F3 8.5 Tf 270.00 602.00 Td (sq\(x\) + sq\(x + 1\) - 1) Tj ET
-BT /F1 8.5 Tf 382.20 602.00 Td (with calls inside expressions \(exit 24\).) Tj ET
-0.6 G 0.5 w 54.00 597.00 m 558.00 597.00 l S 0 G
-BT /F3 8.5 Tf 58.00 587.00 Td (func_mutual_recursion.rst) Tj ET
-BT /F1 8.5 Tf 270.00 587.00 Td (Mutual recursion \(prints 1, 0\).) Tj ET
-0.6 G 0.5 w 54.00 582.00 m 558.00 582.00 l S 0 G
-BT /F3 8.5 Tf 58.00 572.00 Td (func_param_is_local.rst) Tj ET
-BT /F1 8.5 Tf 270.00 572.00 Td (Assigning a parameter does not change the caller's variable.) Tj ET
-0.6 G 0.5 w 54.00 567.00 m 558.00 567.00 l S 0 G
-BT /F3 8.5 Tf 58.00 557.00 Td (func_params_basic.rst) Tj ET
-BT /F1 8.5 Tf 270.00 557.00 Td (Parameters passed and used \(exit 5\).) Tj ET
-0.6 G 0.5 w 54.00 552.00 m 558.00 552.00 l S 0 G
-BT /F3 8.5 Tf 58.00 542.00 Td (gfx_canvas_export.rst) Tj ET
-BT /F3 8.5 Tf 270.00 542.00 Td (canvas) Tj ET
-BT /F1 8.5 Tf 305.70 542.00 Td (and) Tj ET
-BT /F3 8.5 Tf 322.24 542.00 Td (export) Tj ET
-BT /F1 8.5 Tf 357.94 542.00 Td (both return 0; the file has header) Tj ET
-BT /F3 8.5 Tf 483.15 542.00 Td (P6 4 3 255) Tj ET
-BT /F1 8.5 Tf 539.25 542.00 Td (and) Tj ET
-BT /F1 8.5 Tf 270.00 531.00 Td (is black \(prints 0, 0\).) Tj ET
-0.6 G 0.5 w 54.00 526.00 m 558.00 526.00 l S 0 G
-BT /F3 8.5 Tf 58.00 516.00 Td (gfx_canvas_max_size.rst) Tj ET
-BT /F1 8.5 Tf 270.00 516.00 Td (The largest canvas, 4096 x 4096, is accepted; a later 4096 x 1 canvas) Tj ET
-BT /F1 8.5 Tf 270.00 505.00 Td (replaces it.) Tj ET
-0.6 G 0.5 w 54.00 500.00 m 558.00 500.00 l S 0 G
-BT /F3 8.5 Tf 58.00 490.00 Td (gfx_canvas_replace.rst) Tj ET
-BT /F1 8.5 Tf 270.00 490.00 Td (A second) Tj ET
-BT /F3 8.5 Tf 307.80 490.00 Td (canvas) Tj ET
-BT /F1 8.5 Tf 343.50 490.00 Td (call replaces the first: new size, black again.) Tj ET
-0.6 G 0.5 w 54.00 485.00 m 558.00 485.00 l S 0 G
-BT /F3 8.5 Tf 58.00 475.00 Td (gfx_demo_gradient.rst) Tj ET
-BT /F3 8.5 Tf 270.00 475.00 Td (examples/gradient.rst) Tj ET
-BT /F1 8.5 Tf 382.20 475.00 Td (\(the proposal's program\), checked by size) Tj ET
-BT /F1 8.5 Tf 270.00 464.00 Td (and sha256 of) Tj ET
-BT /F3 8.5 Tf 326.24 464.00 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 361.94 464.00 Td (.) Tj ET
-0.6 G 0.5 w 54.00 459.00 m 558.00 459.00 l S 0 G
-BT /F3 8.5 Tf 58.00 449.00 Td (gfx_demo_pattern.rst) Tj ET
-BT /F3 8.5 Tf 270.00 449.00 Td (examples/pattern.rst) Tj ET
-BT /F1 8.5 Tf 372.00 449.00 Td (, checked by size, two pixels and sha256 of) Tj ET
-BT /F3 8.5 Tf 270.00 438.00 Td (out.ppm) Tj ET
-BT /F1 8.5 Tf 305.70 438.00 Td (.) Tj ET
-0.6 G 0.5 w 54.00 433.00 m 558.00 433.00 l S 0 G
-BT /F3 8.5 Tf 58.00 423.00 Td (gfx_line_clipped.rst) Tj ET
-BT /F1 8.5 Tf 270.00 423.00 Td (A line starting and ending outside the canvas is clipped per pixel; an) Tj ET
-BT /F1 8.5 Tf 270.00 412.00 Td (entirely outside line draws nothing.) Tj ET
-0.6 G 0.5 w 54.00 407.00 m 558.00 407.00 l S 0 G
-BT /F3 8.5 Tf 58.00 397.00 Td (gfx_line_diagonal.rst) Tj ET
-BT /F1 8.5 Tf 270.00 397.00 Td (Both diagonals of a 5x5 canvas, one in each direction of travel.) Tj ET
-0.6 G 0.5 w 54.00 392.00 m 558.00 392.00 l S 0 G
-BT /F3 8.5 Tf 58.00 382.00 Td (gfx_line_horizontal.rst) Tj ET
-BT /F1 8.5 Tf 270.00 382.00 Td (Horizontal line includes both endpoints and nothing around them.) Tj ET
-0.6 G 0.5 w 54.00 377.00 m 558.00 377.00 l S 0 G
-BT /F3 8.5 Tf 58.00 367.00 Td (gfx_line_reversed.rst) Tj ET
-BT /F1 8.5 Tf 270.00 367.00 Td (Shallow line drawn right to left,) Tj ET
-BT /F3 8.5 Tf 387.63 367.00 Td (\(6,2\)) Tj ET
-BT /F1 8.5 Tf 418.23 367.00 Td (to) Tj ET
-BT /F3 8.5 Tf 427.68 367.00 Td (\(0,0\)) Tj ET
-BT /F1 8.5 Tf 453.18 367.00 Td (.) Tj ET
-0.6 G 0.5 w 54.00 362.00 m 558.00 362.00 l S 0 G
-BT /F3 8.5 Tf 58.00 352.00 Td (gfx_line_single_point.rst) Tj ET
-BT /F1 8.5 Tf 270.00 352.00 Td (Equal endpoints draw exactly one pixel.) Tj ET
-0.6 G 0.5 w 54.00 347.00 m 558.00 347.00 l S 0 G
-BT /F3 8.5 Tf 58.00 337.00 Td (gfx_line_steep.rst) Tj ET
-BT /F1 8.5 Tf 270.00 337.00 Td (Steep line) Tj ET
-BT /F3 8.5 Tf 310.16 337.00 Td (\(0,0\)) Tj ET
-BT /F1 8.5 Tf 340.76 337.00 Td (to) Tj ET
-BT /F3 8.5 Tf 350.21 337.00 Td (\(2,6\)) Tj ET
-BT /F1 8.5 Tf 380.81 337.00 Td (draws one pixel per row.) Tj ET
-0.6 G 0.5 w 54.00 332.00 m 558.00 332.00 l S 0 G
-BT /F3 8.5 Tf 58.00 322.00 Td (gfx_line_vertical.rst) Tj ET
-BT /F1 8.5 Tf 270.00 322.00 Td (Vertical line drawn bottom-up covers both endpoints.) Tj ET
-0.6 G 0.5 w 54.00 317.00 m 558.00 317.00 l S 0 G
-BT /F3 8.5 Tf 58.00 307.00 Td (gfx_pixel_bounds.rst) Tj ET
-BT /F3 8.5 Tf 270.00 307.00 Td (pixel) Tj ET
-BT /F1 8.5 Tf 300.60 307.00 Td (inside and outside the canvas \(no row wrap-around\) and only the) Tj ET
-BT /F1 8.5 Tf 270.00 296.00 Td (low 24 bits of the colour.) Tj ET
-0.6 G 0.5 w 54.00 291.00 m 558.00 291.00 l S 0 G
-BT /F3 8.5 Tf 58.00 281.00 Td (gfx_rect_clipped.rst) Tj ET
-BT /F1 8.5 Tf 270.00 281.00 Td (Rectangles hanging off the top-left and bottom-right are clipped.) Tj ET
-0.6 G 0.5 w 54.00 276.00 m 558.00 276.00 l S 0 G
-BT /F3 8.5 Tf 58.00 266.00 Td (gfx_rect_zero.rst) Tj ET
-BT /F1 8.5 Tf 270.00 266.00 Td (Zero or negative width/height draws nothing; the file is the header plus 27) Tj ET
-BT /F1 8.5 Tf 270.00 255.00 Td (zero bytes \(sha256\).) Tj ET
-0.6 G 0.5 w 54.00 250.00 m 558.00 250.00 l S 0 G
-BT /F3 8.5 Tf 58.00 240.00 Td (gfx_rgb_clamp.rst) Tj ET
-BT /F3 8.5 Tf 270.00 240.00 Td (rgb) Tj ET
-BT /F1 8.5 Tf 290.40 240.00 Td (packs channels and clamps each to 0..255 \(prints 66051, 16777215,) Tj ET
-BT /F1 8.5 Tf 270.00 229.00 Td (16711808, 0, 255\).) Tj ET
-0.6 G 0.5 w 54.00 224.00 m 558.00 224.00 l S 0 G
-BT /F3 8.5 Tf 58.00 214.00 Td (gfx_scene_sha256.rst) Tj ET
-BT /F1 8.5 Tf 270.00 214.00 Td (A scene of rectangles, clipped lines and a pixel, checked by sha256 of the) Tj ET
-BT /F1 8.5 Tf 270.00 203.00 Td (whole file.) Tj ET
-0.6 G 0.5 w 54.00 198.00 m 558.00 198.00 l S 0 G
-BT /F3 8.5 Tf 58.00 188.00 Td (if_branches_both_return.rst) Tj ET
-BT /F3 8.5 Tf 270.00 188.00 Td (if) Tj ET
-BT /F1 8.5 Tf 280.20 188.00 Td (/) Tj ET
-BT /F3 8.5 Tf 282.56 188.00 Td (else) Tj ET
-BT /F1 8.5 Tf 308.06 188.00 Td (where both branches return \(exit 15\).) Tj ET
-0.6 G 0.5 w 54.00 183.00 m 558.00 183.00 l S 0 G
-BT /F3 8.5 Tf 58.00 173.00 Td (if_else.rst) Tj ET
-BT /F3 8.5 Tf 270.00 173.00 Td (if) Tj ET
-BT /F1 8.5 Tf 285.30 173.00 Td (/) Tj ET
-BT /F3 8.5 Tf 290.03 173.00 Td (else) Tj ET
-BT /F1 8.5 Tf 315.53 173.00 Td (\(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 168.00 m 558.00 168.00 l S 0 G
-BT /F3 8.5 Tf 58.00 158.00 Td (if_elseif_chain.rst) Tj ET
-BT /F3 8.5 Tf 270.00 158.00 Td (else if) Tj ET
-BT /F1 8.5 Tf 310.80 158.00 Td (chain; 300 becomes exit 44 \(low 8 bits\).) Tj ET
-0.6 G 0.5 w 54.00 153.00 m 558.00 153.00 l S 0 G
-BT /F3 8.5 Tf 58.00 143.00 Td (if_scope.rst) Tj ET
-BT /F1 8.5 Tf 270.00 143.00 Td (Variable declared in a branch is local; outer variable still usable \(exit 10\).) Tj ET
-0.6 G 0.5 w 54.00 138.00 m 558.00 138.00 l S 0 G
-BT /F3 8.5 Tf 58.00 128.00 Td (if_without_else.rst) Tj ET
-BT /F3 8.5 Tf 270.00 128.00 Td (if) Tj ET
-BT /F1 8.5 Tf 285.30 128.00 Td (without) Tj ET
-BT /F3 8.5 Tf 314.59 128.00 Td (else) Tj ET
-BT /F1 8.5 Tf 340.09 128.00 Td (\(exit 42\).) Tj ET
-0.6 G 0.5 w 54.00 123.00 m 558.00 123.00 l S 0 G
-BT /F3 8.5 Tf 58.00 113.00 Td (implicit_return.rst) Tj ET
-BT /F1 8.5 Tf 270.00 113.00 Td (Reaching the end of a function returns 0.) Tj ET
-0.6 G 0.5 w 54.00 108.00 m 558.00 108.00 l S 0 G
-BT /F3 8.5 Tf 58.00 98.00 Td (interp_deep_recursion.rst) Tj ET
-BT /F3 8.5 Tf 270.00 98.00 Td (fib\(20\)) Tj ET
-BT /F1 8.5 Tf 310.80 98.00 Td (through deep recursion \(exit 109\).) Tj ET
-0.6 G 0.5 w 54.00 93.00 m 558.00 93.00 l S 0 G
-BT /F3 8.5 Tf 58.00 83.00 Td (interp_local_array_alias.rst) Tj ET
-BT /F1 8.5 Tf 270.00 83.00 Td (Alias of a local array inside a function \(prints 9\).) Tj ET
-0.6 G 0.5 w 54.00 78.00 m 558.00 78.00 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 12 of 15) Tj ET
+BT /F2 11.5 Tf 54.00 718.20 Td (10.8) Tj ET
+BT /F3 11.5 Tf 81.62 718.20 Td (tests/) Tj ET
+0.6 G 0.5 w 54.00 712.20 m 558.00 712.20 l S 0 G
+0.88 g 54.00 697.20 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 702.20 Td (File) Tj ET
+BT /F2 8.5 Tf 157.80 702.20 Td (Purpose) Tj ET
+0.6 G 0.5 w 54.00 697.20 m 558.00 697.20 l S 0 G
+BT /F3 8.5 Tf 58.00 687.20 Td (tests/run_tests.sh) Tj ET
+BT /F1 8.5 Tf 157.80 687.20 Td (Test runner:) Tj ET
+BT /F3 8.5 Tf 205.99 687.20 Td (tests/run_tests.sh BIN) Tj ET
+BT /F1 8.5 Tf 323.29 687.20 Td (\(compiler\) or) Tj ET
+BT /F3 8.5 Tf 373.34 687.20 Td (--interp BIN) Tj ET
+BT /F1 8.5 Tf 439.64 687.20 Td (\(interpreter\). Reads) Tj ET
+BT /F3 8.5 Tf 515.69 687.20 Td (#) Tj ET
+BT /F3 8.5 Tf 157.80 676.20 Td (expect-exit) Tj ET
+BT /F1 8.5 Tf 213.90 676.20 Td (,) Tj ET
+BT /F3 8.5 Tf 218.63 676.20 Td (# expect-stdout) Tj ET
+BT /F1 8.5 Tf 295.13 676.20 Td (,) Tj ET
+BT /F3 8.5 Tf 299.85 676.20 Td (# expect-error) Tj ET
+BT /F1 8.5 Tf 371.25 676.20 Td (,) Tj ET
+BT /F3 8.5 Tf 375.98 676.20 Td (# expect-runtime-error) Tj ET
+BT /F1 8.5 Tf 493.28 676.20 Td (directives, and) Tj ET
+BT /F3 8.5 Tf 157.80 665.20 Td (# expect-ppm-size) Tj ET
+BT /F1 8.5 Tf 244.50 665.20 Td (,) Tj ET
+BT /F3 8.5 Tf 249.23 665.20 Td (# expect-ppm-pixel) Tj ET
+BT /F1 8.5 Tf 341.03 665.20 Td (,) Tj ET
+BT /F3 8.5 Tf 345.75 665.20 Td (# expect-ppm-sha256) Tj ET
+BT /F1 8.5 Tf 447.75 665.20 Td (to check the) Tj ET
+BT /F3 8.5 Tf 495.95 665.20 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 536.75 665.20 Td (a) Tj ET
+BT /F1 8.5 Tf 157.80 654.20 Td (program wrote.) Tj ET
+0.6 G 0.5 w 54.00 649.20 m 558.00 649.20 l S 0 G
+BT /F3 10 Tf 54.00 627.70 Td (tests/pass/) Tj ET
+BT /F1 10 Tf 126.00 627.70 Td (holds 85 programs that must run \(expected stdout and exit status in directives\);) Tj ET
+BT /F3 10 Tf 478.38 627.70 Td (tests/fail/) Tj ET
+BT /F1 10 Tf 54.00 614.20 Td (holds 74 programs that must be rejected or fail at run time. Each runs in both suites, giving the 159 per suite.) Tj ET
+BT /F3 10 Tf 54.00 594.70 Td (tests/pass/) Tj ET
+BT /F1 10 Tf 126.00 594.70 Td (files:) Tj ET
+0.6 G 0.5 w 54.00 586.70 m 558.00 586.70 l S 0 G
+0.88 g 54.00 571.70 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 576.70 Td (File) Tj ET
+BT /F2 8.5 Tf 270.00 576.70 Td (Checks) Tj ET
+0.6 G 0.5 w 54.00 571.70 m 558.00 571.70 l S 0 G
+BT /F3 8.5 Tf 58.00 561.70 Td (aparam_alias_in_function.rst) Tj ET
+BT /F3 8.5 Tf 270.00 561.70 Td (b := a;) Tj ET
+BT /F1 8.5 Tf 310.80 561.70 Td (inside a function aliases the caller's array \(prints 8\).) Tj ET
+0.6 G 0.5 w 54.00 556.70 m 558.00 556.70 l S 0 G
+BT /F3 8.5 Tf 58.00 546.70 Td (aparam_forward_call.rst) Tj ET
+BT /F1 8.5 Tf 270.00 546.70 Td (Array parameter function called before its definition \(prints 3\).) Tj ET
+0.6 G 0.5 w 54.00 541.70 m 558.00 541.70 l S 0 G
+BT /F3 8.5 Tf 58.00 531.70 Td (aparam_insertion_sort.rst) Tj ET
+BT /F1 8.5 Tf 270.00 531.70 Td (The proposal's insertion sort on) Tj ET
+BT /F3 8.5 Tf 390.67 531.70 Td (<5, 2, 9, 1, 5, 6>) Tj ET
+BT /F1 8.5 Tf 482.47 531.70 Td (, including) Tj ET
+BT /F3 8.5 Tf 523.10 531.70 Td (j = -1) Tj ET
+BT /F1 8.5 Tf 270.00 520.70 Td (short-circuit \(prints 1 2 5 5 6 9\).) Tj ET
+0.6 G 0.5 w 54.00 515.70 m 558.00 515.70 l S 0 G
+BT /F3 8.5 Tf 58.00 505.70 Td (aparam_int_param_still_copy.rst) Tj ET
+BT /F1 8.5 Tf 270.00 505.70 Td (An) Tj ET
+BT /F3 8.5 Tf 282.76 505.70 Td (i32) Tj ET
+BT /F1 8.5 Tf 303.16 505.70 Td (parameter beside an array parameter stays a copy \(prints 7, 99,) Tj ET
+BT /F1 8.5 Tf 270.00 494.70 Td (5\).) Tj ET
+0.6 G 0.5 w 54.00 489.70 m 558.00 489.70 l S 0 G
+BT /F3 8.5 Tf 58.00 479.70 Td (aparam_literal_argument.rst) Tj ET
+BT /F3 8.5 Tf 270.00 479.70 Td (<...>) Tj ET
+BT /F1 8.5 Tf 300.60 479.70 Td (and) Tj ET
+BT /F3 8.5 Tf 317.14 479.70 Td (arr\(n\)) Tj ET
+BT /F1 8.5 Tf 352.84 479.70 Td (passed directly as array arguments \(prints 6, 0\).) Tj ET
+0.6 G 0.5 w 54.00 474.70 m 558.00 474.70 l S 0 G
+BT /F3 8.5 Tf 58.00 464.70 Td (aparam_modify_caller.rst) Tj ET
+BT /F1 8.5 Tf 270.00 464.70 Td (A function fills the caller's array through its) Tj ET
+BT /F3 8.5 Tf 431.30 464.70 Td (a[]) Tj ET
+BT /F1 8.5 Tf 451.70 464.70 Td (parameter.) Tj ET
+0.6 G 0.5 w 54.00 459.70 m 558.00 459.70 l S 0 G
+BT /F3 8.5 Tf 58.00 449.70 Td (aparam_pass_through.rst) Tj ET
+BT /F1 8.5 Tf 270.00 449.70 Td (An array parameter handed on to another function \(prints 42, 43\).) Tj ET
+0.6 G 0.5 w 54.00 444.70 m 558.00 444.70 l S 0 G
+BT /F3 8.5 Tf 58.00 434.70 Td (aparam_range_bounds.rst) Tj ET
+BT /F1 8.5 Tf 270.00 434.70 Td (Array parameter used in a range bound only through indexing \(prints 10,) Tj ET
+BT /F1 8.5 Tf 270.00 423.70 Td (30\).) Tj ET
+0.6 G 0.5 w 54.00 418.70 m 558.00 418.70 l S 0 G
+BT /F3 8.5 Tf 58.00 408.70 Td (aparam_rebind_local.rst) Tj ET
+BT /F3 8.5 Tf 270.00 408.70 Td (a := arr\(3\);) Tj ET
+BT /F1 8.5 Tf 336.30 408.70 Td (rebinds the parameter only; the caller's array keeps its) Tj ET
+BT /F1 8.5 Tf 270.00 397.70 Td (earlier stores.) Tj ET
+0.6 G 0.5 w 54.00 392.70 m 558.00 392.70 l S 0 G
+BT /F3 8.5 Tf 58.00 382.70 Td (aparam_recursive_reverse.rst) Tj ET
+BT /F1 8.5 Tf 270.00 382.70 Td (Recursion storing through an array parameter at every level \(prints 6 to 1\).) Tj ET
+0.6 G 0.5 w 54.00 377.70 m 558.00 377.70 l S 0 G
+BT /F3 8.5 Tf 58.00 367.70 Td (aparam_recursive_sum.rst) Tj ET
+BT /F1 8.5 Tf 270.00 367.70 Td (Recursive sum over an array parameter \(prints 21\).) Tj ET
+0.6 G 0.5 w 54.00 362.70 m 558.00 362.70 l S 0 G
+BT /F3 8.5 Tf 58.00 352.70 Td (aparam_two_arrays.rst) Tj ET
+BT /F1 8.5 Tf 270.00 352.70 Td (Two array parameters bound to different caller arrays; copies stay separate) Tj ET
+BT /F1 8.5 Tf 270.00 341.70 Td (\(prints 1 2 3 2\).) Tj ET
+0.6 G 0.5 w 54.00 336.70 m 558.00 336.70 l S 0 G
+BT /F3 8.5 Tf 58.00 326.70 Td (arithmetic_acceptance.rst) Tj ET
+BT /F3 8.5 Tf 270.00 326.70 Td (\(2 + 3\) * -4 % 7) Tj ET
+BT /F1 8.5 Tf 356.70 326.70 Td (gives exit status 250.) Tj ET
+0.6 G 0.5 w 54.00 321.70 m 558.00 321.70 l S 0 G
+BT /F3 8.5 Tf 58.00 311.70 Td (arithmetic_left_assoc.rst) Tj ET
+BT /F1 8.5 Tf 270.00 311.70 Td (Subtraction is left-associative \(exit 4\).) Tj ET
+0.6 G 0.5 w 54.00 306.70 m 558.00 306.70 l S 0 G
+BT /F3 8.5 Tf 58.00 296.70 Td (arithmetic_precedence.rst) Tj ET
+BT /F3 8.5 Tf 270.00 296.70 Td (*) Tj ET
+BT /F1 8.5 Tf 280.20 296.70 Td (binds tighter than) Tj ET
+BT /F3 8.5 Tf 347.77 296.70 Td (+) Tj ET
+BT /F1 8.5 Tf 357.97 296.70 Td (\(exit 14\).) Tj ET
+0.6 G 0.5 w 54.00 291.70 m 558.00 291.70 l S 0 G
+BT /F3 8.5 Tf 58.00 281.70 Td (array_alias.rst) Tj ET
+BT /F3 8.5 Tf 270.00 281.70 Td (b := a;) Tj ET
+BT /F1 8.5 Tf 310.80 281.70 Td (aliases; writing) Tj ET
+BT /F3 8.5 Tf 368.90 281.70 Td (b[0]) Tj ET
+BT /F1 8.5 Tf 394.40 281.70 Td (changes) Tj ET
+BT /F3 8.5 Tf 428.89 281.70 Td (a[0]) Tj ET
+BT /F1 8.5 Tf 454.39 281.70 Td (\(exit 99\).) Tj ET
+0.6 G 0.5 w 54.00 276.70 m 558.00 276.70 l S 0 G
+BT /F3 8.5 Tf 58.00 266.70 Td (array_alloc.rst) Tj ET
+BT /F3 8.5 Tf 270.00 266.70 Td (arr\(5\)) Tj ET
+BT /F1 8.5 Tf 300.60 266.70 Td (, element stores, printing elements.) Tj ET
+0.6 G 0.5 w 54.00 261.70 m 558.00 261.70 l S 0 G
+BT /F3 8.5 Tf 58.00 251.70 Td (array_literal.rst) Tj ET
+BT /F1 8.5 Tf 270.00 251.70 Td (Array literal and summing its elements \(exit 6\).) Tj ET
+0.6 G 0.5 w 54.00 246.70 m 558.00 246.70 l S 0 G
+BT /F3 8.5 Tf 58.00 236.70 Td (array_store_load.rst) Tj ET
+BT /F1 8.5 Tf 270.00 236.70 Td (Store then load an element \(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 231.70 m 558.00 231.70 l S 0 G
+BT /F3 8.5 Tf 58.00 221.70 Td (array_zero.rst) Tj ET
+BT /F3 8.5 Tf 270.00 221.70 Td (arr\(0\)) Tj ET
+BT /F1 8.5 Tf 305.70 221.70 Td (is a valid empty array.) Tj ET
+0.6 G 0.5 w 54.00 216.70 m 558.00 216.70 l S 0 G
+BT /F3 8.5 Tf 58.00 206.70 Td (call_in_expr.rst) Tj ET
+BT /F3 8.5 Tf 270.00 206.70 Td (print) Tj ET
+BT /F1 8.5 Tf 300.60 206.70 Td (used as an expression returns 0 \(prints 42\).) Tj ET
+0.6 G 0.5 w 54.00 201.70 m 558.00 201.70 l S 0 G
+BT /F3 8.5 Tf 58.00 191.70 Td (cmp_basic.rst) Tj ET
+BT /F1 8.5 Tf 270.00 191.70 Td (All six comparison operators \(exit 6\).) Tj ET
+0.6 G 0.5 w 54.00 186.70 m 558.00 186.70 l S 0 G
+BT /F3 8.5 Tf 58.00 176.70 Td (code_after_return.rst) Tj ET
+BT /F1 8.5 Tf 270.00 176.70 Td (Unreachable statements after) Tj ET
+BT /F3 8.5 Tf 383.86 176.70 Td (^) Tj ET
+BT /F1 8.5 Tf 394.06 176.70 Td (are harmless \(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 171.70 m 558.00 171.70 l S 0 G
+BT /F3 8.5 Tf 58.00 161.70 Td (combined_array_literal_comparison.rst) Tj ET
+BT /F1 8.5 Tf 270.00 161.70 Td (Indexing an array literal inside a comparison in) Tj ET
+BT /F3 8.5 Tf 447.62 161.70 Td (?) Tj ET
+BT /F1 8.5 Tf 457.82 161.70 Td (\(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 156.70 m 558.00 156.70 l S 0 G
+BT /F3 8.5 Tf 58.00 146.70 Td (combined_recursive_array_index.rst) Tj ET
+BT /F1 8.5 Tf 270.00 146.70 Td (Recursion creating an array per call \(exit 6\).) Tj ET
+0.6 G 0.5 w 54.00 141.70 m 558.00 141.70 l S 0 G
+BT /F3 8.5 Tf 58.00 131.70 Td (func_args_left_to_right.rst) Tj ET
+BT /F1 8.5 Tf 270.00 131.70 Td (Arguments evaluate left to right \(prints 1, 2; exit 12\).) Tj ET
+0.6 G 0.5 w 54.00 126.70 m 558.00 126.70 l S 0 G
+BT /F3 8.5 Tf 58.00 116.70 Td (func_call_before_definition.rst) Tj ET
+BT /F1 8.5 Tf 270.00 116.70 Td (Calling a function defined later \(exit 12\).) Tj ET
+0.6 G 0.5 w 54.00 111.70 m 558.00 111.70 l S 0 G
+BT /F3 8.5 Tf 58.00 101.70 Td (func_factorial.rst) Tj ET
+BT /F1 8.5 Tf 270.00 101.70 Td (Recursive factorial \(exit 120\).) Tj ET
+0.6 G 0.5 w 54.00 96.70 m 558.00 96.70 l S 0 G
+BT /F3 8.5 Tf 58.00 86.70 Td (func_fibonacci.rst) Tj ET
+BT /F1 8.5 Tf 270.00 86.70 Td (Recursive Fibonacci \(prints 55\).) Tj ET
+0.6 G 0.5 w 54.00 81.70 m 558.00 81.70 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 12 of 16) Tj ET
 endstream
 endobj
 29 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 28 0 R >>
 endobj
 30 0 obj
-<< /Length 10504 >>
+<< /Length 9837 >>
 stream
 0.88 g 54.00 717.00 504.00 15.00 re f 0 g
 BT /F2 8.5 Tf 58.00 722.00 Td (File) Tj ET
 BT /F2 8.5 Tf 270.00 722.00 Td (Checks) Tj ET
 0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
-BT /F3 8.5 Tf 58.00 707.00 Td (interp_wraparound.rst) Tj ET
-BT /F3 8.5 Tf 270.00 707.00 Td (2147483647 + 1) Tj ET
-BT /F1 8.5 Tf 346.50 707.00 Td (wraps to) Tj ET
-BT /F3 8.5 Tf 380.98 707.00 Td (-2147483648) Tj ET
-BT /F1 8.5 Tf 437.08 707.00 Td (.) Tj ET
+BT /F3 8.5 Tf 58.00 707.00 Td (func_general_return.rst) Tj ET
+BT /F3 8.5 Tf 270.00 707.00 Td (sq\(x\) + sq\(x + 1\) - 1) Tj ET
+BT /F1 8.5 Tf 382.20 707.00 Td (with calls inside expressions \(exit 24\).) Tj ET
 0.6 G 0.5 w 54.00 702.00 m 558.00 702.00 l S 0 G
-BT /F3 8.5 Tf 58.00 692.00 Td (logic_short_circuit.rst) Tj ET
-BT /F3 8.5 Tf 270.00 692.00 Td (&) Tj ET
-BT /F1 8.5 Tf 280.20 692.00 Td (and) Tj ET
-BT /F3 8.5 Tf 296.74 692.00 Td (|) Tj ET
-BT /F1 8.5 Tf 306.94 692.00 Td (skip the right operand when decided \(prints 3, 4; exit 3\).) Tj ET
+BT /F3 8.5 Tf 58.00 692.00 Td (func_mutual_recursion.rst) Tj ET
+BT /F1 8.5 Tf 270.00 692.00 Td (Mutual recursion \(prints 1, 0\).) Tj ET
 0.6 G 0.5 w 54.00 687.00 m 558.00 687.00 l S 0 G
-BT /F3 8.5 Tf 58.00 677.00 Td (logic_truth_precedence.rst) Tj ET
-BT /F1 8.5 Tf 270.00 677.00 Td (Logical operator precedence and) Tj ET
-BT /F3 8.5 Tf 396.62 677.00 Td (!) Tj ET
-BT /F1 8.5 Tf 406.82 677.00 Td (\(prints four 1s\).) Tj ET
+BT /F3 8.5 Tf 58.00 677.00 Td (func_param_is_local.rst) Tj ET
+BT /F1 8.5 Tf 270.00 677.00 Td (Assigning a parameter does not change the caller's variable.) Tj ET
 0.6 G 0.5 w 54.00 672.00 m 558.00 672.00 l S 0 G
-BT /F3 8.5 Tf 58.00 662.00 Td (print_acceptance.rst) Tj ET
-BT /F1 8.5 Tf 270.00 662.00 Td (Basic) Tj ET
-BT /F3 8.5 Tf 293.15 662.00 Td (print) Tj ET
-BT /F1 8.5 Tf 323.75 662.00 Td (\(prints 7\).) Tj ET
+BT /F3 8.5 Tf 58.00 662.00 Td (func_params_basic.rst) Tj ET
+BT /F1 8.5 Tf 270.00 662.00 Td (Parameters passed and used \(exit 5\).) Tj ET
 0.6 G 0.5 w 54.00 657.00 m 558.00 657.00 l S 0 G
-BT /F3 8.5 Tf 58.00 647.00 Td (print_multiple.rst) Tj ET
-BT /F1 8.5 Tf 270.00 647.00 Td (Several) Tj ET
-BT /F3 8.5 Tf 301.18 647.00 Td (print) Tj ET
-BT /F1 8.5 Tf 331.78 647.00 Td (calls in order \(10, 20, 30\).) Tj ET
-0.6 G 0.5 w 54.00 642.00 m 558.00 642.00 l S 0 G
-BT /F3 8.5 Tf 58.00 632.00 Td (range_bound_expressions.rst) Tj ET
-BT /F1 8.5 Tf 270.00 632.00 Td (Upper bounds ending in a variable, a parenthesised index and) Tj ET
-BT /F3 8.5 Tf 506.24 632.00 Td (f\(x\) - 1) Tj ET
-BT /F1 8.5 Tf 270.00 621.00 Td (\(prints 15, 3, 9\).) Tj ET
-0.6 G 0.5 w 54.00 616.00 m 558.00 616.00 l S 0 G
-BT /F3 8.5 Tf 58.00 606.00 Td (range_body_variable_per_iteration.rst) Tj ET
-BT /F1 8.5 Tf 270.00 606.00 Td (A variable declared in the body is new on every iteration \(prints 1, 2, 3\).) Tj ET
-0.6 G 0.5 w 54.00 601.00 m 558.00 601.00 l S 0 G
-BT /F3 8.5 Tf 58.00 591.00 Td (range_bounds_once.rst) Tj ET
-BT /F1 8.5 Tf 270.00 591.00 Td (Both bounds are calls with output; each runs once,) Tj ET
-BT /F3 8.5 Tf 462.77 591.00 Td (a) Tj ET
-BT /F1 8.5 Tf 472.97 591.00 Td (before) Tj ET
-BT /F3 8.5 Tf 499.43 591.00 Td (b) Tj ET
-BT /F1 8.5 Tf 509.63 591.00 Td (\(prints 10,) Tj ET
-BT /F1 8.5 Tf 270.00 580.00 Td (20, 1, 2, 3\).) Tj ET
-0.6 G 0.5 w 54.00 575.00 m 558.00 575.00 l S 0 G
-BT /F3 8.5 Tf 58.00 565.00 Td (range_empty.rst) Tj ET
-BT /F3 8.5 Tf 270.00 565.00 Td (a > b) Tj ET
-BT /F1 8.5 Tf 300.60 565.00 Td (runs the body zero times, including negative bounds \(prints 0, 7\).) Tj ET
-0.6 G 0.5 w 54.00 560.00 m 558.00 560.00 l S 0 G
-BT /F3 8.5 Tf 58.00 550.00 Td (range_int_max.rst) Tj ET
-BT /F3 8.5 Tf 270.00 550.00 Td (2147483646..2147483647) Tj ET
-BT /F1 8.5 Tf 387.30 550.00 Td (ends after two iterations \(no counter) Tj ET
-BT /F1 8.5 Tf 270.00 539.00 Td (overflow\).) Tj ET
-0.6 G 0.5 w 54.00 534.00 m 558.00 534.00 l S 0 G
-BT /F3 8.5 Tf 58.00 524.00 Td (range_nested.rst) Tj ET
-BT /F1 8.5 Tf 270.00 524.00 Td (Nested range loops, the inner bound using the outer variable \(prints 36, 6\).) Tj ET
-0.6 G 0.5 w 54.00 519.00 m 558.00 519.00 l S 0 G
-BT /F3 8.5 Tf 58.00 509.00 Td (range_return_from_body.rst) Tj ET
-BT /F3 8.5 Tf 270.00 509.00 Td (^) Tj ET
-BT /F1 8.5 Tf 280.20 509.00 Td (inside a range body returns from the function \(exit 3\).) Tj ET
-0.6 G 0.5 w 54.00 504.00 m 558.00 504.00 l S 0 G
-BT /F3 8.5 Tf 58.00 494.00 Td (range_shadows_outer.rst) Tj ET
-BT /F1 8.5 Tf 270.00 494.00 Td (The loop variable hides an outer) Tj ET
-BT /F3 8.5 Tf 393.79 494.00 Td (i) Tj ET
-BT /F1 8.5 Tf 398.89 494.00 Td (, which is unchanged afterwards \(prints) Tj ET
-BT /F1 8.5 Tf 270.00 483.00 Td (5, 6, 5\).) Tj ET
-0.6 G 0.5 w 54.00 478.00 m 558.00 478.00 l S 0 G
-BT /F3 8.5 Tf 58.00 468.00 Td (range_single.rst) Tj ET
-BT /F3 8.5 Tf 270.00 468.00 Td (a == b) Tj ET
-BT /F1 8.5 Tf 305.70 468.00 Td (runs exactly once \(prints 1, 3\).) Tj ET
-0.6 G 0.5 w 54.00 463.00 m 558.00 463.00 l S 0 G
-BT /F3 8.5 Tf 58.00 453.00 Td (range_sum.rst) Tj ET
-BT /F1 8.5 Tf 270.00 453.00 Td (Sum 1 to 10 with a range loop \(prints 55\).) Tj ET
-0.6 G 0.5 w 54.00 448.00 m 558.00 448.00 l S 0 G
-BT /F3 8.5 Tf 58.00 438.00 Td (range_while_array.rst) Tj ET
-BT /F1 8.5 Tf 270.00 438.00 Td (Range loop fills an array, a while loop sums it \(prints 55\).) Tj ET
-0.6 G 0.5 w 54.00 433.00 m 558.00 433.00 l S 0 G
-BT /F3 8.5 Tf 58.00 423.00 Td (return_literal.rst) Tj ET
-BT /F1 8.5 Tf 270.00 423.00 Td (Returned literal becomes the exit status \(42\).) Tj ET
-0.6 G 0.5 w 54.00 418.00 m 558.00 418.00 l S 0 G
-BT /F3 8.5 Tf 58.00 408.00 Td (rt_array_zero.rst) Tj ET
-BT /F3 8.5 Tf 270.00 408.00 Td (arr\(0\)) Tj ET
-BT /F1 8.5 Tf 305.70 408.00 Td (is created without a runtime error \(prints 5\).) Tj ET
-0.6 G 0.5 w 54.00 403.00 m 558.00 403.00 l S 0 G
-BT /F3 8.5 Tf 58.00 393.00 Td (unary_minus.rst) Tj ET
-BT /F3 8.5 Tf 270.00 393.00 Td (-\(-7\)) Tj ET
-BT /F1 8.5 Tf 300.60 393.00 Td (is 7 \(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 388.00 m 558.00 388.00 l S 0 G
-BT /F3 8.5 Tf 58.00 378.00 Td (var_basic.rst) Tj ET
-BT /F1 8.5 Tf 270.00 378.00 Td (Variable creation and use \(exit 5\).) Tj ET
-0.6 G 0.5 w 54.00 373.00 m 558.00 373.00 l S 0 G
-BT /F3 8.5 Tf 58.00 363.00 Td (var_inner_block_reassigns_outer.rst) Tj ET
-BT /F1 8.5 Tf 270.00 363.00 Td (A bare block reassigns a visible outer variable \(exit 2\).) Tj ET
-0.6 G 0.5 w 54.00 358.00 m 558.00 358.00 l S 0 G
-BT /F3 8.5 Tf 58.00 348.00 Td (var_inner_declared_fresh_after_block.rst) Tj ET
-BT /F1 8.5 Tf 270.00 348.00 Td (A name first created inside a block is new again afterwards \(exit 4\).) Tj ET
-0.6 G 0.5 w 54.00 343.00 m 558.00 343.00 l S 0 G
-BT /F3 8.5 Tf 58.00 333.00 Td (var_reassign_arith.rst) Tj ET
-BT /F1 8.5 Tf 270.00 333.00 Td (Reassigning with arithmetic \(exit 7\).) Tj ET
-0.6 G 0.5 w 54.00 328.00 m 558.00 328.00 l S 0 G
-BT /F3 8.5 Tf 58.00 318.00 Td (while_nested_multiplication.rst) Tj ET
-BT /F1 8.5 Tf 270.00 318.00 Td (Nested while loops \(prints 6\).) Tj ET
-0.6 G 0.5 w 54.00 313.00 m 558.00 313.00 l S 0 G
-BT /F3 8.5 Tf 58.00 303.00 Td (while_return_from_body.rst) Tj ET
-BT /F3 8.5 Tf 270.00 303.00 Td (^) Tj ET
-BT /F1 8.5 Tf 280.20 303.00 Td (inside a loop body returns from the function \(exit 23\).) Tj ET
-0.6 G 0.5 w 54.00 298.00 m 558.00 298.00 l S 0 G
-BT /F3 8.5 Tf 58.00 288.00 Td (while_sum_1_to_10.rst) Tj ET
-BT /F1 8.5 Tf 270.00 288.00 Td (Sum 1 to 10 with) Tj ET
-BT /F3 8.5 Tf 335.67 288.00 Td (while) Tj ET
-BT /F1 8.5 Tf 366.27 288.00 Td (\(prints 55\).) Tj ET
-0.6 G 0.5 w 54.00 283.00 m 558.00 283.00 l S 0 G
-BT /F3 8.5 Tf 58.00 273.00 Td (while_zero_iterations.rst) Tj ET
-BT /F1 8.5 Tf 270.00 273.00 Td (A false condition runs the body zero times \(prints 0\).) Tj ET
-0.6 G 0.5 w 54.00 268.00 m 558.00 268.00 l S 0 G
-BT /F3 10 Tf 54.00 246.50 Td (tests/fail/) Tj ET
-BT /F1 10 Tf 126.00 246.50 Td (files \(expected stderr text in parentheses; static errors exit 1, runtime errors exit 2\):) Tj ET
-0.6 G 0.5 w 54.00 238.50 m 558.00 238.50 l S 0 G
-0.88 g 54.00 223.50 504.00 15.00 re f 0 g
-BT /F2 8.5 Tf 58.00 228.50 Td (File) Tj ET
-BT /F2 8.5 Tf 259.80 228.50 Td (Checks) Tj ET
-0.6 G 0.5 w 54.00 223.50 m 558.00 223.50 l S 0 G
-BT /F3 8.5 Tf 58.00 213.50 Td (array_arith.rst) Tj ET
-BT /F1 8.5 Tf 259.80 213.50 Td (Array nested inside an array literal) Tj ET
-BT /F3 8.5 Tf 391.12 213.50 Td (<1, <2, 3>>) Tj ET
-BT /F1 8.5 Tf 452.32 213.50 Td (\() Tj ET
-BT /F3 8.5 Tf 455.16 213.50 Td (array literal) Tj ET
-BT /F3 8.5 Tf 259.80 202.50 Td (elements must be integers) Tj ET
-BT /F1 8.5 Tf 387.30 202.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 197.50 m 558.00 197.50 l S 0 G
-BT /F3 8.5 Tf 58.00 187.50 Td (array_index_non_array.rst) Tj ET
-BT /F1 8.5 Tf 259.80 187.50 Td (Indexing an integer \() Tj ET
-BT /F3 8.5 Tf 337.29 187.50 Td (cannot index a non-array value) Tj ET
-BT /F1 8.5 Tf 490.29 187.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 182.50 m 558.00 182.50 l S 0 G
-BT /F3 8.5 Tf 58.00 172.50 Td (array_negative_size.rst) Tj ET
-BT /F3 8.5 Tf 259.80 172.50 Td (arr) Tj ET
-BT /F1 8.5 Tf 280.20 172.50 Td (with a negative size \(runtime:) Tj ET
-BT /F3 8.5 Tf 392.63 172.50 Td (negative array size) Tj ET
-BT /F1 8.5 Tf 489.53 172.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 167.50 m 558.00 167.50 l S 0 G
-BT /F3 8.5 Tf 58.00 157.50 Td (array_print_array.rst) Tj ET
-BT /F3 8.5 Tf 259.80 157.50 Td (print) Tj ET
-BT /F1 8.5 Tf 290.40 157.50 Td (of an array \() Tj ET
-BT /F3 8.5 Tf 336.22 157.50 Td (expects an integer argument) Tj ET
-BT /F1 8.5 Tf 473.92 157.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 152.50 m 558.00 152.50 l S 0 G
-BT /F3 8.5 Tf 58.00 142.50 Td (array_type_mismatch.rst) Tj ET
-BT /F1 8.5 Tf 259.80 142.50 Td (Reassigning an integer variable with an array \() Tj ET
-BT /F3 8.5 Tf 435.06 142.50 Td (type mismatch) Tj ET
-BT /F1 8.5 Tf 501.36 142.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 137.50 m 558.00 137.50 l S 0 G
-BT /F3 8.5 Tf 58.00 127.50 Td (bad_character.rst) Tj ET
-BT /F1 8.5 Tf 259.80 127.50 Td (Unknown character) Tj ET
-BT /F3 8.5 Tf 335.38 127.50 Td ($) Tj ET
-BT /F1 8.5 Tf 345.58 127.50 Td (\() Tj ET
-BT /F3 8.5 Tf 348.41 127.50 Td (unexpected character '$') Tj ET
-BT /F1 8.5 Tf 470.81 127.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 122.50 m 558.00 122.50 l S 0 G
-BT /F3 8.5 Tf 58.00 112.50 Td (call_arg_undefined.rst) Tj ET
-BT /F3 8.5 Tf 259.80 112.50 Td (print\(y\)) Tj ET
-BT /F1 8.5 Tf 305.70 112.50 Td (with) Tj ET
-BT /F3 8.5 Tf 323.18 112.50 Td (y) Tj ET
-BT /F1 8.5 Tf 333.38 112.50 Td (never assigned \() Tj ET
-BT /F3 8.5 Tf 396.21 112.50 Td (undefined variable 'y') Tj ET
-BT /F1 8.5 Tf 508.41 112.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 107.50 m 558.00 107.50 l S 0 G
-BT /F3 8.5 Tf 58.00 97.50 Td (call_unknown_func.rst) Tj ET
-BT /F1 8.5 Tf 259.80 97.50 Td (Call to an undefined function \() Tj ET
-BT /F3 8.5 Tf 372.72 97.50 Td (unknown function 'unknown_func') Tj ET
-BT /F1 8.5 Tf 530.82 97.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 92.50 m 558.00 92.50 l S 0 G
-BT /F3 8.5 Tf 58.00 82.50 Td (call_wrong_arity_too_few.rst) Tj ET
-BT /F3 8.5 Tf 259.80 82.50 Td (print\(\)) Tj ET
-BT /F1 8.5 Tf 300.60 82.50 Td (\() Tj ET
-BT /F3 8.5 Tf 303.43 82.50 Td (wrong argument count for 'print') Tj ET
-BT /F1 8.5 Tf 466.63 82.50 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 77.50 m 558.00 77.50 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 13 of 15) Tj ET
+BT /F3 8.5 Tf 58.00 647.00 Td (gfx_canvas_export.rst) Tj ET
+BT /F3 8.5 Tf 270.00 647.00 Td (canvas) Tj ET
+BT /F1 8.5 Tf 305.70 647.00 Td (and) Tj ET
+BT /F3 8.5 Tf 322.24 647.00 Td (export) Tj ET
+BT /F1 8.5 Tf 357.94 647.00 Td (both return 0; the file has header) Tj ET
+BT /F3 8.5 Tf 483.15 647.00 Td (P6 4 3 255) Tj ET
+BT /F1 8.5 Tf 539.25 647.00 Td (and) Tj ET
+BT /F1 8.5 Tf 270.00 636.00 Td (is black \(prints 0, 0\).) Tj ET
+0.6 G 0.5 w 54.00 631.00 m 558.00 631.00 l S 0 G
+BT /F3 8.5 Tf 58.00 621.00 Td (gfx_canvas_max_size.rst) Tj ET
+BT /F1 8.5 Tf 270.00 621.00 Td (The largest canvas, 4096 x 4096, is accepted; a later 4096 x 1 canvas) Tj ET
+BT /F1 8.5 Tf 270.00 610.00 Td (replaces it.) Tj ET
+0.6 G 0.5 w 54.00 605.00 m 558.00 605.00 l S 0 G
+BT /F3 8.5 Tf 58.00 595.00 Td (gfx_canvas_replace.rst) Tj ET
+BT /F1 8.5 Tf 270.00 595.00 Td (A second) Tj ET
+BT /F3 8.5 Tf 307.80 595.00 Td (canvas) Tj ET
+BT /F1 8.5 Tf 343.50 595.00 Td (call replaces the first: new size, black again.) Tj ET
+0.6 G 0.5 w 54.00 590.00 m 558.00 590.00 l S 0 G
+BT /F3 8.5 Tf 58.00 580.00 Td (gfx_demo_gradient.rst) Tj ET
+BT /F3 8.5 Tf 270.00 580.00 Td (examples/gradient.rst) Tj ET
+BT /F1 8.5 Tf 382.20 580.00 Td (\(the proposal's program\), checked by size) Tj ET
+BT /F1 8.5 Tf 270.00 569.00 Td (and sha256 of) Tj ET
+BT /F3 8.5 Tf 326.24 569.00 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 361.94 569.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 564.00 m 558.00 564.00 l S 0 G
+BT /F3 8.5 Tf 58.00 554.00 Td (gfx_demo_pattern.rst) Tj ET
+BT /F3 8.5 Tf 270.00 554.00 Td (examples/pattern.rst) Tj ET
+BT /F1 8.5 Tf 372.00 554.00 Td (, checked by size, two pixels and sha256 of) Tj ET
+BT /F3 8.5 Tf 270.00 543.00 Td (out.ppm) Tj ET
+BT /F1 8.5 Tf 305.70 543.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 538.00 m 558.00 538.00 l S 0 G
+BT /F3 8.5 Tf 58.00 528.00 Td (gfx_line_clipped.rst) Tj ET
+BT /F1 8.5 Tf 270.00 528.00 Td (A line starting and ending outside the canvas is clipped per pixel; an) Tj ET
+BT /F1 8.5 Tf 270.00 517.00 Td (entirely outside line draws nothing.) Tj ET
+0.6 G 0.5 w 54.00 512.00 m 558.00 512.00 l S 0 G
+BT /F3 8.5 Tf 58.00 502.00 Td (gfx_line_diagonal.rst) Tj ET
+BT /F1 8.5 Tf 270.00 502.00 Td (Both diagonals of a 5x5 canvas, one in each direction of travel.) Tj ET
+0.6 G 0.5 w 54.00 497.00 m 558.00 497.00 l S 0 G
+BT /F3 8.5 Tf 58.00 487.00 Td (gfx_line_horizontal.rst) Tj ET
+BT /F1 8.5 Tf 270.00 487.00 Td (Horizontal line includes both endpoints and nothing around them.) Tj ET
+0.6 G 0.5 w 54.00 482.00 m 558.00 482.00 l S 0 G
+BT /F3 8.5 Tf 58.00 472.00 Td (gfx_line_reversed.rst) Tj ET
+BT /F1 8.5 Tf 270.00 472.00 Td (Shallow line drawn right to left,) Tj ET
+BT /F3 8.5 Tf 387.63 472.00 Td (\(6,2\)) Tj ET
+BT /F1 8.5 Tf 418.23 472.00 Td (to) Tj ET
+BT /F3 8.5 Tf 427.68 472.00 Td (\(0,0\)) Tj ET
+BT /F1 8.5 Tf 453.18 472.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 467.00 m 558.00 467.00 l S 0 G
+BT /F3 8.5 Tf 58.00 457.00 Td (gfx_line_single_point.rst) Tj ET
+BT /F1 8.5 Tf 270.00 457.00 Td (Equal endpoints draw exactly one pixel.) Tj ET
+0.6 G 0.5 w 54.00 452.00 m 558.00 452.00 l S 0 G
+BT /F3 8.5 Tf 58.00 442.00 Td (gfx_line_steep.rst) Tj ET
+BT /F1 8.5 Tf 270.00 442.00 Td (Steep line) Tj ET
+BT /F3 8.5 Tf 310.16 442.00 Td (\(0,0\)) Tj ET
+BT /F1 8.5 Tf 340.76 442.00 Td (to) Tj ET
+BT /F3 8.5 Tf 350.21 442.00 Td (\(2,6\)) Tj ET
+BT /F1 8.5 Tf 380.81 442.00 Td (draws one pixel per row.) Tj ET
+0.6 G 0.5 w 54.00 437.00 m 558.00 437.00 l S 0 G
+BT /F3 8.5 Tf 58.00 427.00 Td (gfx_line_vertical.rst) Tj ET
+BT /F1 8.5 Tf 270.00 427.00 Td (Vertical line drawn bottom-up covers both endpoints.) Tj ET
+0.6 G 0.5 w 54.00 422.00 m 558.00 422.00 l S 0 G
+BT /F3 8.5 Tf 58.00 412.00 Td (gfx_pixel_bounds.rst) Tj ET
+BT /F3 8.5 Tf 270.00 412.00 Td (pixel) Tj ET
+BT /F1 8.5 Tf 300.60 412.00 Td (inside and outside the canvas \(no row wrap-around\) and only the) Tj ET
+BT /F1 8.5 Tf 270.00 401.00 Td (low 24 bits of the colour.) Tj ET
+0.6 G 0.5 w 54.00 396.00 m 558.00 396.00 l S 0 G
+BT /F3 8.5 Tf 58.00 386.00 Td (gfx_rect_clipped.rst) Tj ET
+BT /F1 8.5 Tf 270.00 386.00 Td (Rectangles hanging off the top-left and bottom-right are clipped.) Tj ET
+0.6 G 0.5 w 54.00 381.00 m 558.00 381.00 l S 0 G
+BT /F3 8.5 Tf 58.00 371.00 Td (gfx_rect_zero.rst) Tj ET
+BT /F1 8.5 Tf 270.00 371.00 Td (Zero or negative width/height draws nothing; the file is the header plus 27) Tj ET
+BT /F1 8.5 Tf 270.00 360.00 Td (zero bytes \(sha256\).) Tj ET
+0.6 G 0.5 w 54.00 355.00 m 558.00 355.00 l S 0 G
+BT /F3 8.5 Tf 58.00 345.00 Td (gfx_rgb_clamp.rst) Tj ET
+BT /F3 8.5 Tf 270.00 345.00 Td (rgb) Tj ET
+BT /F1 8.5 Tf 290.40 345.00 Td (packs channels and clamps each to 0..255 \(prints 66051, 16777215,) Tj ET
+BT /F1 8.5 Tf 270.00 334.00 Td (16711808, 0, 255\).) Tj ET
+0.6 G 0.5 w 54.00 329.00 m 558.00 329.00 l S 0 G
+BT /F3 8.5 Tf 58.00 319.00 Td (gfx_scene_sha256.rst) Tj ET
+BT /F1 8.5 Tf 270.00 319.00 Td (A scene of rectangles, clipped lines and a pixel, checked by sha256 of the) Tj ET
+BT /F1 8.5 Tf 270.00 308.00 Td (whole file.) Tj ET
+0.6 G 0.5 w 54.00 303.00 m 558.00 303.00 l S 0 G
+BT /F3 8.5 Tf 58.00 293.00 Td (if_branches_both_return.rst) Tj ET
+BT /F3 8.5 Tf 270.00 293.00 Td (if) Tj ET
+BT /F1 8.5 Tf 280.20 293.00 Td (/) Tj ET
+BT /F3 8.5 Tf 282.56 293.00 Td (else) Tj ET
+BT /F1 8.5 Tf 308.06 293.00 Td (where both branches return \(exit 15\).) Tj ET
+0.6 G 0.5 w 54.00 288.00 m 558.00 288.00 l S 0 G
+BT /F3 8.5 Tf 58.00 278.00 Td (if_else.rst) Tj ET
+BT /F3 8.5 Tf 270.00 278.00 Td (if) Tj ET
+BT /F1 8.5 Tf 285.30 278.00 Td (/) Tj ET
+BT /F3 8.5 Tf 290.03 278.00 Td (else) Tj ET
+BT /F1 8.5 Tf 315.53 278.00 Td (\(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 273.00 m 558.00 273.00 l S 0 G
+BT /F3 8.5 Tf 58.00 263.00 Td (if_elseif_chain.rst) Tj ET
+BT /F3 8.5 Tf 270.00 263.00 Td (else if) Tj ET
+BT /F1 8.5 Tf 310.80 263.00 Td (chain; 300 becomes exit 44 \(low 8 bits\).) Tj ET
+0.6 G 0.5 w 54.00 258.00 m 558.00 258.00 l S 0 G
+BT /F3 8.5 Tf 58.00 248.00 Td (if_scope.rst) Tj ET
+BT /F1 8.5 Tf 270.00 248.00 Td (Variable declared in a branch is local; outer variable still usable \(exit 10\).) Tj ET
+0.6 G 0.5 w 54.00 243.00 m 558.00 243.00 l S 0 G
+BT /F3 8.5 Tf 58.00 233.00 Td (if_without_else.rst) Tj ET
+BT /F3 8.5 Tf 270.00 233.00 Td (if) Tj ET
+BT /F1 8.5 Tf 285.30 233.00 Td (without) Tj ET
+BT /F3 8.5 Tf 314.59 233.00 Td (else) Tj ET
+BT /F1 8.5 Tf 340.09 233.00 Td (\(exit 42\).) Tj ET
+0.6 G 0.5 w 54.00 228.00 m 558.00 228.00 l S 0 G
+BT /F3 8.5 Tf 58.00 218.00 Td (implicit_return.rst) Tj ET
+BT /F1 8.5 Tf 270.00 218.00 Td (Reaching the end of a function returns 0.) Tj ET
+0.6 G 0.5 w 54.00 213.00 m 558.00 213.00 l S 0 G
+BT /F3 8.5 Tf 58.00 203.00 Td (interp_deep_recursion.rst) Tj ET
+BT /F3 8.5 Tf 270.00 203.00 Td (fib\(20\)) Tj ET
+BT /F1 8.5 Tf 310.80 203.00 Td (through deep recursion \(exit 109\).) Tj ET
+0.6 G 0.5 w 54.00 198.00 m 558.00 198.00 l S 0 G
+BT /F3 8.5 Tf 58.00 188.00 Td (interp_local_array_alias.rst) Tj ET
+BT /F1 8.5 Tf 270.00 188.00 Td (Alias of a local array inside a function \(prints 9\).) Tj ET
+0.6 G 0.5 w 54.00 183.00 m 558.00 183.00 l S 0 G
+BT /F3 8.5 Tf 58.00 173.00 Td (interp_wraparound.rst) Tj ET
+BT /F3 8.5 Tf 270.00 173.00 Td (2147483647 + 1) Tj ET
+BT /F1 8.5 Tf 346.50 173.00 Td (wraps to) Tj ET
+BT /F3 8.5 Tf 380.98 173.00 Td (-2147483648) Tj ET
+BT /F1 8.5 Tf 437.08 173.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 168.00 m 558.00 168.00 l S 0 G
+BT /F3 8.5 Tf 58.00 158.00 Td (logic_short_circuit.rst) Tj ET
+BT /F3 8.5 Tf 270.00 158.00 Td (&) Tj ET
+BT /F1 8.5 Tf 280.20 158.00 Td (and) Tj ET
+BT /F3 8.5 Tf 296.74 158.00 Td (|) Tj ET
+BT /F1 8.5 Tf 306.94 158.00 Td (skip the right operand when decided \(prints 3, 4; exit 3\).) Tj ET
+0.6 G 0.5 w 54.00 153.00 m 558.00 153.00 l S 0 G
+BT /F3 8.5 Tf 58.00 143.00 Td (logic_truth_precedence.rst) Tj ET
+BT /F1 8.5 Tf 270.00 143.00 Td (Logical operator precedence and) Tj ET
+BT /F3 8.5 Tf 396.62 143.00 Td (!) Tj ET
+BT /F1 8.5 Tf 406.82 143.00 Td (\(prints four 1s\).) Tj ET
+0.6 G 0.5 w 54.00 138.00 m 558.00 138.00 l S 0 G
+BT /F3 8.5 Tf 58.00 128.00 Td (print_acceptance.rst) Tj ET
+BT /F1 8.5 Tf 270.00 128.00 Td (Basic) Tj ET
+BT /F3 8.5 Tf 293.15 128.00 Td (print) Tj ET
+BT /F1 8.5 Tf 323.75 128.00 Td (\(prints 7\).) Tj ET
+0.6 G 0.5 w 54.00 123.00 m 558.00 123.00 l S 0 G
+BT /F3 8.5 Tf 58.00 113.00 Td (print_multiple.rst) Tj ET
+BT /F1 8.5 Tf 270.00 113.00 Td (Several) Tj ET
+BT /F3 8.5 Tf 301.18 113.00 Td (print) Tj ET
+BT /F1 8.5 Tf 331.78 113.00 Td (calls in order \(10, 20, 30\).) Tj ET
+0.6 G 0.5 w 54.00 108.00 m 558.00 108.00 l S 0 G
+BT /F3 8.5 Tf 58.00 98.00 Td (range_bound_expressions.rst) Tj ET
+BT /F1 8.5 Tf 270.00 98.00 Td (Upper bounds ending in a variable, a parenthesised index and) Tj ET
+BT /F3 8.5 Tf 506.24 98.00 Td (f\(x\) - 1) Tj ET
+BT /F1 8.5 Tf 270.00 87.00 Td (\(prints 15, 3, 9\).) Tj ET
+0.6 G 0.5 w 54.00 82.00 m 558.00 82.00 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 13 of 16) Tj ET
 endstream
 endobj
 31 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 30 0 R >>
 endobj
 32 0 obj
-<< /Length 12431 >>
+<< /Length 9721 >>
 stream
 0.88 g 54.00 717.00 504.00 15.00 re f 0 g
 BT /F2 8.5 Tf 58.00 722.00 Td (File) Tj ET
-BT /F2 8.5 Tf 259.80 722.00 Td (Checks) Tj ET
+BT /F2 8.5 Tf 270.00 722.00 Td (Checks) Tj ET
 0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
-BT /F3 8.5 Tf 58.00 707.00 Td (call_wrong_arity_too_many.rst) Tj ET
-BT /F3 8.5 Tf 259.80 707.00 Td (print\(1, 2\)) Tj ET
-BT /F1 8.5 Tf 321.00 707.00 Td (\() Tj ET
-BT /F3 8.5 Tf 323.83 707.00 Td (wrong argument count for 'print') Tj ET
-BT /F1 8.5 Tf 487.03 707.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 707.00 Td (range_body_variable_per_iteration.rst) Tj ET
+BT /F1 8.5 Tf 270.00 707.00 Td (A variable declared in the body is new on every iteration \(prints 1, 2, 3\).) Tj ET
 0.6 G 0.5 w 54.00 702.00 m 558.00 702.00 l S 0 G
-BT /F3 8.5 Tf 58.00 692.00 Td (cmp_nonassoc.rst) Tj ET
-BT /F1 8.5 Tf 259.80 692.00 Td (Chained comparison) Tj ET
-BT /F3 8.5 Tf 340.11 692.00 Td (a < b < c) Tj ET
-BT /F1 8.5 Tf 391.11 692.00 Td (\() Tj ET
-BT /F3 8.5 Tf 393.94 692.00 Td (syntax error) Tj ET
-BT /F1 8.5 Tf 455.14 692.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 687.00 m 558.00 687.00 l S 0 G
-BT /F3 8.5 Tf 58.00 677.00 Td (func_array_argument.rst) Tj ET
-BT /F1 8.5 Tf 259.80 677.00 Td (Array passed as a function argument \() Tj ET
-BT /F3 8.5 Tf 403.89 677.00 Td (function 'first' expects an) Tj ET
-BT /F3 8.5 Tf 259.80 666.00 Td (integer argument) Tj ET
-BT /F1 8.5 Tf 341.40 666.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 692.00 Td (range_bounds_once.rst) Tj ET
+BT /F1 8.5 Tf 270.00 692.00 Td (Both bounds are calls with output; each runs once,) Tj ET
+BT /F3 8.5 Tf 462.77 692.00 Td (a) Tj ET
+BT /F1 8.5 Tf 472.97 692.00 Td (before) Tj ET
+BT /F3 8.5 Tf 499.43 692.00 Td (b) Tj ET
+BT /F1 8.5 Tf 509.63 692.00 Td (\(prints 10,) Tj ET
+BT /F1 8.5 Tf 270.00 681.00 Td (20, 1, 2, 3\).) Tj ET
+0.6 G 0.5 w 54.00 676.00 m 558.00 676.00 l S 0 G
+BT /F3 8.5 Tf 58.00 666.00 Td (range_empty.rst) Tj ET
+BT /F3 8.5 Tf 270.00 666.00 Td (a > b) Tj ET
+BT /F1 8.5 Tf 300.60 666.00 Td (runs the body zero times, including negative bounds \(prints 0, 7\).) Tj ET
 0.6 G 0.5 w 54.00 661.00 m 558.00 661.00 l S 0 G
-BT /F3 8.5 Tf 58.00 651.00 Td (func_builtin_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 651.00 Td (Function named) Tj ET
-BT /F3 8.5 Tf 323.11 651.00 Td (print) Tj ET
-BT /F1 8.5 Tf 353.71 651.00 Td (\() Tj ET
-BT /F3 8.5 Tf 356.54 651.00 Td (using built-in name 'print' as a) Tj ET
-BT /F3 8.5 Tf 259.80 640.00 Td (function name) Tj ET
-BT /F1 8.5 Tf 326.10 640.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 651.00 Td (range_int_max.rst) Tj ET
+BT /F3 8.5 Tf 270.00 651.00 Td (2147483646..2147483647) Tj ET
+BT /F1 8.5 Tf 387.30 651.00 Td (ends after two iterations \(no counter) Tj ET
+BT /F1 8.5 Tf 270.00 640.00 Td (overflow\).) Tj ET
 0.6 G 0.5 w 54.00 635.00 m 558.00 635.00 l S 0 G
-BT /F3 8.5 Tf 58.00 625.00 Td (func_duplicate.rst) Tj ET
-BT /F1 8.5 Tf 259.80 625.00 Td (Two functions with one name \() Tj ET
-BT /F3 8.5 Tf 375.07 625.00 Td (duplicate function 'main') Tj ET
-BT /F1 8.5 Tf 502.57 625.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 625.00 Td (range_nested.rst) Tj ET
+BT /F1 8.5 Tf 270.00 625.00 Td (Nested range loops, the inner bound using the outer variable \(prints 36, 6\).) Tj ET
 0.6 G 0.5 w 54.00 620.00 m 558.00 620.00 l S 0 G
-BT /F3 8.5 Tf 58.00 610.00 Td (func_duplicate_param.rst) Tj ET
-BT /F1 8.5 Tf 259.80 610.00 Td (Repeated parameter name \() Tj ET
-BT /F3 8.5 Tf 366.57 610.00 Td (duplicate parameter 'a') Tj ET
-BT /F1 8.5 Tf 483.87 610.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 610.00 Td (range_return_from_body.rst) Tj ET
+BT /F3 8.5 Tf 270.00 610.00 Td (^) Tj ET
+BT /F1 8.5 Tf 280.20 610.00 Td (inside a range body returns from the function \(exit 3\).) Tj ET
 0.6 G 0.5 w 54.00 605.00 m 558.00 605.00 l S 0 G
-BT /F3 8.5 Tf 58.00 595.00 Td (func_main_with_params.rst) Tj ET
-BT /F3 8.5 Tf 259.80 595.00 Td (@main) Tj ET
-BT /F1 8.5 Tf 290.40 595.00 Td (with parameters \() Tj ET
-BT /F3 8.5 Tf 356.05 595.00 Td (@main\(\) must not have parameters) Tj ET
-BT /F1 8.5 Tf 519.25 595.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 590.00 m 558.00 590.00 l S 0 G
-BT /F3 8.5 Tf 58.00 580.00 Td (func_param_builtin_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 580.00 Td (Parameter named) Tj ET
-BT /F3 8.5 Tf 330.19 580.00 Td (print) Tj ET
-BT /F1 8.5 Tf 360.79 580.00 Td (\() Tj ET
-BT /F3 8.5 Tf 363.62 580.00 Td (... as a parameter name) Tj ET
-BT /F1 8.5 Tf 480.92 580.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 575.00 m 558.00 575.00 l S 0 G
-BT /F3 8.5 Tf 58.00 565.00 Td (func_vars_not_shared.rst) Tj ET
-BT /F1 8.5 Tf 259.80 565.00 Td (A function using another function's variable \() Tj ET
-BT /F3 8.5 Tf 426.78 565.00 Td (undefined variable 'x') Tj ET
-BT /F1 8.5 Tf 538.98 565.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 560.00 m 558.00 560.00 l S 0 G
-BT /F3 8.5 Tf 58.00 550.00 Td (func_wrong_arity.rst) Tj ET
-BT /F1 8.5 Tf 259.80 550.00 Td (Wrong number of arguments \() Tj ET
-BT /F3 8.5 Tf 373.17 550.00 Td (expected 2, got 1) Tj ET
-BT /F1 8.5 Tf 459.87 550.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 545.00 m 558.00 545.00 l S 0 G
-BT /F3 8.5 Tf 58.00 535.00 Td (gfx_array_argument.rst) Tj ET
-BT /F1 8.5 Tf 259.80 535.00 Td (Array passed to) Tj ET
-BT /F3 8.5 Tf 321.69 535.00 Td (rgb) Tj ET
-BT /F1 8.5 Tf 342.09 535.00 Td (\() Tj ET
-BT /F3 8.5 Tf 344.92 535.00 Td (builtin 'rgb' expects an integer) Tj ET
-BT /F3 8.5 Tf 259.80 524.00 Td (argument) Tj ET
-BT /F1 8.5 Tf 300.60 524.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 595.00 Td (range_shadows_outer.rst) Tj ET
+BT /F1 8.5 Tf 270.00 595.00 Td (The loop variable hides an outer) Tj ET
+BT /F3 8.5 Tf 393.79 595.00 Td (i) Tj ET
+BT /F1 8.5 Tf 398.89 595.00 Td (, which is unchanged afterwards \(prints) Tj ET
+BT /F1 8.5 Tf 270.00 584.00 Td (5, 6, 5\).) Tj ET
+0.6 G 0.5 w 54.00 579.00 m 558.00 579.00 l S 0 G
+BT /F3 8.5 Tf 58.00 569.00 Td (range_single.rst) Tj ET
+BT /F3 8.5 Tf 270.00 569.00 Td (a == b) Tj ET
+BT /F1 8.5 Tf 305.70 569.00 Td (runs exactly once \(prints 1, 3\).) Tj ET
+0.6 G 0.5 w 54.00 564.00 m 558.00 564.00 l S 0 G
+BT /F3 8.5 Tf 58.00 554.00 Td (range_sum.rst) Tj ET
+BT /F1 8.5 Tf 270.00 554.00 Td (Sum 1 to 10 with a range loop \(prints 55\).) Tj ET
+0.6 G 0.5 w 54.00 549.00 m 558.00 549.00 l S 0 G
+BT /F3 8.5 Tf 58.00 539.00 Td (range_while_array.rst) Tj ET
+BT /F1 8.5 Tf 270.00 539.00 Td (Range loop fills an array, a while loop sums it \(prints 55\).) Tj ET
+0.6 G 0.5 w 54.00 534.00 m 558.00 534.00 l S 0 G
+BT /F3 8.5 Tf 58.00 524.00 Td (return_literal.rst) Tj ET
+BT /F1 8.5 Tf 270.00 524.00 Td (Returned literal becomes the exit status \(42\).) Tj ET
 0.6 G 0.5 w 54.00 519.00 m 558.00 519.00 l S 0 G
-BT /F3 8.5 Tf 58.00 509.00 Td (gfx_canvas_invalid_stops.rst) Tj ET
-BT /F3 8.5 Tf 259.80 509.00 Td (canvas\(4, 5000\)) Tj ET
-BT /F1 8.5 Tf 341.40 509.00 Td (stops the program after output 5 \(runtime:) Tj ET
-BT /F3 8.5 Tf 500.61 509.00 Td (invalid) Tj ET
-BT /F3 8.5 Tf 259.80 498.00 Td (canvas size) Tj ET
-BT /F1 8.5 Tf 315.90 498.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 493.00 m 558.00 493.00 l S 0 G
-BT /F3 8.5 Tf 58.00 483.00 Td (gfx_canvas_negative.rst) Tj ET
-BT /F1 8.5 Tf 259.80 483.00 Td (Negative canvas height \(runtime:) Tj ET
-BT /F3 8.5 Tf 386.41 483.00 Td (invalid canvas size) Tj ET
-BT /F1 8.5 Tf 483.31 483.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 478.00 m 558.00 478.00 l S 0 G
-BT /F3 8.5 Tf 58.00 468.00 Td (gfx_canvas_too_large.rst) Tj ET
-BT /F1 8.5 Tf 259.80 468.00 Td (Canvas width 4097 \(runtime:) Tj ET
-BT /F3 8.5 Tf 370.34 468.00 Td (invalid canvas size) Tj ET
-BT /F1 8.5 Tf 467.24 468.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 463.00 m 558.00 463.00 l S 0 G
-BT /F3 8.5 Tf 58.00 453.00 Td (gfx_canvas_zero.rst) Tj ET
-BT /F1 8.5 Tf 259.80 453.00 Td (Canvas width 0 \(runtime:) Tj ET
-BT /F3 8.5 Tf 356.16 453.00 Td (invalid canvas size) Tj ET
-BT /F1 8.5 Tf 453.06 453.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 448.00 m 558.00 448.00 l S 0 G
-BT /F3 8.5 Tf 58.00 438.00 Td (gfx_export_arity.rst) Tj ET
-BT /F3 8.5 Tf 259.80 438.00 Td (export\(1\)) Tj ET
-BT /F1 8.5 Tf 310.80 438.00 Td (\() Tj ET
-BT /F3 8.5 Tf 313.63 438.00 Td (wrong argument count for 'export') Tj ET
-BT /F1 8.5 Tf 481.93 438.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 433.00 m 558.00 433.00 l S 0 G
-BT /F3 8.5 Tf 58.00 423.00 Td (gfx_export_no_canvas.rst) Tj ET
-BT /F3 8.5 Tf 259.80 423.00 Td (export\(\)) Tj ET
-BT /F1 8.5 Tf 305.70 423.00 Td (before any canvas, after printing 1 \(runtime:) Tj ET
-BT /F3 8.5 Tf 472.47 423.00 Td (no canvas) Tj ET
-BT /F1 8.5 Tf 518.37 423.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 418.00 m 558.00 418.00 l S 0 G
-BT /F3 8.5 Tf 58.00 408.00 Td (gfx_function_builtin_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 408.00 Td (Function named) Tj ET
-BT /F3 8.5 Tf 323.11 408.00 Td (canvas) Tj ET
-BT /F1 8.5 Tf 358.81 408.00 Td (\() Tj ET
-BT /F3 8.5 Tf 361.64 408.00 Td (using built-in name 'canvas' as a) Tj ET
-BT /F3 8.5 Tf 259.80 397.00 Td (function name) Tj ET
-BT /F1 8.5 Tf 326.10 397.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 392.00 m 558.00 392.00 l S 0 G
-BT /F3 8.5 Tf 58.00 382.00 Td (gfx_line_arity.rst) Tj ET
-BT /F3 8.5 Tf 259.80 382.00 Td (line) Tj ET
-BT /F1 8.5 Tf 285.30 382.00 Td (with four arguments \() Tj ET
-BT /F3 8.5 Tf 365.13 382.00 Td (wrong argument count for 'line') Tj ET
-BT /F1 8.5 Tf 523.23 382.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 377.00 m 558.00 377.00 l S 0 G
-BT /F3 8.5 Tf 58.00 367.00 Td (gfx_line_no_canvas.rst) Tj ET
-BT /F3 8.5 Tf 259.80 367.00 Td (line) Tj ET
-BT /F1 8.5 Tf 285.30 367.00 Td (before any canvas \(runtime:) Tj ET
-BT /F3 8.5 Tf 393.01 367.00 Td (no canvas) Tj ET
-BT /F1 8.5 Tf 438.91 367.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 362.00 m 558.00 362.00 l S 0 G
-BT /F3 8.5 Tf 58.00 352.00 Td (gfx_param_builtin_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 352.00 Td (Parameter named) Tj ET
-BT /F3 8.5 Tf 330.19 352.00 Td (pixel) Tj ET
-BT /F1 8.5 Tf 360.79 352.00 Td (\() Tj ET
-BT /F3 8.5 Tf 363.62 352.00 Td (using built-in name 'pixel' as a) Tj ET
-BT /F3 8.5 Tf 259.80 341.00 Td (parameter name) Tj ET
-BT /F1 8.5 Tf 331.20 341.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 336.00 m 558.00 336.00 l S 0 G
-BT /F3 8.5 Tf 58.00 326.00 Td (gfx_pixel_no_canvas.rst) Tj ET
-BT /F3 8.5 Tf 259.80 326.00 Td (pixel) Tj ET
-BT /F1 8.5 Tf 290.40 326.00 Td (before any canvas \(runtime:) Tj ET
-BT /F3 8.5 Tf 398.11 326.00 Td (no canvas) Tj ET
-BT /F1 8.5 Tf 444.01 326.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 321.00 m 558.00 321.00 l S 0 G
-BT /F3 8.5 Tf 58.00 311.00 Td (gfx_rect_no_canvas.rst) Tj ET
-BT /F3 8.5 Tf 259.80 311.00 Td (rect) Tj ET
-BT /F1 8.5 Tf 285.30 311.00 Td (before any canvas \(runtime:) Tj ET
-BT /F3 8.5 Tf 393.01 311.00 Td (no canvas) Tj ET
-BT /F1 8.5 Tf 438.91 311.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 306.00 m 558.00 306.00 l S 0 G
-BT /F3 8.5 Tf 58.00 296.00 Td (gfx_rgb_variable_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 296.00 Td (Variable named) Tj ET
-BT /F3 8.5 Tf 321.69 296.00 Td (rgb) Tj ET
-BT /F1 8.5 Tf 342.09 296.00 Td (\() Tj ET
-BT /F3 8.5 Tf 344.92 296.00 Td (using built-in name 'rgb' as a variable) Tj ET
-BT /F3 8.5 Tf 259.80 285.00 Td (name) Tj ET
-BT /F1 8.5 Tf 280.20 285.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 280.00 m 558.00 280.00 l S 0 G
-BT /F3 8.5 Tf 58.00 270.00 Td (if_branch_var_not_visible.rst) Tj ET
-BT /F1 8.5 Tf 259.80 270.00 Td (Variable created inside an) Tj ET
-BT /F3 8.5 Tf 360.43 270.00 Td (if) Tj ET
-BT /F1 8.5 Tf 375.73 270.00 Td (branch used after it \() Tj ET
-BT /F3 8.5 Tf 453.68 270.00 Td (undefined variable) Tj ET
-BT /F3 8.5 Tf 259.80 259.00 Td ('branch_var') Tj ET
-BT /F1 8.5 Tf 321.00 259.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 254.00 m 558.00 254.00 l S 0 G
-BT /F3 8.5 Tf 58.00 244.00 Td (interp_output_before_runtime_error.rst) Tj ET
-BT /F1 8.5 Tf 259.80 244.00 Td (Output 7 is kept, then runtime error) Tj ET
-BT /F3 8.5 Tf 393.97 244.00 Td (negative array size) Tj ET
-BT /F1 8.5 Tf 490.87 244.00 Td (.) Tj ET
-0.6 G 0.5 w 54.00 239.00 m 558.00 239.00 l S 0 G
-BT /F3 8.5 Tf 58.00 229.00 Td (literal_too_large.rst) Tj ET
-BT /F1 8.5 Tf 259.80 229.00 Td (Literal 2147483648 \() Tj ET
-BT /F3 8.5 Tf 337.76 229.00 Td (integer literal out of range) Tj ET
-BT /F1 8.5 Tf 480.56 229.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 224.00 m 558.00 224.00 l S 0 G
-BT /F3 8.5 Tf 58.00 214.00 Td (logic_array_not_operand.rst) Tj ET
-BT /F3 8.5 Tf 259.80 214.00 Td (!) Tj ET
-BT /F1 8.5 Tf 270.00 214.00 Td (applied to an array \() Tj ET
-BT /F3 8.5 Tf 345.59 214.00 Td (logical operand must be an integer) Tj ET
-BT /F1 8.5 Tf 518.99 214.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 209.00 m 558.00 209.00 l S 0 G
-BT /F3 8.5 Tf 58.00 199.00 Td (logic_array_operand.rst) Tj ET
-BT /F3 8.5 Tf 259.80 199.00 Td (&) Tj ET
-BT /F1 8.5 Tf 264.90 199.00 Td (/) Tj ET
-BT /F3 8.5 Tf 267.26 199.00 Td (|) Tj ET
-BT /F1 8.5 Tf 277.46 199.00 Td (applied to an array \() Tj ET
-BT /F3 8.5 Tf 353.05 199.00 Td (logical operands must be integers) Tj ET
-BT /F1 8.5 Tf 521.35 199.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 194.00 m 558.00 194.00 l S 0 G
-BT /F3 8.5 Tf 58.00 184.00 Td (no_main.rst) Tj ET
-BT /F1 8.5 Tf 259.80 184.00 Td (No) Tj ET
-BT /F3 8.5 Tf 273.03 184.00 Td (@main) Tj ET
-BT /F1 8.5 Tf 303.63 184.00 Td (\() Tj ET
-BT /F3 8.5 Tf 306.46 184.00 Td (program has no @main\(\) function) Tj ET
-BT /F1 8.5 Tf 464.56 184.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 179.00 m 558.00 179.00 l S 0 G
-BT /F3 8.5 Tf 58.00 169.00 Td (range_array_bound.rst) Tj ET
-BT /F1 8.5 Tf 259.80 169.00 Td (Array as a range bound \() Tj ET
-BT /F3 8.5 Tf 353.82 169.00 Td (range bound must be an integer) Tj ET
-BT /F1 8.5 Tf 506.82 169.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 164.00 m 558.00 164.00 l S 0 G
-BT /F3 8.5 Tf 58.00 154.00 Td (range_assign_loop_variable.rst) Tj ET
-BT /F1 8.5 Tf 259.80 154.00 Td (Assignment to the loop variable \() Tj ET
-BT /F3 8.5 Tf 383.58 154.00 Td (cannot assign to loop variable) Tj ET
-BT /F3 8.5 Tf 259.80 143.00 Td ('i') Tj ET
-BT /F1 8.5 Tf 275.10 143.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 138.00 m 558.00 138.00 l S 0 G
-BT /F3 8.5 Tf 58.00 128.00 Td (range_index_bound_needs_parens.rst) Tj ET
-BT /F3 8.5 Tf 259.80 128.00 Td (0..v[2] [) Tj ET
-BT /F1 8.5 Tf 310.80 128.00 Td (reads) Tj ET
-BT /F3 8.5 Tf 334.42 128.00 Td ([) Tj ET
-BT /F1 8.5 Tf 344.62 128.00 Td (as the body \() Tj ET
-BT /F3 8.5 Tf 393.76 128.00 Td (syntax error) Tj ET
-BT /F1 8.5 Tf 454.96 128.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 123.00 m 558.00 123.00 l S 0 G
-BT /F3 8.5 Tf 58.00 113.00 Td (range_variable_not_visible.rst) Tj ET
-BT /F1 8.5 Tf 259.80 113.00 Td (Loop variable used after the loop \() Tj ET
-BT /F3 8.5 Tf 388.79 113.00 Td (undefined variable 'i') Tj ET
-BT /F1 8.5 Tf 500.99 113.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 108.00 m 558.00 108.00 l S 0 G
-BT /F3 8.5 Tf 58.00 98.00 Td (rt_division_by_zero.rst) Tj ET
-BT /F1 8.5 Tf 259.80 98.00 Td (Division by zero after printing 7 \() Tj ET
-BT /F3 8.5 Tf 381.67 98.00 Td (division by zero) Tj ET
-BT /F1 8.5 Tf 463.27 98.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 93.00 m 558.00 93.00 l S 0 G
-BT /F3 8.5 Tf 58.00 83.00 Td (rt_division_int_min.rst) Tj ET
-BT /F3 8.5 Tf 259.80 83.00 Td (-2147483648 / -1) Tj ET
-BT /F1 8.5 Tf 346.50 83.00 Td (\() Tj ET
-BT /F3 8.5 Tf 349.33 83.00 Td (integer division overflow) Tj ET
-BT /F1 8.5 Tf 476.83 83.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 78.00 m 558.00 78.00 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 14 of 15) Tj ET
+BT /F3 8.5 Tf 58.00 509.00 Td (rt_array_zero.rst) Tj ET
+BT /F3 8.5 Tf 270.00 509.00 Td (arr\(0\)) Tj ET
+BT /F1 8.5 Tf 305.70 509.00 Td (is created without a runtime error \(prints 5\).) Tj ET
+0.6 G 0.5 w 54.00 504.00 m 558.00 504.00 l S 0 G
+BT /F3 8.5 Tf 58.00 494.00 Td (unary_minus.rst) Tj ET
+BT /F3 8.5 Tf 270.00 494.00 Td (-\(-7\)) Tj ET
+BT /F1 8.5 Tf 300.60 494.00 Td (is 7 \(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 489.00 m 558.00 489.00 l S 0 G
+BT /F3 8.5 Tf 58.00 479.00 Td (var_basic.rst) Tj ET
+BT /F1 8.5 Tf 270.00 479.00 Td (Variable creation and use \(exit 5\).) Tj ET
+0.6 G 0.5 w 54.00 474.00 m 558.00 474.00 l S 0 G
+BT /F3 8.5 Tf 58.00 464.00 Td (var_inner_block_reassigns_outer.rst) Tj ET
+BT /F1 8.5 Tf 270.00 464.00 Td (A bare block reassigns a visible outer variable \(exit 2\).) Tj ET
+0.6 G 0.5 w 54.00 459.00 m 558.00 459.00 l S 0 G
+BT /F3 8.5 Tf 58.00 449.00 Td (var_inner_declared_fresh_after_block.rst) Tj ET
+BT /F1 8.5 Tf 270.00 449.00 Td (A name first created inside a block is new again afterwards \(exit 4\).) Tj ET
+0.6 G 0.5 w 54.00 444.00 m 558.00 444.00 l S 0 G
+BT /F3 8.5 Tf 58.00 434.00 Td (var_reassign_arith.rst) Tj ET
+BT /F1 8.5 Tf 270.00 434.00 Td (Reassigning with arithmetic \(exit 7\).) Tj ET
+0.6 G 0.5 w 54.00 429.00 m 558.00 429.00 l S 0 G
+BT /F3 8.5 Tf 58.00 419.00 Td (while_nested_multiplication.rst) Tj ET
+BT /F1 8.5 Tf 270.00 419.00 Td (Nested while loops \(prints 6\).) Tj ET
+0.6 G 0.5 w 54.00 414.00 m 558.00 414.00 l S 0 G
+BT /F3 8.5 Tf 58.00 404.00 Td (while_return_from_body.rst) Tj ET
+BT /F3 8.5 Tf 270.00 404.00 Td (^) Tj ET
+BT /F1 8.5 Tf 280.20 404.00 Td (inside a loop body returns from the function \(exit 23\).) Tj ET
+0.6 G 0.5 w 54.00 399.00 m 558.00 399.00 l S 0 G
+BT /F3 8.5 Tf 58.00 389.00 Td (while_sum_1_to_10.rst) Tj ET
+BT /F1 8.5 Tf 270.00 389.00 Td (Sum 1 to 10 with) Tj ET
+BT /F3 8.5 Tf 335.67 389.00 Td (while) Tj ET
+BT /F1 8.5 Tf 366.27 389.00 Td (\(prints 55\).) Tj ET
+0.6 G 0.5 w 54.00 384.00 m 558.00 384.00 l S 0 G
+BT /F3 8.5 Tf 58.00 374.00 Td (while_zero_iterations.rst) Tj ET
+BT /F1 8.5 Tf 270.00 374.00 Td (A false condition runs the body zero times \(prints 0\).) Tj ET
+0.6 G 0.5 w 54.00 369.00 m 558.00 369.00 l S 0 G
+BT /F3 10 Tf 54.00 347.50 Td (tests/fail/) Tj ET
+BT /F1 10 Tf 126.00 347.50 Td (files \(expected stderr text in parentheses; static errors exit 1, runtime errors exit 2\):) Tj ET
+0.6 G 0.5 w 54.00 339.50 m 558.00 339.50 l S 0 G
+0.88 g 54.00 324.50 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 329.50 Td (File) Tj ET
+BT /F2 8.5 Tf 259.80 329.50 Td (Checks) Tj ET
+0.6 G 0.5 w 54.00 324.50 m 558.00 324.50 l S 0 G
+BT /F3 8.5 Tf 58.00 314.50 Td (aparam_arithmetic_on_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 314.50 Td (Array parameter used in) Tj ET
+BT /F3 8.5 Tf 353.33 314.50 Td (a + 1) Tj ET
+BT /F1 8.5 Tf 383.93 314.50 Td (\() Tj ET
+BT /F3 8.5 Tf 386.76 314.50 Td (operands must be integers) Tj ET
+BT /F1 8.5 Tf 514.26 314.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 309.50 m 558.00 309.50 l S 0 G
+BT /F3 8.5 Tf 58.00 299.50 Td (aparam_array_for_int.rst) Tj ET
+BT /F1 8.5 Tf 259.80 299.50 Td (Array passed where an integer parameter is expected \() Tj ET
+BT /F3 8.5 Tf 467.19 299.50 Td (function 'first') Tj ET
+BT /F3 8.5 Tf 259.80 288.50 Td (expects an integer for argument 1, got an array) Tj ET
+BT /F1 8.5 Tf 499.50 288.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 283.50 m 558.00 283.50 l S 0 G
+BT /F3 8.5 Tf 58.00 273.50 Td (aparam_assign_int_to_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 273.50 Td (Integer assigned to an array parameter \() Tj ET
+BT /F3 8.5 Tf 411.92 273.50 Td (type mismatch: cannot) Tj ET
+BT /F3 8.5 Tf 259.80 262.50 Td (assign integer to variable 'a' of type array) Tj ET
+BT /F1 8.5 Tf 484.20 262.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 257.50 m 558.00 257.50 l S 0 G
+BT /F3 8.5 Tf 58.00 247.50 Td (aparam_bounds_read.rst) Tj ET
+BT /F1 8.5 Tf 259.80 247.50 Td (Read past the end through a parameter \(runtime:) Tj ET
+BT /F3 8.5 Tf 446.89 247.50 Td (array index out of) Tj ET
+BT /F3 8.5 Tf 259.80 236.50 Td (range) Tj ET
+BT /F1 8.5 Tf 285.30 236.50 Td (, output 1 kept first\).) Tj ET
+0.6 G 0.5 w 54.00 231.50 m 558.00 231.50 l S 0 G
+BT /F3 8.5 Tf 58.00 221.50 Td (aparam_bounds_store.rst) Tj ET
+BT /F1 8.5 Tf 259.80 221.50 Td (Store through a nested array-parameter call past the end \(runtime:) Tj ET
+BT /F3 8.5 Tf 512.08 221.50 Td (array) Tj ET
+BT /F3 8.5 Tf 259.80 210.50 Td (index out of range) Tj ET
+BT /F1 8.5 Tf 351.60 210.50 Td (, output 7 kept first\).) Tj ET
+0.6 G 0.5 w 54.00 205.50 m 558.00 205.50 l S 0 G
+BT /F3 8.5 Tf 58.00 195.50 Td (aparam_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 195.50 Td (Array parameter named) Tj ET
+BT /F3 8.5 Tf 351.91 195.50 Td (print) Tj ET
+BT /F1 8.5 Tf 382.51 195.50 Td (\() Tj ET
+BT /F3 8.5 Tf 385.34 195.50 Td (using built-in name 'print' as a) Tj ET
+BT /F3 8.5 Tf 259.80 184.50 Td (parameter name) Tj ET
+BT /F1 8.5 Tf 331.20 184.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 179.50 m 558.00 179.50 l S 0 G
+BT /F3 8.5 Tf 58.00 169.50 Td (aparam_duplicate.rst) Tj ET
+BT /F3 8.5 Tf 259.80 169.50 Td (@f\(a, a[]\)) Tj ET
+BT /F1 8.5 Tf 315.90 169.50 Td (\() Tj ET
+BT /F3 8.5 Tf 318.73 169.50 Td (duplicate parameter 'a') Tj ET
+BT /F1 8.5 Tf 436.03 169.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 164.50 m 558.00 164.50 l S 0 G
+BT /F3 8.5 Tf 58.00 154.50 Td (aparam_index_int_param.rst) Tj ET
+BT /F1 8.5 Tf 259.80 154.50 Td (Indexing an integer parameter \() Tj ET
+BT /F3 8.5 Tf 378.38 154.50 Td (cannot index a non-array value) Tj ET
+BT /F1 8.5 Tf 531.38 154.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 149.50 m 558.00 149.50 l S 0 G
+BT /F3 8.5 Tf 58.00 139.50 Td (aparam_int_for_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 139.50 Td (Integer passed where an array parameter is expected \() Tj ET
+BT /F3 8.5 Tf 466.72 139.50 Td (function 'first') Tj ET
+BT /F3 8.5 Tf 259.80 128.50 Td (expects an array for argument 1, got an integer) Tj ET
+BT /F1 8.5 Tf 499.50 128.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 123.50 m 558.00 123.50 l S 0 G
+BT /F3 8.5 Tf 58.00 113.50 Td (aparam_int_param_as_array_store.rst) Tj ET
+BT /F1 8.5 Tf 259.80 113.50 Td (Element store through an integer parameter \() Tj ET
+BT /F3 8.5 Tf 429.88 113.50 Td (cannot index a non-array) Tj ET
+BT /F3 8.5 Tf 259.80 102.50 Td (value) Tj ET
+BT /F1 8.5 Tf 285.30 102.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 97.50 m 558.00 97.50 l S 0 G
+BT /F3 8.5 Tf 58.00 87.50 Td (aparam_main_array_param.rst) Tj ET
+BT /F3 8.5 Tf 259.80 87.50 Td (@main\(a[]\)) Tj ET
+BT /F1 8.5 Tf 315.90 87.50 Td (\() Tj ET
+BT /F3 8.5 Tf 318.73 87.50 Td (@main\(\) must not have parameters) Tj ET
+BT /F1 8.5 Tf 481.93 87.50 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 82.50 m 558.00 82.50 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 14 of 16) Tj ET
 endstream
 endobj
 33 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 32 0 R >>
 endobj
 34 0 obj
-<< /Length 4818 >>
+<< /Length 12484 >>
 stream
 0.88 g 54.00 717.00 504.00 15.00 re f 0 g
 BT /F2 8.5 Tf 58.00 722.00 Td (File) Tj ET
 BT /F2 8.5 Tf 259.80 722.00 Td (Checks) Tj ET
 0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
-BT /F3 8.5 Tf 58.00 707.00 Td (rt_index_read_high.rst) Tj ET
-BT /F1 8.5 Tf 259.80 707.00 Td (Read past the end \() Tj ET
-BT /F3 8.5 Tf 334.46 707.00 Td (array index out of range) Tj ET
-BT /F1 8.5 Tf 456.86 707.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 707.00 Td (aparam_negate_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 707.00 Td (Unary) Tj ET
+BT /F3 8.5 Tf 284.83 707.00 Td (-) Tj ET
+BT /F1 8.5 Tf 295.03 707.00 Td (on an array parameter \() Tj ET
+BT /F3 8.5 Tf 384.32 707.00 Td (operand must be an integer) Tj ET
+BT /F1 8.5 Tf 516.92 707.00 Td (\).) Tj ET
 0.6 G 0.5 w 54.00 702.00 m 558.00 702.00 l S 0 G
-BT /F3 8.5 Tf 58.00 692.00 Td (rt_index_read_negative.rst) Tj ET
-BT /F1 8.5 Tf 259.80 692.00 Td (Read at a negative index \() Tj ET
-BT /F3 8.5 Tf 359.02 692.00 Td (array index out of range) Tj ET
-BT /F1 8.5 Tf 481.42 692.00 Td (\).) Tj ET
+BT /F3 8.5 Tf 58.00 692.00 Td (aparam_return_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 692.00 Td (Returning an array parameter \() Tj ET
+BT /F3 8.5 Tf 376.48 692.00 Td (return value must be an integer) Tj ET
+BT /F1 8.5 Tf 534.58 692.00 Td (\).) Tj ET
 0.6 G 0.5 w 54.00 687.00 m 558.00 687.00 l S 0 G
-BT /F3 8.5 Tf 58.00 677.00 Td (rt_index_store_high.rst) Tj ET
-BT /F1 8.5 Tf 259.80 677.00 Td (Store past the end \() Tj ET
-BT /F3 8.5 Tf 334.46 677.00 Td (array index out of range) Tj ET
-BT /F1 8.5 Tf 456.86 677.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 672.00 m 558.00 672.00 l S 0 G
-BT /F3 8.5 Tf 58.00 662.00 Td (rt_modulo_by_zero.rst) Tj ET
-BT /F1 8.5 Tf 259.80 662.00 Td (Modulo by zero \() Tj ET
-BT /F3 8.5 Tf 323.10 662.00 Td (modulo by zero) Tj ET
-BT /F1 8.5 Tf 394.50 662.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 657.00 m 558.00 657.00 l S 0 G
-BT /F3 8.5 Tf 58.00 647.00 Td (rt_modulo_int_min.rst) Tj ET
-BT /F3 8.5 Tf 259.80 647.00 Td (-2147483648 % -1) Tj ET
-BT /F1 8.5 Tf 346.50 647.00 Td (\() Tj ET
-BT /F3 8.5 Tf 349.33 647.00 Td (integer modulo overflow) Tj ET
-BT /F1 8.5 Tf 466.63 647.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 642.00 m 558.00 642.00 l S 0 G
-BT /F3 8.5 Tf 58.00 632.00 Td (rt_negative_array_size.rst) Tj ET
-BT /F1 8.5 Tf 259.80 632.00 Td (Negative) Tj ET
-BT /F3 8.5 Tf 295.70 632.00 Td (arr) Tj ET
-BT /F1 8.5 Tf 316.10 632.00 Td (size at run time \() Tj ET
-BT /F3 8.5 Tf 378.93 632.00 Td (negative array size) Tj ET
-BT /F1 8.5 Tf 475.83 632.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 627.00 m 558.00 627.00 l S 0 G
-BT /F3 8.5 Tf 58.00 617.00 Td (syntax_missing_semicolon.rst) Tj ET
-BT /F1 8.5 Tf 259.80 617.00 Td (Missing) Tj ET
-BT /F3 8.5 Tf 290.97 617.00 Td (;) Tj ET
-BT /F1 8.5 Tf 301.17 617.00 Td (\() Tj ET
-BT /F3 8.5 Tf 304.00 617.00 Td (3: error: syntax error, unexpected ']') Tj ET
-BT /F1 8.5 Tf 497.80 617.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 612.00 m 558.00 612.00 l S 0 G
-BT /F3 8.5 Tf 58.00 602.00 Td (syntax_unclosed_paren.rst) Tj ET
-BT /F1 8.5 Tf 259.80 602.00 Td (Unclosed parenthesis \() Tj ET
-BT /F3 8.5 Tf 346.72 602.00 Td (syntax error) Tj ET
-BT /F1 8.5 Tf 407.92 602.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 597.00 m 558.00 597.00 l S 0 G
-BT /F3 8.5 Tf 58.00 587.00 Td (var_builtin_name.rst) Tj ET
-BT /F1 8.5 Tf 259.80 587.00 Td (Variable named) Tj ET
-BT /F3 8.5 Tf 321.69 587.00 Td (print) Tj ET
-BT /F1 8.5 Tf 352.29 587.00 Td (\() Tj ET
-BT /F3 8.5 Tf 355.12 587.00 Td (using built-in name 'print' as a) Tj ET
-BT /F3 8.5 Tf 259.80 576.00 Td (variable name) Tj ET
-BT /F1 8.5 Tf 326.10 576.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 571.00 m 558.00 571.00 l S 0 G
-BT /F3 8.5 Tf 58.00 561.00 Td (var_inner_not_visible.rst) Tj ET
-BT /F1 8.5 Tf 259.80 561.00 Td (Block variable used after the block \() Tj ET
-BT /F3 8.5 Tf 394.44 561.00 Td (4: error: undefined variable) Tj ET
-BT /F3 8.5 Tf 259.80 550.00 Td ('y') Tj ET
-BT /F1 8.5 Tf 275.10 550.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 545.00 m 558.00 545.00 l S 0 G
-BT /F3 8.5 Tf 58.00 535.00 Td (var_self_reference_undeclared.rst) Tj ET
-BT /F3 8.5 Tf 259.80 535.00 Td (x := x + 1;) Tj ET
-BT /F1 8.5 Tf 321.00 535.00 Td (with no earlier) Tj ET
-BT /F3 8.5 Tf 376.27 535.00 Td (x) Tj ET
-BT /F1 8.5 Tf 386.47 535.00 Td (\() Tj ET
-BT /F3 8.5 Tf 389.30 535.00 Td (undefined variable 'x') Tj ET
-BT /F1 8.5 Tf 501.50 535.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 530.00 m 558.00 530.00 l S 0 G
-BT /F3 8.5 Tf 58.00 520.00 Td (var_undefined.rst) Tj ET
-BT /F1 8.5 Tf 259.80 520.00 Td (Use of an unassigned variable \() Tj ET
-BT /F3 8.5 Tf 379.33 520.00 Td (undefined variable 'z') Tj ET
-BT /F1 8.5 Tf 491.53 520.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 515.00 m 558.00 515.00 l S 0 G
-BT /F3 8.5 Tf 58.00 505.00 Td (while_array_condition.rst) Tj ET
-BT /F1 8.5 Tf 259.80 505.00 Td (Array as a) Tj ET
-BT /F3 8.5 Tf 300.90 505.00 Td (while) Tj ET
-BT /F1 8.5 Tf 331.50 505.00 Td (condition \() Tj ET
-BT /F3 8.5 Tf 370.71 505.00 Td (while condition must be an integer) Tj ET
-BT /F1 8.5 Tf 544.11 505.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 500.00 m 558.00 500.00 l S 0 G
-BT /F3 8.5 Tf 58.00 490.00 Td (while_body_variable_not_visible.rst) Tj ET
-BT /F1 8.5 Tf 259.80 490.00 Td (Loop-body variable used after the loop \() Tj ET
-BT /F3 8.5 Tf 410.05 490.00 Td (undefined variable 'hidden') Tj ET
-BT /F1 8.5 Tf 547.75 490.00 Td (\).) Tj ET
-0.6 G 0.5 w 54.00 485.00 m 558.00 485.00 l S 0 G
-BT /F1 8 Tf 245.75 30 Td (Rastera README - page 15 of 15) Tj ET
+BT /F3 8.5 Tf 58.00 677.00 Td (aparam_second_arg_kind.rst) Tj ET
+BT /F1 8.5 Tf 259.80 677.00 Td (Integer for the second, array, parameter \() Tj ET
+BT /F3 8.5 Tf 415.23 677.00 Td (function 'f' expects an) Tj ET
+BT /F3 8.5 Tf 259.80 666.00 Td (array for argument 2, got an integer) Tj ET
+BT /F1 8.5 Tf 443.40 666.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 661.00 m 558.00 661.00 l S 0 G
+BT /F3 8.5 Tf 58.00 651.00 Td (aparam_wrong_arity.rst) Tj ET
+BT /F1 8.5 Tf 259.80 651.00 Td (Too few arguments for) Tj ET
+BT /F3 8.5 Tf 347.20 651.00 Td (@f\(a[], n\)) Tj ET
+BT /F1 8.5 Tf 403.30 651.00 Td (\() Tj ET
+BT /F3 8.5 Tf 406.13 651.00 Td (wrong argument count for) Tj ET
+BT /F3 8.5 Tf 259.80 640.00 Td ('f': expected 2, got 1) Tj ET
+BT /F1 8.5 Tf 372.00 640.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 635.00 m 558.00 635.00 l S 0 G
+BT /F3 8.5 Tf 58.00 625.00 Td (array_arith.rst) Tj ET
+BT /F1 8.5 Tf 259.80 625.00 Td (Array nested inside an array literal) Tj ET
+BT /F3 8.5 Tf 391.12 625.00 Td (<1, <2, 3>>) Tj ET
+BT /F1 8.5 Tf 452.32 625.00 Td (\() Tj ET
+BT /F3 8.5 Tf 455.16 625.00 Td (array literal) Tj ET
+BT /F3 8.5 Tf 259.80 614.00 Td (elements must be integers) Tj ET
+BT /F1 8.5 Tf 387.30 614.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 609.00 m 558.00 609.00 l S 0 G
+BT /F3 8.5 Tf 58.00 599.00 Td (array_compare.rst) Tj ET
+BT /F1 8.5 Tf 259.80 599.00 Td (Comparing two arrays with) Tj ET
+BT /F3 8.5 Tf 362.77 599.00 Td (==) Tj ET
+BT /F1 8.5 Tf 378.07 599.00 Td (\() Tj ET
+BT /F3 8.5 Tf 380.90 599.00 Td (operands must be integers) Tj ET
+BT /F1 8.5 Tf 508.40 599.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 594.00 m 558.00 594.00 l S 0 G
+BT /F3 8.5 Tf 58.00 584.00 Td (array_index_non_array.rst) Tj ET
+BT /F1 8.5 Tf 259.80 584.00 Td (Indexing an integer \() Tj ET
+BT /F3 8.5 Tf 337.29 584.00 Td (cannot index a non-array value) Tj ET
+BT /F1 8.5 Tf 490.29 584.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 579.00 m 558.00 579.00 l S 0 G
+BT /F3 8.5 Tf 58.00 569.00 Td (array_negative_size.rst) Tj ET
+BT /F3 8.5 Tf 259.80 569.00 Td (arr) Tj ET
+BT /F1 8.5 Tf 280.20 569.00 Td (with a negative size \(runtime:) Tj ET
+BT /F3 8.5 Tf 392.63 569.00 Td (negative array size) Tj ET
+BT /F1 8.5 Tf 489.53 569.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 564.00 m 558.00 564.00 l S 0 G
+BT /F3 8.5 Tf 58.00 554.00 Td (array_print_array.rst) Tj ET
+BT /F3 8.5 Tf 259.80 554.00 Td (print) Tj ET
+BT /F1 8.5 Tf 290.40 554.00 Td (of an array \() Tj ET
+BT /F3 8.5 Tf 336.22 554.00 Td (expects an integer argument) Tj ET
+BT /F1 8.5 Tf 473.92 554.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 549.00 m 558.00 549.00 l S 0 G
+BT /F3 8.5 Tf 58.00 539.00 Td (array_type_mismatch.rst) Tj ET
+BT /F1 8.5 Tf 259.80 539.00 Td (Reassigning an integer variable with an array \() Tj ET
+BT /F3 8.5 Tf 435.06 539.00 Td (type mismatch) Tj ET
+BT /F1 8.5 Tf 501.36 539.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 534.00 m 558.00 534.00 l S 0 G
+BT /F3 8.5 Tf 58.00 524.00 Td (bad_character.rst) Tj ET
+BT /F1 8.5 Tf 259.80 524.00 Td (Unknown character) Tj ET
+BT /F3 8.5 Tf 335.38 524.00 Td ($) Tj ET
+BT /F1 8.5 Tf 345.58 524.00 Td (\() Tj ET
+BT /F3 8.5 Tf 348.41 524.00 Td (unexpected character '$') Tj ET
+BT /F1 8.5 Tf 470.81 524.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 519.00 m 558.00 519.00 l S 0 G
+BT /F3 8.5 Tf 58.00 509.00 Td (call_arg_undefined.rst) Tj ET
+BT /F3 8.5 Tf 259.80 509.00 Td (print\(y\)) Tj ET
+BT /F1 8.5 Tf 305.70 509.00 Td (with) Tj ET
+BT /F3 8.5 Tf 323.18 509.00 Td (y) Tj ET
+BT /F1 8.5 Tf 333.38 509.00 Td (never assigned \() Tj ET
+BT /F3 8.5 Tf 396.21 509.00 Td (undefined variable 'y') Tj ET
+BT /F1 8.5 Tf 508.41 509.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 504.00 m 558.00 504.00 l S 0 G
+BT /F3 8.5 Tf 58.00 494.00 Td (call_unknown_func.rst) Tj ET
+BT /F1 8.5 Tf 259.80 494.00 Td (Call to an undefined function \() Tj ET
+BT /F3 8.5 Tf 372.72 494.00 Td (unknown function 'unknown_func') Tj ET
+BT /F1 8.5 Tf 530.82 494.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 489.00 m 558.00 489.00 l S 0 G
+BT /F3 8.5 Tf 58.00 479.00 Td (call_wrong_arity_too_few.rst) Tj ET
+BT /F3 8.5 Tf 259.80 479.00 Td (print\(\)) Tj ET
+BT /F1 8.5 Tf 300.60 479.00 Td (\() Tj ET
+BT /F3 8.5 Tf 303.43 479.00 Td (wrong argument count for 'print') Tj ET
+BT /F1 8.5 Tf 466.63 479.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 474.00 m 558.00 474.00 l S 0 G
+BT /F3 8.5 Tf 58.00 464.00 Td (call_wrong_arity_too_many.rst) Tj ET
+BT /F3 8.5 Tf 259.80 464.00 Td (print\(1, 2\)) Tj ET
+BT /F1 8.5 Tf 321.00 464.00 Td (\() Tj ET
+BT /F3 8.5 Tf 323.83 464.00 Td (wrong argument count for 'print') Tj ET
+BT /F1 8.5 Tf 487.03 464.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 459.00 m 558.00 459.00 l S 0 G
+BT /F3 8.5 Tf 58.00 449.00 Td (cmp_nonassoc.rst) Tj ET
+BT /F1 8.5 Tf 259.80 449.00 Td (Chained comparison) Tj ET
+BT /F3 8.5 Tf 340.11 449.00 Td (a < b < c) Tj ET
+BT /F1 8.5 Tf 391.11 449.00 Td (\() Tj ET
+BT /F3 8.5 Tf 393.94 449.00 Td (syntax error) Tj ET
+BT /F1 8.5 Tf 455.14 449.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 444.00 m 558.00 444.00 l S 0 G
+BT /F3 8.5 Tf 58.00 434.00 Td (func_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 434.00 Td (Function named) Tj ET
+BT /F3 8.5 Tf 323.11 434.00 Td (print) Tj ET
+BT /F1 8.5 Tf 353.71 434.00 Td (\() Tj ET
+BT /F3 8.5 Tf 356.54 434.00 Td (using built-in name 'print' as a) Tj ET
+BT /F3 8.5 Tf 259.80 423.00 Td (function name) Tj ET
+BT /F1 8.5 Tf 326.10 423.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 418.00 m 558.00 418.00 l S 0 G
+BT /F3 8.5 Tf 58.00 408.00 Td (func_duplicate.rst) Tj ET
+BT /F1 8.5 Tf 259.80 408.00 Td (Two functions with one name \() Tj ET
+BT /F3 8.5 Tf 375.07 408.00 Td (duplicate function 'main') Tj ET
+BT /F1 8.5 Tf 502.57 408.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 403.00 m 558.00 403.00 l S 0 G
+BT /F3 8.5 Tf 58.00 393.00 Td (func_duplicate_param.rst) Tj ET
+BT /F1 8.5 Tf 259.80 393.00 Td (Repeated parameter name \() Tj ET
+BT /F3 8.5 Tf 366.57 393.00 Td (duplicate parameter 'a') Tj ET
+BT /F1 8.5 Tf 483.87 393.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 388.00 m 558.00 388.00 l S 0 G
+BT /F3 8.5 Tf 58.00 378.00 Td (func_main_with_params.rst) Tj ET
+BT /F3 8.5 Tf 259.80 378.00 Td (@main) Tj ET
+BT /F1 8.5 Tf 290.40 378.00 Td (with parameters \() Tj ET
+BT /F3 8.5 Tf 356.05 378.00 Td (@main\(\) must not have parameters) Tj ET
+BT /F1 8.5 Tf 519.25 378.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 373.00 m 558.00 373.00 l S 0 G
+BT /F3 8.5 Tf 58.00 363.00 Td (func_param_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 363.00 Td (Parameter named) Tj ET
+BT /F3 8.5 Tf 330.19 363.00 Td (print) Tj ET
+BT /F1 8.5 Tf 360.79 363.00 Td (\() Tj ET
+BT /F3 8.5 Tf 363.62 363.00 Td (... as a parameter name) Tj ET
+BT /F1 8.5 Tf 480.92 363.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 358.00 m 558.00 358.00 l S 0 G
+BT /F3 8.5 Tf 58.00 348.00 Td (func_vars_not_shared.rst) Tj ET
+BT /F1 8.5 Tf 259.80 348.00 Td (A function using another function's variable \() Tj ET
+BT /F3 8.5 Tf 426.78 348.00 Td (undefined variable 'x') Tj ET
+BT /F1 8.5 Tf 538.98 348.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 343.00 m 558.00 343.00 l S 0 G
+BT /F3 8.5 Tf 58.00 333.00 Td (func_wrong_arity.rst) Tj ET
+BT /F1 8.5 Tf 259.80 333.00 Td (Wrong number of arguments \() Tj ET
+BT /F3 8.5 Tf 373.17 333.00 Td (expected 2, got 1) Tj ET
+BT /F1 8.5 Tf 459.87 333.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 328.00 m 558.00 328.00 l S 0 G
+BT /F3 8.5 Tf 58.00 318.00 Td (gfx_array_argument.rst) Tj ET
+BT /F1 8.5 Tf 259.80 318.00 Td (Array passed to) Tj ET
+BT /F3 8.5 Tf 321.69 318.00 Td (rgb) Tj ET
+BT /F1 8.5 Tf 342.09 318.00 Td (\() Tj ET
+BT /F3 8.5 Tf 344.92 318.00 Td (builtin 'rgb' expects an integer) Tj ET
+BT /F3 8.5 Tf 259.80 307.00 Td (argument) Tj ET
+BT /F1 8.5 Tf 300.60 307.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 302.00 m 558.00 302.00 l S 0 G
+BT /F3 8.5 Tf 58.00 292.00 Td (gfx_canvas_invalid_stops.rst) Tj ET
+BT /F3 8.5 Tf 259.80 292.00 Td (canvas\(4, 5000\)) Tj ET
+BT /F1 8.5 Tf 341.40 292.00 Td (stops the program after output 5 \(runtime:) Tj ET
+BT /F3 8.5 Tf 500.61 292.00 Td (invalid) Tj ET
+BT /F3 8.5 Tf 259.80 281.00 Td (canvas size) Tj ET
+BT /F1 8.5 Tf 315.90 281.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 276.00 m 558.00 276.00 l S 0 G
+BT /F3 8.5 Tf 58.00 266.00 Td (gfx_canvas_negative.rst) Tj ET
+BT /F1 8.5 Tf 259.80 266.00 Td (Negative canvas height \(runtime:) Tj ET
+BT /F3 8.5 Tf 386.41 266.00 Td (invalid canvas size) Tj ET
+BT /F1 8.5 Tf 483.31 266.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 261.00 m 558.00 261.00 l S 0 G
+BT /F3 8.5 Tf 58.00 251.00 Td (gfx_canvas_too_large.rst) Tj ET
+BT /F1 8.5 Tf 259.80 251.00 Td (Canvas width 4097 \(runtime:) Tj ET
+BT /F3 8.5 Tf 370.34 251.00 Td (invalid canvas size) Tj ET
+BT /F1 8.5 Tf 467.24 251.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 246.00 m 558.00 246.00 l S 0 G
+BT /F3 8.5 Tf 58.00 236.00 Td (gfx_canvas_zero.rst) Tj ET
+BT /F1 8.5 Tf 259.80 236.00 Td (Canvas width 0 \(runtime:) Tj ET
+BT /F3 8.5 Tf 356.16 236.00 Td (invalid canvas size) Tj ET
+BT /F1 8.5 Tf 453.06 236.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 231.00 m 558.00 231.00 l S 0 G
+BT /F3 8.5 Tf 58.00 221.00 Td (gfx_export_arity.rst) Tj ET
+BT /F3 8.5 Tf 259.80 221.00 Td (export\(1\)) Tj ET
+BT /F1 8.5 Tf 310.80 221.00 Td (\() Tj ET
+BT /F3 8.5 Tf 313.63 221.00 Td (wrong argument count for 'export') Tj ET
+BT /F1 8.5 Tf 481.93 221.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 216.00 m 558.00 216.00 l S 0 G
+BT /F3 8.5 Tf 58.00 206.00 Td (gfx_export_no_canvas.rst) Tj ET
+BT /F3 8.5 Tf 259.80 206.00 Td (export\(\)) Tj ET
+BT /F1 8.5 Tf 305.70 206.00 Td (before any canvas, after printing 1 \(runtime:) Tj ET
+BT /F3 8.5 Tf 472.47 206.00 Td (no canvas) Tj ET
+BT /F1 8.5 Tf 518.37 206.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 201.00 m 558.00 201.00 l S 0 G
+BT /F3 8.5 Tf 58.00 191.00 Td (gfx_function_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 191.00 Td (Function named) Tj ET
+BT /F3 8.5 Tf 323.11 191.00 Td (canvas) Tj ET
+BT /F1 8.5 Tf 358.81 191.00 Td (\() Tj ET
+BT /F3 8.5 Tf 361.64 191.00 Td (using built-in name 'canvas' as a) Tj ET
+BT /F3 8.5 Tf 259.80 180.00 Td (function name) Tj ET
+BT /F1 8.5 Tf 326.10 180.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 175.00 m 558.00 175.00 l S 0 G
+BT /F3 8.5 Tf 58.00 165.00 Td (gfx_line_arity.rst) Tj ET
+BT /F3 8.5 Tf 259.80 165.00 Td (line) Tj ET
+BT /F1 8.5 Tf 285.30 165.00 Td (with four arguments \() Tj ET
+BT /F3 8.5 Tf 365.13 165.00 Td (wrong argument count for 'line') Tj ET
+BT /F1 8.5 Tf 523.23 165.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 160.00 m 558.00 160.00 l S 0 G
+BT /F3 8.5 Tf 58.00 150.00 Td (gfx_line_no_canvas.rst) Tj ET
+BT /F3 8.5 Tf 259.80 150.00 Td (line) Tj ET
+BT /F1 8.5 Tf 285.30 150.00 Td (before any canvas \(runtime:) Tj ET
+BT /F3 8.5 Tf 393.01 150.00 Td (no canvas) Tj ET
+BT /F1 8.5 Tf 438.91 150.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 145.00 m 558.00 145.00 l S 0 G
+BT /F3 8.5 Tf 58.00 135.00 Td (gfx_param_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 135.00 Td (Parameter named) Tj ET
+BT /F3 8.5 Tf 330.19 135.00 Td (pixel) Tj ET
+BT /F1 8.5 Tf 360.79 135.00 Td (\() Tj ET
+BT /F3 8.5 Tf 363.62 135.00 Td (using built-in name 'pixel' as a) Tj ET
+BT /F3 8.5 Tf 259.80 124.00 Td (parameter name) Tj ET
+BT /F1 8.5 Tf 331.20 124.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 119.00 m 558.00 119.00 l S 0 G
+BT /F3 8.5 Tf 58.00 109.00 Td (gfx_pixel_no_canvas.rst) Tj ET
+BT /F3 8.5 Tf 259.80 109.00 Td (pixel) Tj ET
+BT /F1 8.5 Tf 290.40 109.00 Td (before any canvas \(runtime:) Tj ET
+BT /F3 8.5 Tf 398.11 109.00 Td (no canvas) Tj ET
+BT /F1 8.5 Tf 444.01 109.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 104.00 m 558.00 104.00 l S 0 G
+BT /F3 8.5 Tf 58.00 94.00 Td (gfx_rect_no_canvas.rst) Tj ET
+BT /F3 8.5 Tf 259.80 94.00 Td (rect) Tj ET
+BT /F1 8.5 Tf 285.30 94.00 Td (before any canvas \(runtime:) Tj ET
+BT /F3 8.5 Tf 393.01 94.00 Td (no canvas) Tj ET
+BT /F1 8.5 Tf 438.91 94.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 89.00 m 558.00 89.00 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 15 of 16) Tj ET
 endstream
 endobj
 35 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 34 0 R >>
 endobj
 36 0 obj
+<< /Length 9294 >>
+stream
+0.88 g 54.00 717.00 504.00 15.00 re f 0 g
+BT /F2 8.5 Tf 58.00 722.00 Td (File) Tj ET
+BT /F2 8.5 Tf 259.80 722.00 Td (Checks) Tj ET
+0.6 G 0.5 w 54.00 717.00 m 558.00 717.00 l S 0 G
+BT /F3 8.5 Tf 58.00 707.00 Td (gfx_rgb_variable_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 707.00 Td (Variable named) Tj ET
+BT /F3 8.5 Tf 321.69 707.00 Td (rgb) Tj ET
+BT /F1 8.5 Tf 342.09 707.00 Td (\() Tj ET
+BT /F3 8.5 Tf 344.92 707.00 Td (using built-in name 'rgb' as a variable) Tj ET
+BT /F3 8.5 Tf 259.80 696.00 Td (name) Tj ET
+BT /F1 8.5 Tf 280.20 696.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 691.00 m 558.00 691.00 l S 0 G
+BT /F3 8.5 Tf 58.00 681.00 Td (if_branch_var_not_visible.rst) Tj ET
+BT /F1 8.5 Tf 259.80 681.00 Td (Variable created inside an) Tj ET
+BT /F3 8.5 Tf 360.43 681.00 Td (if) Tj ET
+BT /F1 8.5 Tf 375.73 681.00 Td (branch used after it \() Tj ET
+BT /F3 8.5 Tf 453.68 681.00 Td (undefined variable) Tj ET
+BT /F3 8.5 Tf 259.80 670.00 Td ('branch_var') Tj ET
+BT /F1 8.5 Tf 321.00 670.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 665.00 m 558.00 665.00 l S 0 G
+BT /F3 8.5 Tf 58.00 655.00 Td (interp_output_before_runtime_error.rst) Tj ET
+BT /F1 8.5 Tf 259.80 655.00 Td (Output 7 is kept, then runtime error) Tj ET
+BT /F3 8.5 Tf 393.97 655.00 Td (negative array size) Tj ET
+BT /F1 8.5 Tf 490.87 655.00 Td (.) Tj ET
+0.6 G 0.5 w 54.00 650.00 m 558.00 650.00 l S 0 G
+BT /F3 8.5 Tf 58.00 640.00 Td (literal_too_large.rst) Tj ET
+BT /F1 8.5 Tf 259.80 640.00 Td (Literal 2147483648 \() Tj ET
+BT /F3 8.5 Tf 337.76 640.00 Td (integer literal out of range) Tj ET
+BT /F1 8.5 Tf 480.56 640.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 635.00 m 558.00 635.00 l S 0 G
+BT /F3 8.5 Tf 58.00 625.00 Td (logic_array_not_operand.rst) Tj ET
+BT /F3 8.5 Tf 259.80 625.00 Td (!) Tj ET
+BT /F1 8.5 Tf 270.00 625.00 Td (applied to an array \() Tj ET
+BT /F3 8.5 Tf 345.59 625.00 Td (logical operand must be an integer) Tj ET
+BT /F1 8.5 Tf 518.99 625.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 620.00 m 558.00 620.00 l S 0 G
+BT /F3 8.5 Tf 58.00 610.00 Td (logic_array_operand.rst) Tj ET
+BT /F3 8.5 Tf 259.80 610.00 Td (&) Tj ET
+BT /F1 8.5 Tf 264.90 610.00 Td (/) Tj ET
+BT /F3 8.5 Tf 267.26 610.00 Td (|) Tj ET
+BT /F1 8.5 Tf 277.46 610.00 Td (applied to an array \() Tj ET
+BT /F3 8.5 Tf 353.05 610.00 Td (logical operands must be integers) Tj ET
+BT /F1 8.5 Tf 521.35 610.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 605.00 m 558.00 605.00 l S 0 G
+BT /F3 8.5 Tf 58.00 595.00 Td (no_main.rst) Tj ET
+BT /F1 8.5 Tf 259.80 595.00 Td (No) Tj ET
+BT /F3 8.5 Tf 273.03 595.00 Td (@main) Tj ET
+BT /F1 8.5 Tf 303.63 595.00 Td (\() Tj ET
+BT /F3 8.5 Tf 306.46 595.00 Td (program has no @main\(\) function) Tj ET
+BT /F1 8.5 Tf 464.56 595.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 590.00 m 558.00 590.00 l S 0 G
+BT /F3 8.5 Tf 58.00 580.00 Td (range_array_bound.rst) Tj ET
+BT /F1 8.5 Tf 259.80 580.00 Td (Array as a range bound \() Tj ET
+BT /F3 8.5 Tf 353.82 580.00 Td (range bound must be an integer) Tj ET
+BT /F1 8.5 Tf 506.82 580.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 575.00 m 558.00 575.00 l S 0 G
+BT /F3 8.5 Tf 58.00 565.00 Td (range_assign_loop_variable.rst) Tj ET
+BT /F1 8.5 Tf 259.80 565.00 Td (Assignment to the loop variable \() Tj ET
+BT /F3 8.5 Tf 383.58 565.00 Td (cannot assign to loop variable) Tj ET
+BT /F3 8.5 Tf 259.80 554.00 Td ('i') Tj ET
+BT /F1 8.5 Tf 275.10 554.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 549.00 m 558.00 549.00 l S 0 G
+BT /F3 8.5 Tf 58.00 539.00 Td (range_index_bound_needs_parens.rst) Tj ET
+BT /F3 8.5 Tf 259.80 539.00 Td (0..v[2] [) Tj ET
+BT /F1 8.5 Tf 310.80 539.00 Td (reads) Tj ET
+BT /F3 8.5 Tf 334.42 539.00 Td ([) Tj ET
+BT /F1 8.5 Tf 344.62 539.00 Td (as the body \() Tj ET
+BT /F3 8.5 Tf 393.76 539.00 Td (syntax error) Tj ET
+BT /F1 8.5 Tf 454.96 539.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 534.00 m 558.00 534.00 l S 0 G
+BT /F3 8.5 Tf 58.00 524.00 Td (range_variable_not_visible.rst) Tj ET
+BT /F1 8.5 Tf 259.80 524.00 Td (Loop variable used after the loop \() Tj ET
+BT /F3 8.5 Tf 388.79 524.00 Td (undefined variable 'i') Tj ET
+BT /F1 8.5 Tf 500.99 524.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 519.00 m 558.00 519.00 l S 0 G
+BT /F3 8.5 Tf 58.00 509.00 Td (rt_division_by_zero.rst) Tj ET
+BT /F1 8.5 Tf 259.80 509.00 Td (Division by zero after printing 7 \() Tj ET
+BT /F3 8.5 Tf 381.67 509.00 Td (division by zero) Tj ET
+BT /F1 8.5 Tf 463.27 509.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 504.00 m 558.00 504.00 l S 0 G
+BT /F3 8.5 Tf 58.00 494.00 Td (rt_division_int_min.rst) Tj ET
+BT /F3 8.5 Tf 259.80 494.00 Td (-2147483648 / -1) Tj ET
+BT /F1 8.5 Tf 346.50 494.00 Td (\() Tj ET
+BT /F3 8.5 Tf 349.33 494.00 Td (integer division overflow) Tj ET
+BT /F1 8.5 Tf 476.83 494.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 489.00 m 558.00 489.00 l S 0 G
+BT /F3 8.5 Tf 58.00 479.00 Td (rt_index_read_high.rst) Tj ET
+BT /F1 8.5 Tf 259.80 479.00 Td (Read past the end \() Tj ET
+BT /F3 8.5 Tf 334.46 479.00 Td (array index out of range) Tj ET
+BT /F1 8.5 Tf 456.86 479.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 474.00 m 558.00 474.00 l S 0 G
+BT /F3 8.5 Tf 58.00 464.00 Td (rt_index_read_negative.rst) Tj ET
+BT /F1 8.5 Tf 259.80 464.00 Td (Read at a negative index \() Tj ET
+BT /F3 8.5 Tf 359.02 464.00 Td (array index out of range) Tj ET
+BT /F1 8.5 Tf 481.42 464.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 459.00 m 558.00 459.00 l S 0 G
+BT /F3 8.5 Tf 58.00 449.00 Td (rt_index_store_high.rst) Tj ET
+BT /F1 8.5 Tf 259.80 449.00 Td (Store past the end \() Tj ET
+BT /F3 8.5 Tf 334.46 449.00 Td (array index out of range) Tj ET
+BT /F1 8.5 Tf 456.86 449.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 444.00 m 558.00 444.00 l S 0 G
+BT /F3 8.5 Tf 58.00 434.00 Td (rt_modulo_by_zero.rst) Tj ET
+BT /F1 8.5 Tf 259.80 434.00 Td (Modulo by zero \() Tj ET
+BT /F3 8.5 Tf 323.10 434.00 Td (modulo by zero) Tj ET
+BT /F1 8.5 Tf 394.50 434.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 429.00 m 558.00 429.00 l S 0 G
+BT /F3 8.5 Tf 58.00 419.00 Td (rt_modulo_int_min.rst) Tj ET
+BT /F3 8.5 Tf 259.80 419.00 Td (-2147483648 % -1) Tj ET
+BT /F1 8.5 Tf 346.50 419.00 Td (\() Tj ET
+BT /F3 8.5 Tf 349.33 419.00 Td (integer modulo overflow) Tj ET
+BT /F1 8.5 Tf 466.63 419.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 414.00 m 558.00 414.00 l S 0 G
+BT /F3 8.5 Tf 58.00 404.00 Td (rt_negative_array_size.rst) Tj ET
+BT /F1 8.5 Tf 259.80 404.00 Td (Negative) Tj ET
+BT /F3 8.5 Tf 295.70 404.00 Td (arr) Tj ET
+BT /F1 8.5 Tf 316.10 404.00 Td (size at run time \() Tj ET
+BT /F3 8.5 Tf 378.93 404.00 Td (negative array size) Tj ET
+BT /F1 8.5 Tf 475.83 404.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 399.00 m 558.00 399.00 l S 0 G
+BT /F3 8.5 Tf 58.00 389.00 Td (syntax_missing_semicolon.rst) Tj ET
+BT /F1 8.5 Tf 259.80 389.00 Td (Missing) Tj ET
+BT /F3 8.5 Tf 290.97 389.00 Td (;) Tj ET
+BT /F1 8.5 Tf 301.17 389.00 Td (\() Tj ET
+BT /F3 8.5 Tf 304.00 389.00 Td (3: error: syntax error, unexpected ']') Tj ET
+BT /F1 8.5 Tf 497.80 389.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 384.00 m 558.00 384.00 l S 0 G
+BT /F3 8.5 Tf 58.00 374.00 Td (syntax_unclosed_paren.rst) Tj ET
+BT /F1 8.5 Tf 259.80 374.00 Td (Unclosed parenthesis \() Tj ET
+BT /F3 8.5 Tf 346.72 374.00 Td (syntax error) Tj ET
+BT /F1 8.5 Tf 407.92 374.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 369.00 m 558.00 369.00 l S 0 G
+BT /F3 8.5 Tf 58.00 359.00 Td (var_builtin_name.rst) Tj ET
+BT /F1 8.5 Tf 259.80 359.00 Td (Variable named) Tj ET
+BT /F3 8.5 Tf 321.69 359.00 Td (print) Tj ET
+BT /F1 8.5 Tf 352.29 359.00 Td (\() Tj ET
+BT /F3 8.5 Tf 355.12 359.00 Td (using built-in name 'print' as a) Tj ET
+BT /F3 8.5 Tf 259.80 348.00 Td (variable name) Tj ET
+BT /F1 8.5 Tf 326.10 348.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 343.00 m 558.00 343.00 l S 0 G
+BT /F3 8.5 Tf 58.00 333.00 Td (var_inner_not_visible.rst) Tj ET
+BT /F1 8.5 Tf 259.80 333.00 Td (Block variable used after the block \() Tj ET
+BT /F3 8.5 Tf 394.44 333.00 Td (4: error: undefined variable) Tj ET
+BT /F3 8.5 Tf 259.80 322.00 Td ('y') Tj ET
+BT /F1 8.5 Tf 275.10 322.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 317.00 m 558.00 317.00 l S 0 G
+BT /F3 8.5 Tf 58.00 307.00 Td (var_self_reference_undeclared.rst) Tj ET
+BT /F3 8.5 Tf 259.80 307.00 Td (x := x + 1;) Tj ET
+BT /F1 8.5 Tf 321.00 307.00 Td (with no earlier) Tj ET
+BT /F3 8.5 Tf 376.27 307.00 Td (x) Tj ET
+BT /F1 8.5 Tf 386.47 307.00 Td (\() Tj ET
+BT /F3 8.5 Tf 389.30 307.00 Td (undefined variable 'x') Tj ET
+BT /F1 8.5 Tf 501.50 307.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 302.00 m 558.00 302.00 l S 0 G
+BT /F3 8.5 Tf 58.00 292.00 Td (var_undefined.rst) Tj ET
+BT /F1 8.5 Tf 259.80 292.00 Td (Use of an unassigned variable \() Tj ET
+BT /F3 8.5 Tf 379.33 292.00 Td (undefined variable 'z') Tj ET
+BT /F1 8.5 Tf 491.53 292.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 287.00 m 558.00 287.00 l S 0 G
+BT /F3 8.5 Tf 58.00 277.00 Td (while_array_condition.rst) Tj ET
+BT /F1 8.5 Tf 259.80 277.00 Td (Array as a) Tj ET
+BT /F3 8.5 Tf 300.90 277.00 Td (while) Tj ET
+BT /F1 8.5 Tf 331.50 277.00 Td (condition \() Tj ET
+BT /F3 8.5 Tf 370.71 277.00 Td (while condition must be an integer) Tj ET
+BT /F1 8.5 Tf 544.11 277.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 272.00 m 558.00 272.00 l S 0 G
+BT /F3 8.5 Tf 58.00 262.00 Td (while_body_variable_not_visible.rst) Tj ET
+BT /F1 8.5 Tf 259.80 262.00 Td (Loop-body variable used after the loop \() Tj ET
+BT /F3 8.5 Tf 410.05 262.00 Td (undefined variable 'hidden') Tj ET
+BT /F1 8.5 Tf 547.75 262.00 Td (\).) Tj ET
+0.6 G 0.5 w 54.00 257.00 m 558.00 257.00 l S 0 G
+BT /F1 8 Tf 245.75 30 Td (Rastera README - page 16 of 16) Tj ET
+endstream
+endobj
+37 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 36 0 R >>
+endobj
+38 0 obj
 << /Title (Rastera README) /Producer (docs/build_readme_pdf.py) >>
 endobj
 xref
-0 37
+0 39
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000219 00000 n 
-0000000316 00000 n 
-0000000418 00000 n 
-0000000513 00000 n 
-0000007549 00000 n 
-0000007695 00000 n 
-0000013502 00000 n 
-0000013648 00000 n 
-0000019829 00000 n 
-0000019977 00000 n 
-0000025651 00000 n 
-0000025799 00000 n 
-0000030892 00000 n 
-0000031040 00000 n 
-0000038293 00000 n 
-0000038441 00000 n 
-0000045132 00000 n 
-0000045280 00000 n 
-0000056607 00000 n 
-0000056755 00000 n 
-0000063352 00000 n 
-0000063500 00000 n 
-0000072516 00000 n 
-0000072664 00000 n 
-0000082454 00000 n 
-0000082602 00000 n 
-0000092293 00000 n 
-0000092441 00000 n 
-0000102998 00000 n 
-0000103146 00000 n 
-0000115630 00000 n 
-0000115778 00000 n 
-0000120648 00000 n 
-0000120796 00000 n 
+0000000226 00000 n 
+0000000323 00000 n 
+0000000425 00000 n 
+0000000520 00000 n 
+0000007556 00000 n 
+0000007702 00000 n 
+0000013509 00000 n 
+0000013655 00000 n 
+0000019836 00000 n 
+0000019984 00000 n 
+0000025658 00000 n 
+0000025806 00000 n 
+0000030899 00000 n 
+0000031047 00000 n 
+0000038300 00000 n 
+0000038448 00000 n 
+0000045097 00000 n 
+0000045245 00000 n 
+0000056238 00000 n 
+0000056386 00000 n 
+0000064800 00000 n 
+0000064948 00000 n 
+0000071017 00000 n 
+0000071165 00000 n 
+0000080814 00000 n 
+0000080962 00000 n 
+0000090707 00000 n 
+0000090855 00000 n 
+0000100744 00000 n 
+0000100892 00000 n 
+0000110665 00000 n 
+0000110813 00000 n 
+0000123350 00000 n 
+0000123498 00000 n 
+0000132844 00000 n 
+0000132992 00000 n 
 trailer
-<< /Size 37 /Root 1 0 R /Info 36 0 R >>
+<< /Size 39 /Root 1 0 R /Info 38 0 R >>
 startxref
-120879
+133075
 %%EOF

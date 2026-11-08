@@ -37,7 +37,8 @@ Two types, never written by the programmer:
 - `array` — reference to a heap-allocated, fixed-length sequence of `i32`.
 
 A variable's type is fixed by its first assignment. Comparisons and logical operators produce `i32` `0` or `1`. Logical operators require `i32` operands; arrays are never conditions or operands.
-In a condition, any non-zero `i32` is true. Arrays are never arithmetic operands.
+In a condition, any non-zero `i32` is true. Arrays are never operands of arithmetic, comparison or unary
+operators: each is the semantic error `operands must be integers` (`operand must be an integer` for unary `-`).
 
 ## 4. Variables and scope (T02)
 
@@ -107,15 +108,31 @@ Precedence, lowest to highest:
 - `/` and `%` truncate toward zero (C semantics). A zero divisor and `-2147483648 / -1` or `-2147483648 % -1` are runtime errors (T15).
 - Operands are evaluated left to right.
 
-## 7. Functions (T07)
+## 7. Functions (T07, T10)
 
 ```
 @name(p1, p2) [ ... ]
+@name(p1, buf[]) [ ... ]
 ```
 
-- `@main` takes no parameters; parameters are mutable `i32` variables local to the call (assigning one never changes the caller's value).
-- Functions return `i32` only. Arrays cannot be returned or passed as arguments.
-- Recursion is allowed. Calling with the wrong number or kind of arguments is a semantic error.
+- `@main` takes no parameters.
+- A plain parameter `p` is a mutable `i32` variable local to the call (assigning it never changes the caller's value).
+- A parameter written with `[]` (`buf[]`) is an **array passed by reference** (T10, implemented): it refers to
+  the caller's array, so an element store `buf[i] := e;` is visible to the caller after the call. Nothing is
+  copied. The length travels with the array, so `buf[i]` is bounds-checked like any other index (§8).
+- An array parameter can be indexed, stored into, assigned to another variable (`b := buf;` aliases, §8), and
+  passed on to another function. Its only use as a range-loop bound is through indexing (`0..(buf[2])`).
+- Assigning a whole array to an array parameter (`buf := arr(3);`, `buf := other;`) **rebinds the parameter name
+  only**, exactly like reassigning any array variable: later uses of `buf` in this call refer to the new array,
+  the caller's array and the caller's variable are unchanged. Stores made before the rebind stay visible to the
+  caller. Assigning an `i32` to an array parameter, or an array to an `i32` parameter, is a type mismatch (§3).
+- An argument must match its parameter's kind: a plain parameter takes an `i32` expression and an array
+  parameter takes an array expression (a variable, `<...>` or `arr(n)`). Passing an `i32` where an array is
+  expected, or an array where an `i32` is expected, is a semantic error:
+  `function 'f' expects an array for argument 2, got an integer` (and `expects an integer ... got an array`).
+  Built-ins take `i32` only (§9).
+- Functions return `i32` only. An array cannot be returned (`^ buf;` is a semantic error).
+- Recursion is allowed. Calling with the wrong number of arguments is a semantic error.
 - Duplicate function names, duplicate parameter names and calls to unknown functions are semantic errors.
 
 ## 8. Arrays (T09)
