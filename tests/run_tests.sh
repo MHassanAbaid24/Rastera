@@ -80,6 +80,7 @@ for test in "$TESTS"/fail/*.rst; do
     fi
     if [ "$mode" = compiler ]; then
         exe="$WORK/prog"
+        : >"$WORK/out"
         "$RASTERA" "$test" -o "$exe" 2>"$WORK/err"
         status=$?
         if [ "$status" = 0 ] && [ -z "$want_compile" ]; then

@@ -52,7 +52,9 @@ struct IIndexExpr final : IExpr {
     std::unique_ptr<IExpr> index;
 };
 
-enum class IBinaryOp { Add, Subtract, Multiply, Divide, Modulo, Equal, NotEqual, Less, LessEqual, Greater, GreaterEqual };
+enum class IBinaryOp {
+    Add, Subtract, Multiply, Divide, Modulo, Equal, NotEqual, Less, LessEqual, Greater, GreaterEqual, And, Or
+};
 
 struct IBinaryExpr final : IExpr {
     IBinaryExpr(int source_line, IBinaryOp operation, std::unique_ptr<IExpr> left,
@@ -63,9 +65,12 @@ struct IBinaryExpr final : IExpr {
     std::unique_ptr<IExpr> rhs;
 };
 
-struct INegExpr final : IExpr {
-    INegExpr(int source_line, std::unique_ptr<IExpr> value)
-        : IExpr(source_line), operand(std::move(value)) {}
+enum class IUnaryOp { Negate, Not };
+
+struct IUnaryExpr final : IExpr {
+    IUnaryExpr(int source_line, IUnaryOp operation, std::unique_ptr<IExpr> value)
+        : IExpr(source_line), op(operation), operand(std::move(value)) {}
+    IUnaryOp op;
     std::unique_ptr<IExpr> operand;
 };
 
@@ -115,6 +120,13 @@ struct IIfStmt final : IStmt {
     std::unique_ptr<IExpr> cond;
     std::unique_ptr<IBlock> then_branch;
     std::unique_ptr<IStmt> else_branch;
+};
+
+struct IWhileStmt final : IStmt {
+    IWhileStmt(int source_line, std::unique_ptr<IExpr> condition, std::unique_ptr<IBlock> loop_body)
+        : IStmt(source_line), cond(std::move(condition)), body(std::move(loop_body)) {}
+    std::unique_ptr<IExpr> cond;
+    std::unique_ptr<IBlock> body;
 };
 
 struct IParam {
@@ -224,7 +236,7 @@ void iperror(Interpreter& interpreter, const char* message);
 %type <program> program
 %type <function> function
 %type <block> block statements
-%type <stmt> statement if_statement
+%type <stmt> statement if_statement while_statement
 %type <expr> expression
 %type <expr_list> args argument_list array_elements
 %type <param_list> params parameter_list
@@ -232,11 +244,13 @@ void iperror(Interpreter& interpreter, const char* message);
 %destructor { delete $$; } <str> <program> <function> <block> <stmt> <expr> <expr_list> <param_list>
 
 %precedence IDENT
+%left '|'
+%left '&'
 %nonassoc EQ NE '<' LE '>' GE
 %precedence ARRAY_ELEMENT
 %left '+' '-'
 %left '*' '/' '%'
-%precedence UMINUS
+%right UMINUS
 %precedence INDEX
 %precedence '['
 
@@ -282,7 +296,7 @@ statement
     | expression ';' { $$ = new IExprStmt($1->line, std::unique_ptr<IExpr>($1)); }
     | block { $$ = $1; }
     | if_statement { $$ = $1; }
-    ;
+    | while_statement { $$ = $1; }
 
 if_statement
     : '?' '(' expression ')' block {
@@ -295,6 +309,12 @@ if_statement
     | '?' '(' expression ')' block ':' if_statement {
         $$ = new IIfStmt(@1.first_line, std::unique_ptr<IExpr>($3), std::unique_ptr<IBlock>($5),
                          std::unique_ptr<IStmt>($7));
+    }
+    ;
+
+while_statement
+    : '*' '(' expression ')' block {
+        $$ = new IWhileStmt(@1.first_line, std::unique_ptr<IExpr>($3), std::unique_ptr<IBlock>($5));
     }
     ;
 
@@ -326,7 +346,10 @@ expression
     | expression '*' expression { $$ = new IBinaryExpr(@2.first_line, IBinaryOp::Multiply, std::unique_ptr<IExpr>($1), std::unique_ptr<IExpr>($3)); }
     | expression '/' expression { $$ = new IBinaryExpr(@2.first_line, IBinaryOp::Divide, std::unique_ptr<IExpr>($1), std::unique_ptr<IExpr>($3)); }
     | expression '%' expression { $$ = new IBinaryExpr(@2.first_line, IBinaryOp::Modulo, std::unique_ptr<IExpr>($1), std::unique_ptr<IExpr>($3)); }
-    | '-' expression %prec UMINUS { $$ = new INegExpr(@1.first_line, std::unique_ptr<IExpr>($2)); }
+    | expression '&' expression { $$ = new IBinaryExpr(@2.first_line, IBinaryOp::And, std::unique_ptr<IExpr>($1), std::unique_ptr<IExpr>($3)); }
+    | expression '|' expression { $$ = new IBinaryExpr(@2.first_line, IBinaryOp::Or, std::unique_ptr<IExpr>($1), std::unique_ptr<IExpr>($3)); }
+    | '-' expression %prec UMINUS { $$ = new IUnaryExpr(@1.first_line, IUnaryOp::Negate, std::unique_ptr<IExpr>($2)); }
+    | '!' expression %prec UMINUS { $$ = new IUnaryExpr(@1.first_line, IUnaryOp::Not, std::unique_ptr<IExpr>($2)); }
     ;
 
 args
@@ -480,6 +503,12 @@ bool Interpreter::checkStmt(IStmt& statement) {
         return true;
     }
     if (auto* block = dynamic_cast<IBlock*>(&statement)) return checkBlock(*block);
+    if (auto* while_statement = dynamic_cast<IWhileStmt*>(&statement)) {
+        if (checkExpr(*while_statement->cond) != IType::Int)
+            error(while_statement->cond->line, "while condition must be an integer");
+        checkBlock(*while_statement->body);
+        return true;
+    }
     auto* if_statement = dynamic_cast<IIfStmt*>(&statement);
     checkExpr(*if_statement->cond);
     checkBlock(*if_statement->then_branch);
@@ -537,12 +566,17 @@ IType Interpreter::checkExpr(IExpr& expression) {
         return expression.type = IType::Int;
     }
     if (auto* binary = dynamic_cast<IBinaryExpr*>(&expression)) {
-        checkExpr(*binary->lhs);
-        checkExpr(*binary->rhs);
+        const IType left_type = checkExpr(*binary->lhs);
+        const IType right_type = checkExpr(*binary->rhs);
+        if ((binary->op == IBinaryOp::And || binary->op == IBinaryOp::Or) &&
+            (left_type != IType::Int || right_type != IType::Int))
+            error(binary->line, "logical operands must be integers");
         return expression.type = IType::Int;
     }
-    auto* negation = dynamic_cast<INegExpr*>(&expression);
-    checkExpr(*negation->operand);
+    auto* unary = dynamic_cast<IUnaryExpr*>(&expression);
+    const IType operand_type = checkExpr(*unary->operand);
+    if (unary->op == IUnaryOp::Not && operand_type != IType::Int)
+        error(unary->line, "logical operand must be an integer");
     return expression.type = IType::Int;
 }
 
@@ -605,7 +639,9 @@ Interpreter::ReturnState Interpreter::execStmt(IStmt& statement) {
         Value* array = findValue(store->name);
         const int32_t index = eval(*store->index).integer;
         const int32_t value = eval(*store->value).integer;
-        if (index >= 0 && static_cast<std::size_t>(index) < array->array->size()) (*array->array)[static_cast<std::size_t>(index)] = value;
+        if (index < 0 || static_cast<std::size_t>(index) >= array->array->size())
+            runtimeError("array index out of range");
+        (*array->array)[static_cast<std::size_t>(index)] = value;
         return {};
     }
     if (auto* expression = dynamic_cast<IExprStmt*>(&statement)) {
@@ -613,6 +649,13 @@ Interpreter::ReturnState Interpreter::execStmt(IStmt& statement) {
         return {};
     }
     if (auto* block = dynamic_cast<IBlock*>(&statement)) return execBlock(*block);
+    if (auto* while_statement = dynamic_cast<IWhileStmt*>(&statement)) {
+        while (eval(*while_statement->cond).integer != 0) {
+            const ReturnState result = execBlock(*while_statement->body);
+            if (result.returned) return result;
+        }
+        return {};
+    }
     auto* if_statement = dynamic_cast<IIfStmt*>(&statement);
     if (eval(*if_statement->cond).integer != 0) return execBlock(*if_statement->then_branch);
     if (if_statement->else_branch != nullptr) return execStmt(*if_statement->else_branch);
@@ -646,31 +689,56 @@ Interpreter::Value Interpreter::eval(IExpr& expression) {
     if (auto* index = dynamic_cast<IIndexExpr*>(&expression)) {
         Value array = eval(*index->array);
         const int32_t offset = eval(*index->index).integer;
-        if (offset < 0 || static_cast<std::size_t>(offset) >= array.array->size()) return {};
+        if (offset < 0 || static_cast<std::size_t>(offset) >= array.array->size())
+            runtimeError("array index out of range");
         return {IType::Int, (*array.array)[static_cast<std::size_t>(offset)], nullptr};
     }
     if (auto* binary = dynamic_cast<IBinaryExpr*>(&expression)) {
         const int32_t left = eval(*binary->lhs).integer;
+        if (binary->op == IBinaryOp::And) {
+            if (left == 0) return {IType::Int, 0, nullptr};
+            return {IType::Int, eval(*binary->rhs).integer != 0 ? 1 : 0, nullptr};
+        }
+        if (binary->op == IBinaryOp::Or) {
+            if (left != 0) return {IType::Int, 1, nullptr};
+            return {IType::Int, eval(*binary->rhs).integer != 0 ? 1 : 0, nullptr};
+        }
         const int32_t right = eval(*binary->rhs).integer;
         switch (binary->op) {
         case IBinaryOp::Add: return {IType::Int, wrappedAdd(left, right), nullptr};
         case IBinaryOp::Subtract: return {IType::Int, wrappedSubtract(left, right), nullptr};
         case IBinaryOp::Multiply: return {IType::Int, wrappedMultiply(left, right), nullptr};
-        case IBinaryOp::Divide: return {IType::Int, right == 0 ? 0 : fromBits(static_cast<uint32_t>(static_cast<int64_t>(left) / right)), nullptr};
-        case IBinaryOp::Modulo: return {IType::Int, right == 0 ? 0 : fromBits(static_cast<uint32_t>(static_cast<int64_t>(left) % right)), nullptr};
+        case IBinaryOp::Divide:
+            if (right == 0) runtimeError("division by zero");
+            if (left == std::numeric_limits<int32_t>::min() && right == -1)
+                runtimeError("integer division overflow");
+            return {IType::Int, fromBits(static_cast<uint32_t>(
+                static_cast<int64_t>(left) / static_cast<int64_t>(right))), nullptr};
+        case IBinaryOp::Modulo:
+            if (right == 0) runtimeError("modulo by zero");
+            if (left == std::numeric_limits<int32_t>::min() && right == -1)
+                runtimeError("integer modulo overflow");
+            return {IType::Int, fromBits(static_cast<uint32_t>(
+                static_cast<int64_t>(left) % static_cast<int64_t>(right))), nullptr};
         case IBinaryOp::Equal: return {IType::Int, left == right ? 1 : 0, nullptr};
         case IBinaryOp::NotEqual: return {IType::Int, left != right ? 1 : 0, nullptr};
         case IBinaryOp::Less: return {IType::Int, left < right ? 1 : 0, nullptr};
         case IBinaryOp::LessEqual: return {IType::Int, left <= right ? 1 : 0, nullptr};
         case IBinaryOp::Greater: return {IType::Int, left > right ? 1 : 0, nullptr};
         case IBinaryOp::GreaterEqual: return {IType::Int, left >= right ? 1 : 0, nullptr};
+        case IBinaryOp::And:
+        case IBinaryOp::Or:
+            break;
         }
     }
-    auto* negation = dynamic_cast<INegExpr*>(&expression);
-    return {IType::Int, wrappedNegate(eval(*negation->operand).integer), nullptr};
+    auto* unary = dynamic_cast<IUnaryExpr*>(&expression);
+    const int32_t operand = eval(*unary->operand).integer;
+    if (unary->op == IUnaryOp::Not) return {IType::Int, operand == 0 ? 1 : 0, nullptr};
+    return {IType::Int, wrappedNegate(operand), nullptr};
 }
 
 [[noreturn]] void Interpreter::runtimeError(const char* message) const {
+    std::fflush(stdout);
     std::fprintf(stderr, "rastera: runtime error: %s\n", message);
     std::exit(2);
 }

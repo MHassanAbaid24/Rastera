@@ -37,7 +37,7 @@
 "<="                        { return LE; }
 ">="                        { return GE; }
 
-[@()\[\]^;+\-*/%,?:<>]      { return yytext[0]; }
+[@()\[\]^;+\-*/%,?:<>&|!]     { return yytext[0]; }
 .                           { ip_interpreter->error(yylineno, std::string("unexpected character '") + yytext + "'"); }
 
 %%
