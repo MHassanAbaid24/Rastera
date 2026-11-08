@@ -79,8 +79,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-159 passed, 0 failed
-159 passed, 0 failed
+161 passed, 0 failed
+161 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -387,6 +387,113 @@ picture is small on a modern screen; zoom in to see the rings. `tests/pass/gfx_d
 and `tests/pass/gfx_demo_pattern.rst` keep these two hashes under test in both suites, so any
 change that alters the drawn pixels fails `./dev.sh test`.
 
+### 5.7 Sorting: `examples/insertion_sort.rst` and `examples/merge_sort.rst`
+
+`examples/insertion_sort.rst` is the program of section 4 of the project proposal: `@insertion` is
+copied from it unchanged. `examples/merge_sort.rst` is the recursive merge sort the proposal
+describes, using `arr(n)` for its temporary buffer. Both sort the same six arrays in place through
+an array parameter `a[]` (arrays are passed by reference): already sorted, reverse sorted, mixed,
+with duplicates, one element and two elements. `@print_all` prints one array and then `-1`, which
+cannot be an element of these arrays, so the output shows where each array ends.
+
+```
+# Insertion sort (the proposal's section 4 program) on six arrays. `insertion` sorts the
+# caller's array in place; `print_all` prints one array and then -1, which cannot be an element
+# here, so the output shows where each array ends. The smallest key walks j down to -1:
+# `j >= 0 & a[j] > key` short-circuits, so a[-1] is never read.
+@insertion(a[], n) [
+    * i :: 1..(n - 1) [
+         key := a[i];
+         j := i - 1;
+         * (j >= 0 & a[j] > key) [
+             a[j + 1] := a[j];
+             j := j - 1;
+         ]
+         a[j + 1] := key;
+    ]
+    ^ 0;
+]
+
+@print_all(a[], n) [
+    * i :: 0..(n - 1) [
+        print(a[i]);
+    ]
+    print(-1);
+    ^ 0;
+]
+
+@main() [
+    sorted := <1, 2, 3, 4, 5>;
+    insertion(sorted, 5);
+    print_all(sorted, 5);
+
+    reverse := <9, 7, 5, 3, 1>;
+    insertion(reverse, 5);
+    print_all(reverse, 5);
+
+    mixed := <5, 2, 9, 1, 5, 6>;
+    insertion(mixed, 6);
+    print_all(mixed, 6);
+
+    dups := <4, 2, 4, 1, 2, 4>;
+    insertion(dups, 6);
+    print_all(dups, 6);
+
+    one := <7>;
+    insertion(one, 1);
+    print_all(one, 1);
+
+    two := <2, 1>;
+    insertion(two, 2);
+    print_all(two, 2);
+    ^ 0;
+]
+```
+
+The merge sort keeps `@merge` (which merges `a[lo..mid]` and `a[mid+1..hi]` through `tmp` and copies
+the result back) and `@print_all` in the file; `@main` is the same as above with `merge_sort` in
+place of `insertion`. Its recursive part:
+
+```
+@msort(a[], tmp[], lo, hi) [
+    ? (lo < hi) [
+        mid := (lo + hi) / 2;
+        msort(a, tmp, lo, mid);
+        msort(a, tmp, mid + 1, hi);
+        merge(a, tmp, lo, mid, hi);
+    ]
+    ^ 0;
+]
+
+@merge_sort(a[], n) [
+    tmp := arr(n);
+    msort(a, tmp, 0, n - 1);
+    ^ 0;
+]
+```
+
+Run each example on both binaries (output joined onto one line with `paste` to save space; both
+programs print the same 33 lines and exit with status 0 in both phases):
+
+```
+$ ./dev.sh build/rasteri examples/insertion_sort.rst | paste -sd' '
+1 2 3 4 5 -1 1 3 5 7 9 -1 1 2 5 5 6 9 -1 1 2 2 4 4 4 -1 7 -1 1 2 -1
+
+$ ./dev.sh build/rasterc examples/insertion_sort.rst -o build/insertion_sort
+$ ./dev.sh build/insertion_sort | paste -sd' '
+1 2 3 4 5 -1 1 3 5 7 9 -1 1 2 5 5 6 9 -1 1 2 2 4 4 4 -1 7 -1 1 2 -1
+
+$ ./dev.sh build/rasteri examples/merge_sort.rst | paste -sd' '
+1 2 3 4 5 -1 1 3 5 7 9 -1 1 2 5 5 6 9 -1 1 2 2 4 4 4 -1 7 -1 1 2 -1
+
+$ ./dev.sh build/rasterc examples/merge_sort.rst -o build/merge_sort
+$ ./dev.sh build/merge_sort | paste -sd' '
+1 2 3 4 5 -1 1 3 5 7 9 -1 1 2 5 5 6 9 -1 1 2 2 4 4 4 -1 7 -1 1 2 -1
+```
+
+`tests/pass/sort_insertion.rst` and `tests/pass/sort_merge.rst` hold the same programs with one
+`expect-stdout` line for every printed value, so both suites check all 33 values.
+
 ## 6. Language overview
 
 Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief:
@@ -530,7 +637,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 159 test cases.
+definition and the test suite, not the grammar file: both pass the same 161 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -585,6 +692,8 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 | `examples/graphics_demo.rst` | 64x64 gradient with a rectangle and two lines; writes `out.ppm`. |
 | `examples/gradient.rst` | The proposal's section 5 program: 256x256 rings from `(x * x + y * y) % 255`; writes `out.ppm`. |
 | `examples/pattern.rst` | 128x128 nested squares, a fan of lines and a frame, with range loops; writes `out.ppm`. |
+| `examples/insertion_sort.rst` | The proposal's insertion sort on six arrays, printing each sorted array followed by `-1`. |
+| `examples/merge_sort.rst` | Recursive merge sort with an `arr(n)` buffer on the same six arrays; identical output. |
 
 ### 10.5 `runtime/`
 
@@ -624,9 +733,9 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 |---|---|
 | `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives, and `# expect-ppm-size`, `# expect-ppm-pixel`, `# expect-ppm-sha256` to check the `out.ppm` a program wrote. |
 
-`tests/pass/` holds 85 programs that must run (expected stdout and exit status in directives);
+`tests/pass/` holds 87 programs that must run (expected stdout and exit status in directives);
 `tests/fail/` holds 74 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 159 per suite.
+giving the 161 per suite.
 
 `tests/pass/` files:
 
@@ -708,6 +817,8 @@ giving the 159 per suite.
 | `range_while_array.rst` | Range loop fills an array, a while loop sums it (prints 55). |
 | `return_literal.rst` | Returned literal becomes the exit status (42). |
 | `rt_array_zero.rst` | `arr(0)` is created without a runtime error (prints 5). |
+| `sort_insertion.rst` | `examples/insertion_sort.rst`: six arrays sorted in place, all 33 printed values checked. |
+| `sort_merge.rst` | `examples/merge_sort.rst`: recursive merge sort with an `arr(n)` buffer, same 33 values. |
 | `unary_minus.rst` | `-(-7)` is 7 (exit 7). |
 | `var_basic.rst` | Variable creation and use (exit 5). |
 | `var_inner_block_reassigns_outer.rst` | A bare block reassigns a visible outer variable (exit 2). |
