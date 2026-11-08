@@ -9,6 +9,10 @@ phases of the course project:
 | 1 | `rasteri` | Flex + Bison interpreter. Parses a `.rst` file, checks it, and runs `@main` directly. No IR, no executable is produced. |
 | 2 | `rasterc` | Flex + Bison ahead-of-time compiler. Builds an AST, runs semantic analysis, emits LLVM 18 IR and links a native Linux executable. |
 
+Rastera's own feature is built-in procedural graphics: a program draws into an in-memory canvas
+with `canvas`, `rgb`, `pixel`, `line` and `rect`, and `export()` writes it as a PPM image
+(section 5.5 and the graphics paragraph of section 6).
+
 Both programs accept the same language and are checked by the same test cases
 (`tests/pass`, `tests/fail`). The normative language rules are in `docs/LANGUAGE_SPEC.md`;
 the original project proposal is `docs/proposal.pdf`.
@@ -75,8 +79,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-101 passed, 0 failed
-101 passed, 0 failed
+130 passed, 0 failed
+130 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -166,7 +170,7 @@ entry:
 
 ## 5. Examples
 
-The four programs in `examples/` were run on `rasteri` and, where they are valid programs,
+The five programs in `examples/` were run on `rasteri` and, where they are valid programs,
 compiled with `rasterc` and executed. The output below is what those runs printed.
 
 ### 5.1 Recursion and arrays: `examples/recursion_arrays.rst`
@@ -299,6 +303,52 @@ examples/static_error.rst:3: error: undefined variable 'missing'
 (exit status 1; build/static_error is not created)
 ```
 
+### 5.5 Graphics: `examples/graphics_demo.rst`
+
+```
+# Graphics demo: a 64x64 gradient with a white rectangle and two diagonal
+# lines, written to out.ppm in the current directory.
+@main() [
+    canvas(64, 64);
+
+    # Red grows to the right, green grows downwards, blue is constant.
+    y := 0;
+    * (y < 64) [
+        x := 0;
+        * (x < 64) [
+            pixel(x, y, rgb(x * 4, y * 4, 128));
+            x := x + 1;
+        ]
+        y := y + 1;
+    ]
+
+    rect(8, 8, 20, 12, rgb(255, 255, 255));
+    line(0, 0, 63, 63, rgb(255, 0, 0));
+    line(0, 63, 63, 0, rgb(0, 255, 0));
+    export();
+    ^ 0;
+]
+```
+
+`export()` writes `out.ppm` in the directory the program runs in. Under `./dev.sh` that is the
+repository root (`/work`); git ignores `*.ppm`. Both programs produce the same file:
+
+```
+$ ./dev.sh build/rasteri examples/graphics_demo.rst
+$ sha256sum out.ppm
+2fe2e88e8620fc46ed89a9e3e675e96dc8f7fc77526dde82f5a95bda473f9fa7  out.ppm
+
+$ ./dev.sh build/rasterc examples/graphics_demo.rst -o build/graphics_demo
+$ ./dev.sh build/graphics_demo
+$ sha256sum out.ppm
+2fe2e88e8620fc46ed89a9e3e675e96dc8f7fc77526dde82f5a95bda473f9fa7  out.ppm
+```
+
+To look at the picture, open `out.ppm` in any image viewer that reads PPM (for example GIMP, or
+the image viewer of most Linux desktops). Optionally, if ImageMagick is installed on the host,
+`convert out.ppm out.png` makes a PNG. The file is a 64x64 image: a gradient (red increases to the right, green downwards), a white
+rectangle near the top-left corner and a red and a green diagonal.
+
 ## 6. Language overview
 
 Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief:
@@ -344,7 +394,7 @@ Core features implemented in both `rasteri` and `rasterc`:
 - Functions with parameters, recursion, mutual recursion and calls before the definition.
   Functions return `i32`; arrays cannot be passed to or returned from functions.
 - Arrays: `<a, b, c>`, `arr(n)`, `a[i]`, `a[i] := e;`, bounds checked at run time.
-- Built-in `print(x)`.
+- Built-in `print(x)` and the graphics built-ins described below.
 - Runtime errors (exit 2): division or modulo by zero, `-2147483648 / -1` and `% -1`, array index
   out of range, negative array size.
 - Static errors (exit 1): syntax errors, bad characters, integer literals above 2147483647,
@@ -359,8 +409,21 @@ assigning to it is the static error `cannot assign to loop variable 'i'`. A `[` 
 parentheses after `..` opens the body, so index an upper bound with parentheses:
 `* i :: 0..(v[2]) [ ... ]`.
 
-Not implemented in this revision, although mentioned as future work in the specification: the
-graphics built-ins (`canvas`, `rgb`, `pixel`, `export`, `line`, `rect`).
+Graphics built-ins (spec section 9; all take and return `i32`, return 0 unless noted):
+
+| Call | Effect |
+|---|---|
+| `canvas(w, h)` | New `w` x `h` canvas, all black; `w` and `h` must be 1..4096, else the runtime error `invalid canvas size`. Calling it again replaces the canvas. |
+| `rgb(r, g, b)` | Returns `(r << 16) \| (g << 8) \| b` with each channel clamped to 0..255. |
+| `pixel(x, y, c)` | Sets one pixel; coordinates outside the canvas are ignored; only the low 24 bits of `c` are used as `0xRRGGBB`. |
+| `line(x0, y0, x1, y1, c)` | Bresenham line in every direction, both endpoints included, clipped to the canvas. |
+| `rect(x, y, w, h, c)` | Filled rectangle, clipped to the canvas; draws nothing if `w` or `h` is 0 or negative. |
+| `export()` | Writes the canvas to `out.ppm` in the current directory: binary P6, header `P6\nW H\n255\n`, then `W*H` RGB byte triples, row by row from the top-left. |
+
+`(0, 0)` is the top-left pixel. `pixel`, `line`, `rect` and `export` before any `canvas` call fail
+with the runtime error `no canvas` (exit 2). `rasteri` keeps its own canvas and `rasterc`
+programs use the one in `runtime/rastera_rt.c`; both use the same algorithms and write
+byte-identical files. The names of the built-ins are reserved like `print`.
 
 ## 7. Exit status and error summary
 
@@ -409,7 +472,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 101 test cases.
+definition and the test suite, not the grammar file: both pass the same 130 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -461,12 +524,13 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 | `examples/while_logic.rst` | While loop with `\|`, `&`, `!` and short-circuiting; prints `98 0 1 1`. |
 | `examples/runtime_error.rst` | Prints `20`, then fails with an array index error (exit 2). |
 | `examples/static_error.rst` | Undefined variable; rejected before anything runs (exit 1). |
+| `examples/graphics_demo.rst` | 64x64 gradient with a rectangle and two lines; writes `out.ppm`. |
 
 ### 10.5 `runtime/`
 
 | File | Purpose |
 |---|---|
-| `runtime/rastera_rt.c` | C runtime linked into every compiled program: the process entry `main` that calls `rs_main`, `rt_print` (`print`), `rt_alloc` (array allocation with a length header and the negative-size check) and `rt_panic` (prints the runtime error, exits 2). |
+| `runtime/rastera_rt.c` | C runtime linked into every compiled program: the process entry `main` that calls `rs_main`, `rt_print` (`print`), `rt_alloc` (array allocation with a length header and the negative-size check), `rt_panic` (prints the runtime error, exits 2) and the graphics built-ins `rt_canvas`, `rt_rgb`, `rt_pixel`, `rt_line`, `rt_rect`, `rt_export` over one canvas that is freed at exit. |
 
 ### 10.6 `src/` (Phase 2 compiler, `rasterc`)
 
@@ -498,11 +562,11 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 
 | File | Purpose |
 |---|---|
-| `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives. |
+| `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives, and `# expect-ppm-size`, `# expect-ppm-pixel`, `# expect-ppm-sha256` to check the `out.ppm` a program wrote. |
 
-`tests/pass/` holds 56 programs that must run (expected stdout and exit status in directives);
-`tests/fail/` holds 45 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 101 per suite.
+`tests/pass/` holds 71 programs that must run (expected stdout and exit status in directives);
+`tests/fail/` holds 59 programs that must be rejected or fail at run time. Each runs in both suites,
+giving the 130 per suite.
 
 `tests/pass/` files:
 
@@ -529,6 +593,21 @@ giving the 101 per suite.
 | `func_mutual_recursion.rst` | Mutual recursion (prints 1, 0). |
 | `func_param_is_local.rst` | Assigning a parameter does not change the caller's variable. |
 | `func_params_basic.rst` | Parameters passed and used (exit 5). |
+| `gfx_canvas_export.rst` | `canvas` and `export` both return 0; the file has header `P6 4 3 255` and is black (prints 0, 0). |
+| `gfx_canvas_max_size.rst` | The largest canvas, 4096 x 4096, is accepted; a later 4096 x 1 canvas replaces it. |
+| `gfx_canvas_replace.rst` | A second `canvas` call replaces the first: new size, black again. |
+| `gfx_line_clipped.rst` | A line starting and ending outside the canvas is clipped per pixel; an entirely outside line draws nothing. |
+| `gfx_line_diagonal.rst` | Both diagonals of a 5x5 canvas, one in each direction of travel. |
+| `gfx_line_horizontal.rst` | Horizontal line includes both endpoints and nothing around them. |
+| `gfx_line_reversed.rst` | Shallow line drawn right to left, `(6,2)` to `(0,0)`. |
+| `gfx_line_single_point.rst` | Equal endpoints draw exactly one pixel. |
+| `gfx_line_steep.rst` | Steep line `(0,0)` to `(2,6)` draws one pixel per row. |
+| `gfx_line_vertical.rst` | Vertical line drawn bottom-up covers both endpoints. |
+| `gfx_pixel_bounds.rst` | `pixel` inside and outside the canvas (no row wrap-around) and only the low 24 bits of the colour. |
+| `gfx_rect_clipped.rst` | Rectangles hanging off the top-left and bottom-right are clipped. |
+| `gfx_rect_zero.rst` | Zero or negative width/height draws nothing; the file is the header plus 27 zero bytes (sha256). |
+| `gfx_rgb_clamp.rst` | `rgb` packs channels and clamps each to 0..255 (prints 66051, 16777215, 16711808, 0, 255). |
+| `gfx_scene_sha256.rst` | A scene of rectangles, clipped lines and a pixel, checked by sha256 of the whole file. |
 | `if_branches_both_return.rst` | `if`/`else` where both branches return (exit 15). |
 | `if_else.rst` | `if` / `else` (exit 7). |
 | `if_elseif_chain.rst` | `else if` chain; 300 becomes exit 44 (low 8 bits). |
@@ -588,6 +667,20 @@ giving the 101 per suite.
 | `func_param_builtin_name.rst` | Parameter named `print` (`... as a parameter name`). |
 | `func_vars_not_shared.rst` | A function using another function's variable (`undefined variable 'x'`). |
 | `func_wrong_arity.rst` | Wrong number of arguments (`expected 2, got 1`). |
+| `gfx_array_argument.rst` | Array passed to `rgb` (`builtin 'rgb' expects an integer argument`). |
+| `gfx_canvas_invalid_stops.rst` | `canvas(4, 5000)` stops the program after output 5 (runtime: `invalid canvas size`). |
+| `gfx_canvas_negative.rst` | Negative canvas height (runtime: `invalid canvas size`). |
+| `gfx_canvas_too_large.rst` | Canvas width 4097 (runtime: `invalid canvas size`). |
+| `gfx_canvas_zero.rst` | Canvas width 0 (runtime: `invalid canvas size`). |
+| `gfx_export_arity.rst` | `export(1)` (`wrong argument count for 'export'`). |
+| `gfx_export_no_canvas.rst` | `export()` before any canvas, after printing 1 (runtime: `no canvas`). |
+| `gfx_function_builtin_name.rst` | Function named `canvas` (`using built-in name 'canvas' as a function name`). |
+| `gfx_line_arity.rst` | `line` with four arguments (`wrong argument count for 'line'`). |
+| `gfx_line_no_canvas.rst` | `line` before any canvas (runtime: `no canvas`). |
+| `gfx_param_builtin_name.rst` | Parameter named `pixel` (`using built-in name 'pixel' as a parameter name`). |
+| `gfx_pixel_no_canvas.rst` | `pixel` before any canvas (runtime: `no canvas`). |
+| `gfx_rect_no_canvas.rst` | `rect` before any canvas (runtime: `no canvas`). |
+| `gfx_rgb_variable_name.rst` | Variable named `rgb` (`using built-in name 'rgb' as a variable name`). |
 | `if_branch_var_not_visible.rst` | Variable created inside an `if` branch used after it (`undefined variable 'branch_var'`). |
 | `interp_output_before_runtime_error.rst` | Output 7 is kept, then runtime error `negative array size`. |
 | `literal_too_large.rst` | Literal 2147483648 (`integer literal out of range`). |

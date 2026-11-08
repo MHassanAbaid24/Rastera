@@ -136,14 +136,40 @@ Indexing requires `0 <= i < length`; an out-of-range read or write is a runtime 
 | Call | Effect | Task |
 |---|---|---|
 | `print(x)` | print `x` and a newline to stdout; returns 0 | T03 |
-| `canvas(w, h)` | create a `w`×`h` canvas filled with black | T11 |
-| `rgb(r, g, b)` | returns `(r << 16) \| (g << 8) \| b`, each clamped to `0..255` | T11 |
-| `pixel(x, y, c)` | set one pixel; out-of-canvas coordinates are ignored | T11 |
-| `export()` | write the canvas to `out.ppm` (binary P6) | T11 |
-| `line(x0, y0, x1, y1, c)` | Bresenham line | T12 |
-| `rect(x, y, w, h, c)` | filled rectangle, clipped to canvas | T12 |
+| `canvas(w, h)` | create a `w`×`h` canvas filled with black; calling it again replaces the canvas; returns 0 | T11 |
+| `rgb(r, g, b)` | returns `(r << 16) \| (g << 8) \| b`, each channel clamped to `0..255` | T11 |
+| `pixel(x, y, c)` | set one pixel to colour `c`; out-of-canvas coordinates are ignored; returns 0 | T11 |
+| `export()` | write the canvas to `out.ppm` in the current directory (binary P6); returns 0 | T11 |
+| `line(x0, y0, x1, y1, c)` | Bresenham line, both endpoints inclusive; returns 0 | T12 |
+| `rect(x, y, w, h, c)` | filled rectangle, clipped to the canvas; returns 0 | T12 |
 
-All built-ins return `i32`. Using a built-in name for a user function or variable is a semantic error.
+All built-ins take and return `i32`. The argument count is checked at compile time (as for `print`)
+and every argument must be an integer. Using a built-in name for a user function, parameter or
+variable is a semantic error.
+
+Graphics rules:
+
+- **Canvas.** There is at most one canvas at a time. `w` and `h` must each be in `1..4096`;
+  otherwise the program stops with the runtime error `invalid canvas size`. Every pixel starts black.
+  `canvas` called a second time discards the old image and starts a new black one.
+- **No canvas.** `pixel`, `line`, `rect` and `export` before the first `canvas` call stop the program
+  with the runtime error `no canvas`.
+- **Colours.** A colour is an `i32` read as `0xRRGGBB`: only its low 24 bits are used (red is bits
+  16-23, green bits 8-15, blue bits 0-7). `rgb` builds such a value; any other integer is also a
+  valid colour.
+- **Coordinates.** `(0, 0)` is the top-left pixel, `x` grows to the right and `y` downwards. A pixel
+  outside `0 <= x < w`, `0 <= y < h` is silently skipped; this clipping applies to every pixel of
+  `line` and `rect`, so shapes may start or end outside the canvas.
+- **`line`.** Integer Bresenham for all octants: it draws `max(|x1-x0|, |y1-y0|) + 1` pixels,
+  including both endpoints; `x0 == x1 and y0 == y1` draws one pixel. Arithmetic is done in 64 bits,
+  so extreme coordinates do not overflow.
+- **`rect`.** Fills the pixels `x <= px < x + w`, `y <= py < y + h` that lie inside the canvas;
+  `w <= 0` or `h <= 0` draws nothing.
+- **`export`.** Writes `out.ppm` (replacing any existing file) as binary PPM: the header is exactly
+  `P6\n<w> <h>\n255\n`, followed by `w*h` pixels of three bytes (R, G, B), row by row from the
+  top-left. The canvas stays usable afterwards. If the file cannot be written the runtime error
+  `cannot write out.ppm` is reported. Both implementations write byte-identical files for the same
+  program.
 
 ## 10. Errors
 

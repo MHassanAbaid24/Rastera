@@ -200,13 +200,26 @@ private:
     ReturnState execBlock(IBlock& block);
     ReturnState execStmt(IStmt& statement);
     Value eval(IExpr& expression);
+    int32_t callBuiltin(const std::string& name, const std::vector<Value>& args);
+    void requireCanvas() const;
+    void putPixel(int64_t x, int64_t y, int32_t color);
+    void drawLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t color);
+    void fillRect(int32_t x, int32_t y, int32_t width, int32_t height, int32_t color);
+    void exportCanvas() const;
     [[noreturn]] void runtimeError(const char* message) const;
+
+    struct Canvas {
+        int32_t width = 0;
+        int32_t height = 0;
+        std::vector<uint8_t> pixels;  // packed RGB, row-major from the top-left; empty = no canvas
+    };
 
     std::string file_;
     int errors_ = 0;
     std::unordered_map<std::string, IFunc*> functions_;
     std::vector<TypeScope> types_;
     std::vector<ValueScope> values_;
+    Canvas canvas_;
 };
 
 extern Interpreter* ip_interpreter;
@@ -442,6 +455,22 @@ int32_t wrappedMultiply(int32_t left, int32_t right) {
 int32_t wrappedNegate(int32_t value) {
     return fromBits(0U - static_cast<uint32_t>(value));
 }
+
+// Built-in functions and their arities. Their names are reserved (spec section 9).
+const std::unordered_map<std::string, std::size_t>& builtins() {
+    static const std::unordered_map<std::string, std::size_t> table = {
+        {"print", 1}, {"canvas", 2}, {"rgb", 3}, {"pixel", 3}, {"line", 5}, {"rect", 5}, {"export", 0},
+    };
+    return table;
+}
+
+bool isBuiltin(const std::string& name) { return builtins().count(name) != 0; }
+
+constexpr int32_t kCanvasMax = 4096;
+
+int32_t clampChannel(int32_t value) {
+    return value < 0 ? 0 : (value > 255 ? 255 : value);
+}
 }  // namespace
 
 void Interpreter::error(int line, const std::string& message) {
@@ -452,8 +481,8 @@ void Interpreter::error(int line, const std::string& message) {
 bool Interpreter::check() {
     if (!program) return false;
     for (const auto& function : program->functions) {
-        if (function->name == "print") {
-            error(function->line, "using built-in name 'print' as a function name");
+        if (isBuiltin(function->name)) {
+            error(function->line, "using built-in name '" + function->name + "' as a function name");
             continue;
         }
         if (function->name == "arr") error(function->line, "using reserved name 'arr' as a function name");
@@ -473,8 +502,8 @@ bool Interpreter::check() {
 bool Interpreter::checkFunction(IFunc& function) {
     types_.emplace_back();
     for (const IParam& param : function.params) {
-        if (param.name == "print") {
-            error(param.line, "using built-in name 'print' as a parameter name");
+        if (isBuiltin(param.name)) {
+            error(param.line, "using built-in name '" + param.name + "' as a parameter name");
         } else if (!types_.back().emplace(param.name, IType::Int).second) {
             error(param.line, "duplicate parameter '" + param.name + "'");
         }
@@ -499,8 +528,8 @@ bool Interpreter::checkStmt(IStmt& statement) {
         return true;
     }
     if (auto* assign = dynamic_cast<IAssignStmt*>(&statement)) {
-        if (assign->name == "print") {
-            error(assign->line, "using built-in name 'print' as a variable name");
+        if (isBuiltin(assign->name)) {
+            error(assign->line, "using built-in name '" + assign->name + "' as a variable name");
             return false;
         }
         if (assign->name == "arr") {
@@ -573,13 +602,13 @@ IType Interpreter::checkExpr(IExpr& expression) {
     }
     if (auto* call_expression = dynamic_cast<ICallExpr*>(&expression)) {
         for (const auto& argument : call_expression->args) checkExpr(*argument);
-        const bool builtin = call_expression->name == "print";
+        const bool builtin = isBuiltin(call_expression->name);
         const IFunc* function = builtin ? nullptr : findFunction(call_expression->name);
         if (!builtin && function == nullptr) {
             error(call_expression->line, "unknown function '" + call_expression->name + "'");
             return expression.type = IType::Int;
         }
-        const std::size_t expected = builtin ? 1U : function->params.size();
+        const std::size_t expected = builtin ? builtins().at(call_expression->name) : function->params.size();
         if (call_expression->args.size() != expected) {
             error(call_expression->line, "wrong argument count for '" + call_expression->name + "': expected " +
                                             std::to_string(expected) + ", got " +
@@ -737,10 +766,7 @@ Interpreter::Value Interpreter::eval(IExpr& expression) {
         std::vector<Value> args;
         args.reserve(call_expression->args.size());
         for (const auto& argument : call_expression->args) args.push_back(eval(*argument));
-        if (call_expression->name == "print") {
-            std::printf("%d\n", args.front().integer);
-            return {};
-        }
+        if (isBuiltin(call_expression->name)) return {IType::Int, callBuiltin(call_expression->name, args), nullptr};
         return {IType::Int, call(*findFunction(call_expression->name), args), nullptr};
     }
     if (auto* array = dynamic_cast<IArrayExpr*>(&expression)) {
@@ -803,6 +829,91 @@ Interpreter::Value Interpreter::eval(IExpr& expression) {
     const int32_t operand = eval(*unary->operand).integer;
     if (unary->op == IUnaryOp::Not) return {IType::Int, operand == 0 ? 1 : 0, nullptr};
     return {IType::Int, wrappedNegate(operand), nullptr};
+}
+
+int32_t Interpreter::callBuiltin(const std::string& name, const std::vector<Value>& args) {
+    if (name == "print") {
+        std::printf("%d\n", args[0].integer);
+        return 0;
+    }
+    if (name == "rgb") {
+        return (clampChannel(args[0].integer) << 16) | (clampChannel(args[1].integer) << 8) |
+               clampChannel(args[2].integer);
+    }
+    if (name == "canvas") {
+        const int32_t width = args[0].integer;
+        const int32_t height = args[1].integer;
+        if (width < 1 || width > kCanvasMax || height < 1 || height > kCanvasMax)
+            runtimeError("invalid canvas size");
+        canvas_.width = width;
+        canvas_.height = height;
+        canvas_.pixels.assign(static_cast<std::size_t>(width) * static_cast<std::size_t>(height) * 3, 0);
+        return 0;
+    }
+    requireCanvas();
+    if (name == "pixel") putPixel(args[0].integer, args[1].integer, args[2].integer);
+    else if (name == "line") drawLine(args[0].integer, args[1].integer, args[2].integer, args[3].integer, args[4].integer);
+    else if (name == "rect") fillRect(args[0].integer, args[1].integer, args[2].integer, args[3].integer, args[4].integer);
+    else exportCanvas();
+    return 0;
+}
+
+void Interpreter::requireCanvas() const {
+    if (canvas_.pixels.empty()) runtimeError("no canvas");
+}
+
+// Store the low 24 bits of `color` (0xRRGGBB) at (x, y) if it lies inside the canvas.
+void Interpreter::putPixel(int64_t x, int64_t y, int32_t color) {
+    if (x < 0 || y < 0 || x >= canvas_.width || y >= canvas_.height) return;
+    const std::size_t offset = (static_cast<std::size_t>(y) * static_cast<std::size_t>(canvas_.width) +
+                                static_cast<std::size_t>(x)) * 3;
+    const uint32_t bits = static_cast<uint32_t>(color);
+    canvas_.pixels[offset] = static_cast<uint8_t>(bits >> 16);
+    canvas_.pixels[offset + 1] = static_cast<uint8_t>(bits >> 8);
+    canvas_.pixels[offset + 2] = static_cast<uint8_t>(bits);
+}
+
+// Bresenham in 64-bit arithmetic so extreme coordinates cannot overflow.
+void Interpreter::drawLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t color) {
+    int64_t x = x0;
+    int64_t y = y0;
+    const int64_t dx = x1 > x0 ? static_cast<int64_t>(x1) - x0 : static_cast<int64_t>(x0) - x1;
+    const int64_t dy = y1 > y0 ? static_cast<int64_t>(y0) - y1 : static_cast<int64_t>(y1) - y0;  // -|y1 - y0|
+    const int64_t step_x = x0 < x1 ? 1 : -1;
+    const int64_t step_y = y0 < y1 ? 1 : -1;
+    int64_t error = dx + dy;
+    for (;;) {
+        putPixel(x, y, color);
+        if (x == x1 && y == y1) break;
+        const int64_t doubled = 2 * error;
+        if (doubled >= dy) {
+            error += dy;
+            x += step_x;
+        }
+        if (doubled <= dx) {
+            error += dx;
+            y += step_y;
+        }
+    }
+}
+
+void Interpreter::fillRect(int32_t x, int32_t y, int32_t width, int32_t height, int32_t color) {
+    if (width <= 0 || height <= 0) return;
+    const int64_t left = x < 0 ? 0 : x;
+    const int64_t top = y < 0 ? 0 : y;
+    const int64_t right = static_cast<int64_t>(x) + width < canvas_.width ? static_cast<int64_t>(x) + width : canvas_.width;
+    const int64_t bottom = static_cast<int64_t>(y) + height < canvas_.height ? static_cast<int64_t>(y) + height : canvas_.height;
+    for (int64_t row = top; row < bottom; ++row)
+        for (int64_t column = left; column < right; ++column) putPixel(column, row, color);
+}
+
+void Interpreter::exportCanvas() const {
+    FILE* file = std::fopen("out.ppm", "wb");
+    if (file == nullptr) runtimeError("cannot write out.ppm");
+    bool ok = std::fprintf(file, "P6\n%d %d\n255\n", canvas_.width, canvas_.height) > 0 &&
+              std::fwrite(canvas_.pixels.data(), 1, canvas_.pixels.size(), file) == canvas_.pixels.size();
+    if (std::fclose(file) != 0) ok = false;
+    if (!ok) runtimeError("cannot write out.ppm");
 }
 
 [[noreturn]] void Interpreter::runtimeError(const char* message) const {
