@@ -17,8 +17,6 @@
 
 #include "ast/ast.hpp"
 
-enum class Type { Int, Array };
-
 struct Symbol {
     std::string name;
     Type type;

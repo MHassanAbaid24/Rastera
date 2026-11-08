@@ -34,6 +34,8 @@ Diagnostics* g_diag = nullptr;
                                 return INT;
                             }
 
+"arr"                       { return ARR; }       /* reserved: array constructor (T09) */
+
 [A-Za-z_][A-Za-z0-9_]*      { yylval.str = new std::string(yytext); return IDENT; }
 
 ":="                        { return ASSIGN; }
