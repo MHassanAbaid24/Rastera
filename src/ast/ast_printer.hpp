@@ -118,6 +118,8 @@ private:
             case BinaryOp::Mul: return "*";
             case BinaryOp::Div: return "/";
             case BinaryOp::Mod: return "%";
+            case BinaryOp::And: return "&";
+            case BinaryOp::Or: return "|";
             case BinaryOp::Equal: return "==";
             case BinaryOp::NotEqual: return "!=";
             case BinaryOp::Less: return "<";
@@ -131,6 +133,7 @@ private:
     static const char* opString(UnaryOp op) {
         switch (op) {
             case UnaryOp::Neg: return "-";
+            case UnaryOp::Not: return "!";
         }
         return "?";
     }
