@@ -56,9 +56,15 @@ In a condition, any non-zero `i32` is true. Arrays are never arithmetic operands
 | `a[i] := e;` | store into array element | T09 |
 | `e;` | evaluate expression for its side effects (calls) | T03 |
 | `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]` | if / if-else; `: ? (c2) [...]` chains else-if | T05 |
-| `* (c) [ ... ]` | while loop | T06 |
+| `* (c) [ ... ]` | while loop; checks `c` before every iteration and runs the body while `c` is non-zero | T06 |
 | `* i :: a..b [ ... ]` | range loop, inclusive | T08 |
 | `^ e;` | return | T00 (literal), T07 (general) |
+
+### While loop rules (T06)
+
+- `c` must be an `i32`; an array condition is a compile error.
+- The body is a block with its own lexical scope.
+- `^` in the body returns from the enclosing function.
 
 ### Range loop rules (T08)
 

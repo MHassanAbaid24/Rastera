@@ -75,6 +75,12 @@ public:
         if (n.else_branch) child(*n.else_branch);
     }
 
+    void visit(WhileStmt& n) override {
+        line(n) << "While\n";
+        child(*n.cond);
+        child(*n.body);
+    }
+
     void visit(Block& n) override {
         line(n) << "Block\n";
         for (auto& s : n.stmts) child(*s);

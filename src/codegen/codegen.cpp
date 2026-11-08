@@ -116,6 +116,26 @@ void CodeGen::visit(IfStmt& n) {
     }
 }
 
+void CodeGen::visit(WhileStmt& n) {
+    auto* fn = builder_.GetInsertBlock()->getParent();
+    auto* condBB = llvm::BasicBlock::Create(ctx_, "while.cond", fn);
+    auto* bodyBB = llvm::BasicBlock::Create(ctx_, "while.body", fn);
+    auto* exitBB = llvm::BasicBlock::Create(ctx_, "while.exit", fn);
+
+    builder_.CreateBr(condBB);
+    builder_.SetInsertPoint(condBB);
+    auto* condVal = emit(*n.cond);
+    auto* condBool = builder_.CreateICmpNE(
+        condVal, llvm::ConstantInt::get(condVal->getType(), 0), "whilecond");
+    builder_.CreateCondBr(condBool, bodyBB, exitBB);
+
+    builder_.SetInsertPoint(bodyBB);
+    n.body->accept(*this);
+    if (!blockTerminated()) builder_.CreateBr(condBB);
+
+    builder_.SetInsertPoint(exitBB);
+}
+
 void CodeGen::visit(AssignStmt& n) {
     auto* v = emit(*n.value);
     if (n.declares) {
