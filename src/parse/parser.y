@@ -46,15 +46,19 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %type <block> block stmts
 %type <stmt> stmt if_stmt
 %type <expr> expr
-%type <expr_list> args arg_list
+%type <expr_list> args arg_list array_elements
 %type <param_list> params param_list
 
 %destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list> <param_list>
 
+%precedence IDENT
 %nonassoc EQ NE '<' LE '>' GE
+%precedence ARRAY_ELEMENT
 %left '+' '-'
 %left '*' '/' '%'
 %precedence UMINUS
+%precedence INDEX
+%precedence '['
 
 %%
 
@@ -128,7 +132,7 @@ expr
                                     delete $3;
                                     $$->loc.line = @1.first_line;
                                 }
-    | '<' arg_list '>'          {
+    | '<' array_elements '>'   {
                                     $$ = new ArrayLit(std::move(*$2));
                                     delete $2;
                                     $$->loc.line = @1.first_line;
@@ -137,7 +141,7 @@ expr
                                     $$ = new ArrayAlloc(std::unique_ptr<Expr>($3));
                                     $$->loc.line = @1.first_line;
                                 }
-    | expr '[' expr ']'         {
+    | expr '[' expr ']' %prec INDEX {
                                     $$ = new IndexExpr(std::unique_ptr<Expr>($1),
                                                        std::unique_ptr<Expr>($3));
                                     $$->loc.line = @2.first_line;
@@ -165,6 +169,12 @@ args
 arg_list
     : expr                      { $$ = new std::vector<std::unique_ptr<Expr>>(); $$->emplace_back($1); }
     | arg_list ',' expr         { $1->emplace_back($3); $$ = $1; }
+    ;
+
+array_elements
+    : expr %prec ARRAY_ELEMENT  { $$ = new std::vector<std::unique_ptr<Expr>>(); $$->emplace_back($1); }
+    | array_elements ',' expr %prec ARRAY_ELEMENT
+                                { $1->emplace_back($3); $$ = $1; }
     ;
 
 params
