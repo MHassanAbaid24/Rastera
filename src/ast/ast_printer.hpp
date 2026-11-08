@@ -75,6 +75,12 @@ public:
         if (n.else_branch) child(*n.else_branch);
     }
 
+    void visit(WhileStmt& n) override {
+        line(n) << "While\n";
+        child(*n.cond);
+        child(*n.body);
+    }
+
     void visit(Block& n) override {
         line(n) << "Block\n";
         for (auto& s : n.stmts) child(*s);
@@ -118,6 +124,8 @@ private:
             case BinaryOp::Mul: return "*";
             case BinaryOp::Div: return "/";
             case BinaryOp::Mod: return "%";
+            case BinaryOp::And: return "&";
+            case BinaryOp::Or: return "|";
             case BinaryOp::Equal: return "==";
             case BinaryOp::NotEqual: return "!=";
             case BinaryOp::Less: return "<";
@@ -131,6 +139,7 @@ private:
     static const char* opString(UnaryOp op) {
         switch (op) {
             case UnaryOp::Neg: return "-";
+            case UnaryOp::Not: return "!";
         }
         return "?";
     }

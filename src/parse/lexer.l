@@ -44,7 +44,7 @@ Diagnostics* g_diag = nullptr;
 "<="                        { return LE; }
 ">="                        { return GE; }
 
-[@()\[\]^;+\-*/%,?:<>]       { return yytext[0]; /* single-char tokens are their own code */ }
+[@()\[\]^;+\-*/%,?:<>&|!]     { return yytext[0]; /* single-char tokens are their own code */ }
 
 .                           { g_diag->error({yylineno}, std::string("unexpected character '") + yytext + "'"); }
 

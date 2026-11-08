@@ -1,7 +1,7 @@
 # Rastera Language Specification
 
 Status: **draft v0.1**. Any change to this file is a team decision and goes through a PR like code.
-Each rule names the task (`Txx`) that implements it; until that task is merged the rule is a promise, not a fact.
+Each rule names the task (`Txx`) that introduces it; rules marked **implemented** are facts.
 
 ## 1. Lexical structure
 
@@ -36,8 +36,8 @@ Two types, never written by the programmer:
 - `i32` — signed 32-bit integer. Arithmetic wraps on overflow (two's complement).
 - `array` — reference to a heap-allocated, fixed-length sequence of `i32`.
 
-A variable's type is fixed by its first assignment. Comparisons and logical operators produce `i32` `0` or `1`.
-In a condition, any non-zero `i32` is true. Arrays are never conditions or arithmetic operands.
+A variable's type is fixed by its first assignment. Comparisons and logical operators produce `i32` `0` or `1`. Logical operators require `i32` operands; arrays are never conditions or operands.
+In a condition, any non-zero `i32` is true. Arrays are never arithmetic operands.
 
 ## 4. Variables and scope (T02)
 
@@ -56,9 +56,15 @@ In a condition, any non-zero `i32` is true. Arrays are never conditions or arith
 | `a[i] := e;` | store into array element | T09 |
 | `e;` | evaluate expression for its side effects (calls) | T03 |
 | `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]` | if / if-else; `: ? (c2) [...]` chains else-if | T05 |
-| `* (c) [ ... ]` | while loop | T06 |
+| `* (c) [ ... ]` | while loop; checks `c` before every iteration and runs the body while `c` is non-zero | T06 |
 | `* i :: a..b [ ... ]` | range loop, inclusive | T08 |
 | `^ e;` | return | T00 (literal), T07 (general) |
+
+### While loop rules (T06)
+
+- `c` must be an `i32`; an array condition is a compile error.
+- The body is a block with its own lexical scope.
+- `^` in the body returns from the enclosing function.
 
 ### Range loop rules (T08)
 
@@ -77,16 +83,16 @@ Precedence, lowest to highest:
 
 | Level | Operators | Associativity | Task |
 |---|---|---|---|
-| 1 | `\|` | left | T04 |
-| 2 | `&` | left | T04 |
+| 1 | `\|` | left | T04 (implemented) |
+| 2 | `&` | left | T04 (implemented) |
 | 3 | `== != < <= > >=` | non-associative (`a < b < c` is a syntax error) | T05 |
 | 4 | `+ -` | left | T01 |
 | 5 | `* / %` | left | T01 |
-| 6 | unary `-`, `!` | right | T01, T04 |
+| 6 | unary `-`, `!` | right | T01, T04 (implemented) |
 | 7 | call `f(...)`, index `a[i]` | left | T03, T09 |
 
-- `&` and `|` short-circuit: the right operand is evaluated only if needed (T04).
-- `/` and `%` truncate toward zero (C semantics). Division or modulo by zero is a runtime error (T15).
+- `&` and `|` short-circuit: the right operand is evaluated only if needed. They normalize their result to `0` or `1`; `!x` is `1` exactly when `x` is `0` (T04).
+- `/` and `%` truncate toward zero (C semantics). A zero divisor and `-2147483648 / -1` or `-2147483648 % -1` are runtime errors (T15).
 - Operands are evaluated left to right.
 
 ## 7. Functions (T07)
@@ -105,13 +111,13 @@ Precedence, lowest to highest:
 | Form | Meaning |
 |---|---|
 | `<1, 2, 3>` | new array with these elements (at least one) |
-| `arr(n)` | new array of `n` zeros; `n < 0` is a runtime error |
+| `arr(n)` | new array of `n` zeros; `n < 0` is a runtime error (T15) |
 | `a[i]` | read element |
 | `a[i] := e;` | write element |
 | `b := a;` | `b` refers to the **same** array (aliasing, no copy) |
 
 Arrays are allocated on the heap and never freed before program exit (no garbage collector).
-Index out of range is a runtime error (T15).
+Indexing requires `0 <= i < length`; an out-of-range read or write is a runtime error (T15).
 
 ## 9. Built-in functions
 
@@ -132,7 +138,14 @@ All built-ins return `i32`. Using a built-in name for a user function or variabl
 - Compile-time errors are reported as `file:line: error: message` and the compiler exits with status 1.
 - Runtime errors print `rastera: runtime error: message` to stderr and exit with status 2.
 
-## 11. Implementation notes
+## 11. Implementations
+
+`rasteri` is the Phase 1 Flex/Bison interpreter: its grammar builds execution
+nodes and executes `@main` after static checking. `rasterc` is the Phase 2 AOT
+compiler: it builds an AST, emits LLVM IR, and produces a native executable.
+Both implement this language and are checked by the same test suite.
+
+## 12. Implementation notes
 
 - User function `f` is emitted as the symbol `rs_f`, so it can never clash with C library names
   (`abs`, `exit`, ...). The runtime's C `main` calls `rs_main`.

@@ -57,6 +57,8 @@ enum class BinaryOp {
     Mul,
     Div,
     Mod,
+    And,
+    Or,
     Equal,
     NotEqual,
     Less,
@@ -76,6 +78,7 @@ struct BinaryExpr : Expr {
 
 enum class UnaryOp {
     Neg,
+    Not,
 };
 
 struct UnaryExpr : Expr {
@@ -173,6 +176,15 @@ struct IfStmt : Stmt {
     void accept(Visitor& v) override;
 };
 
+// `* (c) [ ... ]`
+struct WhileStmt : Stmt {
+    std::unique_ptr<Expr> cond;
+    std::unique_ptr<Block> body;
+    WhileStmt(std::unique_ptr<Expr> c, std::unique_ptr<Block> b)
+        : cond(std::move(c)), body(std::move(b)) {}
+    void accept(Visitor& v) override;
+};
+
 // One `@f(a, b)` parameter: an i32 variable in the function's outermost scope (spec §4, §7).
 struct Param {
     std::string name;
@@ -210,6 +222,7 @@ struct Visitor {
     virtual void visit(AssignStmt&) = 0;
     virtual void visit(ExprStmt&) = 0;
     virtual void visit(IfStmt&) = 0;
+    virtual void visit(WhileStmt&) = 0;
     virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
@@ -228,6 +241,7 @@ inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
 inline void IfStmt::accept(Visitor& v) { v.visit(*this); }
+inline void WhileStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }

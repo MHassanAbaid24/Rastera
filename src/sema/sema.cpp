@@ -71,6 +71,14 @@ void Sema::visit(IfStmt& n) {
     if (n.else_branch) n.else_branch->accept(*this);
 }
 
+void Sema::visit(WhileStmt& n) {
+    n.cond->accept(*this);
+    if (n.cond->type != Type::Int) {
+        diag_.error(n.cond->loc, "while condition must be an integer");
+    }
+    n.body->accept(*this);
+}
+
 void Sema::visit(AssignStmt& n) {
     if (builtins_.count(n.name)) {
         diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
@@ -189,11 +197,18 @@ void Sema::visit(IntLit& n) { n.type = Type::Int; }
 void Sema::visit(BinaryExpr& n) {
     n.lhs->accept(*this);
     n.rhs->accept(*this);
+    if ((n.op == BinaryOp::And || n.op == BinaryOp::Or) &&
+        (n.lhs->type != Type::Int || n.rhs->type != Type::Int)) {
+        diag_.error(n.loc, "logical operands must be integers");
+    }
     n.type = Type::Int;
 }
 
 void Sema::visit(UnaryExpr& n) {
     n.operand->accept(*this);
+    if (n.op == UnaryOp::Not && n.operand->type != Type::Int) {
+        diag_.error(n.loc, "logical operand must be an integer");
+    }
     n.type = Type::Int;
 }
 
