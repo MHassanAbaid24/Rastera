@@ -79,8 +79,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-130 passed, 0 failed
-130 passed, 0 failed
+132 passed, 0 failed
+132 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -170,7 +170,7 @@ entry:
 
 ## 5. Examples
 
-The five programs in `examples/` were run on `rasteri` and, where they are valid programs,
+The programs in `examples/` were run on `rasteri` and, where they are valid programs,
 compiled with `rasterc` and executed. The output below is what those runs printed.
 
 ### 5.1 Recursion and arrays: `examples/recursion_arrays.rst`
@@ -349,6 +349,44 @@ the image viewer of most Linux desktops). Optionally, if ImageMagick is installe
 `convert out.ppm out.png` makes a PNG. The file is a 64x64 image: a gradient (red increases to the right, green downwards), a white
 rectangle near the top-left corner and a red and a green diagonal.
 
+### 5.6 Rendering the demos: `examples/gradient.rst` and `examples/pattern.rst`
+
+`examples/gradient.rst` is the program of section 5 of the project proposal, unchanged: a 256x256
+canvas filled with range loops, a conditional statement (`? ... : ...`), `pixel` and `rgb`, then
+`export()`. Each pixel is white when `(x * x + y * y) % 255 > 128` and dark grey otherwise, which
+gives rings that interfere with each other. `examples/pattern.rst` is a 128x128 picture made with
+`rect`, `line` and range loops: eight nested filled squares, a fan of seventeen lines from the
+bottom centre to the top edge, and a white frame. Both programs write `out.ppm` (binary P6) in the
+directory they run in; under `./dev.sh` that is the repository root, and git ignores `*.ppm`.
+
+Run a demo with the interpreter, or compile it and run the executable; the image is the same:
+
+```
+$ ./dev.sh build/rasteri examples/gradient.rst
+$ sha256sum out.ppm
+cc3c3f4999df5e7d1a18c50bb9683859bba7dbd4dc6f06cd61e56b74acdff4ef  out.ppm
+
+$ ./dev.sh build/rasterc examples/gradient.rst -o build/gradient
+$ ./dev.sh build/gradient
+$ sha256sum out.ppm
+cc3c3f4999df5e7d1a18c50bb9683859bba7dbd4dc6f06cd61e56b74acdff4ef  out.ppm
+
+$ ./dev.sh build/rasteri examples/pattern.rst
+$ sha256sum out.ppm
+02c039e36a8310591e1499af700b59ac042c40efbd0e9fd3b57f7d4a47f0f4cb  out.ppm
+
+$ ./dev.sh build/rasterc examples/pattern.rst -o build/pattern
+$ ./dev.sh build/pattern
+$ sha256sum out.ppm
+02c039e36a8310591e1499af700b59ac042c40efbd0e9fd3b57f7d4a47f0f4cb  out.ppm
+```
+
+Open `out.ppm` in any image viewer that reads PPM (for example GIMP or the viewer of most Linux
+desktops), or, if ImageMagick is installed on the host, run `convert out.ppm out.png`. The 256x256
+picture is small on a modern screen; zoom in to see the rings. `tests/pass/gfx_demo_gradient.rst`
+and `tests/pass/gfx_demo_pattern.rst` keep these two hashes under test in both suites, so any
+change that alters the drawn pixels fails `./dev.sh test`.
+
 ## 6. Language overview
 
 Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief:
@@ -472,7 +510,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 130 test cases.
+definition and the test suite, not the grammar file: both pass the same 132 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -525,6 +563,8 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 | `examples/runtime_error.rst` | Prints `20`, then fails with an array index error (exit 2). |
 | `examples/static_error.rst` | Undefined variable; rejected before anything runs (exit 1). |
 | `examples/graphics_demo.rst` | 64x64 gradient with a rectangle and two lines; writes `out.ppm`. |
+| `examples/gradient.rst` | The proposal's section 5 program: 256x256 rings from `(x * x + y * y) % 255`; writes `out.ppm`. |
+| `examples/pattern.rst` | 128x128 nested squares, a fan of lines and a frame, with range loops; writes `out.ppm`. |
 
 ### 10.5 `runtime/`
 
@@ -564,9 +604,9 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 |---|---|
 | `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives, and `# expect-ppm-size`, `# expect-ppm-pixel`, `# expect-ppm-sha256` to check the `out.ppm` a program wrote. |
 
-`tests/pass/` holds 71 programs that must run (expected stdout and exit status in directives);
+`tests/pass/` holds 73 programs that must run (expected stdout and exit status in directives);
 `tests/fail/` holds 59 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 130 per suite.
+giving the 132 per suite.
 
 `tests/pass/` files:
 
@@ -596,6 +636,8 @@ giving the 130 per suite.
 | `gfx_canvas_export.rst` | `canvas` and `export` both return 0; the file has header `P6 4 3 255` and is black (prints 0, 0). |
 | `gfx_canvas_max_size.rst` | The largest canvas, 4096 x 4096, is accepted; a later 4096 x 1 canvas replaces it. |
 | `gfx_canvas_replace.rst` | A second `canvas` call replaces the first: new size, black again. |
+| `gfx_demo_gradient.rst` | `examples/gradient.rst` (the proposal's program), checked by size and sha256 of `out.ppm`. |
+| `gfx_demo_pattern.rst` | `examples/pattern.rst`, checked by size, two pixels and sha256 of `out.ppm`. |
 | `gfx_line_clipped.rst` | A line starting and ending outside the canvas is clipped per pixel; an entirely outside line draws nothing. |
 | `gfx_line_diagonal.rst` | Both diagonals of a 5x5 canvas, one in each direction of travel. |
 | `gfx_line_horizontal.rst` | Horizontal line includes both endpoints and nothing around them. |
