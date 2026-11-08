@@ -183,7 +183,6 @@ void CodeGen::visit(CallExpr& n) {
     value_ = builder_.CreateCall(fn, args);
 }
 
-// Declare (or get) the runtime array allocator: rt_alloc(i32) -> i8*.
 llvm::Function* CodeGen::rtAllocFn() {
     llvm::Function* fn = module_->getFunction("rt_alloc");
     if (!fn) {
@@ -194,11 +193,44 @@ llvm::Function* CodeGen::rtAllocFn() {
     return fn;
 }
 
+llvm::Function* CodeGen::rtPanicFn() {
+    llvm::Function* fn = module_->getFunction("rt_panic");
+    if (!fn) {
+        std::vector<llvm::Type*> paramTypes = {i8ptr_};
+        auto* fnType = llvm::FunctionType::get(llvm::Type::getVoidTy(ctx_), paramTypes, /*isVarArg=*/false);
+        fn = llvm::Function::Create(fnType, llvm::Function::ExternalLinkage, "rt_panic", module_.get());
+        fn->addFnAttr(llvm::Attribute::NoReturn);
+    }
+    return fn;
+}
+
+void CodeGen::emitRuntimeCheck(llvm::Value* condition, const char* message) {
+    auto* fn = builder_.GetInsertBlock()->getParent();
+    auto* panic = llvm::BasicBlock::Create(ctx_, "panic", fn);
+    auto* cont = llvm::BasicBlock::Create(ctx_, "check.cont", fn);
+    builder_.CreateCondBr(condition, panic, cont);
+
+    builder_.SetInsertPoint(panic);
+    builder_.CreateCall(rtPanicFn(), {builder_.CreateGlobalStringPtr(message, "panic.msg")});
+    builder_.CreateUnreachable();
+    builder_.SetInsertPoint(cont);
+}
+
+llvm::Value* CodeGen::checkedArrayData(llvm::Value* arr, llvm::Value* idx) {
+    auto* i32arr = builder_.CreateBitCast(arr, i32_->getPointerTo(0), "arr.i32");
+    auto* lengthPtr = builder_.CreateGEP(i32_, i32arr, {llvm::ConstantInt::get(i32_, -1, true)}, "arr.len");
+    auto* length = builder_.CreateLoad(i32_, lengthPtr, "arr.length");
+    auto* negative = builder_.CreateICmpSLT(idx, llvm::ConstantInt::get(i32_, 0), "index.negative");
+    auto* tooHigh = builder_.CreateICmpSGE(idx, length, "index.high");
+    emitRuntimeCheck(builder_.CreateOr(negative, tooHigh, "index.invalid"), "array index out of range");
+    return i32arr;
+}
+
 void CodeGen::visit(ArrayLit& n) {
     // <1, 2, 3>: allocate via rt_alloc(count), then store each element.
     auto* count = llvm::ConstantInt::get(i32_, static_cast<int32_t>(n.elements.size()));
     auto* arr = builder_.CreateCall(rtAllocFn(), {count}, "arr");
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
+    auto* i32arr = builder_.CreateBitCast(arr, i32_->getPointerTo(0), "arr.i32");
     int idx = 0;
     for (auto& e : n.elements) {
         auto* val = emit(*e);
@@ -215,21 +247,17 @@ void CodeGen::visit(ArrayAlloc& n) {
 }
 
 void CodeGen::visit(IndexExpr& n) {
-    // a[i]: load array ptr (i8*), bitcast to i32*, GEP by index, load i32.
     auto* arr = emit(*n.array);
     auto* idx = emit(*n.index);
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
-    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, {idx}, "elem");
+    auto* elemPtr = builder_.CreateGEP(i32_, checkedArrayData(arr, idx), {idx}, "elem");
     value_ = builder_.CreateLoad(i32_, elemPtr, "elem.val");
 }
 
 void CodeGen::visit(ArrayStoreStmt& n) {
-    // a[i] := e: load array ptr, bitcast to i32*, GEP by index, store i32.
     auto* arr = emit(*n.array);
     auto* idx = emit(*n.index);
     auto* val = emit(*n.value);
-    auto* i32arr = builder_.CreateBitCast(arr, llvm::Type::getInt32Ty(ctx_)->getPointerTo(0), "arr.i32");
-    auto* elemPtr = builder_.CreateGEP(i32_, i32arr, {idx}, "elem");
+    auto* elemPtr = builder_.CreateGEP(i32_, checkedArrayData(arr, idx), {idx}, "elem");
     builder_.CreateStore(val, elemPtr);
 }
 
@@ -272,8 +300,26 @@ void CodeGen::visit(BinaryExpr& n) {
         case BinaryOp::Add: value_ = builder_.CreateAdd(l, r, "add"); break;
         case BinaryOp::Sub: value_ = builder_.CreateSub(l, r, "sub"); break;
         case BinaryOp::Mul: value_ = builder_.CreateMul(l, r, "mul"); break;
-        case BinaryOp::Div: value_ = builder_.CreateSDiv(l, r, "sdiv"); break;
-        case BinaryOp::Mod: value_ = builder_.CreateSRem(l, r, "srem"); break;
+        case BinaryOp::Div:
+            emitRuntimeCheck(builder_.CreateICmpEQ(r, llvm::ConstantInt::get(i32_, 0), "div.zero"),
+                             "division by zero");
+            emitRuntimeCheck(builder_.CreateAnd(
+                                 builder_.CreateICmpEQ(l, llvm::ConstantInt::get(i32_, 0x80000000U), "div.min"),
+                                 builder_.CreateICmpEQ(r, llvm::ConstantInt::get(i32_, -1, true), "div.minus_one"),
+                                 "div.overflow"),
+                             "integer division overflow");
+            value_ = builder_.CreateSDiv(l, r, "sdiv");
+            break;
+        case BinaryOp::Mod:
+            emitRuntimeCheck(builder_.CreateICmpEQ(r, llvm::ConstantInt::get(i32_, 0), "mod.zero"),
+                             "modulo by zero");
+            emitRuntimeCheck(builder_.CreateAnd(
+                                 builder_.CreateICmpEQ(l, llvm::ConstantInt::get(i32_, 0x80000000U), "mod.min"),
+                                 builder_.CreateICmpEQ(r, llvm::ConstantInt::get(i32_, -1, true), "mod.minus_one"),
+                                 "mod.overflow"),
+                             "integer modulo overflow");
+            value_ = builder_.CreateSRem(l, r, "srem");
+            break;
         case BinaryOp::Equal: value_ = builder_.CreateZExt(builder_.CreateICmpEQ(l, r, "eq"), i32_); break;
         case BinaryOp::NotEqual: value_ = builder_.CreateZExt(builder_.CreateICmpNE(l, r, "ne"), i32_); break;
         case BinaryOp::Less: value_ = builder_.CreateZExt(builder_.CreateICmpSLT(l, r, "lt"), i32_); break;

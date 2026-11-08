@@ -91,8 +91,8 @@ Precedence, lowest to highest:
 | 6 | unary `-`, `!` | right | T01, T04 (implemented) |
 | 7 | call `f(...)`, index `a[i]` | left | T03, T09 |
 
-- `&` and `|` short-circuit: the right operand is evaluated only if needed. They normalize their result to `0` or `1`; `!x` is `1` exactly when `x` is `0`.
-- `/` and `%` truncate toward zero (C semantics). Division or modulo by zero is a runtime error (T15).
+- `&` and `|` short-circuit: the right operand is evaluated only if needed. They normalize their result to `0` or `1`; `!x` is `1` exactly when `x` is `0` (T04).
+- `/` and `%` truncate toward zero (C semantics). A zero divisor and `-2147483648 / -1` or `-2147483648 % -1` are runtime errors (T15).
 - Operands are evaluated left to right.
 
 ## 7. Functions (T07)
@@ -111,13 +111,13 @@ Precedence, lowest to highest:
 | Form | Meaning |
 |---|---|
 | `<1, 2, 3>` | new array with these elements (at least one) |
-| `arr(n)` | new array of `n` zeros; `n < 0` is a runtime error |
+| `arr(n)` | new array of `n` zeros; `n < 0` is a runtime error (T15) |
 | `a[i]` | read element |
 | `a[i] := e;` | write element |
 | `b := a;` | `b` refers to the **same** array (aliasing, no copy) |
 
 Arrays are allocated on the heap and never freed before program exit (no garbage collector).
-Index out of range is a runtime error (T15).
+Indexing requires `0 <= i < length`; an out-of-range read or write is a runtime error (T15).
 
 ## 9. Built-in functions
 

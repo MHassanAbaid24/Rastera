@@ -5,8 +5,9 @@
 # With --interp, every case runs directly through rasteri. Directives:
 #     # expect-exit: N        process exit status (default 0)
 #     # expect-stdout: text   one expected stdout line; repeat in output order
-#     # expect-error: text    static-error stderr must contain this text
+#     # expect-error: text    static-error stderr must contain this text and exit 1
 #     # expect-runtime-error: text   stderr must contain this text and exit 2
+#                                expected stdout is also checked before a runtime error
 set -uo pipefail
 
 mode=compiler
@@ -84,6 +85,10 @@ for test in "$TESTS"/fail/*.rst; do
         if [ "$status" = 0 ] && [ -z "$want_compile" ]; then
             (cd "$WORK" && "$exe" >"$WORK/out" 2>"$WORK/err")
             status=$?
+        fi
+        if ! diff <(directive expect-stdout "$test") "$WORK/out" >"$WORK/diff"; then
+            fail "$name" "stdout differs (< expected, > actual):"$'\n'"$(cat "$WORK/diff")"
+            continue
         fi
     else
         (cd "$WORK" && "$RASTERA" "$test" >"$WORK/out" 2>"$WORK/err")
