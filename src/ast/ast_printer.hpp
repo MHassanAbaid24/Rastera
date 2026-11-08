@@ -81,6 +81,13 @@ public:
         child(*n.body);
     }
 
+    void visit(RangeStmt& n) override {
+        line(n) << "Range " << n.var << "\n";
+        child(*n.from);
+        child(*n.to);
+        child(*n.body);
+    }
+
     void visit(Block& n) override {
         line(n) << "Block\n";
         for (auto& s : n.stmts) child(*s);

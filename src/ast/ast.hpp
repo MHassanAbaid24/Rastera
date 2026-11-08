@@ -185,6 +185,18 @@ struct WhileStmt : Stmt {
     void accept(Visitor& v) override;
 };
 
+// `* i :: a..b [ ... ]` - inclusive range loop; `i` is a read-only variable of its own scope (spec §5).
+struct RangeStmt : Stmt {
+    std::string var;
+    std::unique_ptr<Expr> from;
+    std::unique_ptr<Expr> to;
+    std::unique_ptr<Block> body;
+    Symbol* sym = nullptr;  // set by sema
+    RangeStmt(std::string v, std::unique_ptr<Expr> f, std::unique_ptr<Expr> t, std::unique_ptr<Block> b)
+        : var(std::move(v)), from(std::move(f)), to(std::move(t)), body(std::move(b)) {}
+    void accept(Visitor& v) override;
+};
+
 // One `@f(a, b)` parameter: an i32 variable in the function's outermost scope (spec §4, §7).
 struct Param {
     std::string name;
@@ -223,6 +235,7 @@ struct Visitor {
     virtual void visit(ExprStmt&) = 0;
     virtual void visit(IfStmt&) = 0;
     virtual void visit(WhileStmt&) = 0;
+    virtual void visit(RangeStmt&) = 0;
     virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
@@ -242,6 +255,7 @@ inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
 inline void IfStmt::accept(Visitor& v) { v.visit(*this); }
 inline void WhileStmt::accept(Visitor& v) { v.visit(*this); }
+inline void RangeStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }

@@ -79,6 +79,24 @@ void Sema::visit(WhileStmt& n) {
     n.body->accept(*this);
 }
 
+void Sema::visit(RangeStmt& n) {
+    // Bounds resolve in the enclosing scope, so `* i :: i..i + 2` reads an outer `i`.
+    n.from->accept(*this);
+    n.to->accept(*this);
+    if (n.from->type != Type::Int) diag_.error(n.from->loc, "range bound must be an integer");
+    if (n.to->type != Type::Int) diag_.error(n.to->loc, "range bound must be an integer");
+    if (builtins_.count(n.var)) {
+        diag_.error(n.loc, "using built-in name '" + n.var + "' as a variable name");
+    }
+    // The loop variable lives in a scope of its own around the body block; it
+    // hides any outer variable of the same name (spec §5).
+    symbols_.push();
+    n.sym = symbols_.declare(n.var, Type::Int, n.loc);
+    n.sym->loop_var = true;
+    n.body->accept(*this);
+    symbols_.pop();
+}
+
 void Sema::visit(AssignStmt& n) {
     if (builtins_.count(n.name)) {
         diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
@@ -92,7 +110,9 @@ void Sema::visit(AssignStmt& n) {
     if (auto* sym = symbols_.lookup(n.name)) {
         n.sym = sym;
         n.declares = false;
-        if (sym->type != n.value->type) {
+        if (sym->loop_var) {
+            diag_.error(n.loc, "cannot assign to loop variable '" + n.name + "'");
+        } else if (sym->type != n.value->type) {
             diag_.error(n.loc, std::string("type mismatch: cannot assign ") +
                                    typeName(n.value->type) + " to variable '" +
                                    n.name + "' of type " + typeName(sym->type));
