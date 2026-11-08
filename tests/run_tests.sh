@@ -5,9 +5,10 @@
 #     # expect-exit: N        process exit status (default 0)
 #     # expect-stdout: text   one line of expected stdout; repeat for more lines, in order
 #                             (if absent, stdout must be empty)
-# tests/fail/*.rst  must be rejected. Directive:
-#     # expect-error: text    compiler stderr must contain this text (required)
+# tests/fail/*.rst  must be rejected. Directives:
+#     # expect-error: text    compiler stderr must contain this text
 #     # expect-runtime-error: text   compiles, but running exits with 2 and stderr contains text
+#     # expect-stdout: text   expected program stdout before a runtime error
 set -uo pipefail
 
 RASTERC="$(realpath "${1:?usage: $0 <path-to-rasterc>}")"
@@ -65,10 +66,14 @@ for test in "$TESTS"/fail/*.rst; do
             fail "$name" "compiled, but expected error containing: $want_compile"
             continue
         fi
-        (cd "$WORK" && "$exe" >/dev/null 2>"$WORK/err")
+        (cd "$WORK" && "$exe" >"$WORK/out" 2>"$WORK/err")
         status=$?
         if [ "$status" != 2 ] || ! grep -qF -- "$want_runtime" "$WORK/err"; then
             fail "$name" "expected runtime error (exit 2) containing '$want_runtime', got exit $status: $(cat "$WORK/err")"
+            continue
+        fi
+        if ! diff <(directive expect-stdout "$test") "$WORK/out" >"$WORK/diff"; then
+            fail "$name" "stdout differs (< expected, > actual):"$'\n'"$(cat "$WORK/diff")"
             continue
         fi
     else

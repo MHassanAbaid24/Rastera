@@ -11,16 +11,18 @@
 
 int32_t rs_main(void);
 
-/* rt_alloc(n): allocate space for n i32 elements and return a pointer.
- * n < 0 is a runtime error (spec §8). arr(0) allocates a zero-length array. */
+void rt_panic(const char* message) {
+    fflush(stdout);
+    fprintf(stderr, "rastera: runtime error: %s\n", message);
+    exit(2);
+}
+
+/* rt_alloc(n): reserve a length header followed by n i32 elements. */
 int32_t* rt_alloc(int32_t n) {
-    if (n < 0) {
-        fprintf(stderr, "rastera: runtime error: negative array size\n");
-        exit(2);
-    }
-    size_t bytes = (size_t)n * 4;
-    if (bytes == 0) bytes = 1;  /* malloc(0) is implementation-defined */
-    return (int32_t*)malloc(bytes);
+    if (n < 0) rt_panic("negative array size");
+    int32_t* storage = (int32_t*)malloc(((size_t)n + 1) * sizeof(*storage));
+    storage[0] = n;
+    return storage + 1;
 }
 
 int32_t rt_print(int32_t val) {

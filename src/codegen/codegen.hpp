@@ -47,8 +47,10 @@ private:
     llvm::Value* emit(Expr& e);
     bool blockTerminated() const { return builder_.GetInsertBlock()->getTerminator() != nullptr; }
 
-    // Runtime array allocator: rt_alloc(i32) -> i8*.
     llvm::Function* rtAllocFn();
+    llvm::Function* rtPanicFn();
+    void emitRuntimeCheck(llvm::Value* condition, const char* message);
+    llvm::Value* checkedArrayData(llvm::Value* arr, llvm::Value* idx);
 
     llvm::LLVMContext& ctx_;
     std::unique_ptr<llvm::Module> module_;
