@@ -57,7 +57,7 @@ In a condition, any non-zero `i32` is true. Arrays are never arithmetic operands
 | `e;` | evaluate expression for its side effects (calls) | T03 |
 | `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]` | if / if-else; `: ? (c2) [...]` chains else-if | T05 |
 | `* (c) [ ... ]` | while loop; checks `c` before every iteration and runs the body while `c` is non-zero | T06 |
-| `* i :: a..b [ ... ]` | range loop, inclusive | T08 |
+| `* i :: a..b [ ... ]` | range loop, inclusive; runs the body for `i = a, a+1, ..., b` | T08 |
 | `^ e;` | return | T00 (literal), T07 (general) |
 
 ### While loop rules (T06)
@@ -66,12 +66,24 @@ In a condition, any non-zero `i32` is true. Arrays are never arithmetic operands
 - The body is a block with its own lexical scope.
 - `^` in the body returns from the enclosing function.
 
-### Range loop rules (T08)
+### Range loop rules (T08, implemented)
 
-- `a` and `b` are evaluated **once**, before the first iteration, in that order.
-- If `a > b` the body runs zero times.
-- `i` is a new variable scoped to the loop body; assigning to it inside the body is a semantic error.
-- The loop must terminate when `b` is `2147483647` (no overflow of the counter).
+- `a` and `b` must be `i32`; an array bound is a compile error (`range bound must be an integer`).
+- `a` and `b` are evaluated **once**, before the first iteration, in that order (left to right).
+- The loop is inclusive: the body runs for `i = a, a+1, ..., b`. If `a > b` it runs zero times.
+- `i` is a new `i32` variable scoped to the loop; it is not visible after the loop. If a variable named
+  `i` is already visible, the loop variable **hides** it for the whole loop (bounds are evaluated before the
+  loop variable exists, so `* i :: i..i + 1` starts from the outer `i`) and the outer variable is unchanged
+  afterwards. This is the only place a name is shadowed: assignment `x := e;` still reassigns a visible `x` (§4).
+- `i` is read-only: any assignment to it inside the body, including from nested blocks and loops, is a compile
+  error `cannot assign to loop variable 'i'`. Built-in names cannot be loop variables.
+- The loop terminates when `b` is `2147483647`: `i` is compared with `b` before it is incremented, so the
+  counter never overflows.
+- The body is a block with its own scope, so variables declared in it are new on every iteration. `^` in the
+  body returns from the enclosing function.
+- Syntax: `*` followed by an identifier and `::` is a range loop, `*` followed by `(` is a while loop. After
+  `..`, a `[` that is not inside parentheses opens the body, so an upper bound that ends in an index must be
+  parenthesised: `* i :: 0..(v[2]) [ ... ]` (`0..v[2] [ ... ]` is a syntax error).
 
 ### Return (T00, T07)
 

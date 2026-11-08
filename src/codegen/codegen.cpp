@@ -136,6 +136,46 @@ void CodeGen::visit(WhileStmt& n) {
     builder_.SetInsertPoint(exitBB);
 }
 
+void CodeGen::visit(RangeStmt& n) {
+    auto* fn = builder_.GetInsertBlock()->getParent();
+
+    // Both bounds are evaluated once, left to right, before the first iteration.
+    auto* from = emit(*n.from);
+    auto* to = emit(*n.to);
+
+    llvm::IRBuilder<> entry(&fn->getEntryBlock(), fn->getEntryBlock().begin());
+    auto* slot = entry.CreateAlloca(i32_, nullptr, n.var);
+    slots_.emplace(n.sym, slot);
+    builder_.CreateStore(from, slot);
+
+    auto* bodyBB = llvm::BasicBlock::Create(ctx_, "range.body", fn);
+    auto* exitBB = llvm::BasicBlock::Create(ctx_, "range.exit");
+
+    // `a > b` skips the loop. This is the only comparison that tests a bound.
+    builder_.CreateCondBr(builder_.CreateICmpSLE(from, to, "range.nonempty"), bodyBB, exitBB);
+
+    builder_.SetInsertPoint(bodyBB);
+    n.body->accept(*this);
+    // A body that ended in `^` has no back-edge (same rule as while).
+    if (!blockTerminated()) {
+        // Test `i == b` before incrementing: `i + 1` never runs when b is INT_MAX, so it cannot wrap.
+        auto* stepBB = llvm::BasicBlock::Create(ctx_, "range.step", fn);
+        auto* nextBB = llvm::BasicBlock::Create(ctx_, "range.next", fn);
+        builder_.CreateBr(stepBB);
+
+        builder_.SetInsertPoint(stepBB);
+        auto* current = builder_.CreateLoad(i32_, slot, n.var);
+        builder_.CreateCondBr(builder_.CreateICmpEQ(current, to, "range.last"), exitBB, nextBB);
+
+        builder_.SetInsertPoint(nextBB);
+        builder_.CreateStore(builder_.CreateAdd(current, llvm::ConstantInt::get(i32_, 1), n.var + ".next"), slot);
+        builder_.CreateBr(bodyBB);
+    }
+
+    fn->insert(fn->end(), exitBB);
+    builder_.SetInsertPoint(exitBB);
+}
+
 void CodeGen::visit(AssignStmt& n) {
     auto* v = emit(*n.value);
     if (n.declares) {

@@ -39,12 +39,15 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %token NE "!="
 %token LE "<="
 %token GE ">="
+%token DCOLON "::"
+%token DOTDOT ".."
+%token LOOP_OPEN "loop body ["
 %token ARR "array constructor"
 
 %type <program> program
 %type <func> func
-%type <block> block stmts
-%type <stmt> stmt if_stmt while_stmt
+%type <block> block stmts range_body
+%type <stmt> stmt if_stmt while_stmt range_stmt
 %type <expr> expr
 %type <expr_list> args arg_list array_elements
 %type <param_list> params param_list
@@ -107,6 +110,7 @@ stmt
     | block                     { $$ = $1; }
     | if_stmt                   { $$ = $1; }
     | while_stmt                { $$ = $1; }
+    | range_stmt                { $$ = $1; }
     ;
 
 if_stmt
@@ -131,6 +135,19 @@ while_stmt
                                     $$ = new WhileStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5));
                                     $$->loc.line = @1.first_line;
                                 }
+    ;
+
+range_stmt
+    : '*' IDENT DCOLON expr DOTDOT expr range_body {
+                                    $$ = new RangeStmt(std::move(*$2), std::unique_ptr<Expr>($4),
+                                                       std::unique_ptr<Expr>($6), std::unique_ptr<Block>($7));
+                                    delete $2;
+                                    $$->loc.line = @1.first_line;
+                                }
+    ;
+
+range_body
+    : LOOP_OPEN stmts ']'       { $$ = $2; $$->loc.line = @1.first_line; }
     ;
 
 expr

@@ -21,6 +21,7 @@ struct Symbol {
     std::string name;
     Type type;
     Loc declared;
+    bool loop_var = false;  // range-loop variable: read-only (spec §5)
 };
 
 class SymbolTable {
