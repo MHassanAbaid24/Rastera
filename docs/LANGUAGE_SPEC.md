@@ -89,19 +89,18 @@ Precedence, lowest to highest:
 - `/` and `%` truncate toward zero (C semantics). Division or modulo by zero is a runtime error (T15).
 - Operands are evaluated left to right.
 
-## 7. Functions (T07, T10)
+## 7. Functions (T07)
 
 ```
-@name(p1, p2, buf[]) [ ... ]
+@name(p1, p2) [ ... ]
 ```
 
-- Parameters are `i32` unless written with `[]`, which makes them arrays passed **by reference**:
-  stores through the parameter are visible to the caller.
-- Functions return `i32` only. Arrays cannot be returned.
+- `@main` takes no parameters; parameters are mutable `i32` variables local to the call (assigning one never changes the caller's value).
+- Functions return `i32` only. Arrays cannot be returned or passed as arguments.
 - Recursion is allowed. Calling with the wrong number or kind of arguments is a semantic error.
 - Duplicate function names, duplicate parameter names and calls to unknown functions are semantic errors.
 
-## 8. Arrays (T09, T10)
+## 8. Arrays (T09)
 
 | Form | Meaning |
 |---|---|

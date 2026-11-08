@@ -1,6 +1,7 @@
 // `rasterc --ast`: prints the tree, one node per line, children indented.
 #pragma once
 
+#include <cstddef>
 #include <ostream>
 
 #include "ast/ast.hpp"
@@ -29,6 +30,29 @@ public:
         for (auto& a : n.args) child(*a);
     }
 
+    void visit(ArrayLit& n) override {
+        line(n) << "ArrayLit (" << n.elements.size() << " elements)\n";
+        for (auto& e : n.elements) child(*e);
+    }
+
+    void visit(ArrayAlloc& n) override {
+        line(n) << "ArrayAlloc\n";
+        child(*n.size);
+    }
+
+    void visit(IndexExpr& n) override {
+        line(n) << "Index\n";
+        child(*n.array);
+        child(*n.index);
+    }
+
+    void visit(ArrayStoreStmt& n) override {
+        line(n) << "ArrayStore\n";
+        child(*n.array);
+        child(*n.index);
+        child(*n.value);
+    }
+
     void visit(ReturnStmt& n) override {
         line(n) << "Return\n";
         child(*n.value);
@@ -44,13 +68,29 @@ public:
         child(*n.expr);
     }
 
+    void visit(IfStmt& n) override {
+        line(n) << "If\n";
+        child(*n.cond);
+        child(*n.then_branch);
+        if (n.else_branch) child(*n.else_branch);
+    }
+
     void visit(Block& n) override {
         line(n) << "Block\n";
         for (auto& s : n.stmts) child(*s);
     }
 
     void visit(FuncDecl& n) override {
-        line(n) << "Func " << n.name << "\n";
+        line(n) << "Func " << n.name;
+        if (!n.params.empty()) {
+            out_ << " (";
+            for (std::size_t i = 0; i < n.params.size(); ++i) {
+                if (i != 0) out_ << ", ";
+                out_ << n.params[i].name;
+            }
+            out_ << ")";
+        }
+        out_ << "\n";
         child(*n.body);
     }
 
@@ -78,6 +118,12 @@ private:
             case BinaryOp::Mul: return "*";
             case BinaryOp::Div: return "/";
             case BinaryOp::Mod: return "%";
+            case BinaryOp::Equal: return "==";
+            case BinaryOp::NotEqual: return "!=";
+            case BinaryOp::Less: return "<";
+            case BinaryOp::LessEqual: return "<=";
+            case BinaryOp::Greater: return ">";
+            case BinaryOp::GreaterEqual: return ">=";
         }
         return "?";
     }

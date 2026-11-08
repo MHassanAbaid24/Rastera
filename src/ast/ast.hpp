@@ -18,6 +18,10 @@ struct Loc {
     int line = 0;
 };
 
+struct FuncDecl;
+
+// Type of a value: i32 or a heap array reference (spec §3).
+enum class Type { Int, Array };
 struct Symbol;
 struct Visitor;
 
@@ -27,7 +31,9 @@ struct Node {
     virtual void accept(Visitor& v) = 0;
 };
 
-struct Expr : Node {};
+struct Expr : Node {
+    Type type = Type::Int;  // set by sema; codegen reads it to pick LLVM types
+};
 struct Stmt : Node {};
 
 // ---- Expressions ----
@@ -51,6 +57,12 @@ enum class BinaryOp {
     Mul,
     Div,
     Mod,
+    Equal,
+    NotEqual,
+    Less,
+    LessEqual,
+    Greater,
+    GreaterEqual,
 };
 
 struct BinaryExpr : Expr {
@@ -78,12 +90,48 @@ struct UnaryExpr : Expr {
 struct CallExpr : Expr {
     std::string name;
     std::vector<std::unique_ptr<Expr>> args;
+    FuncDecl* callee = nullptr;  // set by sema for user functions; nullptr means built-in
     CallExpr(std::string n, std::vector<std::unique_ptr<Expr>> a)
         : name(std::move(n)), args(std::move(a)) {}
     void accept(Visitor& v) override;
 };
 
+// `<1, 2, 3>` - array literal with at least one element (spec §8, T09).
+struct ArrayLit : Expr {
+    std::vector<std::unique_ptr<Expr>> elements;
+    explicit ArrayLit(std::vector<std::unique_ptr<Expr>> e)
+        : elements(std::move(e)) {}
+    void accept(Visitor& v) override;
+};
+
+// `arr(n)` - new array of n zeros (spec §8, T09).
+struct ArrayAlloc : Expr {
+    std::unique_ptr<Expr> size;
+    explicit ArrayAlloc(std::unique_ptr<Expr> s) : size(std::move(s)) {}
+    void accept(Visitor& v) override;
+};
+
+// `a[i]` - read array element (spec §8, T09).
+struct IndexExpr : Expr {
+    std::unique_ptr<Expr> array;
+    std::unique_ptr<Expr> index;
+    IndexExpr(std::unique_ptr<Expr> a, std::unique_ptr<Expr> i)
+        : array(std::move(a)), index(std::move(i)) {}
+    void accept(Visitor& v) override;
+};
+
 // ---- Statements ----
+
+// `a[i] := e;` - store into array element (spec §8, T09).
+struct ArrayStoreStmt : Stmt {
+    std::unique_ptr<Expr> array;
+    std::unique_ptr<Expr> index;
+    std::unique_ptr<Expr> value;
+    ArrayStoreStmt(std::unique_ptr<Expr> a, std::unique_ptr<Expr> i,
+                   std::unique_ptr<Expr> v)
+        : array(std::move(a)), index(std::move(i)), value(std::move(v)) {}
+    void accept(Visitor& v) override;
+};
 
 struct ReturnStmt : Stmt {
     std::unique_ptr<Expr> value;
@@ -115,11 +163,30 @@ struct Block : Stmt {
     void accept(Visitor& v) override;
 };
 
-// `@name() [ ... ]`
+// `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]`
+struct IfStmt : Stmt {
+    std::unique_ptr<Expr> cond;
+    std::unique_ptr<Block> then_branch;
+    std::unique_ptr<Stmt> else_branch;  // nullptr, Block, or chained IfStmt
+    IfStmt(std::unique_ptr<Expr> c, std::unique_ptr<Block> t, std::unique_ptr<Stmt> e = nullptr)
+        : cond(std::move(c)), then_branch(std::move(t)), else_branch(std::move(e)) {}
+    void accept(Visitor& v) override;
+};
+
+// One `@f(a, b)` parameter: an i32 variable in the function's outermost scope (spec §4, §7).
+struct Param {
+    std::string name;
+    Loc loc;
+    Symbol* sym = nullptr;  // set by sema
+};
+
+// `@name(p1, p2) [ ... ]`
 struct FuncDecl : Node {
     std::string name;
+    std::vector<Param> params;
     std::unique_ptr<Block> body;
-    FuncDecl(std::string n, std::unique_ptr<Block> b) : name(std::move(n)), body(std::move(b)) {}
+    FuncDecl(std::string n, std::vector<Param> p, std::unique_ptr<Block> b)
+        : name(std::move(n)), params(std::move(p)), body(std::move(b)) {}
     void accept(Visitor& v) override;
 };
 
@@ -135,9 +202,14 @@ struct Visitor {
     virtual void visit(BinaryExpr&) = 0;
     virtual void visit(UnaryExpr&) = 0;
     virtual void visit(CallExpr&) = 0;
+    virtual void visit(ArrayLit&) = 0;
+    virtual void visit(ArrayAlloc&) = 0;
+    virtual void visit(IndexExpr&) = 0;
+    virtual void visit(ArrayStoreStmt&) = 0;
     virtual void visit(ReturnStmt&) = 0;
     virtual void visit(AssignStmt&) = 0;
     virtual void visit(ExprStmt&) = 0;
+    virtual void visit(IfStmt&) = 0;
     virtual void visit(Block&) = 0;
     virtual void visit(FuncDecl&) = 0;
     virtual void visit(Program&) = 0;
@@ -148,9 +220,14 @@ inline void VarRef::accept(Visitor& v) { v.visit(*this); }
 inline void BinaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void UnaryExpr::accept(Visitor& v) { v.visit(*this); }
 inline void CallExpr::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayLit::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayAlloc::accept(Visitor& v) { v.visit(*this); }
+inline void IndexExpr::accept(Visitor& v) { v.visit(*this); }
+inline void ArrayStoreStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ReturnStmt::accept(Visitor& v) { v.visit(*this); }
 inline void AssignStmt::accept(Visitor& v) { v.visit(*this); }
 inline void ExprStmt::accept(Visitor& v) { v.visit(*this); }
+inline void IfStmt::accept(Visitor& v) { v.visit(*this); }
 inline void Block::accept(Visitor& v) { v.visit(*this); }
 inline void FuncDecl::accept(Visitor& v) { v.visit(*this); }
 inline void Program::accept(Visitor& v) { v.visit(*this); }

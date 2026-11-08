@@ -29,24 +29,36 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
     Stmt* stmt;
     Expr* expr;
     std::vector<std::unique_ptr<Expr>>* expr_list;
+    std::vector<Param>* param_list;
 }
 
 %token <num> INT "integer"
 %token <str> IDENT "identifier"
 %token ASSIGN ":="
+%token EQ "=="
+%token NE "!="
+%token LE "<="
+%token GE ">="
+%token ARR "array constructor"
 
 %type <program> program
 %type <func> func
 %type <block> block stmts
-%type <stmt> stmt
+%type <stmt> stmt if_stmt
 %type <expr> expr
-%type <expr_list> args arg_list
+%type <expr_list> args arg_list array_elements
+%type <param_list> params param_list
 
-%destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list>
+%destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list> <param_list>
 
+%precedence IDENT
+%nonassoc EQ NE '<' LE '>' GE
+%precedence ARRAY_ELEMENT
 %left '+' '-'
 %left '*' '/' '%'
 %precedence UMINUS
+%precedence INDEX
+%precedence '['
 
 %%
 
@@ -60,9 +72,10 @@ program
     ;
 
 func
-    : '@' IDENT '(' ')' block   {
-                                    $$ = new FuncDecl(std::move(*$2), std::unique_ptr<Block>($5));
+    : '@' IDENT '(' params ')' block {
+                                    $$ = new FuncDecl(std::move(*$2), std::move(*$4), std::unique_ptr<Block>($6));
                                     delete $2;
+                                    delete $4;
                                     $$->loc.line = @1.first_line;
                                 }
     ;
@@ -79,8 +92,35 @@ stmts
 stmt
     : '^' expr ';'              { $$ = new ReturnStmt(std::unique_ptr<Expr>($2)); $$->loc.line = @1.first_line; }
     | IDENT ASSIGN expr ';'     { $$ = new AssignStmt(std::move(*$1), std::unique_ptr<Expr>($3)); delete $1; $$->loc.line = @1.first_line; }
+    | IDENT '[' expr ']' ASSIGN expr ';' {
+                                        auto* arr = new VarRef(std::move(*$1));
+                                        delete $1;
+                                        $$ = new ArrayStoreStmt(
+                                            std::unique_ptr<Expr>(arr),
+                                            std::unique_ptr<Expr>($3),
+                                            std::unique_ptr<Expr>($6));
+                                        $$->loc.line = @1.first_line;
+                                    }
     | expr ';'                  { $$ = new ExprStmt(std::unique_ptr<Expr>($1)); $$->loc.line = @1.first_line; }
     | block                     { $$ = $1; }
+    | if_stmt                   { $$ = $1; }
+    ;
+
+if_stmt
+    : '?' '(' expr ')' block    {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), nullptr);
+                                    $$->loc.line = @1.first_line;
+                                }
+    | '?' '(' expr ')' block ':' block
+                                {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), std::unique_ptr<Stmt>($7));
+                                    $$->loc.line = @1.first_line;
+                                }
+    | '?' '(' expr ')' block ':' if_stmt
+                                {
+                                    $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), std::unique_ptr<Stmt>($7));
+                                    $$->loc.line = @1.first_line;
+                                }
     ;
 
 expr
@@ -92,7 +132,27 @@ expr
                                     delete $3;
                                     $$->loc.line = @1.first_line;
                                 }
+    | '<' array_elements '>'   {
+                                    $$ = new ArrayLit(std::move(*$2));
+                                    delete $2;
+                                    $$->loc.line = @1.first_line;
+                                }
+    | ARR '(' expr ')'          {
+                                    $$ = new ArrayAlloc(std::unique_ptr<Expr>($3));
+                                    $$->loc.line = @1.first_line;
+                                }
+    | expr '[' expr ']' %prec INDEX {
+                                    $$ = new IndexExpr(std::unique_ptr<Expr>($1),
+                                                       std::unique_ptr<Expr>($3));
+                                    $$->loc.line = @2.first_line;
+                                }
     | '(' expr ')'              { $$ = $2; }
+    | expr EQ expr              { $$ = new BinaryExpr(BinaryOp::Equal, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr NE expr              { $$ = new BinaryExpr(BinaryOp::NotEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '<' expr             { $$ = new BinaryExpr(BinaryOp::Less, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr LE expr              { $$ = new BinaryExpr(BinaryOp::LessEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr '>' expr             { $$ = new BinaryExpr(BinaryOp::Greater, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
+    | expr GE expr              { $$ = new BinaryExpr(BinaryOp::GreaterEqual, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '+' expr             { $$ = new BinaryExpr(BinaryOp::Add, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '-' expr             { $$ = new BinaryExpr(BinaryOp::Sub, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
     | expr '*' expr             { $$ = new BinaryExpr(BinaryOp::Mul, std::unique_ptr<Expr>($1), std::unique_ptr<Expr>($3)); $$->loc.line = @2.first_line; }
@@ -109,6 +169,22 @@ args
 arg_list
     : expr                      { $$ = new std::vector<std::unique_ptr<Expr>>(); $$->emplace_back($1); }
     | arg_list ',' expr         { $1->emplace_back($3); $$ = $1; }
+    ;
+
+array_elements
+    : expr %prec ARRAY_ELEMENT  { $$ = new std::vector<std::unique_ptr<Expr>>(); $$->emplace_back($1); }
+    | array_elements ',' expr %prec ARRAY_ELEMENT
+                                { $1->emplace_back($3); $$ = $1; }
+    ;
+
+params
+    : %empty                    { $$ = new std::vector<Param>(); }
+    | param_list                { $$ = $1; }
+    ;
+
+param_list
+    : IDENT                     { $$ = new std::vector<Param>(); $$->push_back(Param{std::move(*$1), Loc{@1.first_line}}); delete $1; }
+    | param_list ',' IDENT      { $1->push_back(Param{std::move(*$3), Loc{@3.first_line}}); delete $3; $$ = $1; }
     ;
 
 %%

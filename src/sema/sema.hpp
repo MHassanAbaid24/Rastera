@@ -3,6 +3,7 @@
 // with what codegen needs. Codegen assumes a program that passed sema.
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <unordered_map>
 
@@ -23,9 +24,14 @@ public:
     void visit(BinaryExpr&) override;
     void visit(UnaryExpr&) override;
     void visit(CallExpr&) override;
+    void visit(ArrayLit&) override;
+    void visit(ArrayAlloc&) override;
+    void visit(IndexExpr&) override;
+    void visit(ArrayStoreStmt&) override;
     void visit(ReturnStmt&) override;
     void visit(AssignStmt&) override;
     void visit(ExprStmt&) override;
+    void visit(IfStmt&) override;
     void visit(Block&) override;
     void visit(FuncDecl&) override;
     void visit(Program&) override;
@@ -34,5 +40,5 @@ private:
     Diagnostics& diag_;
     SymbolTable symbols_;
     std::unordered_map<std::string, FuncDecl*> functions_;
-    static const std::unordered_map<std::string, int> builtins_;
+    static const std::unordered_map<std::string, std::size_t> builtins_;
 };
