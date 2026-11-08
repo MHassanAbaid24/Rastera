@@ -129,6 +129,17 @@ struct IWhileStmt final : IStmt {
     std::unique_ptr<IBlock> body;
 };
 
+struct IRangeStmt final : IStmt {
+    IRangeStmt(int source_line, std::string variable, std::unique_ptr<IExpr> low, std::unique_ptr<IExpr> high,
+               std::unique_ptr<IBlock> loop_body)
+        : IStmt(source_line), var(std::move(variable)), from(std::move(low)), to(std::move(high)),
+          body(std::move(loop_body)) {}
+    std::string var;
+    std::unique_ptr<IExpr> from;
+    std::unique_ptr<IExpr> to;
+    std::unique_ptr<IBlock> body;
+};
+
 struct IParam {
     std::string name;
     int line;
@@ -171,7 +182,10 @@ private:
         int32_t value = 0;
     };
 
-    using TypeScope = std::unordered_map<std::string, IType>;
+    // The scope a range loop opens around its body holds only the loop variable, which is read-only.
+    struct TypeScope : std::unordered_map<std::string, IType> {
+        bool loop = false;
+    };
     using ValueScope = std::unordered_map<std::string, Value>;
 
     bool checkFunction(IFunc& function);
@@ -179,6 +193,7 @@ private:
     bool checkStmt(IStmt& statement);
     IType checkExpr(IExpr& expression);
     IType* findType(const std::string& name);
+    bool isLoopVariable(const std::string& name) const;
     Value* findValue(const std::string& name);
     const IFunc* findFunction(const std::string& name) const;
     int32_t call(const IFunc& function, const std::vector<Value>& args);
@@ -231,12 +246,15 @@ void iperror(Interpreter& interpreter, const char* message);
 %token NE "!="
 %token LE "<="
 %token GE ">="
+%token DCOLON "::"
+%token DOTDOT ".."
+%token LOOP_OPEN "loop body ["
 %token ARR "array constructor"
 
 %type <program> program
 %type <function> function
-%type <block> block statements
-%type <stmt> statement if_statement while_statement
+%type <block> block statements range_body
+%type <stmt> statement if_statement while_statement range_statement
 %type <expr> expression
 %type <expr_list> args argument_list array_elements
 %type <param_list> params parameter_list
@@ -297,6 +315,7 @@ statement
     | block { $$ = $1; }
     | if_statement { $$ = $1; }
     | while_statement { $$ = $1; }
+    | range_statement { $$ = $1; }
 
 if_statement
     : '?' '(' expression ')' block {
@@ -316,6 +335,18 @@ while_statement
     : '*' '(' expression ')' block {
         $$ = new IWhileStmt(@1.first_line, std::unique_ptr<IExpr>($3), std::unique_ptr<IBlock>($5));
     }
+    ;
+
+range_statement
+    : '*' IDENT DCOLON expression DOTDOT expression range_body {
+        $$ = new IRangeStmt(@1.first_line, std::move(*$2), std::unique_ptr<IExpr>($4), std::unique_ptr<IExpr>($6),
+                            std::unique_ptr<IBlock>($7));
+        delete $2;
+    }
+    ;
+
+range_body
+    : LOOP_OPEN statements ']' { $$ = $2; $$->line = @1.first_line; }
     ;
 
 expression
@@ -479,7 +510,9 @@ bool Interpreter::checkStmt(IStmt& statement) {
         const IType value_type = checkExpr(*assign->value);
         IType* existing = findType(assign->name);
         if (existing != nullptr) {
-            if (*existing != value_type)
+            if (isLoopVariable(assign->name))
+                error(assign->line, "cannot assign to loop variable '" + assign->name + "'");
+            else if (*existing != value_type)
                 error(assign->line, std::string("type mismatch: cannot assign ") + typeName(value_type) +
                                         " to variable '" + assign->name + "' of type " + typeName(*existing));
         } else {
@@ -507,6 +540,18 @@ bool Interpreter::checkStmt(IStmt& statement) {
         if (checkExpr(*while_statement->cond) != IType::Int)
             error(while_statement->cond->line, "while condition must be an integer");
         checkBlock(*while_statement->body);
+        return true;
+    }
+    if (auto* range = dynamic_cast<IRangeStmt*>(&statement)) {
+        // Bounds resolve in the enclosing scope, so `* i :: i..i + 2` reads an outer `i`.
+        if (checkExpr(*range->from) != IType::Int) error(range->from->line, "range bound must be an integer");
+        if (checkExpr(*range->to) != IType::Int) error(range->to->line, "range bound must be an integer");
+        if (range->var == "print") error(range->line, "using built-in name 'print' as a variable name");
+        types_.emplace_back();
+        types_.back().loop = true;
+        types_.back().emplace(range->var, IType::Int);
+        checkBlock(*range->body);
+        types_.pop_back();
         return true;
     }
     auto* if_statement = dynamic_cast<IIfStmt*>(&statement);
@@ -588,6 +633,13 @@ IType* Interpreter::findType(const std::string& name) {
     return nullptr;
 }
 
+bool Interpreter::isLoopVariable(const std::string& name) const {
+    for (auto scope = types_.rbegin(); scope != types_.rend(); ++scope) {
+        if (scope->count(name) != 0) return scope->loop;
+    }
+    return false;
+}
+
 Interpreter::Value* Interpreter::findValue(const std::string& name) {
     for (auto scope = values_.rbegin(); scope != values_.rend(); ++scope) {
         auto value = scope->find(name);
@@ -655,6 +707,22 @@ Interpreter::ReturnState Interpreter::execStmt(IStmt& statement) {
             if (result.returned) return result;
         }
         return {};
+    }
+    if (auto* range = dynamic_cast<IRangeStmt*>(&statement)) {
+        // Both bounds are evaluated once, left to right, before the first iteration.
+        const int32_t from = eval(*range->from).integer;
+        const int32_t to = eval(*range->to).integer;
+        if (from > to) return {};
+        values_.emplace_back();
+        ReturnState result;
+        for (int32_t current = from;; ++current) {
+            values_.back()[range->var] = Value{IType::Int, current, nullptr};
+            result = execBlock(*range->body);
+            // Test `i == b` before incrementing: `++current` never runs when b is INT_MAX, so it cannot overflow.
+            if (result.returned || current == to) break;
+        }
+        values_.pop_back();
+        return result;
     }
     auto* if_statement = dynamic_cast<IIfStmt*>(&statement);
     if (eval(*if_statement->cond).integer != 0) return execBlock(*if_statement->then_branch);

@@ -12,6 +12,11 @@
 
 Diagnostics* g_diag = nullptr;
 
+/* After `..`, a '[' outside every parenthesis opens the loop body instead of indexing the
+ * upper bound (`a..n - 1 [` would otherwise read as `n - 1[...]`). */
+static bool in_range_bound = false;
+static int range_bound_depth = 0;
+
 /* Runs before every rule's action: record the line the token is on. */
 #define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
 %}
@@ -39,12 +44,28 @@ Diagnostics* g_diag = nullptr;
 [A-Za-z_][A-Za-z0-9_]*      { yylval.str = new std::string(yytext); return IDENT; }
 
 ":="                        { return ASSIGN; }
+"::"                        { return DCOLON; }
+".."                        {
+                                in_range_bound = true;
+                                range_bound_depth = 0;
+                                return DOTDOT;
+                            }
+
+"("                         { if (in_range_bound) ++range_bound_depth; return '('; }
+")"                         { if (in_range_bound) --range_bound_depth; return ')'; }
+"["                         {
+                                if (in_range_bound && range_bound_depth == 0) {
+                                    in_range_bound = false;
+                                    return LOOP_OPEN;
+                                }
+                                return '[';
+                            }
 "=="                        { return EQ; }
 "!="                        { return NE; }
 "<="                        { return LE; }
 ">="                        { return GE; }
 
-[@()\[\]^;+\-*/%,?:<>&|!]     { return yytext[0]; /* single-char tokens are their own code */ }
+[@\]^;+\-*/%,?:<>&|!]     { return yytext[0]; /* single-char tokens are their own code */ }
 
 .                           { g_diag->error({yylineno}, std::string("unexpected character '") + yytext + "'"); }
 
@@ -53,5 +74,6 @@ Diagnostics* g_diag = nullptr;
 void lexer_begin(FILE* in, Diagnostics& diag) {
     g_diag = &diag;
     yylineno = 1;
+    in_range_bound = false;
     yyrestart(in);
 }
