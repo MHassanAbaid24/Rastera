@@ -57,6 +57,47 @@ void CodeGen::visit(Block& n) {
 
 void CodeGen::visit(ReturnStmt& n) { builder_.CreateRet(emit(*n.value)); }
 
+
+void CodeGen::visit(IfStmt& n) {
+    auto* fn = builder_.GetInsertBlock()->getParent();
+
+    auto* condVal = emit(*n.cond);
+    auto* condBool = builder_.CreateICmpNE(condVal, llvm::ConstantInt::get(condVal->getType(), 0), "ifcond");
+
+    auto* thenBB = llvm::BasicBlock::Create(ctx_, "then", fn);
+    auto* elseBB = n.else_branch ? llvm::BasicBlock::Create(ctx_, "else") : nullptr;
+    auto* mergeBB = llvm::BasicBlock::Create(ctx_, "ifmerge");
+
+    builder_.CreateCondBr(condBool, thenBB, elseBB ? elseBB : mergeBB);
+
+    // Emit 'then' branch
+    builder_.SetInsertPoint(thenBB);
+    n.then_branch->accept(*this);
+    bool thenTerminated = blockTerminated();
+    if (!thenTerminated) {
+        builder_.CreateBr(mergeBB);
+    }
+
+    // Emit 'else' branch if present
+    bool elseTerminated = false;
+    if (n.else_branch) {
+        fn->insert(fn->end(), elseBB);
+        builder_.SetInsertPoint(elseBB);
+        n.else_branch->accept(*this);
+        elseTerminated = blockTerminated();
+        if (!elseTerminated) {
+            builder_.CreateBr(mergeBB);
+        }
+    }
+
+    if (!thenTerminated || (n.else_branch && !elseTerminated) || (!n.else_branch)) {
+        fn->insert(fn->end(), mergeBB);
+        builder_.SetInsertPoint(mergeBB);
+    } else {
+        delete mergeBB;
+    }
+}
+
 void CodeGen::visit(AssignStmt& n) {
     auto* v = emit(*n.value);
     if (n.declares) {
@@ -102,6 +143,12 @@ void CodeGen::visit(BinaryExpr& n) {
         case BinaryOp::Mul: value_ = builder_.CreateMul(l, r, "mul"); break;
         case BinaryOp::Div: value_ = builder_.CreateSDiv(l, r, "sdiv"); break;
         case BinaryOp::Mod: value_ = builder_.CreateSRem(l, r, "srem"); break;
+        case BinaryOp::Equal: value_ = builder_.CreateZExt(builder_.CreateICmpEQ(l, r, "eq"), i32_); break;
+        case BinaryOp::NotEqual: value_ = builder_.CreateZExt(builder_.CreateICmpNE(l, r, "ne"), i32_); break;
+        case BinaryOp::Less: value_ = builder_.CreateZExt(builder_.CreateICmpSLT(l, r, "lt"), i32_); break;
+        case BinaryOp::LessEqual: value_ = builder_.CreateZExt(builder_.CreateICmpSLE(l, r, "le"), i32_); break;
+        case BinaryOp::Greater: value_ = builder_.CreateZExt(builder_.CreateICmpSGT(l, r, "gt"), i32_); break;
+        case BinaryOp::GreaterEqual: value_ = builder_.CreateZExt(builder_.CreateICmpSGE(l, r, "ge"), i32_); break;
     }
 }
 

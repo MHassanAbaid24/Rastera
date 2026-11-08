@@ -37,8 +37,12 @@ Diagnostics* g_diag = nullptr;
 [A-Za-z_][A-Za-z0-9_]*      { yylval.str = new std::string(yytext); return IDENT; }
 
 ":="                        { return ASSIGN; }
+"=="                        { return EQ; }
+"!="                        { return NE; }
+"<="                        { return LE; }
+">="                        { return GE; }
 
-[@()\[\]^;+\-*/%,]           { return yytext[0]; /* single-char tokens are their own code */ }
+[@()\[\]^;+\-*/%,?:<>]       { return yytext[0]; /* single-char tokens are their own code */ }
 
 .                           { g_diag->error({yylineno}, std::string("unexpected character '") + yytext + "'"); }
 

@@ -32,6 +32,12 @@ const std::unordered_map<std::string, int> Sema::builtins_ = {
 
 void Sema::visit(ReturnStmt& n) { n.value->accept(*this); }
 
+void Sema::visit(IfStmt& n) {
+    n.cond->accept(*this);
+    n.then_branch->accept(*this);
+    if (n.else_branch) n.else_branch->accept(*this);
+}
+
 void Sema::visit(AssignStmt& n) {
     if (builtins_.count(n.name)) {
         diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
