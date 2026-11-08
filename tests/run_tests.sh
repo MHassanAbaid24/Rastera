@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
-# Rastera test runner.  Usage: tests/run_tests.sh <path-to-rasterc>
+# Rastera test runner. Usage: tests/run_tests.sh [--interp] <path-to-rasterc-or-rasteri>
 #
-# tests/pass/*.rst  must compile and run. Directives (comment lines):
+# Without --interp, pass cases compile with rasterc and run the resulting program.
+# With --interp, every case runs directly through rasteri. Directives:
 #     # expect-exit: N        process exit status (default 0)
-#     # expect-stdout: text   one line of expected stdout; repeat for more lines, in order
-#                             (if absent, stdout must be empty)
-# tests/fail/*.rst  must be rejected. Directive:
-#     # expect-error: text    compiler stderr must contain this text (required)
-#     # expect-runtime-error: text   compiles, but running exits with 2 and stderr contains text
+#     # expect-stdout: text   one expected stdout line; repeat in output order
+#     # expect-error: text    static-error stderr must contain this text
+#     # expect-runtime-error: text   stderr must contain this text and exit 2
 set -uo pipefail
 
-RASTERC="$(realpath "${1:?usage: $0 <path-to-rasterc>}")"
+mode=compiler
+if [ "${1:-}" = "--interp" ]; then
+    mode=interpreter
+    shift
+fi
+RASTERA="$(realpath "${1:?usage: $0 [--interp] <path-to-rasterc-or-rasteri>}")"
 TESTS="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
@@ -27,16 +31,30 @@ directive() {  # directive <name> <file>: values of `# <name>: value` lines
     sed -n "s/^# $1: \{0,1\}//p" "$2"
 }
 
+run_pass() {
+    local test="$1"
+    local exe="$WORK/prog"
+    compile_failed=0
+    if [ "$mode" = compiler ]; then
+        if ! "$RASTERA" "$test" -o "$exe" 2>"$WORK/err"; then
+            compile_failed=1
+            return
+        fi
+        (cd "$WORK" && "$exe" >"$WORK/out" 2>"$WORK/err")
+    else
+        (cd "$WORK" && "$RASTERA" "$test" >"$WORK/out" 2>"$WORK/err")
+    fi
+}
+
 for test in "$TESTS"/pass/*.rst; do
     [ -e "$test" ] || continue
     name="pass/$(basename "$test")"
-    exe="$WORK/prog"
-    if ! "$RASTERC" "$test" -o "$exe" 2>"$WORK/err"; then
+    run_pass "$test"
+    status=$?
+    if [ "$compile_failed" = 1 ]; then
         fail "$name" "compile error: $(cat "$WORK/err")"
         continue
     fi
-    (cd "$WORK" && "$exe" >"$WORK/out" 2>"$WORK/err")
-    status=$?
     want_status="$(directive expect-exit "$test")"
     want_status="${want_status:-0}"
     if [ "$status" != "$want_status" ]; then
@@ -59,27 +77,33 @@ for test in "$TESTS"/fail/*.rst; do
         fail "$name" "missing '# expect-error:' or '# expect-runtime-error:' directive"
         continue
     fi
-    exe="$WORK/prog"
-    if "$RASTERC" "$test" -o "$exe" 2>"$WORK/err"; then
-        if [ -n "$want_compile" ]; then
-            fail "$name" "compiled, but expected error containing: $want_compile"
-            continue
-        fi
-        (cd "$WORK" && "$exe" >/dev/null 2>"$WORK/err")
+    if [ "$mode" = compiler ]; then
+        exe="$WORK/prog"
+        "$RASTERA" "$test" -o "$exe" 2>"$WORK/err"
         status=$?
-        if [ "$status" != 2 ] || ! grep -qF -- "$want_runtime" "$WORK/err"; then
-            fail "$name" "expected runtime error (exit 2) containing '$want_runtime', got exit $status: $(cat "$WORK/err")"
-            continue
+        if [ "$status" = 0 ] && [ -z "$want_compile" ]; then
+            (cd "$WORK" && "$exe" >"$WORK/out" 2>"$WORK/err")
+            status=$?
         fi
     else
-        if [ -z "$want_compile" ]; then
-            fail "$name" "compile error, expected runtime error: $(cat "$WORK/err")"
+        (cd "$WORK" && "$RASTERA" "$test" >"$WORK/out" 2>"$WORK/err")
+        status=$?
+    fi
+    if [ -n "$want_compile" ]; then
+        if [ "$status" != 1 ] || ! grep -qF -- "$want_compile" "$WORK/err"; then
+            fail "$name" "expected static error (exit 1) containing '$want_compile', got exit $status: $(cat "$WORK/err")"
             continue
         fi
-        if ! grep -qF -- "$want_compile" "$WORK/err"; then
-            fail "$name" "error message does not contain '$want_compile': $(cat "$WORK/err")"
-            continue
-        fi
+        passed=$((passed + 1))
+        continue
+    fi
+    if [ "$status" != 2 ] || ! grep -qF -- "$want_runtime" "$WORK/err"; then
+        fail "$name" "expected runtime error (exit 2) containing '$want_runtime', got exit $status: $(cat "$WORK/err")"
+        continue
+    fi
+    if ! diff <(directive expect-stdout "$test") "$WORK/out" >"$WORK/diff"; then
+        fail "$name" "stdout differs (< expected, > actual):"$'\n'"$(cat "$WORK/diff")"
+        continue
     fi
     passed=$((passed + 1))
 done

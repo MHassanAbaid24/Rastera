@@ -15,6 +15,20 @@ bison_target(Parser src/parse/parser.y ${CMAKE_CURRENT_BINARY_DIR}/parser.cpp
 flex_target(Lexer src/parse/lexer.l ${CMAKE_CURRENT_BINARY_DIR}/lexer.cpp)
 add_flex_bison_dependency(Lexer Parser)
 
+# Phase 1 interpreter front end. Its generated symbols use an `ip` prefix,
+# so this grammar can coexist with the compiler front end above.
+bison_target(InterpreterParser src/interp/interp.y ${CMAKE_CURRENT_BINARY_DIR}/interp.cpp
+             DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/interp.hpp)
+flex_target(InterpreterLexer src/interp/lexer.l ${CMAKE_CURRENT_BINARY_DIR}/interp_lexer.cpp)
+add_flex_bison_dependency(InterpreterLexer InterpreterParser)
+
+add_executable(rasteri
+    ${BISON_InterpreterParser_OUTPUTS}
+    ${FLEX_InterpreterLexer_OUTPUTS}
+)
+target_include_directories(rasteri PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_compile_options(rasteri PRIVATE -Wall -Wextra)
+
 # Runtime library linked into every compiled Rastera program.
 add_library(rastera_rt STATIC runtime/rastera_rt.c)
 target_compile_options(rastera_rt PRIVATE -Wall -Wextra)

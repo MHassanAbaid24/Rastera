@@ -132,7 +132,14 @@ All built-ins return `i32`. Using a built-in name for a user function or variabl
 - Compile-time errors are reported as `file:line: error: message` and the compiler exits with status 1.
 - Runtime errors print `rastera: runtime error: message` to stderr and exit with status 2.
 
-## 11. Implementation notes
+## 11. Implementations
+
+`rasteri` is the Phase 1 Flex/Bison interpreter: its grammar builds execution
+nodes and executes `@main` after static checking. `rasterc` is the Phase 2 AOT
+compiler: it builds an AST, emits LLVM IR, and produces a native executable.
+Both implement this language and are checked by the same test suite.
+
+## 12. Implementation notes
 
 - User function `f` is emitted as the symbol `rs_f`, so it can never clash with C library names
   (`abs`, `exit`, ...). The runtime's C `main` calls `rs_main`.
