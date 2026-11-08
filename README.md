@@ -650,6 +650,9 @@ python3 docs/build_readme_pdf.py            # rewrite README.pdf from README.md
 python3 docs/build_readme_pdf.py --check    # exit 1 if README.pdf is out of date
 ```
 
+CI runs the `--check` command on every push and pull request, so a README.md edit without a
+regenerated README.pdf fails the build.
+
 ## 10. Project file inventory
 
 Every file tracked in the repository, by directory. Generated files (`build/`) and git-ignored
@@ -670,7 +673,7 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 
 | File | Purpose |
 |---|---|
-| `.github/workflows/ci.yml` | Continuous integration: builds the image, builds both programs, runs both test suites. |
+| `.github/workflows/ci.yml` | Continuous integration: checks README.pdf is up to date, builds the image, builds both programs, runs both test suites. |
 | `.github/pull_request_template.md` | Template for pull request descriptions. |
 
 ### 10.3 `docs/`
