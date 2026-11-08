@@ -1,7 +1,7 @@
 # Rastera
 
 Rastera is a small language with symbolic control flow: `@` defines a function, `?`/`:` is
-if/else, `*` is a while loop and `^` returns. This repository implements it twice, as the two
+if/else, `*` is a while loop or (`* i :: a..b`) a range loop, and `^` returns. This repository implements it twice, as the two
 phases of the course project:
 
 | Phase | Program | What it does |
@@ -75,8 +75,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-86 passed, 0 failed
-86 passed, 0 failed
+101 passed, 0 failed
+101 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -321,6 +321,9 @@ Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief
     * (x > 0) [               # while: checks first, runs while non-zero
         x := x - 1;
     ]
+    * i :: 1..3 [             # range loop: i = 1, 2, 3 (inclusive, i is read-only)
+        x := x + i;
+    ]
     a := <1, 2, 3>;           # array literal
     b := arr(4);              # 4 zeros
     b[0] := a[2];             # element read and write
@@ -336,7 +339,8 @@ Core features implemented in both `rasteri` and `rasterc`:
 - Arithmetic `+ - * / %` and unary `-`; `/` and `%` truncate toward zero.
 - Comparisons `== != < <= > >=` (non-associative) producing 0 or 1; `&`, `|`, `!` on integers,
   where `&` and `|` short-circuit.
-- Variables with lexical block scope; `if`, `else if`, `else`; `while`.
+- Variables with lexical block scope; `if`, `else if`, `else`; `while`; the inclusive range loop
+  `* i :: a..b [ ... ]`.
 - Functions with parameters, recursion, mutual recursion and calls before the definition.
   Functions return `i32`; arrays cannot be passed to or returned from functions.
 - Arrays: `<a, b, c>`, `arr(n)`, `a[i]`, `a[i] := e;`, bounds checked at run time.
@@ -347,8 +351,16 @@ Core features implemented in both `rasteri` and `rasterc`:
   undefined or misused variables, wrong function arity, duplicate functions or parameters,
   built-in names reused as names, array/integer mismatches, missing `@main()`.
 
-Not implemented in this revision, although mentioned as future work in the specification: range
-loops (`* i :: a..b`) and the graphics built-ins (`canvas`, `rgb`, `pixel`, `export`, `line`, `rect`).
+Range loop rules (`* i :: a..b [ ... ]`): `a` and `b` are `i32` and are evaluated once, in that
+order, before the first iteration; the body runs for `i = a, a+1, ..., b` and not at all when
+`a > b`; a bound of `2147483647` terminates because `i` is compared before it is incremented. `i`
+belongs to the loop only: it hides an outer variable of the same name until the loop ends, and
+assigning to it is the static error `cannot assign to loop variable 'i'`. A `[` outside
+parentheses after `..` opens the body, so index an upper bound with parentheses:
+`* i :: 0..(v[2]) [ ... ]`.
+
+Not implemented in this revision, although mentioned as future work in the specification: the
+graphics built-ins (`canvas`, `rgb`, `pixel`, `export`, `line`, `rect`).
 
 ## 7. Exit status and error summary
 
@@ -397,7 +409,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 86 test cases.
+definition and the test suite, not the grammar file: both pass the same 101 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -488,9 +500,9 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 |---|---|
 | `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives. |
 
-`tests/pass/` holds 45 programs that must run (expected stdout and exit status in directives);
-`tests/fail/` holds 41 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 86 per suite.
+`tests/pass/` holds 56 programs that must run (expected stdout and exit status in directives);
+`tests/fail/` holds 45 programs that must be rejected or fail at run time. Each runs in both suites,
+giving the 101 per suite.
 
 `tests/pass/` files:
 
@@ -530,6 +542,17 @@ giving the 86 per suite.
 | `logic_truth_precedence.rst` | Logical operator precedence and `!` (prints four 1s). |
 | `print_acceptance.rst` | Basic `print` (prints 7). |
 | `print_multiple.rst` | Several `print` calls in order (10, 20, 30). |
+| `range_bound_expressions.rst` | Upper bounds ending in a variable, a parenthesised index and `f(x) - 1` (prints 15, 3, 9). |
+| `range_body_variable_per_iteration.rst` | A variable declared in the body is new on every iteration (prints 1, 2, 3). |
+| `range_bounds_once.rst` | Both bounds are calls with output; each runs once, `a` before `b` (prints 10, 20, 1, 2, 3). |
+| `range_empty.rst` | `a > b` runs the body zero times, including negative bounds (prints 0, 7). |
+| `range_int_max.rst` | `2147483646..2147483647` ends after two iterations (no counter overflow). |
+| `range_nested.rst` | Nested range loops, the inner bound using the outer variable (prints 36, 6). |
+| `range_return_from_body.rst` | `^` inside a range body returns from the function (exit 3). |
+| `range_shadows_outer.rst` | The loop variable hides an outer `i`, which is unchanged afterwards (prints 5, 6, 5). |
+| `range_single.rst` | `a == b` runs exactly once (prints 1, 3). |
+| `range_sum.rst` | Sum 1 to 10 with a range loop (prints 55). |
+| `range_while_array.rst` | Range loop fills an array, a while loop sums it (prints 55). |
 | `return_literal.rst` | Returned literal becomes the exit status (42). |
 | `rt_array_zero.rst` | `arr(0)` is created without a runtime error (prints 5). |
 | `unary_minus.rst` | `-(-7)` is 7 (exit 7). |
@@ -571,6 +594,10 @@ giving the 86 per suite.
 | `logic_array_not_operand.rst` | `!` applied to an array (`logical operand must be an integer`). |
 | `logic_array_operand.rst` | `&`/`\|` applied to an array (`logical operands must be integers`). |
 | `no_main.rst` | No `@main` (`program has no @main() function`). |
+| `range_array_bound.rst` | Array as a range bound (`range bound must be an integer`). |
+| `range_assign_loop_variable.rst` | Assignment to the loop variable (`cannot assign to loop variable 'i'`). |
+| `range_index_bound_needs_parens.rst` | `0..v[2] [` reads `[` as the body (`syntax error`). |
+| `range_variable_not_visible.rst` | Loop variable used after the loop (`undefined variable 'i'`). |
 | `rt_division_by_zero.rst` | Division by zero after printing 7 (`division by zero`). |
 | `rt_division_int_min.rst` | `-2147483648 / -1` (`integer division overflow`). |
 | `rt_index_read_high.rst` | Read past the end (`array index out of range`). |
