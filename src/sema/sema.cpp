@@ -110,9 +110,9 @@ void Sema::visit(CallExpr& n) {
     for (auto& a : n.args) a->accept(*this);
 
     std::size_t expected;
-    auto builtin = builtins_.find(n.name);
-    if (builtin != builtins_.end()) {
-        expected = builtin->second;
+    const bool is_builtin = builtins_.count(n.name) != 0;
+    if (is_builtin) {
+        expected = builtins_.at(n.name);
     } else {
         auto function = functions_.find(n.name);
         if (function == functions_.end()) {
@@ -130,10 +130,10 @@ void Sema::visit(CallExpr& n) {
         return;
     }
 
-    // Built-ins take i32 arguments only.
     for (auto& a : n.args) {
         if (a->type != Type::Int) {
-            diag_.error(n.loc, "builtin '" + n.name + "' expects an integer argument");
+            diag_.error(n.loc, std::string(is_builtin ? "builtin" : "function") +
+                                   " '" + n.name + "' expects an integer argument");
             break;
         }
     }
