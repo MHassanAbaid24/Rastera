@@ -23,7 +23,7 @@ fi
 
 case "${1:-}" in
     build) set -- bash -c 'cmake -S . -B build -G Ninja && cmake --build build' ;;
-    test)  set -- bash -c 'cmake -S . -B build -G Ninja && cmake --build build && tests/run_tests.sh build/rasterc' ;;
+    test)  set -- bash -c 'cmake -S . -B build -G Ninja && cmake --build build && tests/run_tests.sh build/rasterc && tests/run_tests.sh --interp build/rasteri' ;;
     "")    set -- bash ;;
 esac
 

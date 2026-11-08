@@ -19,7 +19,7 @@ jobs:
           tags: rastera-dev
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Build compiler and run tests
+      - name: Build implementations and run tests
         run: >
           docker run --rm -v "$PWD:/work" -w /work rastera-dev
-          bash -c 'cmake -S . -B build -G Ninja && cmake --build build && tests/run_tests.sh build/rasterc'
+          bash -c 'cmake -S . -B build -G Ninja && cmake --build build && tests/run_tests.sh build/rasterc && tests/run_tests.sh --interp build/rasteri'
