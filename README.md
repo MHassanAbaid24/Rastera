@@ -79,8 +79,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-130 passed, 0 failed
-130 passed, 0 failed
+157 passed, 0 failed
+157 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -359,6 +359,11 @@ Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief
     ^ a + b;                  # return
 ]
 
+@set(buf[], i, x) [           # buf[] is an array parameter, passed by reference
+    buf[i] := x;
+    ^ 0;
+]
+
 @main() [                     # exactly one @main(); its result is the exit status
     x := 5;                   # := creates a variable, or reassigns a visible one
     ? (x > 3) [               # if
@@ -377,6 +382,7 @@ Normative rules, with every error case, are in `docs/LANGUAGE_SPEC.md`. In brief
     a := <1, 2, 3>;           # array literal
     b := arr(4);              # 4 zeros
     b[0] := a[2];             # element read and write
+    set(b, 1, 9);             # the callee's store is visible here: b[1] is 9
     print(add(b[0], 1));      # built-in print: value and newline on stdout
     ^ 0;
 ]
@@ -392,14 +398,28 @@ Core features implemented in both `rasteri` and `rasterc`:
 - Variables with lexical block scope; `if`, `else if`, `else`; `while`; the inclusive range loop
   `* i :: a..b [ ... ]`.
 - Functions with parameters, recursion, mutual recursion and calls before the definition.
-  Functions return `i32`; arrays cannot be passed to or returned from functions.
+  Functions return `i32`; arrays cannot be returned. A parameter written `buf[]` is an array passed
+  by reference (see below).
 - Arrays: `<a, b, c>`, `arr(n)`, `a[i]`, `a[i] := e;`, bounds checked at run time.
 - Built-in `print(x)` and the graphics built-ins described below.
 - Runtime errors (exit 2): division or modulo by zero, `-2147483648 / -1` and `% -1`, array index
   out of range, negative array size.
 - Static errors (exit 1): syntax errors, bad characters, integer literals above 2147483647,
   undefined or misused variables, wrong function arity, duplicate functions or parameters,
-  built-in names reused as names, array/integer mismatches, missing `@main()`.
+  built-in names reused as names, array/integer mismatches (including an array used as an operand
+  of `+`, `<`, unary `-` and the like, and the wrong kind of argument for a parameter), missing
+  `@main()`.
+
+Array parameters (`@insertion(a[], n) [ ... ]`): a parameter written with `[]` is an array passed
+by reference, so element stores through it are visible to the caller; nothing is copied, and the
+array's length travels with it, so every `a[i]` through a parameter is still bounds checked. Plain
+parameters stay local `i32` copies. An array parameter can be indexed, stored into, aliased
+(`b := a;`) and passed on to other functions. Assigning a new array to it (`a := arr(3);`) rebinds
+that name inside the call only; the caller's array and variable are untouched. At a call, each
+argument must match the kind of its parameter: passing an integer for an array parameter, or an
+array for an integer parameter, is the static error `function 'f' expects an array for argument 2,
+got an integer` (or `an integer ... got an array`). `@main` takes no parameters. The proposal's
+insertion sort is `tests/pass/aparam_insertion_sort.rst`.
 
 Range loop rules (`* i :: a..b [ ... ]`): `a` and `b` are `i32` and are evaluated once, in that
 order, before the first iteration; the body runs for `i = a, a+1, ..., b` and not at all when
@@ -472,7 +492,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 130 test cases.
+definition and the test suite, not the grammar file: both pass the same 157 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -564,14 +584,26 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 |---|---|
 | `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives, and `# expect-ppm-size`, `# expect-ppm-pixel`, `# expect-ppm-sha256` to check the `out.ppm` a program wrote. |
 
-`tests/pass/` holds 71 programs that must run (expected stdout and exit status in directives);
-`tests/fail/` holds 59 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 130 per suite.
+`tests/pass/` holds 83 programs that must run (expected stdout and exit status in directives);
+`tests/fail/` holds 74 programs that must be rejected or fail at run time. Each runs in both suites,
+giving the 157 per suite.
 
 `tests/pass/` files:
 
 | File | Checks |
 |---|---|
+| `aparam_alias_in_function.rst` | `b := a;` inside a function aliases the caller's array (prints 8). |
+| `aparam_forward_call.rst` | Array parameter function called before its definition (prints 3). |
+| `aparam_insertion_sort.rst` | The proposal's insertion sort on `<5, 2, 9, 1, 5, 6>`, including `j = -1` short-circuit (prints 1 2 5 5 6 9). |
+| `aparam_int_param_still_copy.rst` | An `i32` parameter beside an array parameter stays a copy (prints 7, 99, 5). |
+| `aparam_literal_argument.rst` | `<...>` and `arr(n)` passed directly as array arguments (prints 6, 0). |
+| `aparam_modify_caller.rst` | A function fills the caller's array through its `a[]` parameter. |
+| `aparam_pass_through.rst` | An array parameter handed on to another function (prints 42, 43). |
+| `aparam_range_bounds.rst` | Array parameter used in a range bound only through indexing (prints 10, 30). |
+| `aparam_rebind_local.rst` | `a := arr(3);` rebinds the parameter only; the caller's array keeps its earlier stores. |
+| `aparam_recursive_reverse.rst` | Recursion storing through an array parameter at every level (prints 6 to 1). |
+| `aparam_recursive_sum.rst` | Recursive sum over an array parameter (prints 21). |
+| `aparam_two_arrays.rst` | Two array parameters bound to different caller arrays; copies stay separate (prints 1 2 3 2). |
 | `arithmetic_acceptance.rst` | `(2 + 3) * -4 % 7` gives exit status 250. |
 | `arithmetic_left_assoc.rst` | Subtraction is left-associative (exit 4). |
 | `arithmetic_precedence.rst` | `*` binds tighter than `+` (exit 14). |
@@ -648,7 +680,23 @@ giving the 130 per suite.
 
 | File | Checks |
 |---|---|
+| `aparam_arithmetic_on_array.rst` | Array parameter used in `a + 1` (`operands must be integers`). |
+| `aparam_array_for_int.rst` | Array passed where an integer parameter is expected (`function 'first' expects an integer for argument 1, got an array`). |
+| `aparam_assign_int_to_array.rst` | Integer assigned to an array parameter (`type mismatch: cannot assign integer to variable 'a' of type array`). |
+| `aparam_bounds_read.rst` | Read past the end through a parameter (runtime: `array index out of range`, output 1 kept first). |
+| `aparam_bounds_store.rst` | Store through a nested array-parameter call past the end (runtime: `array index out of range`, output 7 kept first). |
+| `aparam_builtin_name.rst` | Array parameter named `print` (`using built-in name 'print' as a parameter name`). |
+| `aparam_duplicate.rst` | `@f(a, a[])` (`duplicate parameter 'a'`). |
+| `aparam_index_int_param.rst` | Indexing an integer parameter (`cannot index a non-array value`). |
+| `aparam_int_for_array.rst` | Integer passed where an array parameter is expected (`function 'first' expects an array for argument 1, got an integer`). |
+| `aparam_int_param_as_array_store.rst` | Element store through an integer parameter (`cannot index a non-array value`). |
+| `aparam_main_array_param.rst` | `@main(a[])` (`@main() must not have parameters`). |
+| `aparam_negate_array.rst` | Unary `-` on an array parameter (`operand must be an integer`). |
+| `aparam_return_array.rst` | Returning an array parameter (`return value must be an integer`). |
+| `aparam_second_arg_kind.rst` | Integer for the second, array, parameter (`function 'f' expects an array for argument 2, got an integer`). |
+| `aparam_wrong_arity.rst` | Too few arguments for `@f(a[], n)` (`wrong argument count for 'f': expected 2, got 1`). |
 | `array_arith.rst` | Array nested inside an array literal `<1, <2, 3>>` (`array literal elements must be integers`). |
+| `array_compare.rst` | Comparing two arrays with `==` (`operands must be integers`). |
 | `array_index_non_array.rst` | Indexing an integer (`cannot index a non-array value`). |
 | `array_negative_size.rst` | `arr` with a negative size (runtime: `negative array size`). |
 | `array_print_array.rst` | `print` of an array (`expects an integer argument`). |
@@ -659,7 +707,6 @@ giving the 130 per suite.
 | `call_wrong_arity_too_few.rst` | `print()` (`wrong argument count for 'print'`). |
 | `call_wrong_arity_too_many.rst` | `print(1, 2)` (`wrong argument count for 'print'`). |
 | `cmp_nonassoc.rst` | Chained comparison `a < b < c` (`syntax error`). |
-| `func_array_argument.rst` | Array passed as a function argument (`function 'first' expects an integer argument`). |
 | `func_builtin_name.rst` | Function named `print` (`using built-in name 'print' as a function name`). |
 | `func_duplicate.rst` | Two functions with one name (`duplicate function 'main'`). |
 | `func_duplicate_param.rst` | Repeated parameter name (`duplicate parameter 'a'`). |
