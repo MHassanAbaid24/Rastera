@@ -56,6 +56,12 @@ void Sema::visit(Block& n) {
 
 const std::unordered_map<std::string, std::size_t> Sema::builtins_ = {
     {"print", 1},
+    {"canvas", 2},
+    {"rgb", 3},
+    {"pixel", 3},
+    {"line", 5},
+    {"rect", 5},
+    {"export", 0},
 };
 
 void Sema::visit(ReturnStmt& n) {
