@@ -57,6 +57,8 @@ enum class BinaryOp {
     Mul,
     Div,
     Mod,
+    And,
+    Or,
     Equal,
     NotEqual,
     Less,
@@ -76,6 +78,7 @@ struct BinaryExpr : Expr {
 
 enum class UnaryOp {
     Neg,
+    Not,
 };
 
 struct UnaryExpr : Expr {

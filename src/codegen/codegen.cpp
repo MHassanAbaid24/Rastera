@@ -217,6 +217,36 @@ void CodeGen::visit(IntLit& n) { value_ = llvm::ConstantInt::get(i32_, n.value, 
 
 void CodeGen::visit(BinaryExpr& n) {
     auto* l = emit(*n.lhs);
+
+    if (n.op == BinaryOp::And || n.op == BinaryOp::Or) {
+        auto* lhsBB = builder_.GetInsertBlock();
+        auto* fn = lhsBB->getParent();
+        auto* lhsBool = builder_.CreateICmpNE(l, llvm::ConstantInt::get(i32_, 0), "logic.lhs");
+        auto* rhsBB = llvm::BasicBlock::Create(ctx_, "logic.rhs", fn);
+        auto* mergeBB = llvm::BasicBlock::Create(ctx_, "logic.merge");
+
+        if (n.op == BinaryOp::And) {
+            builder_.CreateCondBr(lhsBool, rhsBB, mergeBB);
+        } else {
+            builder_.CreateCondBr(lhsBool, mergeBB, rhsBB);
+        }
+
+        builder_.SetInsertPoint(rhsBB);
+        auto* r = emit(*n.rhs);
+        auto* rhsBool = builder_.CreateICmpNE(r, llvm::ConstantInt::get(i32_, 0), "logic.rhs");
+        auto* rhsValue = builder_.CreateZExt(rhsBool, i32_, "logic.value");
+        auto* rhsEndBB = builder_.GetInsertBlock();
+        builder_.CreateBr(mergeBB);
+
+        fn->insert(fn->end(), mergeBB);
+        builder_.SetInsertPoint(mergeBB);
+        auto* phi = builder_.CreatePHI(i32_, 2, "logic");
+        phi->addIncoming(llvm::ConstantInt::get(i32_, n.op == BinaryOp::And ? 0 : 1), lhsBB);
+        phi->addIncoming(rhsValue, rhsEndBB);
+        value_ = phi;
+        return;
+    }
+
     auto* r = emit(*n.rhs);
     switch (n.op) {
         case BinaryOp::Add: value_ = builder_.CreateAdd(l, r, "add"); break;
@@ -230,6 +260,9 @@ void CodeGen::visit(BinaryExpr& n) {
         case BinaryOp::LessEqual: value_ = builder_.CreateZExt(builder_.CreateICmpSLE(l, r, "le"), i32_); break;
         case BinaryOp::Greater: value_ = builder_.CreateZExt(builder_.CreateICmpSGT(l, r, "gt"), i32_); break;
         case BinaryOp::GreaterEqual: value_ = builder_.CreateZExt(builder_.CreateICmpSGE(l, r, "ge"), i32_); break;
+        case BinaryOp::And:
+        case BinaryOp::Or:
+            break;
     }
 }
 
@@ -237,5 +270,10 @@ void CodeGen::visit(UnaryExpr& n) {
     auto* op = emit(*n.operand);
     switch (n.op) {
         case UnaryOp::Neg: value_ = builder_.CreateNeg(op, "neg"); break;
+        case UnaryOp::Not:
+            value_ = builder_.CreateZExt(
+                builder_.CreateICmpEQ(op, llvm::ConstantInt::get(i32_, 0), "not"),
+                i32_);
+            break;
     }
 }
