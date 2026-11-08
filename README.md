@@ -368,6 +368,37 @@ Phase 2:  source.rst -> src/parse/lexer.l -> tokens -> src/parse/parser.y -> AST
           -> src/backend/ -> object file -> cc + runtime/rastera_rt.c -> executable
 ```
 
+### 8.1 How each phase uses its Bison grammar
+
+Both grammars use Bison's default C parser skeleton; the action code inside them is C++17,
+so the generated parsers are compiled as C++.
+
+Phase 1 (`src/interp/interp.y`). Everything that runs the program is in this one Bison file:
+the grammar actions, the node types they create, the static checks, the evaluator and `main`.
+The actions do not execute statements the moment a rule is reduced. They build small execution
+nodes, and once the whole file has parsed, the code at the end of `interp.y` checks the program
+and then executes `@main` by walking those nodes. Executing directly inside the actions is not
+possible for this language:
+
+- A function may be called before it is defined, so every definition has to be parsed first.
+- A loop body is reduced once by the parser but must run many times; a branch that is not
+  taken must not run at all.
+- `&` and `|` must skip their right operand, but Bison reduces both operands before the
+  operator's rule.
+
+The nodes are a tree the program runs directly. They are not intermediate code: nothing is
+translated, written out or compiled.
+
+Phase 2 (`src/parse/parser.y`). The compiler's grammar describes the same language. Its actions
+build an AST (`src/ast/ast.hpp`); `src/sema/` checks it and `src/codegen/` walks it to emit
+LLVM IR, which `src/backend/` compiles to an object file and links into an executable. IR is
+produced from the AST instead of inside the grammar actions for the same reasons as above,
+and one more: LLVM needs a function's declaration before a call to it can be emitted, and a
+loop's condition block must exist before the condition's instructions are placed in it.
+Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
+semantic error be reported before any IR is written. The two phases share the language
+definition and the test suite, not the grammar file: both pass the same 86 test cases.
+
 ## 9. Regenerating README.pdf
 
 `README.pdf` is generated from this file by a dependency-free script (Python 3 standard
