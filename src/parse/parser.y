@@ -29,6 +29,7 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
     Stmt* stmt;
     Expr* expr;
     std::vector<std::unique_ptr<Expr>>* expr_list;
+    std::vector<Param>* param_list;
 }
 
 %token <num> INT "integer"
@@ -45,8 +46,9 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %type <stmt> stmt if_stmt
 %type <expr> expr
 %type <expr_list> args arg_list
+%type <param_list> params param_list
 
-%destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list>
+%destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list> <param_list>
 
 %nonassoc EQ NE '<' LE '>' GE
 %left '+' '-'
@@ -65,9 +67,10 @@ program
     ;
 
 func
-    : '@' IDENT '(' ')' block   {
-                                    $$ = new FuncDecl(std::move(*$2), std::unique_ptr<Block>($5));
+    : '@' IDENT '(' params ')' block {
+                                    $$ = new FuncDecl(std::move(*$2), std::move(*$4), std::unique_ptr<Block>($6));
                                     delete $2;
+                                    delete $4;
                                     $$->loc.line = @1.first_line;
                                 }
     ;
@@ -138,6 +141,16 @@ args
 arg_list
     : expr                      { $$ = new std::vector<std::unique_ptr<Expr>>(); $$->emplace_back($1); }
     | arg_list ',' expr         { $1->emplace_back($3); $$ = $1; }
+    ;
+
+params
+    : %empty                    { $$ = new std::vector<Param>(); }
+    | param_list                { $$ = $1; }
+    ;
+
+param_list
+    : IDENT                     { $$ = new std::vector<Param>(); $$->push_back(Param{std::move(*$1), Loc{@1.first_line}}); delete $1; }
+    | param_list ',' IDENT      { $1->push_back(Param{std::move(*$3), Loc{@3.first_line}}); delete $3; $$ = $1; }
     ;
 
 %%
