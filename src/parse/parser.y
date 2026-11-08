@@ -44,7 +44,7 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 %type <program> program
 %type <func> func
 %type <block> block stmts
-%type <stmt> stmt if_stmt
+%type <stmt> stmt if_stmt while_stmt
 %type <expr> expr
 %type <expr_list> args arg_list array_elements
 %type <param_list> params param_list
@@ -104,6 +104,7 @@ stmt
     | expr ';'                  { $$ = new ExprStmt(std::unique_ptr<Expr>($1)); $$->loc.line = @1.first_line; }
     | block                     { $$ = $1; }
     | if_stmt                   { $$ = $1; }
+    | while_stmt                { $$ = $1; }
     ;
 
 if_stmt
@@ -119,6 +120,13 @@ if_stmt
     | '?' '(' expr ')' block ':' if_stmt
                                 {
                                     $$ = new IfStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5), std::unique_ptr<Stmt>($7));
+                                    $$->loc.line = @1.first_line;
+                                }
+    ;
+
+while_stmt
+    : '*' '(' expr ')' block    {
+                                    $$ = new WhileStmt(std::unique_ptr<Expr>($3), std::unique_ptr<Block>($5));
                                     $$->loc.line = @1.first_line;
                                 }
     ;

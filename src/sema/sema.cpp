@@ -71,6 +71,14 @@ void Sema::visit(IfStmt& n) {
     if (n.else_branch) n.else_branch->accept(*this);
 }
 
+void Sema::visit(WhileStmt& n) {
+    n.cond->accept(*this);
+    if (n.cond->type != Type::Int) {
+        diag_.error(n.cond->loc, "while condition must be an integer");
+    }
+    n.body->accept(*this);
+}
+
 void Sema::visit(AssignStmt& n) {
     if (builtins_.count(n.name)) {
         diag_.error(n.loc, "using built-in name '" + n.name + "' as a variable name");
