@@ -79,8 +79,8 @@ executed) and `tests/run_tests.sh --interp build/rasteri` (every program run thr
 Expected final output (one line per suite):
 
 ```
-161 passed, 0 failed
-161 passed, 0 failed
+164 passed, 0 failed
+164 passed, 0 failed
 ```
 
 A failing case prints `FAIL <test>: <reason>` and the suite exits non-zero. `./dev.sh` with no
@@ -637,7 +637,7 @@ and one more: LLVM needs a function's declaration before a call to it can be emi
 loop's condition block must exist before the condition's instructions are placed in it.
 Separating parsing from code generation also lets `rasterc --ast` show the tree, and lets every
 semantic error be reported before any IR is written. The two phases share the language
-definition and the test suite, not the grammar file: both pass the same 161 test cases.
+definition and the test suite, not the grammar file: both pass the same 164 test cases.
 
 ## 9. Regenerating README.pdf
 
@@ -736,9 +736,9 @@ files (`.gitignore` ignores `build/`, `a.out` and `*.ppm`) are not listed.
 |---|---|
 | `tests/run_tests.sh` | Test runner: `tests/run_tests.sh BIN` (compiler) or `--interp BIN` (interpreter). Reads `# expect-exit`, `# expect-stdout`, `# expect-error`, `# expect-runtime-error` directives, and `# expect-ppm-size`, `# expect-ppm-pixel`, `# expect-ppm-sha256` to check the `out.ppm` a program wrote. |
 
-`tests/pass/` holds 87 programs that must run (expected stdout and exit status in directives);
-`tests/fail/` holds 74 programs that must be rejected or fail at run time. Each runs in both suites,
-giving the 161 per suite.
+`tests/pass/` holds 88 programs that must run (expected stdout and exit status in directives);
+`tests/fail/` holds 76 programs that must be rejected or fail at run time. Each runs in both suites,
+giving the 164 per suite.
 
 `tests/pass/` files:
 
@@ -761,6 +761,7 @@ giving the 161 per suite.
 | `arithmetic_precedence.rst` | `*` binds tighter than `+` (exit 14). |
 | `array_alias.rst` | `b := a;` aliases; writing `b[0]` changes `a[0]` (exit 99). |
 | `array_alloc.rst` | `arr(5)`, element stores, printing elements. |
+| `array_index_statement.rst` | `a[0];` and `a[1] + 1;` are expression statements; `(a)[0] := 7;` stores (prints 3, exit 7). |
 | `array_literal.rst` | Array literal and summing its elements (exit 6). |
 | `array_store_load.rst` | Store then load an element (exit 7). |
 | `array_zero.rst` | `arr(0)` is a valid empty array. |
@@ -856,6 +857,7 @@ giving the 161 per suite.
 | `array_index_non_array.rst` | Indexing an integer (`cannot index a non-array value`). |
 | `array_negative_size.rst` | `arr` with a negative size (runtime: `negative array size`). |
 | `array_print_array.rst` | `print` of an array (`expects an integer argument`). |
+| `array_store_non_variable.rst` | Storing into an element of an array literal (`array store target must be a variable`). |
 | `array_type_mismatch.rst` | Reassigning an integer variable with an array (`type mismatch`). |
 | `bad_character.rst` | Unknown character `$` (`unexpected character '$'`). |
 | `call_arg_undefined.rst` | `print(y)` with `y` never assigned (`undefined variable 'y'`). |
@@ -884,6 +886,7 @@ giving the 161 per suite.
 | `gfx_pixel_no_canvas.rst` | `pixel` before any canvas (runtime: `no canvas`). |
 | `gfx_rect_no_canvas.rst` | `rect` before any canvas (runtime: `no canvas`). |
 | `gfx_rgb_variable_name.rst` | Variable named `rgb` (`using built-in name 'rgb' as a variable name`). |
+| `if_array_condition.rst` | Array as an `if` condition (`if condition must be an integer`). |
 | `if_branch_var_not_visible.rst` | Variable created inside an `if` branch used after it (`undefined variable 'branch_var'`). |
 | `interp_output_before_runtime_error.rst` | Output 7 is kept, then runtime error `negative array size`. |
 | `literal_too_large.rst` | Literal 2147483648 (`integer literal out of range`). |
