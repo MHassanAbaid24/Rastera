@@ -276,7 +276,6 @@ void iperror(Interpreter& interpreter, const char* message);
 
 %destructor { delete $$; } <str> <program> <function> <block> <stmt> <expr> <expr_list> <param_list>
 
-%precedence IDENT
 %left '|'
 %left '&'
 %nonassoc EQ NE '<' LE '>' GE
@@ -321,8 +320,18 @@ statement
         $$ = new IAssignStmt(@1.first_line, std::move(*$1), std::unique_ptr<IExpr>($3));
         delete $1;
     }
-    | IDENT '[' expression ']' ASSIGN expression ';' {
-        $$ = new IArrayStoreStmt(@1.first_line, std::move(*$1), std::unique_ptr<IExpr>($3),
+    | expression '[' expression ']' ASSIGN expression ';' {
+        // The target is parsed as an expression so that `a[i];` can still reduce `a`
+        // to an expression; only a variable may be stored into.
+        auto* variable = dynamic_cast<IVarExpr*>($1);
+        if (variable == nullptr) {
+            interpreter.error(@1.first_line, "array store target must be a variable");
+            delete $1;
+            delete $3;
+            delete $6;
+            YYERROR;
+        }
+        $$ = new IArrayStoreStmt(@1.first_line, std::move(variable->name), std::unique_ptr<IExpr>($3),
                                  std::unique_ptr<IExpr>($6));
         delete $1;
     }

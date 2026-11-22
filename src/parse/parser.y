@@ -54,7 +54,6 @@ void yyerror(std::unique_ptr<Program>& out, const char* msg);
 
 %destructor { delete $$; } <str> <program> <func> <block> <stmt> <expr> <expr_list> <param_list>
 
-%precedence IDENT
 %left '|'
 %left '&'
 %nonassoc EQ NE '<' LE '>' GE
@@ -97,11 +96,18 @@ stmts
 stmt
     : '^' expr ';'              { $$ = new ReturnStmt(std::unique_ptr<Expr>($2)); $$->loc.line = @1.first_line; }
     | IDENT ASSIGN expr ';'     { $$ = new AssignStmt(std::move(*$1), std::unique_ptr<Expr>($3)); delete $1; $$->loc.line = @1.first_line; }
-    | IDENT '[' expr ']' ASSIGN expr ';' {
-                                        auto* arr = new VarRef(std::move(*$1));
-                                        delete $1;
+    | expr '[' expr ']' ASSIGN expr ';' {
+                                        // The target is parsed as an expression so that `a[i];` can still
+                                        // reduce `a` to an expression; only a variable may be stored into.
+                                        if (dynamic_cast<VarRef*>($1) == nullptr) {
+                                            g_diag->error({@1.first_line}, "array store target must be a variable");
+                                            delete $1;
+                                            delete $3;
+                                            delete $6;
+                                            YYERROR;
+                                        }
                                         $$ = new ArrayStoreStmt(
-                                            std::unique_ptr<Expr>(arr),
+                                            std::unique_ptr<Expr>($1),
                                             std::unique_ptr<Expr>($3),
                                             std::unique_ptr<Expr>($6));
                                         $$->loc.line = @1.first_line;
