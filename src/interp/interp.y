@@ -593,7 +593,8 @@ bool Interpreter::checkStmt(IStmt& statement) {
         return true;
     }
     auto* if_statement = dynamic_cast<IIfStmt*>(&statement);
-    checkExpr(*if_statement->cond);
+    if (checkExpr(*if_statement->cond) != IType::Int)
+        error(if_statement->cond->line, "if condition must be an integer");
     checkBlock(*if_statement->then_branch);
     if (if_statement->else_branch != nullptr) checkStmt(*if_statement->else_branch);
     return true;

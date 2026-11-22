@@ -74,6 +74,9 @@ void Sema::visit(ReturnStmt& n) {
 
 void Sema::visit(IfStmt& n) {
     n.cond->accept(*this);
+    if (n.cond->type != Type::Int) {
+        diag_.error(n.cond->loc, "if condition must be an integer");
+    }
     n.then_branch->accept(*this);
     if (n.else_branch) n.else_branch->accept(*this);
 }

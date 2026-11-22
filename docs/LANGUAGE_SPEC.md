@@ -61,6 +61,11 @@ operators: each is the semantic error `operands must be integers` (`operand must
 | `* i :: a..b [ ... ]` | range loop, inclusive; runs the body for `i = a, a+1, ..., b` | T08 |
 | `^ e;` | return | T00 (literal), T07 (general) |
 
+### If rules (T05)
+
+- `c` must be an `i32`; an array condition is the compile error `if condition must be an integer`.
+- Each branch is a block with its own lexical scope.
+
 ### While loop rules (T06)
 
 - `c` must be an `i32`; an array condition is a compile error.
