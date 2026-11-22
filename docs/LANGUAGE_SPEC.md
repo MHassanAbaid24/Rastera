@@ -54,12 +54,17 @@ operators: each is the semantic error `operands must be integers` (`operand must
 | Form | Meaning | Task |
 |---|---|---|
 | `x := e;` | create or reassign | T02 |
-| `a[i] := e;` | store into array element | T09 |
-| `e;` | evaluate expression for its side effects (calls) | T03 |
+| `a[i] := e;` | store into array element; `a` must be a variable (`(a)[i]` is the same), anything else is `array store target must be a variable` | T09 |
+| `e;` | evaluate expression for its side effects (calls); any expression, including `a[i];` | T03 |
 | `? (c) [ ... ]` / `? (c) [ ... ] : [ ... ]` | if / if-else; `: ? (c2) [...]` chains else-if | T05 |
 | `* (c) [ ... ]` | while loop; checks `c` before every iteration and runs the body while `c` is non-zero | T06 |
 | `* i :: a..b [ ... ]` | range loop, inclusive; runs the body for `i = a, a+1, ..., b` | T08 |
 | `^ e;` | return | T00 (literal), T07 (general) |
+
+### If rules (T05)
+
+- `c` must be an `i32`; an array condition is the compile error `if condition must be an integer`.
+- Each branch is a block with its own lexical scope.
 
 ### While loop rules (T06)
 
